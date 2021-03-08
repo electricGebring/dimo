@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="categories" v-for="(Thematic, index) in elements" :key="index">
       <router-link class="link" :to="{name: 'About', params: {elements: elements}}">
-        <p class="each">{{ elements }}</p>
+        <p class="each">{{ Thematic.Label }}</p>
       </router-link>
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
   mounted() {
     fetch('data.json')
       .then((res) => res.json())
-      .then((data) => (this.elements = data))
+      .then((data) => (this.elements = data.Elements))
       .catch((err) => console.log(err.message))
   },
 }
