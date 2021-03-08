@@ -1,7 +1,11 @@
 <template>
   <div class="wrapper">
     <div class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
+<<<<<<< Updated upstream
       <router-link class="link" :to="{name: 'About', params: {elements: elements}}">
+=======
+      <router-link class="link" :to="{name: 'Search', params: {Thematic: Thematic}}">
+>>>>>>> Stashed changes
         <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
@@ -10,6 +14,7 @@
 
 <script>
 export default {
+<<<<<<< Updated upstream
   data() {
     return {
       elements: [],
@@ -22,6 +27,12 @@ export default {
       .catch((err) => console.log(err.message))
   },
   computed: {
+=======
+  computed: {
+    Elements() {
+      return this.$store.state.Elements
+    },
+>>>>>>> Stashed changes
     ThematicList() {
       const ThematicList = new Set()
       this.elements.forEach((item) => ThematicList.add(item.Thematic))

@@ -1,42 +1,47 @@
 <template>
-  <div class="container">
-    <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
-      <div v-if="item.Thematic === $route.params.Thematic">
-        <div class="section">
-          <div class="img-container">
-            <img v-bind:src="item.CoverImg" width="100" height="130" />
-          </div>
-          <div
-            class="title"
-            :style="[
-              item.Status == 'Gällande'
-                ? {background: '#87BDC9'}
-                : item.Status == 'Remiss'
-                ? {background: '#E9A15F'}
-                : item.Status == 'Under framtagande'
-                ? {background: '#5F8C9A'}
-                : {background: '#C45941'},
-            ]"
-          >
-            <span class="labelTitle">
-              {{ item.Label }}
-            </span>
-            <div class="type">
-              <span>{{ item.Documenttype }} </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<<<<<<< Updated upstream:src/views/About.vue
+  <div class="about">
+    <h1>This is an about page</h1>
+  </div>
+</template>
+=======
+  <div>
+    <sidebar />
+    <doclist :doclist="doclist" />
   </div>
 </template>
 
 <script>
+import Sidebar from '../components/Sidebar.vue'
+import Doclist from '../components/Doclist.vue'
 export default {
-  props: ['doclist'],
-  components: {},
-  computed: {},
-  methods: {},
+  data() {
+    return {
+      doclist: [],
+    }
+  },
+  components: {
+    Sidebar,
+    Doclist,
+  },
+  computed: {
+    Elements() {
+      return this.$store.state.Elements
+    },
+  },
+  mounted() {
+    this.filteredList()
+  },
+  methods: {
+    goto(url) {
+      window.open(url, '_blank').focus()
+    },
+    filteredList() {
+      this.doclist = this.Elements.filter((i) => {
+        return i.Thematic === i.Thematic
+      })
+    },
+  },
 }
 </script>
 
@@ -75,7 +80,6 @@ body {
   vertical-align: middle;
   border-radius: 0px 0px 10px 0px;
   top: 0;
-  text-align: center;
 }
 .type span {
   display: inline-block;
@@ -88,7 +92,6 @@ body {
 .title {
   height: 50px;
   color: #fff;
-  text-align: center;
   font-family: $fontType;
   font-size: 12px;
   font-weight: bold;
@@ -115,3 +118,4 @@ img {
   padding: 10px;
 }
 </style>
+>>>>>>> Stashed changes:src/views/Search.vue
