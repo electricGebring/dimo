@@ -41,7 +41,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './src/_variables.scss';
 body {
   margin: 0;
   padding: 0;
@@ -69,7 +68,7 @@ body {
   height: 25px;
   background: #bebdb9;
   color: #fff;
-  font-family: $fontType;
+  font-family:'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
@@ -80,7 +79,7 @@ body {
 .type span {
   display: inline-block;
   color: #fff;
-  font-family: $fontType;
+  font-family:'Montserrat', sans-serif;;
   font-size: 10px;
   font-weight: bold;
   margin: 5px auto;
@@ -89,7 +88,7 @@ body {
   height: 50px;
   color: #fff;
   text-align: center;
-  font-family: $fontType;
+  font-family:'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   align-self: center;
