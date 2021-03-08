@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <div class="categories" v-for="(Thematic, index) in elements" :key="index">
-      <router-link class="link" :to="{name: 'About', params: {elements: elements}}">
-        <p class="each">{{ Thematic.Label }}</p>
+    <div class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
+      <router-link class="link" :to="{name: 'About', params: {Thematic: Thematic}}">
+        <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
   </div>
@@ -10,16 +10,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      elements: [],
-    }
+   computed: {
+    Elements() {
+      return this.$store.state.Elements
+    },
+  ThematicList() {
+      const ThematicList = new Set()
+      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
+      return Array.from(ThematicList)
+    },
   },
   mounted() {
-    fetch('data.json')
-      .then((res) => res.json())
-      .then((data) => (this.elements = data.Elements))
-      .catch((err) => console.log(err.message))
+    this.$store.dispatch('getDocuments')
   },
 }
 </script>
