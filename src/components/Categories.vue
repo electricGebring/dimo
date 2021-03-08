@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <div class="categories" v-for="(Thematic, index) in elements" :key="index">
+    <div class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
       <router-link class="link" :to="{name: 'About', params: {elements: elements}}">
-        <p class="each">{{ elements }}</p>
+        <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
   </div>
@@ -18,18 +18,28 @@ export default {
   mounted() {
     fetch('data.json')
       .then((res) => res.json())
-      .then((data) => (this.elements = data))
+      .then((data) => (this.elements = data.Elements))
       .catch((err) => console.log(err.message))
+  },
+  computed: {
+    ThematicList() {
+      const ThematicList = new Set()
+      this.elements.forEach((item) => ThematicList.add(item.Thematic))
+      return Array.from(ThematicList)
+    },
   },
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
   margin-left: 20%;
+  font-family: 'Montserrat', sans-serif;
 }
 .categories {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
