@@ -1,7 +1,14 @@
 <template>
   <div class="wrapper">
-    <div class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
-      <router-link class="link" :to="{name: 'About', params: {Thematic: Thematic}}">
+    <div
+      class="categories"
+      v-for="(Thematic, index) in ThematicList"
+      :key="index"
+    >
+      <router-link
+        class="link"
+        :to="{ name: 'Search', params: { Thematic: Thematic } }"
+      >
         <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
@@ -10,28 +17,34 @@
 
 <script>
 export default {
-   computed: {
+  computed: {
     Elements() {
-      return this.$store.state.Elements
+      return this.$store.state.Elements;
     },
-  ThematicList() {
-      const ThematicList = new Set()
-      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
-      return Array.from(ThematicList)
+
+    ThematicList() {
+      const ThematicList = new Set();
+      this.$store.state.Elements.forEach((item) =>
+        ThematicList.add(item.Thematic)
+      );
+      return Array.from(ThematicList);
     },
   },
   mounted() {
-    this.$store.dispatch('getDocuments')
+    this.$store.dispatch("getDocuments");
   },
-}
+};
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
   margin-left: 20%;
+  font-family: "Montserrat", sans-serif;
 }
 .categories {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
