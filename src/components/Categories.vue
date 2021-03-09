@@ -23,13 +23,6 @@ export default {
   mounted() {
     this.$store.dispatch('getDocuments')
   },
-  computed: {
-    ThematicList() {
-      const ThematicList = new Set()
-      this.elements.forEach((item) => ThematicList.add(item.Thematic))
-      return Array.from(ThematicList)
-    },
-  },
 }
 </script>
 
