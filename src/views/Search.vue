@@ -1,26 +1,45 @@
 <template>
   <div>
     <sidebar />
+    <doclist :doclist="doclist" />
   </div>
 </template>
 
 <script>
-import Sidebar from "../components/Sidebar.vue";
-
+import Sidebar from '../components/Sidebar.vue'
+import Doclist from '../components/Doclist.vue'
 export default {
-  components: {
-    Sidebar
+  data() {
+    return {
+      doclist: [],
+    }
   },
-   mounted() {
-    this.$store.dispatch('getDocuments')
-    alert(this.$store.state.Elements)
+  components: {
+    Sidebar,
+    Doclist,
+  },
+  computed: {
+    Elements() {
+      return this.$store.state.Elements
+    },
+  },
+  mounted() {
+    this.filteredList()
+  },
+  methods: {
+    goto(url) {
+      window.open(url, '_blank').focus()
+    },
+    filteredList() {
+      this.doclist = this.Elements.filter((i) => {
+        return i.Thematic === i.Thematic
+      })
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import "./src/_variables.scss";
-
 body {
   margin: 0;
   padding: 0;
@@ -38,7 +57,6 @@ body {
   border-radius: 0px 0px 10px 10px;
   margin-top: 30px;
   margin-left: 3%;
-
   &:hover {
     background-color: #fff !important;
   }
@@ -49,7 +67,7 @@ body {
   height: 25px;
   background: #bebdb9;
   color: #fff;
-  font-family: $fontType;
+  font-family: 'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
@@ -59,7 +77,7 @@ body {
 .type span {
   display: inline-block;
   color: #fff;
-  font-family: $fontType;
+  font-family: 'Montserrat', sans-serif;;
   font-size: 10px;
   font-weight: bold;
   margin: 5px auto;
@@ -67,7 +85,7 @@ body {
 .title {
   height: 50px;
   color: #fff;
-  font-family: $fontType;
+  font-family: 'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   align-self: center;

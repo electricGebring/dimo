@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="container">
     <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
       <div v-if="item.Thematic === $route.params.Thematic">
         <div class="section">
@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 body {
   margin: 0;
   padding: 0;
@@ -58,9 +58,9 @@ body {
   border-radius: 0px 0px 10px 10px;
   margin-top: 30px;
   margin-left: 3%;
-  /* &:hover {
+  &:hover {
     background-color: #fff !important;
-  } */
+  }
 }
 .type {
   position: absolute;
@@ -68,17 +68,18 @@ body {
   height: 25px;
   background: #bebdb9;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family:'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
   border-radius: 0px 0px 10px 0px;
   top: 0;
+  text-align: center;
 }
 .type span {
   display: inline-block;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family:'Montserrat', sans-serif;;
   font-size: 10px;
   font-weight: bold;
   margin: 5px auto;
@@ -86,7 +87,8 @@ body {
 .title {
   height: 50px;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-family:'Montserrat', sans-serif;;
   font-size: 12px;
   font-weight: bold;
   align-self: center;
