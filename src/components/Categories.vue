@@ -10,16 +10,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      elements: [],
-    }
+   computed: {
+    Elements() {
+      return this.$store.state.Elements
+    },
+  ThematicList() {
+      const ThematicList = new Set()
+      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
+      return Array.from(ThematicList)
+    },
   },
   mounted() {
-    fetch('data.json')
-      .then((res) => res.json())
-      .then((data) => (this.elements = data.Elements))
-      .catch((err) => console.log(err.message))
+    this.$store.dispatch('getDocuments')
   },
   computed: {
     ThematicList() {
