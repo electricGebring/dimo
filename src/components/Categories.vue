@@ -5,6 +5,9 @@
         <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
+       <router-link class="link" :to="{name: 'Search', params: {Elements: Elements}}">
+        <p class="each">Visa Alla</p>
+      </router-link>
   </div>
 </template>
 
