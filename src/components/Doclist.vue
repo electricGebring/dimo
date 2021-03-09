@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
-      <div v-if="item.Thematic === $route.params.Thematic">
+      <div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
         <div class="section">
           <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="130" />
