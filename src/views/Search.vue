@@ -1,8 +1,8 @@
 <template>
   <div>
     <sidebar />
-    <FilterBar :Elements="Elements" />
-    <doclist :doclist="doclist" />
+    <FilterBar :Elements="Elements" @filter="setFilter" />
+    <doclist :doclist="doclist" :filterlist="filterlist" />
   </div>
 </template>
 
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       doclist: [],
+      filterlist: [],
     };
   },
   components: {
@@ -25,7 +26,8 @@ export default {
   computed: {
     Elements() {
       return this.$store.state.Elements;
-    },
+    }
+ 
   },
   mounted() {
     this.filteredList();
@@ -35,10 +37,17 @@ export default {
       window.open(url, "_blank").focus();
     },
     filteredList() {
+   
       this.doclist = this.Elements.filter((i) => {
         return i.Thematic === i.Thematic;
       });
     },
+    setFilter (Id) {
+      this.doclist = this.Elements.filter((i) => {
+        return i.Thematic === Id;
+      });  
+     
+    }
   },
 };
 </script>

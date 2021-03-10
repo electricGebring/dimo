@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+     <p> test {{ filterlist }} </p>
     <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
-      <div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
+      <!--<div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">-->
         <div class="section">
           <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="130" />
@@ -18,6 +19,7 @@
                 : {background: '#C45941'},
             ]"
           >
+      
             <span class="labelTitle">
               {{ item.Label }}
             </span>
@@ -27,13 +29,13 @@
           </div>
         </div>
       </div>
-    </div>
+   <!-- </div> -->
   </div>
 </template>
 
 <script>
 export default {
-  props: ['doclist'],
+  props: ['doclist', 'filterlist'],
   components: {},
   computed: {},
   methods: {},
