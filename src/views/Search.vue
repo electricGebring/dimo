@@ -70,7 +70,7 @@ export default {
       Elements.forEach((i) => {  
         filtArr.forEach((j) => {
           if (Elements[i].includes(this.doclist[j])) { //kommer inte att funka för Elements[i] är inte en array!!!
-            console.log(Elements[i])
+            console.log(Elements[i])                    //kanske även vända på includen
             arrayToDoclist.push(Elements[i])
           }
         })
