@@ -60,11 +60,15 @@ export default {
   },
  
   methods: {
-    check: function(e) {
-        const Id = e.currentTarget.value
-        this.$emit('filter', Id)      
+    check: function() {
+       
+       // const Id = e.target.value
+    
+        this.$emit('filter', this.checkedCategories)      
     },
   },
+ 
+
   computed: {
     filterThematic() {
       const filterThematic = new Set();

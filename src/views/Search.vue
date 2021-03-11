@@ -27,7 +27,7 @@ export default {
     Elements() {
       return this.$store.state.Elements;
     }
- 
+
   },
   mounted() {
     this.filteredList();
@@ -37,18 +37,31 @@ export default {
       window.open(url, "_blank").focus();
     },
     filteredList() {
-   
+
       this.doclist = this.Elements.filter((i) => {
         return i.Thematic === i.Thematic;
       });
     },
-    setFilter (Id) {
-      this.doclist = this.Elements.filter((i) => {
-        return i.Thematic === Id;
-      });  
-     
-    }
-  },
+    setFilter (checkedCategories) {
+      
+    const filteredArray = [];
+    this.Elements.map((obj) => {
+      const filteredObj = {};
+      for (let key in obj) {
+        if (checkedCategories.includes(obj[key])) {
+          filteredObj[key] = obj[key];
+        }
+      }
+      filteredArray.push(filteredObj);
+
+    })
+
+    console.log(filteredArray);  
+    return filteredArray;
+
+ 
+}
+   },
 };
 </script>
 
