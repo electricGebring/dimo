@@ -26,43 +26,58 @@ export default {
   computed: {
     Elements() {
       return this.$store.state.Elements;
-    }
-
+    },
   },
   mounted() {
-    this.filteredList();
+    this.filteredList()
+    this.match()
   },
   methods: {
     goto(url) {
       window.open(url, "_blank").focus();
     },
     filteredList() {
-
       this.doclist = this.Elements.filter((i) => {
         return i.Thematic === i.Thematic;
       });
     },
-    setFilter (checkedCategories) {
-      
-    const filteredArray = [];
-    this.Elements.map((obj) => {
-      const filteredObj = {};
-      for (let key in obj) {
-        if (checkedCategories.includes(obj[key])) {
-          filteredObj[key] = obj[key];
+    setFilter(checkedCategories) {
+      const filteredArray = []
+      this.Elements.map((obj) => {
+        //let filteredObj = {};
+        for (let key in obj) {
+          //console.log(obj[key], 'obj[key]')
+          if (checkedCategories.includes(obj[key])) {
+            //console.log(filteredObj[key], 'filteredObj[key]')
+            //console.log(obj[key].length >= 1)
+            if (obj[key].length >= 1) {
+              //filteredObj = obj[key];
+              //console.log(filteredArray, 'this.filteredArray');
+              //filteredArray.push(filteredObj);
+              filteredArray.push(obj[key])
+            }
+          }
         }
-      }
-      filteredArray.push(filteredObj);
-
-    })
-
-    console.log(filteredArray);  
-    return filteredArray;
-
- 
+        //filteredArray.push(filteredObj);
+      })
+      //console.log(filteredArray, "filteredArray");
+      return filteredArray
+    },
+    match() {
+      const arrayToDoclist = []
+      const Elements = this.Elements
+      const filtArr = this.setFilter
+      this.doclist = Elements.foreach((i) => {
+        filtArr.foreach((j) => {
+          if (Elements[i].includes(this.doclist[j])) {
+            console.log(Elements[i])
+            arrayToDoclist.push(Elements[i])
+          }
+        })
+      })
+    },
+  }
 }
-   },
-};
 </script>
 
 <style lang="scss" scoped>
