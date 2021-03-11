@@ -67,9 +67,9 @@ export default {
       const arrayToDoclist = []
       const Elements = this.Elements
       const filtArr = this.setFilter
-      this.doclist = Elements.foreach((i) => {
-        filtArr.foreach((j) => {
-          if (Elements[i].includes(this.doclist[j])) {
+      Elements.forEach((i) => {  
+        filtArr.forEach((j) => {
+          if (Elements[i].includes(this.doclist[j])) { //kommer inte att funka för Elements[i] är inte en array!!!
             console.log(Elements[i])
             arrayToDoclist.push(Elements[i])
           }
