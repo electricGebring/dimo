@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       doclist: [],
-      filteredArray: new Set(),
+      //filteredArray: new Set(),
     };
   },
   components: {
@@ -40,15 +40,34 @@ export default {
         return i.Thematic === i.Thematic;
       });
     },
-    setFilter(checkedCategories) {
-      const arrayToDoclist = [];
-      
 
-      checkedCategories.map((i) =>{
-        return this.filteredArray.add(i)
-      })
+
+
+
+    setFilter(checkedCategories) {
+      //console.log(checkedCategories, 'checkedCategories')
+
+      let arrayToDoclist = [];
+      let filteredArray = new Set()
+
+      // this.doclist.forEach(i => {
+      //   for(let j in i) {
+      //     checkedCategories.filter(k => {
+      //       console.log(this.doclist, 'this.doclist')
+      //       return k != i[j]
+            
+      //     })  
+      //   }
+      // })
       
-      this.filteredArray.forEach((j) => {
+      checkedCategories.map((i) =>{
+        console.log('hej')
+        return filteredArray.add(i)
+      })
+
+      console.log(filteredArray, 'this.filteredArray')
+      
+      filteredArray.forEach((j) => {
         this.Elements.forEach((i) => {
           for (let k in i) {
             if (j === i[k]) {
@@ -58,7 +77,14 @@ export default {
         });
       });
       this.doclist = arrayToDoclist
+      arrayToDoclist = []
+      filteredArray = []
     },
+
+
+
+
+    
   },
 };
 </script>
