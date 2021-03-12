@@ -50,11 +50,8 @@ export default {
       let filteredArray = new Set()
 
       checkedCategories.map((i) =>{
-        console.log('hej')
         return filteredArray.add(i)
       })
-
-      console.log(filteredArray, 'this.filteredArray')
       
       filteredArray.forEach((j) => {
         this.Elements.forEach((i) => {
