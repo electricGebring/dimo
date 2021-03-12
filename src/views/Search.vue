@@ -48,21 +48,22 @@ export default {
         return this.filteredArray.add(i)
       })
       
+      console.log(this.filteredArray, 'this.filteredArray')
       
       this.filteredArray.forEach((j) => {
-        console.log(this.filteredArray[j], 'jjjjjjjjj')
+       
         Elements.forEach((i) => {
           
-          //console.log(filteredArray[j], 'filteredArray[j]')
           for (let k in i) {
-            
-            //console.log(this.filteredArray[j], 'filteredArray[j]')
-            // if (filteredArray[j] === i[k]) {
-            //   //arrayToDoclist.push(Elements[i]);
-            // }
+              
+            if (j === i[k]) {
+              console.log(i, 'Elements[i] ')
+              arrayToDoclist.push(i);
+            }
           }
         });
       });
+      console.log(arrayToDoclist, 'arrayToDoclist,')
     },
   },
 };
