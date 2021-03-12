@@ -77,7 +77,7 @@ export default {
         });
       });
       this.doclist = arrayToDoclist
-      arrayToDoclist = []
+      //arrayToDoclist = []
       filteredArray = []
     },
 
