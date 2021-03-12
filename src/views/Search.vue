@@ -42,14 +42,14 @@ export default {
     },
     setFilter(checkedCategories) {
       const arrayToDoclist = [];
-      const Elements = this.Elements;
+      
 
       checkedCategories.map((i) =>{
         return this.filteredArray.add(i)
       })
       
       this.filteredArray.forEach((j) => {
-        Elements.forEach((i) => {
+        this.Elements.forEach((i) => {
           for (let k in i) {
             if (j === i[k]) {
               arrayToDoclist.push(i);
