@@ -31,9 +31,6 @@ export default {
   mounted() {
     this.filteredList();
   },
-  updated() {
-    this.match()
-  },
   methods: {
     goto(url) {
       window.open(url, "_blank").focus();
@@ -44,35 +41,28 @@ export default {
       });
     },
     setFilter(checkedCategories) {
-      console.log(checkedCategories, 'checkedCategories')
-        checkedCategories.map((i) =>{
-          this.filteredArray.add(i)
-        })
-
-      // this.Elements.map((obj) => {
-      //   for (let key in obj) {
-      //     if (checkedCategories.includes(obj[key])) {
-      //       if (obj[key].length >= 1) {
-      //         this.filteredArray.add(obj[key]);
-      //       }
-      //     }
-      //   }
-      // })
-      console.log(this.filteredArray, 'this.filteredArray')
-      return this.filteredArray;
-    },
-    match() {
       const arrayToDoclist = [];
       const Elements = this.Elements;
+
+      checkedCategories.map((i) =>{
+        return this.filteredArray.add(i)
+      })
+      
       
       this.filteredArray.forEach((j) => {
+        console.log(this.filteredArray[j], 'jjjjjjjjj')
         Elements.forEach((i) => {
-          if (this.filteredArray[j].includes(Elements[i])) {            
-            arrayToDoclist.push(Elements[i]);
+          
+          //console.log(filteredArray[j], 'filteredArray[j]')
+          for (let k in i) {
+            
+            //console.log(this.filteredArray[j], 'filteredArray[j]')
+            // if (filteredArray[j] === i[k]) {
+            //   //arrayToDoclist.push(Elements[i]);
+            // }
           }
         });
       });
-      console.log(arrayToDoclist, 'arrayToDoclist')
     },
   },
 };
