@@ -44,15 +44,21 @@ export default {
       });
     },
     setFilter(checkedCategories) {
-      this.Elements.map((obj) => {
-        for (let key in obj) {
-          if (checkedCategories.includes(obj[key])) {
-            if (obj[key].length >= 1) {
-              this.filteredArray.add(obj[key]);
-            }
-          }
-        }
-      })
+      console.log(checkedCategories, 'checkedCategories')
+        checkedCategories.map((i) =>{
+          this.filteredArray.add(i)
+        })
+
+      // this.Elements.map((obj) => {
+      //   for (let key in obj) {
+      //     if (checkedCategories.includes(obj[key])) {
+      //       if (obj[key].length >= 1) {
+      //         this.filteredArray.add(obj[key]);
+      //       }
+      //     }
+      //   }
+      // })
+      console.log(this.filteredArray, 'this.filteredArray')
       return this.filteredArray;
     },
     match() {
@@ -61,9 +67,7 @@ export default {
       
       this.filteredArray.forEach((j) => {
         Elements.forEach((i) => {
-          if (this.filteredArray[j].includes(Elements[i])) {
-            //kommer inte att funka för Elements[i] är inte en array!!!
-            console.log(Elements[i]); //kanske även vända på includen
+          if (this.filteredArray[j].includes(Elements[i])) {            
             arrayToDoclist.push(Elements[i]);
           }
         });
