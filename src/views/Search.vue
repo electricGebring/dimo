@@ -45,21 +45,10 @@ export default {
 
 
     setFilter(checkedCategories) {
-      //console.log(checkedCategories, 'checkedCategories')
 
       let arrayToDoclist = [];
       let filteredArray = new Set()
 
-      // this.doclist.forEach(i => {
-      //   for(let j in i) {
-      //     checkedCategories.filter(k => {
-      //       console.log(this.doclist, 'this.doclist')
-      //       return k != i[j]
-            
-      //     })  
-      //   }
-      // })
-      
       checkedCategories.map((i) =>{
         console.log('hej')
         return filteredArray.add(i)
@@ -77,7 +66,6 @@ export default {
         });
       });
       this.doclist = arrayToDoclist
-      //arrayToDoclist = []
       filteredArray = []
     },
 
