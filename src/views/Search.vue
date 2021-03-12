@@ -48,22 +48,16 @@ export default {
         return this.filteredArray.add(i)
       })
       
-      console.log(this.filteredArray, 'this.filteredArray')
-      
       this.filteredArray.forEach((j) => {
-       
         Elements.forEach((i) => {
-          
           for (let k in i) {
-              
             if (j === i[k]) {
-              console.log(i, 'Elements[i] ')
               arrayToDoclist.push(i);
             }
           }
         });
       });
-      console.log(arrayToDoclist, 'arrayToDoclist,')
+      this.doclist = arrayToDoclist
     },
   },
 };
