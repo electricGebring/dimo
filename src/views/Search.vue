@@ -2,7 +2,7 @@
   <div>
     <sidebar />
     <FilterBar :Elements="Elements" @filter="setFilter" />
-    <doclist :doclist="doclist" :filterlist="filterlist" />
+    <doclist :doclist="doclist" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       doclist: [],
-      filterlist: [],
+      filteredArray: new Set(),
     };
   },
   components: {
@@ -26,10 +26,12 @@ export default {
   computed: {
     Elements() {
       return this.$store.state.Elements;
-    },
+    }
   },
   mounted() {
-    this.filteredList()
+    this.filteredList();
+  },
+  updated() {
     this.match()
   },
   methods: {
@@ -42,42 +44,34 @@ export default {
       });
     },
     setFilter(checkedCategories) {
-      const filteredArray = []
       this.Elements.map((obj) => {
-        //let filteredObj = {};
         for (let key in obj) {
-          //console.log(obj[key], 'obj[key]')
           if (checkedCategories.includes(obj[key])) {
-            //console.log(filteredObj[key], 'filteredObj[key]')
-            //console.log(obj[key].length >= 1)
             if (obj[key].length >= 1) {
-              //filteredObj = obj[key];
-              //console.log(filteredArray, 'this.filteredArray');
-              //filteredArray.push(filteredObj);
-              filteredArray.push(obj[key])
+              this.filteredArray.add(obj[key]);
             }
           }
         }
-        //filteredArray.push(filteredObj);
       })
-      //console.log(filteredArray, "filteredArray");
-      return filteredArray
+      return this.filteredArray;
     },
     match() {
-      const arrayToDoclist = []
-      const Elements = this.Elements
-      const filtArr = this.setFilter
-      Elements.forEach((i) => {  
-        filtArr.forEach((j) => {
-          if (Elements[i].includes(this.doclist[j])) { //kommer inte att funka för Elements[i] är inte en array!!!
-            console.log(Elements[i])                    //kanske även vända på includen
-            arrayToDoclist.push(Elements[i])
+      const arrayToDoclist = [];
+      const Elements = this.Elements;
+      
+      this.filteredArray.forEach((j) => {
+        Elements.forEach((i) => {
+          if (this.filteredArray[j].includes(Elements[i])) {
+            //kommer inte att funka för Elements[i] är inte en array!!!
+            console.log(Elements[i]); //kanske även vända på includen
+            arrayToDoclist.push(Elements[i]);
           }
-        })
-      })
+        });
+      });
+      console.log(arrayToDoclist, 'arrayToDoclist')
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
