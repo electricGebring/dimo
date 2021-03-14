@@ -66,6 +66,15 @@ export default {
     
         this.$emit('filter', this.checkedCategories)      
     },
+
+    // funktion för att ta ut route paramsen och förpopulera filterbarens checkbox
+    // populateCheckBox() {
+    //   this.filterThematic.forEach(theme => {
+    //     if (this.$route.params === theme) {
+    //       gör något med checkboxen med den thematicen
+    //     }
+    //   })
+    // }
   },
  
 
