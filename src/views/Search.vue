@@ -41,9 +41,6 @@ export default {
       });
     },
 
-
-
-
     setFilter(checkedCategories) {
 
       let arrayToDoclist = [];
@@ -64,12 +61,7 @@ export default {
       });
       this.doclist = arrayToDoclist
       filteredArray = []
-    },
-
-
-
-
-    
+    },    
   },
 };
 </script>
