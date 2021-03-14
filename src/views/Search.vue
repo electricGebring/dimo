@@ -15,7 +15,6 @@ export default {
   data() {
     return {
       doclist: [],
-      //filteredArray: new Set(),
     };
   },
   components: {
@@ -29,7 +28,7 @@ export default {
     }
   },
   mounted() {
-    this.filteredList();
+    this.setFilter();
   },
   methods: {
     goto(url) {
@@ -42,25 +41,30 @@ export default {
     },
 
     setFilter(checkedCategories) {
+      if (checkedCategories) {
+        let arrayToDoclist = [];
+        let filteredArray = new Set()
 
-      let arrayToDoclist = [];
-      let filteredArray = new Set()
-
-      checkedCategories.map((i) =>{
-        return filteredArray.add(i)
-      })
-      
-      filteredArray.forEach((j) => {
-        this.Elements.forEach((i) => {
-          for (let k in i) {
-            if (j === i[k]) {
-              arrayToDoclist.push(i);
+        checkedCategories.map((i) =>{
+          return filteredArray.add(i)
+        })
+        
+        filteredArray.forEach((j) => {
+          this.Elements.forEach((i) => {
+            for (let k in i) {
+              if (j === i[k]) {
+                arrayToDoclist.push(i);
+              }
             }
-          }
+          });
         });
-      });
-      this.doclist = arrayToDoclist
-      filteredArray = []
+        this.doclist = arrayToDoclist
+        filteredArray = []
+        console.log(this.$route.params, 'this.$route.params.Elements')
+        this.$route.params = {Elements: this.Elements}
+      } else {
+        this.filteredList();
+      }
     },    
   },
 };
