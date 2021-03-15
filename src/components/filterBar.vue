@@ -9,20 +9,29 @@
           <button class="toggle" v-on:click="isActive = !isActive">+</button>
           <div class="filter" v-if="isActive">
             <div v-for="Thematic in filterThematic" :key="Thematic">
-              <div>
+              <div v-if="this.$route.params.Thematic == Thematic">
                 <p>{{ Thematic }}</p>
                 <input
                   type="checkbox"
                   :value="Thematic"
                   id="Thematic"
-                  v-model="checkedCategories"
+                  @change="check($event)"
+                  checked="checked"
+                />
+              </div>
+              <div v-else>
+                <p>{{Thematic}}</p>
+                <input
+                  type="checkbox"
+                  :value="Thematic"
+                  id="Thematic"
                   @change="check($event)"
                 />
               </div>
             </div>
           </div>
         </div>
-        <div class="filter-category">
+        <!-- <div class="filter-category">
           <h3>Dokumenttyp</h3>
           <span class="toggle" v-on:click="this.isActive = !this.isActive"
             >+</span
@@ -35,13 +44,12 @@
                   type="checkbox"
                   :value="Documenttype"
                   id="Documenttype"
-                  v-model="checkedCategories"
                   @change="check($event)"
                 />
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <hr />
       </div>
     </div>
@@ -54,17 +62,24 @@ export default {
 
   data() {
     return {
-      checkedCategories: new Set(),
+      checkedCategories: [],
       isActive: false,
     };
   },
- 
+
   methods: {
-    check: function() {
-       
-       // const Id = e.target.value
-    
-        this.$emit('filter', this.checkedCategories)      
+    check: function (e) {
+      console.log(this.$route.params)
+      const newItem = e.target.value;
+      if (!this.checkedCategories.includes(newItem)) {
+        this.checkedCategories.push(newItem);
+      } else {
+        this.checkedCategories = this.checkedCategories.filter((i) => {
+          return i !== newItem;
+        });
+      }
+      console.log(this.checkedCategories);
+      this.$emit("filter", this.checkedCategories);
     },
 
     // funktion för att ta ut route paramsen och förpopulera filterbarens checkbox
@@ -76,7 +91,6 @@ export default {
     //   })
     // }
   },
- 
 
   computed: {
     filterThematic() {
