@@ -42,6 +42,7 @@ export default {
 
     setFilter(checkedCategories) {
       if (checkedCategories) {
+       
         //lägga arrayen som ska änvändas här, verkade inte funka att ha den i data  
         let arrayToDoclist = [];
         let filteredArray = new Set()
@@ -49,7 +50,7 @@ export default {
         checkedCategories.map((i) =>{
           return filteredArray.add(i)
         })
-        
+       
         filteredArray.forEach((j) => {
           this.Elements.forEach((i) => {
             for (let k in i) {
@@ -59,15 +60,17 @@ export default {
             }
           });
         });
+         
         this.doclist = arrayToDoclist
+        console.log(arrayToDoclist)
         // tömm arrayen här
         filteredArray = []
         // sätt om rout params så terneryn funkar i doclist
         this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList();
+        this.filteredList(); 
       }
-    },    
+    },   
   },
 };
 </script>

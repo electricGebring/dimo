@@ -14,9 +14,9 @@
                   type="checkbox"
                   :value="Thematic"
                   id="Thematic"
-                  v-on:input="Thematic = $event.target.value"
-                  @change="check(Thematic)"
+                  @change="check(Thematic = $event.target.value)"
                   :checked="populateCheckBox(Thematic)"
+                  v-model="checkedCategories"
                 />
               </div>
             </div>
@@ -60,9 +60,9 @@ export default {
   },
 
   methods: {
-    check: function(Thematic) {
+    check: function() {
       // const Id = e.target.value
-      this.checkedCategories.push(Thematic);
+     
       this.$emit("filter", this.checkedCategories);
     },
 
@@ -71,7 +71,7 @@ export default {
       if (this.$route.params.Thematic === Thematic) {
         this.checkedCategories.push(Thematic);
       }
-      return this.$route.params.Thematic === Thematic;
+      return this.checkedCategories, this.$route.params.Thematic === Thematic;
     },
   },
 
