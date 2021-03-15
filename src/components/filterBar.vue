@@ -5,7 +5,6 @@
       <div>
         <div class="filter-category">
           <h3>Tematiskt område</h3>
-
           <button class="toggle" v-on:click="isActive = !isActive">+</button>
           <div class="filter" v-if="isActive">
             <div v-for="Thematic in filterThematic" :key="Thematic">
@@ -15,8 +14,9 @@
                   type="checkbox"
                   :value="Thematic"
                   id="Thematic"
+                  @change="check(Thematic = $event.target.value)"
+                  :checked="populateCheckBox(Thematic)"
                   v-model="checkedCategories"
-                  @change="check($event)"
                 />
               </div>
             </div>
@@ -58,16 +58,22 @@ export default {
       isActive: false,
     };
   },
- 
+
   methods: {
     check: function() {
-       
-       // const Id = e.target.value
-    
-        this.$emit('filter', this.checkedCategories)      
+      // const Id = e.target.value
+     
+      this.$emit("filter", this.checkedCategories);
+    },
+
+    //funktion för att ta ut route paramsen och förpopulera filterbarens checkbox
+    populateCheckBox(Thematic) {
+      if (this.$route.params.Thematic === Thematic) {
+        this.checkedCategories.push(Thematic);
+      }
+      return this.checkedCategories, this.$route.params.Thematic === Thematic;
     },
   },
- 
 
   computed: {
     filterThematic() {

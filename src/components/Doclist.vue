@@ -2,7 +2,7 @@
   <div class="container">
      <p> test {{ filterlist }} </p>
     <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
-      <!--<div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">-->
+      <div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
         <div class="section">
           <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="130" />
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-   <!-- </div> -->
+   </div>
   </div>
 </template>
 

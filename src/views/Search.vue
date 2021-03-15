@@ -2,7 +2,7 @@
   <div>
     <sidebar />
     <FilterBar :Elements="Elements" @filter="setFilter" />
-    <doclist :doclist="doclist" :filterlist="filterlist" />
+    <doclist :doclist="doclist" />
   </div>
 </template>
 
@@ -15,7 +15,6 @@ export default {
   data() {
     return {
       doclist: [],
-      filterlist: [],
     };
   },
   components: {
@@ -27,41 +26,52 @@ export default {
     Elements() {
       return this.$store.state.Elements;
     }
-
   },
   mounted() {
-    this.filteredList();
+    this.setFilter();
   },
   methods: {
     goto(url) {
       window.open(url, "_blank").focus();
     },
     filteredList() {
-
       this.doclist = this.Elements.filter((i) => {
         return i.Thematic === i.Thematic;
       });
     },
-    setFilter (checkedCategories) {
-      
-    const filteredArray = [];
-    this.Elements.map((obj) => {
-      const filteredObj = {};
-      for (let key in obj) {
-        if (checkedCategories.includes(obj[key])) {
-          filteredObj[key] = obj[key];
-        }
+
+    setFilter(checkedCategories) {
+      if (checkedCategories) {
+       
+        //lägga arrayen som ska änvändas här, verkade inte funka att ha den i data  
+        let arrayToDoclist = [];
+        let filteredArray = new Set()
+
+        checkedCategories.map((i) =>{
+          return filteredArray.add(i)
+        })
+       
+        filteredArray.forEach((j) => {
+          this.Elements.forEach((i) => {
+            for (let k in i) {
+              if (j === i[k]) {
+                arrayToDoclist.push(i);
+              }
+            }
+          });
+        });
+         
+        this.doclist = arrayToDoclist
+        console.log(arrayToDoclist)
+        // tömm arrayen här
+        filteredArray = []
+        // sätt om rout params så terneryn funkar i doclist
+        this.$route.params = {Elements: this.Elements}
+      } else {
+        this.filteredList(); 
       }
-      filteredArray.push(filteredObj);
-
-    })
-
-    console.log(filteredArray);  
-    return filteredArray;
-
- 
-}
-   },
+    },   
+  },
 };
 </script>
 
