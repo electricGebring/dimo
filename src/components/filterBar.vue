@@ -14,11 +14,9 @@
                   type="checkbox"
                   :value="Thematic"
                   id="Thematic"
-                  
                   v-on:input="Thematic = $event.target.value"
-                  @change="check($event)"
-                  :checked="Thematic == $route.params.Thematic"
-                
+                  @change="check(Thematic)"
+                  :checked="populateCheckBox(Thematic)"
                 />
               </div>
             </div>
@@ -62,24 +60,20 @@ export default {
   },
 
   methods: {
-    check: function($event) {
+    check: function(Thematic) {
       // const Id = e.target.value
-     this.checkedCategories.push($event.target.value)
-     console.log(this.checkedCategories)
+      this.checkedCategories.push(Thematic);
       this.$emit("filter", this.checkedCategories);
     },
-    justTesting(){
-      return true
-    }
 
     //funktion för att ta ut route paramsen och förpopulera filterbarens checkbox
-   /* populateCheckBox(Thematic) {
-     
-      return  console.log(this.$route.params.Thematic === Thematic)
-    },*/
-    
+    populateCheckBox(Thematic) {
+      if (this.$route.params.Thematic === Thematic) {
+        this.checkedCategories.push(Thematic);
+      }
+      return this.$route.params.Thematic === Thematic;
+    },
   },
- 
 
   computed: {
     filterThematic() {
