@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="filter-category">
+        <div class="filter-category">
           <h3>Dokumenttyp</h3>
           <span class="toggle" v-on:click="this.isActive = !this.isActive"
             >+</span
@@ -49,7 +49,7 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <hr />
       </div>
     </div>

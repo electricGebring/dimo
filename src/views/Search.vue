@@ -4,6 +4,9 @@
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
   </div>
+  <div v-for="item in checkBoxCategories" :key="item">
+    <p>{{ item.Label }}ewonfoewnoifnwoein</p>
+  </div>
 </template>
 
 <script>
@@ -15,6 +18,7 @@ export default {
   data() {
     return {
       doclist: [],
+      checkBoxCategories: [],
     };
   },
   components: {
@@ -29,6 +33,7 @@ export default {
   },
   mounted() {
     this.setFilter();
+    this.setCheckboxCategories()
   },
   methods: {
     goto(url) {
@@ -38,6 +43,46 @@ export default {
       this.doclist = this.Elements.filter((i) => {
         return i.Thematic === i.Thematic;
       });
+    },
+
+    setCheckboxCategories() {
+      // console.log(this.Elements)
+      //const newArr = new Set()
+      const checkBoxCategories = []
+      const globalGoals = 'GlobalGoal'
+      const kFTargetArea = 'KFTargetArea'
+      const documentType = 'Documenttype'
+      const thematic = 'Thematic'
+
+      this.Elements.forEach(object => {
+        for (let key in object) {
+          //console.log(item)
+          if (key === globalGoals || kFTargetArea || documentType || thematic) {
+            this.checkBoxCategories = checkBoxCategories.push(object)    
+          }
+        }
+        //console.log(this.checkBoxCategories, 'checkBoxCategories')
+      })
+
+      const set1 = new Set()
+      // const set2 = new Set()
+      checkBoxCategories.forEach(item => {
+        //console.log(item, 'item')
+        for (let key in item) {
+          //console.log(item[key], 'key')
+          if (key === globalGoals || kFTargetArea || documentType || thematic) {
+            //const Thematic = {item[key]}
+            set1.add(item[key])
+            console.log(set1)
+          }
+        }
+        
+        
+        // if (item === Thematic) {
+        //   set1.add(Thematic)
+        //   console.log(set1, 'set1')    
+        // }
+      })
     },
 
     setFilter(checkedCategories) {
