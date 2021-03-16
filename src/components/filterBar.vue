@@ -70,7 +70,6 @@ export default {
   methods: {
     check: function (e) {
       this.checkedCategories.push(this.$route.params.Thematic)
-      console.log(this.checkedCategories, '1');
       console.log(this.$route.params)
       const newItem = e.target.value;
       if (!this.checkedCategories.includes(newItem)) {
@@ -80,18 +79,8 @@ export default {
           return i !== newItem;
         });
       }
-      console.log(this.checkedCategories, '2');
       this.$emit("filter", this.checkedCategories);
     },
-
-    // funktion för att ta ut route paramsen och förpopulera filterbarens checkbox
-    // populateCheckBox() {
-    //   this.filterThematic.forEach(theme => {
-    //     if (this.$route.params === theme) {
-    //       gör något med checkboxen med den thematicen
-    //     }
-    //   })
-    // }
   },
 
   computed: {
