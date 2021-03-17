@@ -2,7 +2,7 @@
   <div class="filterBar">
     <h3 class="filterbar-heading_h3">Filter</h3>
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Globala mål</h4>
+      <h4 class="filterbar-heading_h4">Globala mål</h4>
       <span
         class="toggle"
         v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
@@ -14,7 +14,7 @@
           v-for="globalGoal in filterGlobalGoal"
           :key="globalGoal"
         >
-          <p class="filterbar-heading_h4">{{ globalGoal }}</p>
+          <p class="filterbar-checkbox__heading">{{ globalGoal }}</p>
           <input
             type="checkbox"
             :value="globalGoal"
@@ -27,7 +27,7 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">KF Målområde</h4>
+      <h4 class="filterbar-heading_h4">KF Målområde</h4>
       <span
         class="toggle"
         v-on:click="this.isActivekFTargetArea = !this.isActivekFTargetArea"
@@ -39,7 +39,7 @@
           v-for="kFTargetArea in filterKFTargetArea"
           :key="kFTargetArea"
         >
-          <p class="filterbar-heading_h4">{{ kFTargetArea }}</p>
+          <p class="filterbar-checkbox__heading">{{ kFTargetArea }}</p>
           <input
             type="checkbox"
             :value="kFTargetArea"
@@ -52,7 +52,7 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Dokumenttyp</h4>
+      <h4 class="filterbar-heading_h4">Dokumenttyp</h4>
       <span
         class="toggle"
         v-on:click="this.isActiveDocumenttype = !this.isActiveDocumenttype"
@@ -64,7 +64,7 @@
           v-for="documenttype in filterDocumenttype"
           :key="documenttype"
         >
-          <p class="filterbar-heading_h4">{{ documenttype }}</p>
+          <p class="filterbar-checkbox__heading">{{ documenttype }}</p>
           <input
             type="checkbox"
             :value="documenttype"
@@ -77,7 +77,7 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Dokumentsanvarig</h4>
+      <h4 class="filterbar-heading_h4">Dokumentsanvarig</h4>
       <span
         class="toggle"
         v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
@@ -89,7 +89,7 @@
           v-for="department in filterDepartment"
           :key="department"
         >
-          <p class="filterbar-heading_h4">{{ department }}</p>
+          <p class="filterbar-checkbox__heading">{{ department }}</p>
           <input
             type="checkbox"
             :value="department"
@@ -102,7 +102,7 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Faställt av</h4>
+      <h4 class="filterbar-heading_h4">Faställt av</h4>
       <span
         class="toggle"
         v-on:click="this.isActiveOffice = !this.isActiveOffice"
@@ -110,7 +110,7 @@
       >
       <div v-if="this.isActiveOffice">
         <div class="filter" v-for="office in filterOffice" :key="office">
-          <p class="filterbar-heading_h4">{{ office }}</p>
+          <p class="filterbar-checkbox__heading">{{ office }}</p>
           <input
             type="checkbox"
             :value="office"
@@ -123,14 +123,14 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Tematiskt område</h4>
+      <h4 class="filterbar-heading_h4">Tematiskt område</h4>
       <span class="toggle" v-on:click="isActiveThematic = !isActiveThematic"
         >+</span
       >
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic">
           <div class="filter" v-if="this.$route.params.Thematic == thematic">
-            <p class="filterbar-heading_h4">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
             <input
               type="checkbox"
               :value="thematic"
@@ -140,7 +140,7 @@
             />
           </div>
           <div class="filter" v-else>
-            <p class="filterbar-heading_h4">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
             <input
               type="checkbox"
               :value="thematic"
@@ -154,7 +154,7 @@
     <hr />
 
     <div class="filter-category">
-      <h4 class="filterbar-heading_h3">Utgångsdatum</h4>
+      <h4 class="filterbar-heading_h4">Utgångsdatum</h4>
       <span
         class="toggle"
         v-on:click="this.isActiveValidity = !this.isActiveValidity"
@@ -162,7 +162,7 @@
       >
       <div v-if="this.isActiveValidity">
         <div class="filter" v-for="validity in filterValidity" :key="validity">
-          <p class="filterbar-heading_h4">{{ validity }}</p>
+          <p class="filterbar-checkbox__heading">{{ validity }}</p>
           <input
             type="checkbox"
             :value="validity"
@@ -262,22 +262,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 .filterbar-heading_h3 {
   font-size: 14px;
+  font-weight: 200;
 }
 .filterbar-heading_h4 {
   font-size: 11px;
+  font-weight: 200;
+}
+.filterbar-checkbox__heading {
+  font-size: 9px;
+  font-weight: 200;
+  margin-left: 3px;
 }
 .filterBar {
   border: solid 1px #000;
   border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  font-family: ‘Montserrat’, sans-serif;
   margin-left: 10%;
-  padding: 20px 15px;
-  text-align: left;
   max-width: 230px;
+  padding: 21px 12px;
+  text-align: left;
 
   .filter-category {
     margin-bottom: 20px;
+    padding: 0 3px;
     position: relative;
   }
 
@@ -291,6 +302,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-left: 24px;
     justify-content: space-between;
   }
 
