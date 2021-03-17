@@ -287,6 +287,7 @@ export default {
   text-align: left;
 
   .filter-category {
+    cursor: pointer;
     margin-bottom: 20px;
     padding: 0 3px;
     position: relative;
