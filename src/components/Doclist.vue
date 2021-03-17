@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-     <p> test {{ filterlist }} </p>
-    <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
+    <div class="" v-for="item in doclist" :key="item.Label" :item="item">
       <div v-if="item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
         <div class="section">
           <div class="img-container">
@@ -107,10 +106,6 @@ img {
   border: solid 1px lightgrey;
   margin-top: 20px;
   margin-bottom: -20px;
-}
-.hej {
-  width: 100%;
-  margin-left: 15%;
 }
 .labelTitle {
   padding: 10px;
