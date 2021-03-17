@@ -3,7 +3,12 @@
     <h3 class="filterbar-heading_h3">Filter</h3>
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Globala mål</h4>
-      <span
+      <span v-if="this.isActiveGlobalBoal"
+        class="toggle"
+        v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
+        >-</span
+      >
+      <span v-else
         class="toggle"
         v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
         >+</span
@@ -28,7 +33,12 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">KF Målområde</h4>
-      <span
+      <span v-if = "this.isActivekFTargetArea"
+        class="toggle"
+        v-on:click="this.isActivekFTargetArea = !this.isActivekFTargetArea"
+        >-</span
+      >
+      <span v-else
         class="toggle"
         v-on:click="this.isActivekFTargetArea = !this.isActivekFTargetArea"
         >+</span
@@ -53,7 +63,12 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Dokumenttyp</h4>
-      <span
+      <span v-if="this.isActiveDocumenttype"
+        class="toggle"
+        v-on:click="this.isActiveDocumenttype = !this.isActiveDocumenttype"
+        >-</span
+      >
+      <span v-else
         class="toggle"
         v-on:click="this.isActiveDocumenttype = !this.isActiveDocumenttype"
         >+</span
@@ -78,11 +93,17 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Dokumentsanvarig</h4>
-      <span
+      <span v-if="this.isActiveDepartment"
+        class="toggle"
+        v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
+        >-</span
+      >
+      <span v-else
         class="toggle"
         v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
         >+</span
       >
+
       <div v-if="this.isActiveDepartment">
         <div
           class="filter"
@@ -103,7 +124,11 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Faställt av</h4>
-      <span
+      <span v-if="this.isActiveOffice"
+        class="toggle"
+        v-on:click="this.isActiveOffice = !this.isActiveOffice"
+        >-</span
+      > <span v-else
         class="toggle"
         v-on:click="this.isActiveOffice = !this.isActiveOffice"
         >+</span
@@ -121,10 +146,14 @@
       </div>
     </div>
     <hr />
-
+   
+   
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Tematiskt område</h4>
-      <span class="toggle" v-on:click="isActiveThematic = !isActiveThematic"
+      <span v-if="isActiveThematic" class="toggle" v-on:click="isActiveThematic = !isActiveThematic" 
+        >-</span
+      >
+       <span v-else class="toggle" v-on:click="isActiveThematic = !isActiveThematic"
         >+</span
       >
       <div v-if="isActiveThematic">
@@ -155,7 +184,12 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h3">Utgångsdatum</h4>
-      <span
+      <span v-if="this.isActiveValidity"
+        class="toggle"
+        v-on:click="this.isActiveValidity = !this.isActiveValidity"
+        >-</span
+      >
+      <span v-else
         class="toggle"
         v-on:click="this.isActiveValidity = !this.isActiveValidity"
         >+</span
@@ -285,6 +319,7 @@ export default {
     position: absolute;
     top: 5px;
     right: 5px;
+    font-size: 18px;
   }
 
   .filter {
