@@ -294,7 +294,7 @@ export default {
 
   .toggle {
     position: absolute;
-    top: 5px;
+    top: -5px;
     right: 5px;
   }
 
