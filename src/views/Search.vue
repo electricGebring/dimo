@@ -71,6 +71,7 @@ body {
 }
 
 .search {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
 }
