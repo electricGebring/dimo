@@ -70,13 +70,12 @@ export default {
   methods: {
     check: function (e) {
       this.checkedCategories.push(this.$route.params.Thematic)
-      console.log(this.$route.params)
-      const newItem = e.target.value;
-      if (!this.checkedCategories.includes(newItem)) {
-        this.checkedCategories.push(newItem);
+      
+      if (!this.checkedCategories.includes(e.target.value)) {
+        this.checkedCategories.push(e.target.value);
       } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
-          return i !== newItem;
+          return i !== e.target.value
         });
       }
       this.$emit("filter", this.checkedCategories);

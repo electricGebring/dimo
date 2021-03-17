@@ -3,10 +3,7 @@
     <sidebar />
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
-  </div>
-  <div v-for="item in checkBoxCategories" :key="item">
-    <p>{{ item.Label }}ewonfoewnoifnwoein</p>
-  </div>
+  </div>  
 </template>
 
 <script>
