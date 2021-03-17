@@ -1,20 +1,16 @@
 <template>
+  <div class="headbar">
+    <h2 class="categoryTitel">Sök efter kategori</h2>
+    <router-link :to="{name: 'Search', params: {Elements: Elements}}">
+      <li class="showAll">Visa Alla</li>
+    </router-link>
+  </div>
   <div class="wrapper">
-    <div
-      class="categories"
-      v-for="(Thematic, index) in ThematicList"
-      :key="index"
-    >
-      <router-link
-        class="link"
-        :to="{ name: 'Search', params: { Thematic: Thematic } }"
-      >
+    <div class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
+      <router-link class="link" :to="{name: 'Search', params: {Thematic: Thematic}}">
         <p class="each">{{ Thematic }}</p>
       </router-link>
     </div>
-       <router-link class="link" :to="{name: 'Search', params: {Elements: Elements}}">
-        <p class="each">Visa Alla</p>
-      </router-link>
   </div>
 </template>
 
@@ -22,41 +18,44 @@
 export default {
   computed: {
     Elements() {
-      return this.$store.state.Elements;
+      return this.$store.state.Elements
     },
 
     ThematicList() {
-      const ThematicList = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        ThematicList.add(item.Thematic)
-      );
-      return Array.from(ThematicList);
+      const ThematicList = new Set()
+      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
+      return Array.from(ThematicList)
     },
   },
   mounted() {
-    this.$store.dispatch("getDocuments");
+    this.$store.dispatch('getDocuments')
   },
-};
+}
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 50vw;
-  margin-left: 20%;
-  font-family: "Montserrat", sans-serif;
+  width: 55vw;
+  margin-left: 25%;
+  font-family: 'Montserrat', sans-serif;
+  padding: 2% 0;
 }
 .categories {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   width: 120px;
   height: 120px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   border-radius: 10%;
   margin: 20px;
+}
+.categories:hover {
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
+  transition: 0.6s;
 }
 .each {
   font-size: 11px;
@@ -69,5 +68,29 @@ export default {
   text-align: center;
   word-wrap: break-word;
   text-transform: capitalize;
+}
+.headbar {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  width: 75vw;
+  margin-top: 3%;
+  float: left;
+}
+.showAll {
+  float: right;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  display: inline;
+  font-weight: bold;
+}
+.categoryTitel {
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  display: block;
+  margin-left: 26%;
+  font-weight: bolder;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="hej" v-for="item in doclist" :key="item.Label" :item="item">
-      <div v-if= "item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
+    <div v-for="item in doclist" :key="item.Label" :item="item">
+      <div v-if="item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements">
         <div class="section">
           <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="130" />
@@ -18,6 +18,7 @@
                 : {background: '#C45941'},
             ]"
           >
+      
             <span class="labelTitle">
               {{ item.Label }}
             </span>
@@ -27,13 +28,13 @@
           </div>
         </div>
       </div>
-    </div>
+   </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['doclist'],
+  props: ['doclist', 'filterlist'],
   components: {},
   computed: {},
   methods: {},
@@ -45,19 +46,27 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  align-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 40px;
+  
+}   
 .section {
   position: relative;
   display: table;
-  float: left;
-  margin: 10px;
+  margin: 0 20px 20px 20px;
   width: 200px;
+  max-width: 200px;
   height: 190px;
   background-color: #faf9f9 !important;
   border: solid 1px lightgrey;
   padding: 10px 0 0 0;
   border-radius: 0px 0px 10px 10px;
-  margin-top: 30px;
-  margin-left: 3%;
   &:hover {
     background-color: #fff !important;
   }
@@ -105,10 +114,6 @@ img {
   border: solid 1px lightgrey;
   margin-top: 20px;
   margin-bottom: -20px;
-}
-.hej {
-  width: 100%;
-  margin-left: 15%;
 }
 .labelTitle {
   padding: 10px;
