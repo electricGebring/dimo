@@ -108,8 +108,8 @@
         v-on:click="this.isActiveOffice = !this.isActiveOffice"
         >+</span
       >
-      <div class="filter" v-if="this.isActiveOffice">
-        <div v-for="office in filterOffice" :key="office">
+      <div v-if="this.isActiveOffice">
+        <div class="filter" v-for="office in filterOffice" :key="office">
           <p class="filterbar-heading_h4">{{ office }}</p>
           <input
             type="checkbox"
@@ -271,12 +271,10 @@ export default {
 .filterBar {
   border: solid 1px #000;
   border-radius: 10px;
-  // flex-wrap: wrap;
-  // flex-direction: column;
   margin-left: 10%;
   padding: 20px 15px;
   text-align: left;
-  width: 230px;
+  max-width: 230px;
 
   .filter-category {
     margin-bottom: 20px;
