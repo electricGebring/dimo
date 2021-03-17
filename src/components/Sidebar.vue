@@ -70,7 +70,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .navbarside {
   display: flex;
@@ -85,7 +85,12 @@ export default {
   height: 100%;
   background-color: #f2f7ff;
   z-index: 9999;
+
+  &.colapsed {
+    width: 114px;
+  }
 }
+
 .navicon {
   margin-bottom: 25%;
   margin-top: 25%;
