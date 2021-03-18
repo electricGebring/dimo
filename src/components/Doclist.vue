@@ -63,6 +63,7 @@ body {
   width: 200px;
   max-width: 200px;
   height: 190px;
+  max-height: 190px;
   background-color: #faf9f9 !important;
   border: solid 1px lightgrey;
   padding: 10px 0 0 0;

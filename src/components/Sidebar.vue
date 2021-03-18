@@ -52,7 +52,6 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 .navbarside {
-  background-color: #ebf9f2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,6 +61,8 @@ export default {
   margin: 0;
   padding: 0;
   left: 0;
+  height: 100%;
+  background-color: #f2f7ff;
 }
 .navicon {
   margin-bottom: 25%;
@@ -118,7 +119,7 @@ export default {
 }
 li:hover {
   background-color: white;
-  color: black;
+  color: #00c0c0;
   transition: 0.6s;
 }
 li {
