@@ -1,7 +1,6 @@
 <template>
   <transition name="colapsed">
-    <div class="navbarside" :class="{colapsed: '{colapsed}' }">
-      <h1>{{ banan }}</h1>
+    <div class="navbarside" :class="{ colapsed: isColapsed }">
       <ul class="flex-wrapper-one">
         <li class="menu-left-two">{{ menuLeftTwo }}</li>
         <li class="menu-left-three">{{ menuLeftThree }}</li>
@@ -21,13 +20,13 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-import { onMounted } from '@vue/runtime-core';
-import { useRoute } from 'vue-router';
 export default {
   name: "Group226",
   props: {
-    jordanValentinLane: { type: String, default: "Jordan Valentin Lane" },
+    jordanValentinLane: {
+      type: String,
+      default: "Jordan Valentin Lane",
+    },
     menuLeftTwo: { type: String, default: "Översikt" },
     menuLeftThree: { type: String, default: "Min sida" },
     menuLeftFour: { type: String, default: "Mallar" },
@@ -38,21 +37,18 @@ export default {
     menuLeftSix: { type: String, default: "Logga ut" },
   },
 
-  setup() {
-    let colapsed = ref({isColapsed: false})
-    let banan = ref('Banan')
+  data() {
+    return {
+      isColapsed: false,
+    };
+  },
 
-    const route = useRoute()
-
-    onMounted(() => {
-      setTimeout(() => {
-        route.params.Thematic ? colapsed.value = true : false;
-        console.log(colapsed.value, 'isColapsed')
-      }, 10)
-    })
-
-    return { colapsed, banan }
-  }
+  mounted() {
+    setTimeout(() => {
+      this.$route.params.Thematic ? this.isColapsed = true : false;
+    }, 10)
+    
+  },
 };
 </script>
 
