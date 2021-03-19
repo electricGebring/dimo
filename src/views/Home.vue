@@ -21,4 +21,11 @@ body {
   margin: 0;
   padding: 0;
 }
+.sidebar {
+   width: 20%;
+}
+.main {
+   width: 80%;
+   padding: 0 5% 0 5%;
+}
 </style>
