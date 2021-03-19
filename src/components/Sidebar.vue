@@ -1,6 +1,7 @@
 <template>
-  <transition name="smooth">
-    <div v-if="isColapsed" class="navbarside" >    <!--:class="{ colapsed: isColapsed }" -->
+  <transition name="colapsed">
+    <div class="navbarside" :class="{colapsed: '{colapsed}' }">
+      <h1>{{ banan }}</h1>
       <ul class="flex-wrapper-one">
         <li class="menu-left-two">{{ menuLeftTwo }}</li>
         <li class="menu-left-three">{{ menuLeftThree }}</li>
@@ -20,13 +21,13 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity';
+import { onMounted } from '@vue/runtime-core';
+import { useRoute } from 'vue-router';
 export default {
   name: "Group226",
   props: {
-    jordanValentinLane: {
-      type: String,
-      default: "Jordan Valentin Lane",
-    },
+    jordanValentinLane: { type: String, default: "Jordan Valentin Lane" },
     menuLeftTwo: { type: String, default: "Översikt" },
     menuLeftThree: { type: String, default: "Min sida" },
     menuLeftFour: { type: String, default: "Mallar" },
@@ -37,15 +38,21 @@ export default {
     menuLeftSix: { type: String, default: "Logga ut" },
   },
 
-  data() {
-    return {
-      isColapsed: true,
-    };
-  },
+  setup() {
+    let colapsed = ref({isColapsed: false})
+    let banan = ref('Banan')
 
-  mounted() {
-    this.$route.params.Thematic ? this.isColapsed = false : true;
-  },
+    const route = useRoute()
+
+    onMounted(() => {
+      setTimeout(() => {
+        route.params.Thematic ? colapsed.value = true : false;
+        console.log(colapsed.value, 'isColapsed')
+      }, 10)
+    })
+
+    return { colapsed, banan }
+  }
 };
 </script>
 
@@ -63,29 +70,14 @@ export default {
   left: 0;
   height: 100%;
   background-color: #f2f7ff;
-  z-index: 9999; 
-}
+  z-index: 9999;
+  transition: all, .3s;
 
-// .slide-fade-enter-active {
-//   transition: all .3s ease;
-//   width: 100px;
-// }
-// .slide-fade-leave-active {
-//   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-// }
-// .slide-fade-enter, .slide-fade-leave-to
-// /* .slide-fade-leave-active below version 2.1.8 */ {
-//   transform: translateX(10px);
-//   width: 100px;
-// }
-
-.smooth-enter-active, .smooth-leave-active {
-  transition: width .5s;
+  &.colapsed {
+    //margin-left: -186px;
+    width: 100px;
+  }  
 }
-.smooth-enter, .smooth-leave-to {
-  width: 100px;
-}
-
 .navicon {
   margin-bottom: 25%;
   margin-top: 25%;
@@ -102,6 +94,7 @@ export default {
 }
 .flex-wrapper-one {
   margin-left: 20%;
+  position: relative;
 }
 .menu-left-two {
   color: grey;
