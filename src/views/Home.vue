@@ -1,7 +1,13 @@
 <template>
   <div id="home">
+    <div class="container">
+      <div class="sidebar">
     <sidebar />
+    </div>
+    <div class="main">
     <Categories />
+    </div>
+    </div>
   </div>
 </template>
 
@@ -17,8 +23,14 @@ export default {
 }
 </script>
 <style lang="scss">
-body {
-  margin: 0;
-  padding: 0;
+.container {
+   display: flex;
 }
+.sidebar {
+   width: 20%;
+}
+.main {
+   width: 80%;
+}
+
 </style>
