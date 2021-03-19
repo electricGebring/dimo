@@ -55,8 +55,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  position: absolute;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
