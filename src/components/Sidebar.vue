@@ -1,53 +1,40 @@
 <template>
-  <div v-if="$route.params.Thematic">
-    <div class="navbarside colapsed">
-      <ul class="flex-wrapper-one">
-        <li class="menu-left-two">{{ menuLeftTwo }}</li>
-        <li class="menu-left-three">{{ menuLeftThree }}</li>
-        <li class="menu-left-four">{{ menuLeftFour }}</li>
-        <li class="menu-left-five">{{ menuLeftFive }}</li>
-        <div class="logout">
-          <img
-            alt=""
-            class="logouticon"
-            src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
-          />
-          <h5 class="menu-left-six">{{ menuLeftSix }}</h5>
-        </div>
-      </ul>
-    </div>
-  </div>
   
-  <div v-else>
-    <div class="navbarside">
-      <img
-        alt=""
-        class="navicon"
-        src="https://static.overlay-tech.com/assets/7fce7eb4-a06f-4afc-8541-c4f29a2d2f50.png"
-      /><img
-        alt=""
-        class="profilepicture"
-        src="https://static.overlay-tech.com/assets/d2c2a69c-a110-4807-9526-69e2f595d152.png"
-      />
-      <h5 class="nametitle">
-        {{ jordanValentinLane }}
-      </h5>
-      <ul class="flex-wrapper-one">
-        <li class="menu-left-two">{{ menuLeftTwo }}</li>
-        <li class="menu-left-three">{{ menuLeftThree }}</li>
-        <li class="menu-left-four">{{ menuLeftFour }}</li>
-        <li class="menu-left-five">{{ menuLeftFive }}</li>
-        <div class="logout">
-          <img
-            alt=""
-            class="logouticon"
-            src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
-          />
-          <h5 class="menu-left-six">{{ menuLeftSix }}</h5>
-        </div>
-      </ul>
-    </div>
-  </div>
+    <transition name="slide-fade">
+      <div v-if="isColapsed" class="navbarside">
+        <ul class="flex-wrapper-one">
+          <li class="menu-left-two">{{ menuLeftTwo }}</li>
+          <li class="menu-left-three">{{ menuLeftThree }}</li>
+          <li class="menu-left-four">{{ menuLeftFour }}</li>
+          <li class="menu-left-five">{{ menuLeftFive }}</li>
+          <div class="logout">
+            <img
+              alt=""
+              class="logouticon"
+              src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
+            />
+            <h5 class="menu-left-six">{{ menuLeftSix }}</h5>
+          </div>
+        </ul>
+      </div>
+      <div v-else class="navbarside">
+        <ul class="flex-wrapper-one">
+          <li class="menu-left-two">{{ menuLeftTwo }}</li>
+          <li class="menu-left-three">{{ menuLeftThree }}</li>
+          <li class="menu-left-four">{{ menuLeftFour }}</li>
+          <li class="menu-left-five">{{ menuLeftFive }}</li>
+          <div class="logout">
+            <img
+              alt=""
+              class="logouticon"
+              src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
+            />
+            <h5 class="menu-left-six">{{ menuLeftSix }}</h5>
+          </div>
+        </ul>
+      </div>
+    </transition>
+
 </template>
 
 <script>
@@ -67,6 +54,18 @@ export default {
     },
     menuLeftSix: { type: String, default: "Logga ut" },
   },
+
+  data() {
+    return {
+      isColapsed: false,
+    };
+  },
+
+  mounted() {
+    this.$route.params.Thematic
+      ? (this.isColapsed = true)
+      : (this.isColapsed = false);
+  },
 };
 </script>
 
@@ -85,10 +84,27 @@ export default {
   height: 100%;
   background-color: #f2f7ff;
   z-index: 9999;
+  transition: width 3s, transform 2s;
 
   &.colapsed {
-    width: 114px;
+    margin-left: -186px;
   }
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.test {
+  background-color: red;
 }
 
 .navicon {

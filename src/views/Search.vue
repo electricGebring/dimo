@@ -48,7 +48,7 @@ export default {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i);
+                arrayToDoclist.push(i); //kan man sätta en include här istället????
               }
             }
           });
