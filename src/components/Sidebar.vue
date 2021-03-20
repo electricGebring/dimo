@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { reactive, ref } from '@vue/reactivity';
+import { reactive } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
 import { useRoute } from 'vue-router';
 export default {
@@ -43,7 +43,6 @@ export default {
 
   setup() {
     let colapsed = reactive({isColapsed: false})
-    let banan = ref('Banan')
 
     const route = useRoute()
 
@@ -54,13 +53,9 @@ export default {
       }, 10)
     })
 
-  mounted() {
-    setTimeout(() => {
-      this.$route.params.Thematic ? this.isColapsed = true : false;
-    }, 10)
-    
-  },
-};
+    return { colapsed }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
