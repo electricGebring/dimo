@@ -1,6 +1,7 @@
 <template>
   <transition name="colapsed">
-    <div class="navbarside" :class="{ colapsed: isColapsed }">
+    <div class="navbarside" :class="{colapsed: colapsed.value }">
+      <h1>{{ banan }}</h1>
       <ul class="flex-wrapper-one">
         <li class="menu-left-two">{{ menuLeftTwo }}</li>
         <li class="menu-left-three">{{ menuLeftThree }}</li>
@@ -20,6 +21,9 @@
 </template>
 
 <script>
+import { reactive, ref } from '@vue/reactivity';
+import { onMounted } from '@vue/runtime-core';
+import { useRoute } from 'vue-router';
 export default {
   name: "Group226",
   props: {
@@ -37,11 +41,18 @@ export default {
     menuLeftSix: { type: String, default: "Logga ut" },
   },
 
-  data() {
-    return {
-      isColapsed: false,
-    };
-  },
+  setup() {
+    let colapsed = reactive({isColapsed: false})
+    let banan = ref('Banan')
+
+    const route = useRoute()
+
+    onMounted(() => {
+      setTimeout(() => {
+        route.params.Thematic ? colapsed.value = true : false;
+        console.log(colapsed.value, 'isColapsed')
+      }, 10)
+    })
 
   mounted() {
     setTimeout(() => {
