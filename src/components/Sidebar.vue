@@ -1,21 +1,50 @@
 <template>
     <div class="navbarside" :class="{colapsed: colapsed.value }">
+        <img
+          alt=""
+          class="navicon"
+          src="https://static.overlay-tech.com/assets/7fce7eb4-a06f-4afc-8541-c4f29a2d2f50.png"
+        />
+        <img
+          alt=""
+          class="profilepicture"
+          src="https://static.overlay-tech.com/assets/d2c2a69c-a110-4807-9526-69e2f595d152.png"
+        />
+      <h5 class="nametitle">
+        {{ jordanValentinLane }}
+      </h5>
       <ul class="menu">
         <li class="menu-item">
-          <p>{{ menuLeftTwo }}</p>
-          <span></span>
+          <p menu-item-link>{{ menuLeftTwo }}</p>
+          <img
+            alt=""
+            class="menu-item-navicon"
+            src="../assets/svg/dummy-crash.svg"
+          />
         </li>
         <li class="menu-item">
-          <p>{{ menuLeftThree }}</p>
-          <span></span>
+          <p menu-item-link>{{ menuLeftThree }}</p>
+          <img
+            alt=""
+            class="menu-item-navicon"
+            src="../assets/svg/dummy-crash.svg"
+          />
         </li>
         <li class="menu-item">
-          <p>{{ menuLeftFour }}</p>
-          <span></span>
+          <p menu-item-link>{{ menuLeftFour }}</p>
+          <img
+            alt=""
+            class="menu-item-navicon"
+            src="../assets/svg/dummy-crash.svg"
+          />
         </li>
         <li class="menu-item">
-          <p>{{ menuLeftFive }}</p>
-          <span></span>
+          <p menu-item-link>{{ menuLeftFive }}</p>
+          <img
+            alt=""
+            class="menu-item-navicon"
+            src="../assets/svg/dummy-crash.svg"
+          />
         </li>
         <div class="logout">
           <img
@@ -84,7 +113,32 @@ export default {
   transition: all, .3s;
 
   &.colapsed {
-    width: 90px;
+    left: -210px;
+
+    .navicon {
+      display: none;
+    } 
+    
+    .profilepicture {
+      display: none;
+    }
+
+    .nametitle {
+      display: none;
+    }
+
+    .menu {
+      margin-top: 432px;
+
+      .menu-item-link {
+        display: none;
+      }
+
+      .menu-item-navicon {
+         width: 25px;
+         height: 25px;
+      }
+    }
   }  
 }
 .navicon {
