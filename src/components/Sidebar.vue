@@ -1,23 +1,32 @@
 <template>
-  <transition name="colapsed">
     <div class="navbarside" :class="{colapsed: colapsed.value }">
-      <h1>{{ banan }}</h1>
-      <ul class="flex-wrapper-one">
-        <li class="menu-left-two">{{ menuLeftTwo }}</li>
-        <li class="menu-left-three">{{ menuLeftThree }}</li>
-        <li class="menu-left-four">{{ menuLeftFour }}</li>
-        <li class="menu-left-five">{{ menuLeftFive }}</li>
+      <ul class="menu">
+        <li class="menu-item">
+          <p>{{ menuLeftTwo }}</p>
+          <span></span>
+        </li>
+        <li class="menu-item">
+          <p>{{ menuLeftThree }}</p>
+          <span></span>
+        </li>
+        <li class="menu-item">
+          <p>{{ menuLeftFour }}</p>
+          <span></span>
+        </li>
+        <li class="menu-item">
+          <p>{{ menuLeftFive }}</p>
+          <span></span>
+        </li>
         <div class="logout">
           <img
             alt=""
-            class="logouticon"
+            class="logout-icon"
             src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
           />
-          <h5 class="menu-left-six">{{ menuLeftSix }}</h5>
+          <h5 class="logout-text">{{ menuLeftSix }}</h5>
         </div>
       </ul>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -49,7 +58,6 @@ export default {
     onMounted(() => {
       setTimeout(() => {
         route.params.Thematic ? colapsed.value = true : false;
-        console.log(colapsed.value, 'isColapsed')
       }, 10)
     })
 
@@ -76,8 +84,7 @@ export default {
   transition: all, .3s;
 
   &.colapsed {
-    //margin-left: -186px;
-    width: 100px;
+    width: 90px;
   }  
 }
 .navicon {
@@ -90,56 +97,39 @@ export default {
   box-shadow: 0px 1px 2px 1px rgb(205, 203, 203);
 }
 .nametitle {
-  color: black;
+  color: #000;
   text-align: right;
   margin-bottom: 53px;
 }
-.flex-wrapper-one {
+.menu {
   margin-left: 20%;
   position: relative;
 }
-.menu-left-two {
-  color: grey;
-  margin-bottom: 20%;
+.menu-item {
   border-radius: 30px 0px 0px 30px;
-  padding: 27px 106px 25px 26px;
-}
-.menu-left-three {
-  color: grey;
+  color: #808080;
+  list-style: none;
   margin-bottom: 20%;
-  border-radius: 30px 0px 0px 30px;
-  padding: 27px 106px 25px 26px;
-}
-.menu-left-four {
-  color: grey;
-  margin-bottom: 20%;
-  border-radius: 30px 0px 0px 30px;
-  padding: 27px 106px 25px 26px;
-}
-.menu-left-five {
-  color: grey;
-  margin-bottom: 20%;
-  border-radius: 30px 0px 0px 30px;
-  padding: 27px 106px 25px 26px;
+  padding: 11px 106px 10px 26px;
+
+  &:hover {
+    background-color: white;
+    color: #00c0c0;
+    transition: 0.6s;
+  }
 }
 .logout {
   display: flex;
   align-items: center;
+
+  .logout-icon {
+    margin-right: 20%;
+  }
 }
-.logouticon {
-  margin-right: 20%;
-}
-.menu-left-six {
+.logout-text {
   width: 85px;
   color: black;
   text-align: center;
 }
-li:hover {
-  background-color: white;
-  color: #00c0c0;
-  transition: 0.6s;
-}
-li {
-  list-style: none;
-}
+
 </style>
