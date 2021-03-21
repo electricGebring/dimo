@@ -15,36 +15,36 @@
       </h5>
       <ul class="menu">
         <li class="menu-item">
-          <p menu-item-link>{{ menuLeftTwo }}</p>
           <img
             alt=""
             class="menu-item-navicon"
             src="../assets/svg/dummy-crash.svg"
           />
+          <p class="menu-item-link">{{ menuLeftTwo }}</p>
         </li>
         <li class="menu-item">
-          <p menu-item-link>{{ menuLeftThree }}</p>
           <img
             alt=""
             class="menu-item-navicon"
             src="../assets/svg/dummy-crash.svg"
           />
+          <p class="menu-item-link">{{ menuLeftThree }}</p>
         </li>
         <li class="menu-item">
-          <p menu-item-link>{{ menuLeftFour }}</p>
           <img
             alt=""
             class="menu-item-navicon"
             src="../assets/svg/dummy-crash.svg"
           />
+          <p class="menu-item-link">{{ menuLeftFour }}</p>
         </li>
         <li class="menu-item">
-          <p menu-item-link>{{ menuLeftFive }}</p>
           <img
             alt=""
             class="menu-item-navicon"
             src="../assets/svg/dummy-crash.svg"
           />
+          <p class="menu-item-link">{{ menuLeftFive }}</p>
         </li>
         <div class="logout">
           <img
@@ -98,22 +98,24 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .navbarside {
+  align-items: center;
+  background-color: #f2f7ff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 300px;
-  position: absolute;
   font-family: "Montserrat", sans-serif;
-  margin: 0;
-  padding: 0;
   left: 0;
   height: 100%;
-  background-color: #f2f7ff;
-  z-index: 9999;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 300px;
   transition: all, .3s;
+  z-index: 9999;
+  
 
   &.colapsed {
-    left: -210px;
+    width: 90px;
 
     .navicon {
       display: none;
@@ -135,8 +137,7 @@ export default {
       }
 
       .menu-item-navicon {
-         width: 25px;
-         height: 25px;
+        margin-left: 35px;
       }
     }
   }  
@@ -156,7 +157,6 @@ export default {
   margin-bottom: 53px;
 }
 .menu {
-  margin-left: 20%;
   position: relative;
 }
 .menu-item {
@@ -165,6 +165,12 @@ export default {
   list-style: none;
   margin-bottom: 20%;
   padding: 11px 106px 10px 26px;
+  //width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
+  justify-content: space-between;
 
   &:hover {
     background-color: white;
