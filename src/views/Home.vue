@@ -27,7 +27,7 @@ export default {
    display: flex;
 }
 .sidebar {
-   width: 20%;
+   min-width: 200px;
 }
 .main {
    width: 80%;
