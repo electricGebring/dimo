@@ -56,6 +56,7 @@
         </li>
       </ul>
     </div>
+ 
 </template>
 
 <script>
@@ -97,50 +98,46 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+.wrapper {
+  float: left;
+}
 .navbarside {
   align-items: center;
   background-color: #f2f7ff;
   display: flex;
   flex-direction: column;
+  float: left;
   font-family: "Montserrat", sans-serif;
-  left: 0;
   height: 100%;
-  margin: 0;
-  overflow-x: hidden;
-  padding: 0;
-  position: absolute;
-  width: 300px;
-  transition: all, .3s;
+  transition: width, .3s;
   z-index: 9999;
 
   .menu-item-navicon {
     margin-right: 30px;
   }
   
-
   &.colapsed {
-    width: 90px;
+    .menu-item {
+      margin-left: 15px;
+      padding: 30px 0px;
+    }
 
     .navicon, .profilepicture, .nametitle, .menu-item-link {
       display: none;
     } 
     
     .menu {
-      margin-top: 432px;
+      margin-top: 380px;
 
       .menu-item-navicon {
-        margin-left: 35px;
-      }
-
-      .menu-item-navicon {
-        margin-left: 18%;
+        margin-left: 20px;
       }
     }
   }  
 }
 .navicon {
-  margin-bottom: 25%;
-  margin-top: 25%;
+  margin-bottom: 72px;
+  margin-top: 72px;
 }
 .profilepicture {
   margin-bottom: 14px;
@@ -153,7 +150,8 @@ export default {
   margin-bottom: 53px;
 }
 .menu {
-  position: relative;
+  padding: 0;
+  margin: 0;
 }
 .menu-item {
   border-radius: 30px 0px 0px 30px;
@@ -161,9 +159,8 @@ export default {
   display: flex;
   list-style: none;
   margin-bottom: 20px;
-  padding: 11px 106px 10px 26px;
-  width: 60%;
-  margin-left: 10%;
+  padding: 11px 65px 10px 26px;
+  margin-left: 46px;
 
   &:nth-child(3) {
     margin-bottom: 100px;
