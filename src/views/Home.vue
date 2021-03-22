@@ -1,9 +1,6 @@
 <template>
   <div id="home">
     <div class="container">
-      <!-- <div class="sidebar">
-        <sidebar />
-      </div> -->
       <div class="main">
         <Categories />
       </div>
@@ -12,12 +9,10 @@
 </template>
 
 <script>
-//import Sidebar from "../components/Sidebar.vue";
 import Categories from "../components/Categories.vue";
 export default {
   name: "Home",
   components: {
-    //Sidebar,
     Categories,
   },
 };
@@ -26,9 +21,9 @@ export default {
 .container {
   display: flex;
 }
-// .sidebar {
-//   min-width: 200px;
-// }
+.sidebar {
+  min-width: 200px;
+}
 .main {
   width: 80%;
 }
