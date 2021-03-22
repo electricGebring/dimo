@@ -49,10 +49,10 @@
         <li class="menu-item logout">
           <img
             alt=""
-            class="logout-icon"
+            class="menu-item-navicon"
             src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
           />
-          <p   class="logout-text">{{ menuLeftSix }}</p >
+          <p class="menu-item-link">{{ menuLeftSix }}</p >
         </li>
       </ul>
     </div>
