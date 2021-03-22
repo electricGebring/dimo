@@ -170,7 +170,7 @@
         v-else
         class="toggle"
         v-on:click="isActiveThematic = !isActiveThematic"
-        >-</span
+        >+</span
       >
 
       <div v-if="isActiveThematic">
@@ -240,11 +240,15 @@ export default {
       isActiveDocumenttype: false,
       isActiveDepartment: false,
       isActiveOffice: false,
-      isActiveThematic: true,
+      isActiveThematic: '',
       isActiveValidity: false,
     };
   },
-
+  mounted() {
+    if (this.$route.params.Thematic) {
+      this.isActiveThematic = true;
+    }
+  },
   methods: {
     check: function(e) {
       this.checkedCategories.push(this.$route.params.Thematic);
