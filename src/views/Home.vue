@@ -31,6 +31,7 @@ export default {
 }
 .main {
    width: 80%;
+   padding: 0 5% 0 5%;
 }
 
 </style>
