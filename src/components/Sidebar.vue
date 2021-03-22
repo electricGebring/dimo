@@ -60,7 +60,7 @@
 
 <script>
 import { reactive } from '@vue/reactivity';
-import { onMounted } from '@vue/runtime-core';
+import { watch } from 'vue';
 import { useRoute } from 'vue-router';
 export default {
   name: "Group226",
@@ -84,7 +84,7 @@ export default {
 
     const route = useRoute()
 
-    onMounted(() => {
+    watch(route, () => {
       setTimeout(() => {
         route.params.Thematic ? colapsed.value = true : false;
       }, 10)

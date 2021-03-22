@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <Sidebar />
+    <!-- <Sidebar /> -->
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
   </div>  
@@ -9,7 +9,7 @@
 <script>
 import Doclist from "../components/Doclist.vue";
 import FilterBar from "../components/filterBar.vue";
-import Sidebar from "../components/Sidebar.vue";
+// import Sidebar from "../components/Sidebar.vue";
 
 export default {
   data() {
@@ -21,7 +21,7 @@ export default {
   components: {
     Doclist,
     FilterBar,
-    Sidebar,
+    // Sidebar,
   },
   computed: {
     Elements() {

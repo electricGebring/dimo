@@ -1,36 +1,35 @@
 <template>
   <div id="home">
     <div class="container">
-      <div class="sidebar">
-    <sidebar />
-    </div>
-    <div class="main">
-    <Categories />
-    </div>
+      <!-- <div class="sidebar">
+        <sidebar />
+      </div> -->
+      <div class="main">
+        <Categories />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '../components/Sidebar.vue'
-import Categories from '../components/Categories.vue'
+//import Sidebar from "../components/Sidebar.vue";
+import Categories from "../components/Categories.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Sidebar,
+    //Sidebar,
     Categories,
   },
-}
+};
 </script>
 <style lang="scss">
 .container {
-   display: flex;
+  display: flex;
 }
-.sidebar {
-   min-width: 200px;
-}
+// .sidebar {
+//   min-width: 200px;
+// }
 .main {
-   width: 80%;
+  width: 80%;
 }
-
 </style>
