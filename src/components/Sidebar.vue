@@ -106,7 +106,7 @@ export default {
   left: 0;
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   padding: 0;
   position: absolute;
   width: 300px;
