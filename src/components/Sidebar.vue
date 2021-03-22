@@ -46,14 +46,14 @@
           />
           <p class="menu-item-link">{{ menuLeftFive }}</p>
         </li>
-        <div class="logout">
+        <li class="menu-item logout">
           <img
             alt=""
             class="logout-icon"
             src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
           />
-          <h5 class="logout-text">{{ menuLeftSix }}</h5>
-        </div>
+          <p   class="logout-text">{{ menuLeftSix }}</p >
+        </li>
       </ul>
     </div>
 </template>
@@ -112,23 +112,19 @@ export default {
   width: 300px;
   transition: all, .3s;
   z-index: 9999;
+
+  .menu-item-navicon {
+    margin-right: 30px;
+  }
   
 
   &.colapsed {
     width: 90px;
 
-    .navicon {
+    .navicon, .profilepicture, .nametitle {
       display: none;
     } 
     
-    .profilepicture {
-      display: none;
-    }
-
-    .nametitle {
-      display: none;
-    }
-
     .menu {
       margin-top: 432px;
 
@@ -138,6 +134,10 @@ export default {
 
       .menu-item-navicon {
         margin-left: 35px;
+      }
+
+      .menu-item-navicon {
+        margin-left: 18%;
       }
     }
   }  
@@ -162,15 +162,16 @@ export default {
 .menu-item {
   border-radius: 30px 0px 0px 30px;
   color: #808080;
-  list-style: none;
-  margin-bottom: 20%;
-  padding: 11px 106px 10px 26px;
-  //width: 100%;
-
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;  
-  justify-content: space-between;
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 11px 106px 10px 26px;
+  width: 60%;
+  margin-left: 10%;
+
+  &:nth-child(3) {
+    margin-bottom: 100px;
+  }
 
   &:hover {
     background-color: white;
@@ -178,18 +179,20 @@ export default {
     transition: 0.6s;
   }
 }
-.logout {
-  display: flex;
-  align-items: center;
+// .logout {
+//   display: flex;
+//   align-items: center;
 
-  .logout-icon {
-    margin-right: 20%;
-  }
-}
-.logout-text {
-  width: 85px;
-  color: black;
-  text-align: center;
-}
+//   .logout-icon {
+//     margin-right: 20%;
+//   }
+// }
+// .logout-text {
+//   width: 85px;
+//   color: black;
+//   text-align: center;
+// }
+
+
 
 </style>
