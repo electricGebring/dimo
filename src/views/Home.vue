@@ -23,9 +23,10 @@ export default {
   //margin-left: 300px;
 }
 .sidebar {
-  min-width: 200px;
+   min-width: 300px;
 }
 .main {
   width: 80%;
+  padding: 0 5% 0 5%;
 }
 </style>

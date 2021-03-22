@@ -170,7 +170,7 @@
         v-else
         class="toggle"
         v-on:click="isActiveThematic = !isActiveThematic"
-        >-</span
+        >+</span
       >
 
       <div v-if="isActiveThematic">
@@ -240,11 +240,15 @@ export default {
       isActiveDocumenttype: false,
       isActiveDepartment: false,
       isActiveOffice: false,
-      isActiveThematic: true,
+      isActiveThematic: "",
       isActiveValidity: false,
     };
   },
-
+  mounted() {
+    if (this.$route.params.Thematic) {
+      this.isActiveThematic = true;
+    }
+  },
   methods: {
     check: function(e) {
       this.checkedCategories.push(this.$route.params.Thematic);
@@ -319,25 +323,31 @@ export default {
 .filterbar-heading_h3 {
   font-size: 14px;
   font-weight: 200;
+  color: black;
+  font-weight: bold;
 }
 .filterbar-heading_h4 {
   font-size: 11px;
   font-weight: 200;
+  color: black;
+  font-weight: bold;
 }
 .filterbar-checkbox__heading {
   font-size: 9px;
   font-weight: 200;
   margin-left: 3px;
+  color: black;
+  font-weight: bold;
 }
 .filterBar {
-  border: solid 1px #000;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  font-family: ‘Montserrat’, sans-serif;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Montserrat", sans-serif;
   margin-left: 10%;
   max-width: 230px;
   padding: 21px 12px;
   text-align: left;
+  font-weight: bold;
 
   .filter-category {
     cursor: pointer;
@@ -351,6 +361,7 @@ export default {
     top: -5px;
     right: 5px;
     font-size: 18px;
+    color: #686b6f;
   }
 
   .filter {
@@ -363,6 +374,8 @@ export default {
 
   hr {
     width: 200px;
+    color: #d4d4d4;
+    border-width: thin;
   }
 }
 </style>
