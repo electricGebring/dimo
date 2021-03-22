@@ -170,7 +170,7 @@
         v-else
         class="toggle"
         v-on:click="isActiveThematic = !isActiveThematic"
-        >-</span
+        >+</span
       >
 
       <div v-if="isActiveThematic">
