@@ -21,9 +21,7 @@ export default {
 .container {
   display: flex;
 }
-.sidebar {
-   min-width: 300px;
-}
+
 .main {
   width: 80%;
   padding: 0 5% 0 5%;
