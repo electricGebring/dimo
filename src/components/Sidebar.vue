@@ -14,7 +14,7 @@
         {{ jordanValentinLane }}
       </h5>
       <ul class="menu">
-        <li class="menu-item">
+        <li class="menu-item active">
           <img
             alt=""
             class="menu-item-navicon"
@@ -178,6 +178,12 @@ export default {
     color: #00c0c0;
     transition: 0.6s;
   }
+
+  &.active {
+    background-color: white;
+    color: #00c0c0;
+    transition: 0.6s;
+  }
 }
 // .logout {
 //   display: flex;
@@ -192,7 +198,5 @@ export default {
 //   color: black;
 //   text-align: center;
 // }
-
-
 
 </style>
