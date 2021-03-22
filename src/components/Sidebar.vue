@@ -121,16 +121,12 @@ export default {
   &.colapsed {
     width: 90px;
 
-    .navicon, .profilepicture, .nametitle {
+    .navicon, .profilepicture, .nametitle, .menu-item-link {
       display: none;
     } 
     
     .menu {
       margin-top: 432px;
-
-      .menu-item-link {
-        display: none;
-      }
 
       .menu-item-navicon {
         margin-left: 35px;
@@ -185,18 +181,5 @@ export default {
     transition: 0.6s;
   }
 }
-// .logout {
-//   display: flex;
-//   align-items: center;
-
-//   .logout-icon {
-//     margin-right: 20%;
-//   }
-// }
-// .logout-text {
-//   width: 85px;
-//   color: black;
-//   text-align: center;
-// }
 
 </style>
