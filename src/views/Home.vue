@@ -20,6 +20,7 @@ export default {
 <style lang="scss">
 .container {
   display: flex;
+  margin-left: 300px;
 }
 .sidebar {
   min-width: 200px;
