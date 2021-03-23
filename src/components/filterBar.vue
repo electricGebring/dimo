@@ -328,27 +328,14 @@ export default {
          filterThematic.add(item.Thematic);
       });
       
-      //console.log(filterThematic, 'filterThematic')
-
       for (let index of filterThematic) {
-        //console.log(index, 'this.filterThematic[index]')
         objectToArray.push(index)
       }
-      //console.log(objectToArray, 'objectToArray')
 
       for (let i = 0; i < objectToArray.length; i++) {
         this.$store.state.Elements.forEach(j => {
-          //console.log(i, 'i')
-          //console.log(j, 'j')
           for (let k in j) {
-            //console.log(j[k], 'j[k]')
-            //console.log(objectToArray[i] === j[k], 'objectToArray[i]')
             if (objectToArray[i] === j[k]) {
-              //const stringNeededToAttachValue = j[k]
-              //console.log(stringNeededToAttachValue, 'stringNeededToAttachValue')
-              //console.log(j[k], 'j[k]')
-              //console.log(stringCount[i], 'stringCount[i]')
-              //console.log(stringCount[i].[j[k]], 'stringCount[i].(j[k])')
               stringCount[i].[j[k]] += 1
             }
           }
