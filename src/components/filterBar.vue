@@ -324,55 +324,17 @@ export default {
       const filterThematic = new Set();
       this.$store.state.Elements.forEach((item) => {
         filterThematic.add(item.Thematic);
-        //console.log(filterThematic, 'filterThematic')
-        switch (item.Thematic) {
-          case 'SAMHÄLLSBYGGNAD':
-            stringCount[0]['SAMHÄLLSBYGGNAD'] += 1
-            break;
-          case 'MILJÖ & KLIMAT':
-            stringCount[1]['MILJÖ & KLIMAT'] += 1
-            break;
-          case 'NÄRINGSLIV':
-            stringCount[2]['NÄRINGSLIV'] += 1
-            break;
-          case 'KULTUR & FRITID':
-            stringCount[3]['KULTUR & FRITID'] += 1
-            break;
-          case 'FOLKHÄLSA':
-            stringCount[4]['FOLKHÄLSA'] += 1
-            break;
-          case 'TRYGGHET & SÄKERHET':
-            stringCount[5]['TRYGGHET & SÄKERHET'] += 1
-            break;
-          case 'JÄMSTÄLLDHET & JAMLIKHET':
-            stringCount[6]['JÄMSTÄLLDHET & JAMLIKHET'] += 1
-            break;
-          case 'DIGITALISERIN':
-            stringCount[7]['DIGITALISERIN'] += 1
-            break;
-          case 'DEMOKRATI':
-            stringCount[8]['DEMOKRATI'] += 1
-            break;
-          case 'ÖVRIGT':
-            stringCount[9]['ÖVRIGT'] += 1
-            break;
-          case 'EKONOMI':
-            stringCount[10]['EKONOMI'] += 1
-            break;
-          case 'MÅL & BUDGET':
-            stringCount[11]['MÅL & BUDGET'] += 1
-            break;
-          case 'UTBILDNING':
-            stringCount[12]['UTBILDNING'] += 1
-            break;
-          case 'ATTRAKTIV ARBETSGIVARE':
-            stringCount[13]['ATTRAKTIV ARBETSGIVARE'] += 1
-            break;
-          default:
-            console.log(`Sorry, we are out of`);
-        }
       });
-      console.log(filterThematic, 'filterThematic')
+      
+      filterThematic.forEach(i => {
+        this.$store.state.Elements.forEach(j => {
+          console.log(this.$store.state.Elements[i][j])
+          if (i === j) {
+            stringCount[i][j] += 1
+          }
+        })
+      })
+
       console.log(stringCount, 'stringCount')
       return Array.from(filterThematic);
     },
