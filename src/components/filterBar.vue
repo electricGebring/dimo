@@ -321,7 +321,7 @@ export default {
     },
     filterThematic() {
       const filterThematic = new Set();
-      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERIN': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERING': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
       let objectToArray = []
       
       this.$store.state.Elements.forEach((item) => {
