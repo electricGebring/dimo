@@ -53,7 +53,7 @@
           v-for="kFTargetArea in filterKFTargetArea"
           :key="kFTargetArea"
         >
-          <p class="filterbar-checkbox__heading">{{ kFTargetArea }}</p>
+          <p class="filterbar-checkbox__heading">{{ kFTargetArea.substring(2) }}</p>
           <input
             type="checkbox"
             :value="kFTargetArea"
