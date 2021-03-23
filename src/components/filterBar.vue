@@ -341,7 +341,6 @@ export default {
           }
         })    
       }
-      console.log(stringCount, 'stringCount')
       return stringCount
     },
     
