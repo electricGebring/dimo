@@ -93,6 +93,9 @@
             @change="check($event)"
           />
         </div>
+        <div v-for="k in showLength" :key="k">
+          <p class="filterbar-checkbox__heading">{{ k.length }}</p>
+        </div>
       </div>
     </div>
     <hr />
@@ -119,6 +122,7 @@
           :key="department"
         >
           <p class="filterbar-checkbox__heading">{{ department }}</p>
+
           <input
             type="checkbox"
             :value="department"
@@ -272,6 +276,17 @@ export default {
       );
       return Array.from(filterGlobalGoal);
     },
+
+    showLength() {
+      const showLength = new Set();
+
+      this.$store.state.Elements.forEach((item) =>
+        showLength.add(item.Documenttype)
+      );
+
+      return Array.from(showLength);
+    },
+
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) =>
