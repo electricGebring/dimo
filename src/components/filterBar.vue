@@ -271,9 +271,11 @@ export default {
   computed: {
     filterGlobalGoal() {
       const filterGlobalGoal = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterGlobalGoal.add(item.GlobalGoal)
-      );
+      this.$store.state.Elements.forEach((item) => {
+        if (item.GlobalGoal.length) {
+          filterGlobalGoal.add(item.GlobalGoal)
+        }
+      });
       return Array.from(filterGlobalGoal);
     },
 
@@ -288,9 +290,9 @@ export default {
     // },
 
     filterKFTargetArea() {
-      const filterKFTargetArea = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterKFTargetArea.add(item.KFTargetArea)
+      let filterKFTargetArea = new Set();
+      filterKFTargetArea = this.$store.state.Elements.forEach((item) =>
+        filterKFTargetArea.add(item.KFTargetArea),
       );
       return Array.from(filterKFTargetArea);
     },
