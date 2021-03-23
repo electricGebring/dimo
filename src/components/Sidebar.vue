@@ -87,7 +87,11 @@ export default {
 
     watch(route, () => {
       setTimeout(() => {
-        route.params.Thematic ? colapsed.value = true : false;
+        if (route.params.Thematic) {
+          colapsed.value = true
+        } else {
+          colapsed.value = false
+        }
       }, 10)
     })
 
