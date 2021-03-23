@@ -21,9 +21,7 @@
           v-for="globalGoal in filterGlobalGoal"
           :key="globalGoal"
         >
-          <p class="filterbar-checkbox__heading">
-            {{ showLength.length }} {{ globalGoal.length }}
-          </p>
+          <p class="filterbar-checkbox__heading">{{ showLength.length}} {{ globalGoal.length }}</p>
           <input
             type="checkbox"
             :value="globalGoal"
@@ -296,13 +294,10 @@ export default {
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) => {
-
-        filterKFTargetArea.add(item.KFTargetArea.toUpperCase())
-
-
+        filterKFTargetArea.add(item.KFTargetArea);
+      });
       return Array.from(filterKFTargetArea);
     },
-
     filterDocumenttype() {
       const filterDocumenttype = new Set();
       this.$store.state.Elements.forEach((item) =>
@@ -313,7 +308,7 @@ export default {
     filterDepartment() {
       const filterDepartment = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterDepartment.add(item.Department.toUpperCase())
+        filterDepartment.add(item.Department)
       );
       return Array.from(filterDepartment);
     },
@@ -322,17 +317,17 @@ export default {
       this.$store.state.Elements.forEach((item) =>
         filterOffice.add(item.Office)
       );
-      return Array.from(filterOffice.toUpperCase());
+      return Array.from(filterOffice);
     },
     filterThematic() {
       const filterThematic = new Set();
       const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERING': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
       let objectToArray = []
-
+      
       this.$store.state.Elements.forEach((item) => {
          filterThematic.add(item.Thematic);
       });
-
+      
       for (let index of filterThematic) {
         objectToArray.push(index)
       }
@@ -344,15 +339,15 @@ export default {
               stringCount[i].[j[k]] += 1
             }
           }
-        })
+        })    
       }
       return stringCount
     },
-
+    
     filterValidity() {
       const filterValidity = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterValidity.add(item.Validity.toUpperCase())
+        filterValidity.add(item.Validity)
       );
       return Array.from(filterValidity);
     },
