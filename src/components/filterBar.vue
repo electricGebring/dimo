@@ -254,6 +254,7 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
+    this.count()
   },
   methods: {
     check: function (e) {
@@ -320,24 +321,49 @@ export default {
       return Array.from(filterOffice);
     },
     filterThematic() {
-      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERIN': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      //const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERIN': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      //const let objectToArray = []
       const filterThematic = new Set();
       this.$store.state.Elements.forEach((item) => {
-        filterThematic.add(item.Thematic);
+         filterThematic.add(item.Thematic);
       });
       
-      filterThematic.forEach(i => {
-        this.$store.state.Elements.forEach(j => {
-          console.log(this.$store.state.Elements[i][j])
-          if (i === j) {
-            stringCount[i][j] += 1
-          }
-        })
-      })
+      //console.log(typeof filterThematic, filterThematic, 'filterThematic')
+      
+      // let objectToArray = [] 
+      // for (index in filterThematic) {
+      //   objectToArray.push(index.value)
+      // }
+      // console.log(objectToArray)
 
-      console.log(stringCount, 'stringCount')
+      //console.log(stringCount, 'stringCount')
       return Array.from(filterThematic);
     },
+    count() {
+      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERIN': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      let objectToArray = []
+      
+      for (let index in this.filterThematic) {
+        //console.log(this.filterThematic[index])
+        objectToArray.push(this.filterThematic[index])
+      }
+      console.log(objectToArray, 'objectToArray')
+
+      for (let i = 0; i < objectToArray.length; i++) {
+        this.$store.state.Elements.forEach(j => {
+          // console.log(i, 'i')
+          // console.log(j, 'j')
+          for (let k in j) {
+            if (objectToArray[i] === j[k]) {
+              stringCount[i].j[k] += 1
+            }
+          }
+        })    
+      }
+
+      return objectToArray
+    },
+    
     filterValidity() {
       const filterValidity = new Set();
       this.$store.state.Elements.forEach((item) =>
