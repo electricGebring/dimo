@@ -21,7 +21,7 @@
           v-for="globalGoal in filterGlobalGoal"
           :key="globalGoal"
         >
-          <p class="filterbar-checkbox__heading">{{ globalGoal }}</p>
+          <p class="filterbar-checkbox__heading">{{ showLength.length}} {{ globalGoal.length }}</p>
           <input
             type="checkbox"
             :value="globalGoal"
@@ -53,7 +53,9 @@
           v-for="kFTargetArea in filterKFTargetArea"
           :key="kFTargetArea"
         >
-          <p class="filterbar-checkbox__heading">{{ kFTargetArea.substring(2) }}</p>
+          <p class="filterbar-checkbox__heading">
+            {{ kFTargetArea.substring(2) }}
+          </p>
           <input
             type="checkbox"
             :value="kFTargetArea"
@@ -254,7 +256,7 @@ export default {
     }
   },
   methods: {
-    check: function(e) {
+    check: function (e) {
       this.checkedCategories.push(this.$route.params.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
@@ -273,26 +275,26 @@ export default {
       const filterGlobalGoal = new Set();
       this.$store.state.Elements.forEach((item) => {
         if (item.GlobalGoal.length) {
-          filterGlobalGoal.add(item.GlobalGoal)
+          filterGlobalGoal.add(item.GlobalGoal);
         }
       });
       return Array.from(filterGlobalGoal);
     },
 
-    // showLength() {
-    //   const showLength = new Set();
+    showLength() {
+      const showLength = new Set();
 
-    //   this.$store.state.Elements.forEach((item) =>
-    //     showLength.add(item.Documenttype)
-    //   );
-    //   console.log(showLength, 'showLength')
-    //   return Array.from(showLength);
-    // },
+      this.$store.state.Elements.forEach((item) =>
+        showLength.add(item.Documenttype)
+      );
+      console.log(showLength, 'showLength')
+      return Array.from(showLength);
+    },
 
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) => {
-        filterKFTargetArea.add(item.KFTargetArea)
+        filterKFTargetArea.add(item.KFTargetArea);
       });
       return Array.from(filterKFTargetArea);
     },
@@ -318,10 +320,60 @@ export default {
       return Array.from(filterOffice);
     },
     filterThematic() {
+      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERIN': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
       const filterThematic = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterThematic.add(item.Thematic)
-      );
+      this.$store.state.Elements.forEach((item) => {
+        filterThematic.add(item.Thematic);
+        //console.log(filterThematic, 'filterThematic')
+        switch (item.Thematic) {
+          case 'SAMHÄLLSBYGGNAD':
+            stringCount[0]['SAMHÄLLSBYGGNAD'] += 1
+            break;
+          case 'MILJÖ & KLIMAT':
+            stringCount[1]['MILJÖ & KLIMAT'] += 1
+            break;
+          case 'NÄRINGSLIV':
+            stringCount[2]['NÄRINGSLIV'] += 1
+            break;
+          case 'KULTUR & FRITID':
+            stringCount[3]['KULTUR & FRITID'] += 1
+            break;
+          case 'FOLKHÄLSA':
+            stringCount[4]['FOLKHÄLSA'] += 1
+            break;
+          case 'TRYGGHET & SÄKERHET':
+            stringCount[5]['TRYGGHET & SÄKERHET'] += 1
+            break;
+          case 'JÄMSTÄLLDHET & JAMLIKHET':
+            stringCount[6]['JÄMSTÄLLDHET & JAMLIKHET'] += 1
+            break;
+          case 'DIGITALISERIN':
+            stringCount[7]['DIGITALISERIN'] += 1
+            break;
+          case 'DEMOKRATI':
+            stringCount[8]['DEMOKRATI'] += 1
+            break;
+          case 'ÖVRIGT':
+            stringCount[9]['ÖVRIGT'] += 1
+            break;
+          case 'EKONOMI':
+            stringCount[10]['EKONOMI'] += 1
+            break;
+          case 'MÅL & BUDGET':
+            stringCount[11]['MÅL & BUDGET'] += 1
+            break;
+          case 'UTBILDNING':
+            stringCount[12]['UTBILDNING'] += 1
+            break;
+          case 'ATTRAKTIV ARBETSGIVARE':
+            stringCount[13]['ATTRAKTIV ARBETSGIVARE'] += 1
+            break;
+          default:
+            console.log(`Sorry, we are out of`);
+        }
+      });
+      console.log(filterThematic, 'filterThematic')
+      console.log(stringCount, 'stringCount')
       return Array.from(filterThematic);
     },
     filterValidity() {
