@@ -113,6 +113,32 @@ export default {
   .menu-item-navicon {
     margin-right: 30px;
   }
+
+  .menu-item {
+    border-radius: 30px 0px 0px 30px;
+    color: #808080;
+    display: flex;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 11px 65px 10px 26px;
+    margin-left: 46px;
+
+    &:nth-child(3) {
+      margin-bottom: 100px;
+    }
+
+    &:hover {
+      background-color: white;
+      color: #00c0c0;
+      transition: 0.6s;
+    }
+
+    &.active {
+      background-color: white;
+      color: #00c0c0;
+      transition: 0.6s;
+    }
+  }
   
   &.colapsed {
     .menu-item {
@@ -151,30 +177,6 @@ export default {
   padding: 0;
   margin: 0;
 }
-.menu-item {
-  border-radius: 30px 0px 0px 30px;
-  color: #808080;
-  display: flex;
-  list-style: none;
-  margin-bottom: 20px;
-  padding: 11px 65px 10px 26px;
-  margin-left: 46px;
 
-  &:nth-child(3) {
-    margin-bottom: 100px;
-  }
-
-  &:hover {
-    background-color: white;
-    color: #00c0c0;
-    transition: 0.6s;
-  }
-
-  &.active {
-    background-color: white;
-    color: #00c0c0;
-    transition: 0.6s;
-  }
-}
 
 </style>
