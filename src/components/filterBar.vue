@@ -264,7 +264,6 @@ export default {
           return i !== e.target.value;
         });
       }
-      console.log(this.checkedCategories, 'this.checkedCategories')
       this.$emit("filter", this.checkedCategories);
     },
   },
@@ -293,7 +292,7 @@ export default {
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) => {
-        filterKFTargetArea.add(item.KFTargetArea.substring(2))
+        filterKFTargetArea.add(item.KFTargetArea)
       });
       return Array.from(filterKFTargetArea);
     },
