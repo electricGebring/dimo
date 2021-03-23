@@ -264,6 +264,7 @@ export default {
           return i !== e.target.value;
         });
       }
+      console.log(this.checkedCategories, 'this.checkedCategories')
       this.$emit("filter", this.checkedCategories);
     },
   },
@@ -290,10 +291,10 @@ export default {
     // },
 
     filterKFTargetArea() {
-      let filterKFTargetArea = new Set();
-      filterKFTargetArea = this.$store.state.Elements.forEach((item) =>
-        filterKFTargetArea.add(item.KFTargetArea),
-      );
+      const filterKFTargetArea = new Set();
+      this.$store.state.Elements.forEach((item) => {
+        filterKFTargetArea.add(item.KFTargetArea.substring(2))
+      });
       return Array.from(filterKFTargetArea);
     },
     filterDocumenttype() {
