@@ -292,7 +292,7 @@ export default {
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) => {
-        filterKFTargetArea.add(item.KFTargetArea)
+        filterKFTargetArea.add(item.KFTargetArea.toUpperCase())
       });
       return Array.from(filterKFTargetArea);
     },
@@ -306,7 +306,7 @@ export default {
     filterDepartment() {
       const filterDepartment = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterDepartment.add(item.Department)
+        filterDepartment.add(item.Department.toUpperCase())
       );
       return Array.from(filterDepartment);
     },
@@ -315,7 +315,7 @@ export default {
       this.$store.state.Elements.forEach((item) =>
         filterOffice.add(item.Office)
       );
-      return Array.from(filterOffice);
+      return Array.from(filterOffice.toUpperCase());
     },
     filterThematic() {
       const filterThematic = new Set();
@@ -327,7 +327,7 @@ export default {
     filterValidity() {
       const filterValidity = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterValidity.add(item.Validity)
+        filterValidity.add(item.Validity.toUpperCase())
       );
       return Array.from(filterValidity);
     },
