@@ -21,7 +21,9 @@
           v-for="globalGoal in filterGlobalGoal"
           :key="globalGoal"
         >
-          <p class="filterbar-checkbox__heading">{{ globalGoal }}</p>
+          <p class="filterbar-checkbox__heading">
+            {{ showLength.length }} {{ globalGoal.length }}
+          </p>
           <input
             type="checkbox"
             :value="globalGoal"
@@ -53,7 +55,9 @@
           v-for="kFTargetArea in filterKFTargetArea"
           :key="kFTargetArea"
         >
-          <p class="filterbar-checkbox__heading">{{ kFTargetArea }}</p>
+          <p class="filterbar-checkbox__heading">
+            {{ kFTargetArea.substring(2) }}
+          </p>
           <input
             type="checkbox"
             :value="kFTargetArea"
@@ -254,7 +258,7 @@ export default {
     }
   },
   methods: {
-    check: function(e) {
+    check: function (e) {
       this.checkedCategories.push(this.$route.params.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
@@ -273,29 +277,32 @@ export default {
       const filterGlobalGoal = new Set();
       this.$store.state.Elements.forEach((item) => {
         if (item.GlobalGoal.length) {
-          filterGlobalGoal.add(item.GlobalGoal)
+          filterGlobalGoal.add(item.GlobalGoal);
         }
       });
       return Array.from(filterGlobalGoal);
     },
 
-    // showLength() {
-    //   const showLength = new Set();
+    showLength() {
+      const showLength = new Set();
 
-    //   this.$store.state.Elements.forEach((item) =>
-    //     showLength.add(item.Documenttype)
-    //   );
-    //   console.log(showLength, 'showLength')
-    //   return Array.from(showLength);
-    // },
+      this.$store.state.Elements.forEach((item) =>
+        showLength.add(item.Documenttype)
+      );
+      console.log(showLength, 'showLength')
+      return Array.from(showLength);
+    },
 
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) => {
+
         filterKFTargetArea.add(item.KFTargetArea.toUpperCase())
-      });
+
+
       return Array.from(filterKFTargetArea);
     },
+
     filterDocumenttype() {
       const filterDocumenttype = new Set();
       this.$store.state.Elements.forEach((item) =>
@@ -319,11 +326,30 @@ export default {
     },
     filterThematic() {
       const filterThematic = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterThematic.add(item.Thematic)
-      );
-      return Array.from(filterThematic);
+      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERING': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      let objectToArray = []
+
+      this.$store.state.Elements.forEach((item) => {
+         filterThematic.add(item.Thematic);
+      });
+
+      for (let index of filterThematic) {
+        objectToArray.push(index)
+      }
+
+      for (let i = 0; i < objectToArray.length; i++) {
+        this.$store.state.Elements.forEach(j => {
+          for (let k in j) {
+            if (objectToArray[i] === j[k]) {
+              stringCount[i].[j[k]] += 1
+            }
+          }
+        })
+      }
+      console.log(stringCount, 'stringCount')
+      return stringCount
     },
+
     filterValidity() {
       const filterValidity = new Set();
       this.$store.state.Elements.forEach((item) =>

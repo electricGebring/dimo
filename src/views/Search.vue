@@ -43,7 +43,7 @@ export default {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
-            for (let k in i) {
+            for (let k of i) {
               if (j === i[k]) {
                 arrayToDoclist.push(i);
               }
