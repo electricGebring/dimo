@@ -272,25 +272,25 @@ export default {
     filterGlobalGoal() {
       const filterGlobalGoal = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterGlobalGoal.add(item.Documenttype)
+        filterGlobalGoal.add(item.GlobalGoal)
       );
       return Array.from(filterGlobalGoal);
     },
 
-    showLength() {
-      const showLength = new Set();
+    // showLength() {
+    //   const showLength = new Set();
 
-      this.$store.state.Elements.forEach((item) =>
-        showLength.add(item.Documenttype)
-      );
-
-      return Array.from(showLength);
-    },
+    //   this.$store.state.Elements.forEach((item) =>
+    //     showLength.add(item.Documenttype)
+    //   );
+    //   console.log(showLength, 'showLength')
+    //   return Array.from(showLength);
+    // },
 
     filterKFTargetArea() {
       const filterKFTargetArea = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterKFTargetArea.add(item.Documenttype)
+        filterKFTargetArea.add(item.KFTargetArea)
       );
       return Array.from(filterKFTargetArea);
     },
@@ -304,14 +304,14 @@ export default {
     filterDepartment() {
       const filterDepartment = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterDepartment.add(item.Documenttype)
+        filterDepartment.add(item.Department)
       );
       return Array.from(filterDepartment);
     },
     filterOffice() {
       const filterOffice = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterOffice.add(item.Documenttype)
+        filterOffice.add(item.Office)
       );
       return Array.from(filterOffice);
     },
@@ -325,7 +325,7 @@ export default {
     filterValidity() {
       const filterValidity = new Set();
       this.$store.state.Elements.forEach((item) =>
-        filterValidity.add(item.Thematic)
+        filterValidity.add(item.Validity)
       );
       return Array.from(filterValidity);
     },
