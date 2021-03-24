@@ -321,6 +321,7 @@ export default {
       );
       return Array.from(filterOffice);
     },
+    //Tänker att vi skulle kunna använda den här funktionen för att skicka in allt filter objecten
     filterThematic() {
       const filterThematic = new Set();
       const stringCount = [];
