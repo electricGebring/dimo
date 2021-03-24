@@ -346,14 +346,6 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               stringCount[i] = { object: { name: elements[j][k], amount: 0 } };
-            }
-          }
-        }
-      }
-      for (let i = 0; i < objectToArray.length; i++) {
-        for (let j = 0; j < elements.length; j++) {
-          for (let k in elements[j]) {
-            if (objectToArray[i] === elements[j][k]) {
               stringCount[i].object.amount += 1;
             }
           }
