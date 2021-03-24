@@ -341,7 +341,7 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              stringCount[i] = { [elements[j][k]]: 0 };
+              stringCount[i] = {item: { [elements[j][k]]: 0 }};
             }
           }
         }
@@ -350,7 +350,7 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              stringCount[i][elements[j][k]] += 1;
+              stringCount[i].item[elements[j][k]] += 1;
             }
           }
         }
