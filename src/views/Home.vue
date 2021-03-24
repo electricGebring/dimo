@@ -1,19 +1,29 @@
 <template>
   <div id="home">
-    <sidebar />
-    <Categories />
+    <div class="container">
+      <div class="main">
+        <Categories />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '../components/Sidebar.vue'
-import Categories from '../components/Categories.vue'
+import Categories from "../components/Categories.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Sidebar,
     Categories,
   },
-}
+};
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.container {
+  display: flex;
+}
+
+.main {
+  width: 80%;
+  padding: 0 5% 0 5%;
+}
+</style>

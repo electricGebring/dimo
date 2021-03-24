@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <sidebar />
+  <div class="search">
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
-  </div>
+  </div>  
 </template>
 
 <script>
-import Sidebar from "../components/Sidebar.vue";
 import Doclist from "../components/Doclist.vue";
 import FilterBar from "../components/filterBar.vue";
 
@@ -15,10 +13,10 @@ export default {
   data() {
     return {
       doclist: [],
+      checkBoxCategories: [],
     };
   },
   components: {
-    Sidebar,
     Doclist,
     FilterBar,
   },
@@ -42,30 +40,19 @@ export default {
 
     setFilter(checkedCategories) {
       if (checkedCategories) {
-       
-        //lägga arrayen som ska änvändas här, verkade inte funka att ha den i data  
-        let arrayToDoclist = [];
-        let filteredArray = new Set()
-
-        checkedCategories.map((i) =>{
-          return filteredArray.add(i)
-        })
-       
-        filteredArray.forEach((j) => {
+        let arrayToDoclist = [];        
+        checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i);
+                arrayToDoclist.push(i); //kan man sätta en include här istället????
               }
             }
           });
         });
          
         this.doclist = arrayToDoclist
-        console.log(arrayToDoclist)
-        // tömm arrayen här
-        filteredArray = []
-        // sätt om rout params så terneryn funkar i doclist
+        checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
         this.filteredList(); 
@@ -80,70 +67,10 @@ body {
   margin: 0;
   padding: 0;
 }
-.section {
-  position: relative;
-  display: table;
-  float: left;
-  margin: 10px;
-  width: 200px;
-  height: 190px;
-  background-color: #faf9f9 !important;
-  border: solid 1px lightgrey;
-  padding: 10px 0 0 0;
-  border-radius: 0px 0px 10px 10px;
-  margin-top: 30px;
-  margin-left: 3%;
-  &:hover {
-    background-color: #fff !important;
-  }
-}
-.type {
-  position: absolute;
-  width: 50%;
-  height: 25px;
-  background: #bebdb9;
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  vertical-align: middle;
-  border-radius: 0px 0px 10px 0px;
-  top: 0;
-}
-.type span {
-  display: inline-block;
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 10px;
-  font-weight: bold;
-  margin: 5px auto;
-}
-.title {
-  height: 50px;
-  color: #fff;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  align-self: center;
-  vertical-align: middle;
-  border-radius: 0px 0px 10px 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.img-container {
-  text-align: center;
-  margin: 30px;
-}
-img {
-  display: inline-block;
-  border: solid 1px lightgrey;
-  margin-top: 20px;
-  margin-bottom: -20px;
-}
-.hej {
-  width: 100%;
-  margin-left: 15%;
-}
-.labelTitle {
-  padding: 10px;
+
+.search {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
 }
 </style>
