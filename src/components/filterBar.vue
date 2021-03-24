@@ -340,13 +340,15 @@ export default {
         for (let j = 0; j < elements.length; j++) { 
                
           for (let k in elements[j]) {
-              //if (objectToArray[i] === elements[j][k]) {
+              if (objectToArray[i] === elements[j][k]) {
                 //const string = elements[j][k]
                 stringCount[i] = {[elements[j][k]]: 0}
+                console.log(stringCount[i][elements[j][k]], 'stringCount[i]')
+                stringCount[i][elements[j][k]] += 1 
                 //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
-                stringCount[i][elements[j][k]] += 1
+                        //stringCount[i][elements[j][k]] += 1
                 //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
-              //}
+              }
               // console.log(elements[j], '(elements[j]')  // element objecten
               // console.log(k, 'k') // key på en object instans
               // console.log(elements[j][k], 'elements[j][k]') // värdet på ett object instans
