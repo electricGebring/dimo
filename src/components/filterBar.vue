@@ -333,16 +333,25 @@ export default {
       }
 
       const elements = this.$store.state.Elements
+      //console.log(elements, 'elements')
       
       for (let i = 0; i < objectToArray.length; i++) {
-        for (let j = 0; j < elements.length; j++) {        
+        
+        for (let j = 0; j < elements.length; j++) { 
+               
           for (let k in elements[j]) {
-            if (objectToArray[i] === j[k]) {
-              
-              
-              stringCount[i] = {k}
+              //if (objectToArray[i] === elements[j][k]) {
+                //const string = elements[j][k]
+                stringCount[i] = {[elements[j][k]]: 0}
+                //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
+                stringCount[i][elements[j][k]] += 1
+                //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
+              //}
+              // console.log(elements[j], '(elements[j]')  // element objecten
+              // console.log(k, 'k') // key på en object instans
+              // console.log(elements[j][k], 'elements[j][k]') // värdet på ett object instans
+              //stringCount[i] = {k: 0}
               //stringCount[i].[j[k]] += 1
-            }
           }
         }    
       }
