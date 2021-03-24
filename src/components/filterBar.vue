@@ -263,8 +263,6 @@ export default {
   },
   methods: {
     check: function (e) {
-      console.log(e.target.value, "e.target.value")
-      console.log(this.$route.params.Thematic, 'this.$route.params.Thematic')
       this.checkedCategories.push(this.$route.params.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
@@ -361,7 +359,6 @@ export default {
           }
         }
       }
-      console.log(stringCount, "stringCount");
       return stringCount;
     },
 
