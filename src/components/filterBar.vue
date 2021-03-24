@@ -183,21 +183,25 @@
 
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic">
-          <div class="filter" v-if="this.$route.params.Thematic == thematic">
-            <p class="filterbar-checkbox__heading">{{ thematic.object.name }} ({{thematic.object.amount}})</p>
+          <div class="filter" v-if="this.$route.params.Thematic == thematic.object.name">
+            <p class="filterbar-checkbox__heading">
+              {{ thematic.object.name }} ({{ thematic.object.amount }})
+            </p>
             <input
               type="checkbox"
-              :value="thematic"
+              :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
               checked="checked"
             />
           </div>
           <div class="filter" v-else>
-            <p class="filterbar-checkbox__heading">{{ thematic.object.name }} ({{thematic.object.amount}})</p>
+            <p class="filterbar-checkbox__heading">
+              {{ thematic.object.name }} ({{ thematic.object.amount }})
+            </p>
             <input
               type="checkbox"
-              :value="thematic"
+              :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
             />
@@ -259,6 +263,8 @@ export default {
   },
   methods: {
     check: function (e) {
+      console.log(e.target.value, "e.target.value")
+      console.log(this.$route.params.Thematic, 'this.$route.params.Thematic')
       this.checkedCategories.push(this.$route.params.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
@@ -341,7 +347,7 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              stringCount[i] = {object: { name: elements[j][k], amount:  0 }};
+              stringCount[i] = { object: { name: elements[j][k], amount: 0 } };
             }
           }
         }
