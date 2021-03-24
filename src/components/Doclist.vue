@@ -7,8 +7,8 @@
         "
       >
         <div class="section">
-          <div class="img-container">
-            <img v-bind:src="item.CoverImg" width="120" height="150" />
+          <div class="img-container" @click.stop="goto(item.URL)">
+            <img v-bind:src="item.CoverImg" width="100" height="140" />
           </div>
           <div
             class="title"
@@ -40,7 +40,11 @@ export default {
   props: ['doclist', 'filterlist'],
   components: {},
   computed: {},
-  methods: {},
+  methods: {
+    goto(url) {
+      window.open(url, '_blank').focus()
+    },
+  },
 }
 </script>
 
@@ -49,7 +53,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .container {
   align-content: flex-start;
   display: flex;
@@ -70,8 +73,11 @@ body {
   border: solid 1px lightgrey;
   padding: 10px 0 0 0;
   border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   &:hover {
+    transition: 0.4s;
     background-color: #fff !important;
+    cursor: pointer;
   }
 }
 .type {
@@ -110,13 +116,14 @@ body {
 }
 .img-container {
   text-align: center;
-  margin: 30px;
+  margin: 5px 0px 30px 0px;
 }
 img {
   display: inline-block;
   border: solid 1px lightgrey;
   margin-top: 20px;
   margin-bottom: -20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 .labelTitle {
   padding: 10px;
