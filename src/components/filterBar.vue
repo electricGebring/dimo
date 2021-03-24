@@ -321,7 +321,7 @@ export default {
     },
     filterThematic() {
       const filterThematic = new Set();
-      const stringCount = [{'SAMHÄLLSBYGGNAD': 0}, {'MILJÖ & KLIMAT': 0}, {'NÄRINGSLIV': 0}, {'KULTUR & FRITID': 0}, {'FOLKHÄLSA': 0}, {'TRYGGHET & SÄKERHET': 0}, {'JÄMSTÄLLDHET & JAMLIKHET': 0}, {'DIGITALISERING': 0}, {'DEMOKRATI': 0}, {'ÖVRIGT': 0}, {'EKONOMI': 0}, {'MÅL & BUDGET': 0}, {'UTBILDNING': 0}, {'ATTRAKTIV ARBETSGIVARE': 0}];
+      const stringCount = [];
       let objectToArray = []
       
       this.$store.state.Elements.forEach((item) => {
@@ -336,11 +336,18 @@ export default {
         this.$store.state.Elements.forEach(j => {
           for (let k in j) {
             if (objectToArray[i] === j[k]) {
-              stringCount[i].[j[k]] += 1
+              let testObject = j[k]
+              testObject = {testObject: 0}
+              
+              console.log(testObject, 'testObject')
+              
+              stringCount[i] = testObject
+              //stringCount[i].[j[k]] += 1
             }
           }
         })    
       }
+      console.log(stringCount, 'stringCount')
       return stringCount
     },
     
