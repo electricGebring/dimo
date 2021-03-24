@@ -1,6 +1,6 @@
 <template>
   <div class="searchbar">
-    <Autocomplete @input="Elements" :result="Elements">{{ Elements.Label }}</Autocomplete>
+    <Autocomplete @input="Elements" :result="Elements"></Autocomplete>
   </div>
 </template>
 <script>
@@ -14,16 +14,22 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getDocuments')
+    this.anna()
   },
   computed: {
     Elements() {
       return this.$store.state.Elements
     },
   },
+  methods: {
+    anna() {
+      console.log(this.result)
+    },
+  },
 }
 </script>
 <style scoped>
 .searchbar {
-  margin-left: 20%;
+  margin-left: 50%;
 }
 </style>
