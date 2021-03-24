@@ -332,20 +332,19 @@ export default {
         objectToArray.push(index)
       }
 
+      const elements = this.$store.state.Elements
+      
       for (let i = 0; i < objectToArray.length; i++) {
-        this.$store.state.Elements.forEach(j => {
-          for (let k in j) {
+        for (let j = 0; j < elements.length; j++) {        
+          for (let k in elements[j]) {
             if (objectToArray[i] === j[k]) {
-              let testObject = j[k]
-              testObject = {testObject: 0}
               
-              console.log(testObject, 'testObject')
               
-              stringCount[i] = testObject
+              stringCount[i] = {k}
               //stringCount[i].[j[k]] += 1
             }
           }
-        })    
+        }    
       }
       console.log(stringCount, 'stringCount')
       return stringCount
