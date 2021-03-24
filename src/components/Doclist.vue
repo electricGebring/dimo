@@ -57,6 +57,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
+  margin-top: 80px;
 }
 .section {
   position: relative;
