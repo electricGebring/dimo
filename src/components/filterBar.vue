@@ -184,7 +184,7 @@
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic">
           <div class="filter" v-if="this.$route.params.Thematic == thematic">
-            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">{{ thematic.object.name }} ({{thematic.object.amount}})</p>
             <input
               type="checkbox"
               :value="thematic"
@@ -194,7 +194,7 @@
             />
           </div>
           <div class="filter" v-else>
-            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">{{ thematic.object.name }} ({{thematic.object.amount}})</p>
             <input
               type="checkbox"
               :value="thematic"
