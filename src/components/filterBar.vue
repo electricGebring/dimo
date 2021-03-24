@@ -182,9 +182,9 @@
       >
 
       <div v-if="isActiveThematic">
-        <div v-for="thematic in filterThematic" :key="thematic">
+        <div v-for="(value, propertyName) in filterThematic.object" :key="propertyName">
           <div class="filter" v-if="this.$route.params.Thematic == thematic">
-            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">{{ value.amount }}</p>
             <input
               type="checkbox"
               :value="thematic"
