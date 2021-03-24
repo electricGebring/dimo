@@ -344,7 +344,7 @@ export default {
                 //const string = elements[j][k]
                 stringCount[i] = {[elements[j][k]]: 0}
                 console.log(stringCount[i][elements[j][k]], 'stringCount[i]')
-                stringCount[i][elements[j][k]] += 1 
+                   //stringCount[i][elements[j][k]] += 1 
                 //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
                         //stringCount[i][elements[j][k]] += 1
                 //console.log(stringCount[i][elements[j][k]], 'stringCount[i][elements[j][k]] ')
@@ -356,6 +356,17 @@ export default {
               //stringCount[i].[j[k]] += 1
           }
         }    
+      }
+      for (let i = 0; i < objectToArray.length; i++) {
+        
+          for (let j = 0; j < elements.length; j++) { 
+                
+            for (let k in elements[j]) {
+                if (objectToArray[i] === elements[j][k]) {
+                  stringCount[i][elements[j][k]] += 1
+            }
+          }    
+        }
       }
       console.log(stringCount, 'stringCount')
       return stringCount
