@@ -1,21 +1,25 @@
 <template>
   <div id="home">
-    <sidebar />
-    <Categories />
-    <Searchbar />
+
+    <div class="container">
+      <div class="main">
+        <Categories />
+        <Searchbar />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '../components/Sidebar.vue'
-import Categories from '../components/Categories.vue'
 import Searchbar from '../components/Searchbar.vue'
+import Categories from "../components/Categories.vue";
+
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Sidebar,
     Categories,
     Searchbar,
   },
-}
+};
 </script>
+
