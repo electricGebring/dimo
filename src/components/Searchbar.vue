@@ -9,33 +9,43 @@
   </div>
 </template>
 <script>
-import Autocomplete from 'vue3-autocomplete'
+import Autocomplete from "vue3-autocomplete";
 // import 'vue3-autocomplete/dist/vue3-autocomplete.css'
 
 export default {
-  name: 'SearchBar',
+  name: "SearchBar",
   components: {
     Autocomplete,
   },
   data() {
     return {
       myElements: [],
-    }
+    };
   },
   methods: {
     Elements(value) {
-      this.myElements = this.$store.state.Elements.filter((item) => item.Label.includes(value))
-      console.log(this.myElements)
-      return this.myElements
+      this.myElements = this.$store.state.Elements.filter((data) => {
+        let hasProperty = false;
+        Object.values(data).forEach((item) => {
+          if (item.includes(value)) {
+            hasProperty = true;
+          }
+        });
+        return hasProperty;
+      });
     },
+
     displayElement(Element) {
-      return Element.Label
+      return Element.Label;
+    },
+    selectEvent() {
+      alert("hej");
     },
   },
   mounted() {
-    this.$store.dispatch('getDocuments')
+    this.$store.dispatch("getDocuments");
   },
-}
+};
 </script>
 <style scoped>
 .searchbar {
