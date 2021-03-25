@@ -5,6 +5,7 @@
       :results="myElements"
       :display-item="displayElement"
       :max="15"
+      @onSelect="onSelected"
     ></Autocomplete>
   </div>
 </template>
@@ -24,9 +25,6 @@ export default {
   },
   methods: {
     Elements(value) {
-
-    
-      
       this.myElements = this.$store.state.Elements.filter((data) => {
         let hasProperty = false;
         Object.values(data).forEach((item) => {
@@ -34,6 +32,7 @@ export default {
             hasProperty = true;
           }
         });
+        //console.log(data.URL)
         return hasProperty;
       });
     },
@@ -41,9 +40,10 @@ export default {
     displayElement(Element) {
       return Element.Label;
     },
-   /* onSelected() {
-      alert("hej");
-    },*/
+    onSelected(data) {
+      const url = data.URL;
+      window.open(url, "_blank").focus();
+    },
   },
   mounted() {
     this.$store.dispatch("getDocuments");
