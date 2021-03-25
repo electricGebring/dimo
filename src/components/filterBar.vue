@@ -325,11 +325,12 @@ export default {
       );
       return Array.from(filterOffice);
     },
-    //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren
+    //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren 
     filterThematic() {
       const filterThematic = new Set();
       const stringCount = [];
-      let objectToArray = [];
+      const filterBarArray = ['SAMHÄLLSBYGGNAD', 'MILJÖ & KLIMAT', 'NÄRINGSLIV', 'KULTUR & FRITID', 'FOLKHÄLSA', 'TRYGGHET & SÄKERHET', 'JÄMSTÄLLDHET & JAMLIKHET', 'DIGITALISERING', 'DEMOKRATI', 'ÖVRIGT', 'EKONOMI', 'MÅL & BUDGET', 'UTBILDNING', 'ATTRAKTIV ARBETSGIVARE'];
+      const objectToArray = [];
 
       this.$store.state.Elements.forEach((item) => {
         filterThematic.add(item.Thematic);
