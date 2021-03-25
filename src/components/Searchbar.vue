@@ -4,12 +4,13 @@
       @input="Elements"
       :results="myElements"
       :display-item="displayElement"
+      :max="15"
     ></Autocomplete>
   </div>
 </template>
 <script>
 import Autocomplete from 'vue3-autocomplete'
-import 'vue3-autocomplete/dist/vue3-autocomplete.css'
+// import 'vue3-autocomplete/dist/vue3-autocomplete.css'
 
 export default {
   name: 'SearchBar',
@@ -22,8 +23,10 @@ export default {
     }
   },
   methods: {
-    Elements() {
-      this.myElements = this.$store.state.Elements
+    Elements(value) {
+      this.myElements = this.$store.state.Elements.filter((item) => item.Label.includes(value))
+      console.log(this.myElements)
+      return this.myElements
     },
     displayElement(Element) {
       return Element.Label
@@ -36,6 +39,6 @@ export default {
 </script>
 <style scoped>
 .searchbar {
-  margin-left: 50%;
+  margin-left: 30%;
 }
 </style>
