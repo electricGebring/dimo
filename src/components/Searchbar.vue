@@ -5,7 +5,6 @@
       :results="myElements"
       :display-item="displayElement"
       :max="15"
-      :onSelect="selectEvent"
     ></Autocomplete>
   </div>
 </template>
@@ -42,9 +41,9 @@ export default {
     displayElement(Element) {
       return Element.Label;
     },
-    selectEvent() {
+   /* onSelected() {
       alert("hej");
-    },
+    },*/
   },
   mounted() {
     this.$store.dispatch("getDocuments");
