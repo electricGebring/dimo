@@ -5,6 +5,7 @@
       :results="myElements"
       :display-item="displayElement"
       :max="15"
+      :onSelect="selectEvent"
     ></Autocomplete>
   </div>
 </template>
@@ -24,10 +25,13 @@ export default {
   },
   methods: {
     Elements(value) {
+
+    
+      
       this.myElements = this.$store.state.Elements.filter((data) => {
         let hasProperty = false;
         Object.values(data).forEach((item) => {
-          if (item.includes(value)) {
+          if (item.toLowerCase().includes(value.toLowerCase())) {
             hasProperty = true;
           }
         });
