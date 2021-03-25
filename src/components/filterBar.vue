@@ -329,18 +329,17 @@ export default {
     filterThematic() {
       const filterThematic = new Set();
       const stringCount = [];
-      const filterBarArray = ['SAMHÄLLSBYGGNAD', 'MILJÖ & KLIMAT', 'NÄRINGSLIV', 'KULTUR & FRITID', 'FOLKHÄLSA', 'TRYGGHET & SÄKERHET', 'JÄMSTÄLLDHET & JAMLIKHET', 'DIGITALISERING', 'DEMOKRATI', 'ÖVRIGT', 'EKONOMI', 'MÅL & BUDGET', 'UTBILDNING', 'ATTRAKTIV ARBETSGIVARE'];
+      //const filterBarArray = ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity']
       const objectToArray = [];
+      const elements = this.$store.state.Elements;
 
-      this.$store.state.Elements.forEach((item) => {
+      elements.forEach((item) => {
         filterThematic.add(item.Thematic);
       });
 
       for (let index of filterThematic) {
         objectToArray.push(index);
       }
-
-      const elements = this.$store.state.Elements;
 
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
