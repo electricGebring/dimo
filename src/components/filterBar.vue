@@ -328,10 +328,39 @@ export default {
     //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren 
     filterThematic() {
       const filterThematic = new Set();
-      const stringCount = [];
-      //const filterBarArray = ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity']
+      const arrayWithCount = [];
+      const filterBarArray = ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity']
       const objectToArray = [];
       const elements = this.$store.state.Elements;
+      let test = []
+      //const set = new Set()
+
+      for (let i = 0; i < filterBarArray.length; i++) {
+        for (let j = 0; j < elements.length; j++) {
+          for (let k in elements[j]) {
+            if (k === filterBarArray[i]) {
+              test.push(elements[j][k])
+            }
+          }
+        }
+      }
+    
+      const bigSet = new Set()
+      test.forEach((item) => {
+        bigSet.add(item);
+      });
+      // for (let i = 0; i < filterBarArray.length; i++) {
+      //   for (let j = 0; j < elements.length; j++) {
+      //     //if (filterBarArray[i] === elements[j]) {
+      //       console.log(elements[j].  [i], 'elements[j]','---------', filterBarArray[i], 'filterBarArray[i]')
+      //       //test.push(elements[j].filterBarArray[i])
+      //     //}
+      //   }
+      // }
+      console.log(test, 'test')
+      console.log(bigSet, 'bigSet')
+
+
 
       elements.forEach((item) => {
         filterThematic.add(item.Thematic);
@@ -340,12 +369,12 @@ export default {
       for (let index of filterThematic) {
         objectToArray.push(index);
       }
-
+        //console.log(objectToArray)
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              stringCount[i] = { object: { name: elements[j][k], amount: 0 } };
+              arrayWithCount[i] = { object: { name: elements[j][k], amount: 0 } };
             }
           }
         }
@@ -354,12 +383,12 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              stringCount[i].object.amount += 1;
+              arrayWithCount[i].object.amount += 1;
             }
           }
         }
       }
-      return stringCount;
+      return arrayWithCount;
     },
 
     filterValidity() {
