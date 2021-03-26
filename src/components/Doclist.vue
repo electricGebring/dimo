@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="doclist-container">
     <div v-for="item in doclist" :key="item.Label" :item="item">
       <div
         v-if="
@@ -53,7 +53,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.container {
+.doclist-container {
   align-content: flex-start;
   display: flex;
   flex-direction: row;
