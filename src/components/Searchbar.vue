@@ -6,6 +6,7 @@
       :display-item="displayElement"
       :max="15"
       @onSelect="onSelected"
+      :placeholder="placeholder"
     ></Autocomplete>
   </div>
 </template>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       myElements: [],
+      placeholder: "Some placeholder text"
     };
   },
   methods: {
@@ -50,8 +52,49 @@ export default {
   },
 };
 </script>
-<style scoped>
-.searchbar {
-  margin-left: 30%;
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+ .searchbar {
+  margin-top: 50px;
+ 
+ .vue3-autocomplete-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 920px;
+  width: 100%;
+  
+  .vue3-input {
+    border-radius: 30px;
+    height: 45px;
+    border: 1px solid #dddd;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    
+    &:focus {
+      outline: none;
+    }
+  }
+  .vue3-results-container {
+    position: absolute;
+    margin-top: 55px;
+    z-index: 99;
+    background: white;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #ddd;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+  }
+  .vue3-results-item {
+    list-style-type: none;
+    padding: 8px;
+   
+    &:hover {
+      cursor: pointer;
+       color: #ddd;
+    }
+  }
+}
 }
 </style>

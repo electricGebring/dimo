@@ -39,7 +39,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 .section {
   width: 100%;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 .wrapper {
   display: flex;

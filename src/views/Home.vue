@@ -3,8 +3,8 @@
 
     <div class="container">
       <div class="main">
-        <Categories />
         <Searchbar />
+        <Categories />
       </div>
     </div>
   </div>
@@ -23,3 +23,13 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.container {
+  display: flex;
+}
+
+.main {
+  width: 80%;
+  padding: 0 5% 0 5%;
+}
+</style>
