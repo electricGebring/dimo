@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="container">
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
   </div>  
@@ -68,9 +68,4 @@ body {
   padding: 0;
 }
 
-.search {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-}
 </style>
