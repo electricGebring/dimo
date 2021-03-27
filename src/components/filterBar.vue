@@ -183,7 +183,10 @@
 
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic">
-          <div class="filter" v-if="this.$route.params.Thematic == thematic.object.name">
+          <div
+            class="filter"
+            v-if="this.$route.params.Thematic == thematic.object.name"
+          >
             <p class="filterbar-checkbox__heading">
               {{ thematic.object.name }} ({{ thematic.object.amount }})
             </p>
@@ -254,14 +257,22 @@ export default {
       isActiveOffice: false,
       isActiveThematic: "",
       isActiveValidity: false,
-      filterBarArray: ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity'],
-      filterGlobalGoal: this.filterOnKey('GlobalGoal'),
-      filterKFTargetArea: this.filterOnKey('KFTargetArea'),
-      filterDocumentype: this.filterOnKey('Documentype'),
-      filterDepartment: this.filterOnKey('Department'),
-      filterOffice: this.filterOnKey('Office'),
-      filterThematic: this.filterOnKey('Thematic'),
-      filterValidity: this.filterOnKey('Validity'),
+      filterBarArray: [
+        "GlobalGoal",
+        "KFTargetArea",
+        "Documentype",
+        "Department",
+        "Office",
+        "Thematic",
+        "Validity",
+      ],
+      filterGlobalGoal: this.filterOnKey("GlobalGoal"),
+      filterKFTargetArea: this.filterOnKey("KFTargetArea"),
+      filterDocumentype: this.filterOnKey("Documentype"),
+      filterDepartment: this.filterOnKey("Department"),
+      filterOffice: this.filterOnKey("Office"),
+      filterThematic: this.filterOnKey("Thematic"),
+      filterValidity: this.filterOnKey("Validity"),
     };
   },
   mounted() {
@@ -282,29 +293,35 @@ export default {
       }
       this.$emit("filter", this.checkedCategories);
     },
-  
-    //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren 
+
+    //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren
     filterOnKey: function (key) {
-      console.log(key, 'bajs')
+      console.log(key, "bajs");
       const filterKey = new Set();
       const arrayWithCount = [];
       const objectToArray = [];
       const elements = this.$store.state.Elements;
-    
-      elements.forEach((item) => {
-        console.log(item.key, 'item.key')
-        filterKey.add(item.key);
-      });
+        let key = key
+        let banan = (item, key) => {
+          return (item.key)
+        }
       
+      console.log(key)
+      elements.forEach((index.bind(null, banan)) => {
+        filterKey.add(index)
+      });
+
       for (let index of filterKey) {
         objectToArray.push(index);
       }
-        
+
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              arrayWithCount[i] = { object: { name: elements[j][k], amount: 0 } };
+              arrayWithCount[i] = {
+                object: { name: elements[j][k], amount: 0 },
+              };
             }
           }
         }
