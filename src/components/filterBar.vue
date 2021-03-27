@@ -296,20 +296,14 @@ export default {
 
     //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren
     filterOnKey: function (key) {
-      console.log(key, "bajs");
       const filterKey = new Set();
       const arrayWithCount = [];
       const objectToArray = [];
       const elements = this.$store.state.Elements;
-        let key = key
-        let banan = (item, key) => {
-          return (item.key)
-        }
       
-      console.log(key)
-      elements.forEach((index.bind(null, banan)) => {
-        filterKey.add(index)
-      });
+      elements.forEach((index) => {        
+        filterKey.add(index[key])
+      })
 
       for (let index of filterKey) {
         objectToArray.push(index);
