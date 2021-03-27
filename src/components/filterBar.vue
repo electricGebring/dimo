@@ -22,7 +22,7 @@
           :key="globalGoal"
         >
           <p class="filterbar-checkbox__heading">
-            {{ showLength.length }} {{ globalGoal.length }}
+            {{ globalGoal.object.name }} ({{ globalGoal.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -56,7 +56,7 @@
           :key="kFTargetArea"
         >
           <p class="filterbar-checkbox__heading">
-            {{ kFTargetArea.substring(2) }}
+            {{ kFTargetArea.object.name.substring(2) }} ({{ KFTargetArea.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -89,16 +89,13 @@
           v-for="documenttype in filterDocumenttype"
           :key="documenttype"
         >
-          <p class="filterbar-checkbox__heading">{{ documenttype }}</p>
+          <p class="filterbar-checkbox__heading">{{ documenttype.object.name }} ({{ documenttype.object.amount }})</p>
           <input
             type="checkbox"
             :value="documenttype"
             id="documenttype"
             @change="check($event)"
           />
-        </div>
-        <div v-for="k in showLength" :key="k">
-          <p class="filterbar-checkbox__heading">{{ k.length }}</p>
         </div>
       </div>
     </div>
@@ -125,7 +122,7 @@
           v-for="department in filterDepartment"
           :key="department"
         >
-          <p class="filterbar-checkbox__heading">{{ department }}</p>
+          <p class="filterbar-checkbox__heading">{{ department.object.name }} ({{ department.object.amount }})</p>
 
           <input
             type="checkbox"
@@ -154,7 +151,7 @@
       >
       <div v-if="this.isActiveOffice">
         <div class="filter" v-for="office in filterOffice" :key="office">
-          <p class="filterbar-checkbox__heading">{{ office }}</p>
+          <p class="filterbar-checkbox__heading">{{ office.object.name }} ({{ office.object.amount }})</p>
           <input
             type="checkbox"
             :value="office"
@@ -230,7 +227,7 @@
       >
       <div v-if="this.isActiveValidity">
         <div class="filter" v-for="validity in filterValidity" :key="validity">
-          <p class="filterbar-checkbox__heading">{{ validity }}</p>
+          <p class="filterbar-checkbox__heading">{{ validity.object.name }} ({{ validity.object.amount }})</p>
           <input
             type="checkbox"
             :value="validity"
