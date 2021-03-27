@@ -254,6 +254,14 @@ export default {
       isActiveOffice: false,
       isActiveThematic: "",
       isActiveValidity: false,
+      filterBarArray: ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity'],
+      filterGlobalGoal: this.filterOnKey('GlobalGoal'),
+      filterKFTargetArea: this.filterOnKey('KFTargetArea'),
+      filterDocumentype: this.filterOnKey('Documentype'),
+      filterDepartment: this.filterOnKey('Department'),
+      filterOffice: this.filterOnKey('Office'),
+      filterThematic: this.filterOnKey('Thematic'),
+      filterValidity: this.filterOnKey('Validity'),
     };
   },
   mounted() {
@@ -274,102 +282,24 @@ export default {
       }
       this.$emit("filter", this.checkedCategories);
     },
-  },
-
-  computed: {
-    filterGlobalGoal() {
-      const filterGlobalGoal = new Set();
-      this.$store.state.Elements.forEach((item) => {
-        if (item.GlobalGoal.length) {
-          filterGlobalGoal.add(item.GlobalGoal);
-        }
-      });
-      return Array.from(filterGlobalGoal);
-    },
-
-    showLength() {
-      const showLength = new Set();
-
-      this.$store.state.Elements.forEach((item) =>
-        showLength.add(item.Documenttype)
-      );
-      console.log(showLength, "showLength");
-      return Array.from(showLength);
-    },
-
-    filterKFTargetArea() {
-      const filterKFTargetArea = new Set();
-      this.$store.state.Elements.forEach((item) => {
-        filterKFTargetArea.add(item.KFTargetArea);
-      });
-      return Array.from(filterKFTargetArea);
-    },
-    filterDocumenttype() {
-      const filterDocumenttype = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterDocumenttype.add(item.Documenttype)
-      );
-      return Array.from(filterDocumenttype);
-    },
-    filterDepartment() {
-      const filterDepartment = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterDepartment.add(item.Department)
-      );
-      return Array.from(filterDepartment);
-    },
-    filterOffice() {
-      const filterOffice = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterOffice.add(item.Office)
-      );
-      return Array.from(filterOffice);
-    },
+  
     //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren 
-    filterThematic() {
-      const filterThematic = new Set();
+    filterOnKey: function (key) {
+      console.log(key, 'bajs')
+      const filterKey = new Set();
       const arrayWithCount = [];
-      const filterBarArray = ['GlobalGoal', 'KFTargetArea', 'Documentype', 'Department', 'Office', 'Thematic', 'Validity']
       const objectToArray = [];
       const elements = this.$store.state.Elements;
-      let test = []
-      //const set = new Set()
-
-      for (let i = 0; i < filterBarArray.length; i++) {
-        for (let j = 0; j < elements.length; j++) {
-          for (let k in elements[j]) {
-            if (k === filterBarArray[i]) {
-              test.push(elements[j][k])
-            }
-          }
-        }
-      }
     
-      const bigSet = new Set()
-      test.forEach((item) => {
-        bigSet.add(item);
-      });
-      // for (let i = 0; i < filterBarArray.length; i++) {
-      //   for (let j = 0; j < elements.length; j++) {
-      //     //if (filterBarArray[i] === elements[j]) {
-      //       console.log(elements[j].  [i], 'elements[j]','---------', filterBarArray[i], 'filterBarArray[i]')
-      //       //test.push(elements[j].filterBarArray[i])
-      //     //}
-      //   }
-      // }
-      console.log(test, 'test')
-      console.log(bigSet, 'bigSet')
-
-
-
       elements.forEach((item) => {
-        filterThematic.add(item.Thematic);
+        console.log(item.key, 'item.key')
+        filterKey.add(item.key);
       });
-
-      for (let index of filterThematic) {
+      
+      for (let index of filterKey) {
         objectToArray.push(index);
       }
-        //console.log(objectToArray)
+        
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
@@ -389,14 +319,6 @@ export default {
         }
       }
       return arrayWithCount;
-    },
-
-    filterValidity() {
-      const filterValidity = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterValidity.add(item.Validity)
-      );
-      return Array.from(filterValidity);
     },
   },
 };
