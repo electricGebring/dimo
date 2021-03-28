@@ -275,7 +275,7 @@ export default {
       ],
       filterGlobalGoal: this.filterOnKey("GlobalGoal"),
       filterKFTargetArea: this.filterOnKey("KFTargetArea"),
-      filterDocumentype: this.filterOnKey("Documentype"),
+      filterDocumenttype: this.filterOnKey("Documenttype"),
       filterDepartment: this.filterOnKey("Department"),
       filterOffice: this.filterOnKey("Office"),
       filterThematic: this.filterOnKey("Thematic"),
@@ -288,7 +288,7 @@ export default {
     }
     console.log(this.filterGlobalGoal, 'filterGlobalGoal')
     console.log(this.filterKFTargetArea, 'filterKFTargetArea')
-    console.log(this.filterDocumentype, 'filterDocumentype')
+    console.log(this.filterDocumenttype, 'filterDocumenttype')
     console.log(this.filterDepartment, 'filterDepartment')
     console.log(this.filterOffice, 'filterOffice')
     console.log(this.filterThematic, 'filterThematic')
