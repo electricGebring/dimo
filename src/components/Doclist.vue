@@ -6,8 +6,8 @@
           item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
         "
       >
-        <div class="section">
-          <div class="img-container" @click.stop="goto(item.URL)">
+        <div class="section" @click.stop="goto(item.URL)">
+          <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="140" />
           </div>
           <div
