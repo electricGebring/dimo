@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="container">
     <FilterBar :Elements="Elements" @filter="setFilter" />
     <doclist :doclist="doclist" />
   </div>  
@@ -45,18 +45,19 @@ export default {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i);
+                arrayToDoclist.push(i); //kan man sätta en include här istället????
               }
             }
           });
         });
+         
         this.doclist = arrayToDoclist
         checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList();
+        this.filteredList(); 
       }
-    },    
+    },   
   },
 };
 </script>
@@ -67,9 +68,4 @@ body {
   padding: 0;
 }
 
-.search {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-}
 </style>

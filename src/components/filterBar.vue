@@ -183,7 +183,7 @@
         v-else
         class="toggle"
         v-on:click="isActiveThematic = !isActiveThematic"
-        >-</span
+        >+</span
       >
 
       <div v-if="isActiveThematic">
@@ -383,11 +383,13 @@ export default {
 }
 
 .filterBar {
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   margin-left: 10%;
+  margin-top: 80px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;
