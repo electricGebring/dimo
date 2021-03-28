@@ -26,7 +26,7 @@
           </p>
           <input
             type="checkbox"
-            :value="globalGoal"
+            :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
           />
@@ -62,7 +62,7 @@
           </p>
           <input
             type="checkbox"
-            :value="kFTargetArea"
+            :value="kFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
           />
@@ -96,7 +96,7 @@
           </p>
           <input
             type="checkbox"
-            :value="documenttype"
+            :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
           />
@@ -132,7 +132,7 @@
 
           <input
             type="checkbox"
-            :value="department"
+            :value="department.object.name"
             id="department"
             @change="check($event)"
           />
@@ -162,7 +162,7 @@
           </p>
           <input
             type="checkbox"
-            :value="office"
+            :value="office.object.name"
             id="office"
             @change="check($event)"
           />
