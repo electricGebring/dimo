@@ -357,20 +357,20 @@ export default {
 .filterbar-heading_h3 {
   font-size: 14px;
   font-weight: 200;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 .filterbar-heading_h4 {
   font-size: 11px;
   font-weight: 200;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 .filterbar-checkbox__heading {
   font-size: 9px;
   font-weight: 200;
   margin-left: 3px;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 
@@ -388,6 +388,7 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
+  height: fit-content;
   margin-left: 10%;
   margin-top: 80px;
   max-width: 230px;
