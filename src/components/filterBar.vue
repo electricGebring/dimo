@@ -286,13 +286,6 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    console.log(this.filterGlobalGoal, 'filterGlobalGoal')
-    console.log(this.filterKFTargetArea, 'filterKFTargetArea')
-    console.log(this.filterDocumenttype, 'filterDocumenttype')
-    console.log(this.filterDepartment, 'filterDepartment')
-    console.log(this.filterOffice, 'filterOffice')
-    console.log(this.filterThematic, 'filterThematic')
-    console.log(this.filterValidity, 'filterValidity')
     
   },
   methods: {
@@ -337,7 +330,7 @@ export default {
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
-            if (objectToArray[i] === elements[j][k] && elements[j][k].length > 0) {
+            if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i].object.amount += 1
             }
           }
