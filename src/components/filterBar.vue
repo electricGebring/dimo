@@ -22,7 +22,7 @@
           :key="globalGoal.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            {{ globalGoal.object.name }} ({{ globalGoal.object.amount }})
+            <span class="ellipsis">{{ globalGoal.object.name }}</span> ({{ globalGoal.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -56,7 +56,7 @@
           :key="KFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            {{ KFTargetArea.object.name.substring(2) }} ({{
+            <span class="ellipsis">{{ KFTargetArea.object.name.substring(2) }}</span> ({{
               KFTargetArea.object.amount
             }})
           </p>
@@ -92,7 +92,7 @@
           :key="documenttype.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            {{ documenttype.object.name }} ({{ documenttype.object.amount }})
+            <span class="ellipsis">{{ documenttype.object.name }}</span> ({{ documenttype.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -127,7 +127,7 @@
           :key="department.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            {{ department.object.name }} ({{ department.object.amount }})
+            <span class="ellipsis">{{ department.object.name }}</span> ({{ department.object.amount }})
           </p>
 
           <input
@@ -158,7 +158,7 @@
       <div v-if="this.isActiveOffice">
         <div class="filter" v-for="office in filterOffice" :key="office.object.name">
           <p class="filterbar-checkbox__heading">
-            {{ office.object.name }} ({{ office.object.amount }})
+            <span class="ellipsis">{{ office.object.name }}</span> ({{ office.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -193,7 +193,7 @@
             v-if="this.$route.params.Thematic == thematic.object.name"
           >
             <p class="filterbar-checkbox__heading">
-              {{ thematic.object.name }} ({{ thematic.object.amount }})
+              <span class="ellipsis">{{ thematic.object.name }}</span> ({{ thematic.object.amount }})
             </p>
             <input
               type="checkbox"
@@ -236,7 +236,7 @@
       <div v-if="this.isActiveValidity">
         <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
           <p class="filterbar-checkbox__heading">
-            {{ validity.object.name }} ({{ validity.object.amount }})
+            <span class="ellipsis">{{ validity.object.name }}</span> ({{ validity.object.amount }})
           </p>
           <input
             type="checkbox"
@@ -373,6 +373,15 @@ export default {
   color: black;
   font-weight: bold;
 }
+
+.ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  white-space: nowrap;
+}
+
 .filterBar {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
