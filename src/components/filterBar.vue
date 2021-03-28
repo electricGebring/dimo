@@ -19,7 +19,7 @@
         <div
           class="filter"
           v-for="globalGoal in filterGlobalGoal"
-          :key="globalGoal"
+          :key="globalGoal.object.name"
         >
           <p class="filterbar-checkbox__heading">
             {{ globalGoal.object.name }} ({{ globalGoal.object.amount }})
@@ -53,7 +53,7 @@
         <div
           class="filter"
           v-for="kFTargetArea in filterKFTargetArea"
-          :key="kFTargetArea"
+          :key="kFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
             {{ kFTargetArea.object.name.substring(2) }} ({{
@@ -89,7 +89,7 @@
         <div
           class="filter"
           v-for="documenttype in filterDocumenttype"
-          :key="documenttype"
+          :key="documenttype.object.name"
         >
           <p class="filterbar-checkbox__heading">
             {{ documenttype.object.name }} ({{ documenttype.object.amount }})
@@ -124,7 +124,7 @@
         <div
           class="filter"
           v-for="department in filterDepartment"
-          :key="department"
+          :key="department.object.name"
         >
           <p class="filterbar-checkbox__heading">
             {{ department.object.name }} ({{ department.object.amount }})
@@ -156,7 +156,7 @@
         >+</span
       >
       <div v-if="this.isActiveOffice">
-        <div class="filter" v-for="office in filterOffice" :key="office">
+        <div class="filter" v-for="office in filterOffice" :key="office.object.name">
           <p class="filterbar-checkbox__heading">
             {{ office.object.name }} ({{ office.object.amount }})
           </p>
@@ -187,7 +187,7 @@
       >
 
       <div v-if="isActiveThematic">
-        <div v-for="thematic in filterThematic" :key="thematic">
+        <div v-for="thematic in filterThematic" :key="thematic.object.name">
           <div
             class="filter"
             v-if="this.$route.params.Thematic == thematic.object.name"
@@ -234,7 +234,7 @@
         >+</span
       >
       <div v-if="this.isActiveValidity">
-        <div class="filter" v-for="validity in filterValidity" :key="validity">
+        <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
           <p class="filterbar-checkbox__heading">
             {{ validity.object.name }} ({{ validity.object.amount }})
           </p>
@@ -286,6 +286,14 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
+    console.log(this.filterGlobalGoal, 'filterGlobalGoal')
+    console.log(this.filterKFTargetArea, 'filterKFTargetArea')
+    console.log(this.filterDocumentype, 'filterDocumentype')
+    console.log(this.filterDepartment, 'filterDepartment')
+    console.log(this.filterOffice, 'filterOffice')
+    console.log(this.filterThematic, 'filterThematic')
+    console.log(this.filterValidity, 'filterValidity')
+    
   },
   methods: {
     check: function (e) {
@@ -319,11 +327,19 @@ export default {
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
-            if (objectToArray[i] === elements[j][k]) {
+            if (objectToArray[i] === elements[j][k] && elements[j][k].length > 0) {
+              console.log('IF')
+              //console.log(elements[j][k].length, 'elements[j][k].length', elements[j][k], 'elements[j][k]')
               // console.log(objectToArray[i], 'objectToArray[i]')
-              console.log(elements[j][k], 'elements[j][k]')
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 },
+                object: { name: elements[j][k], amount: 0 }
+              }
+            } 
+            // DÅLIG ID MEN DEN FUNKAR, DÅ BLIR ALLA ARRAYER LIKA UTAN HÅL I
+            if (objectToArray[i] === elements[j][k] && elements[j][k].length === 0) {
+              console.log('ELSE')
+              arrayWithCount[i] = {
+                object: { name: 'banan', amount: 0 }
               }
             }
           }
@@ -332,13 +348,13 @@ export default {
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
-            if (objectToArray[i] === elements[j][k]) {
-              arrayWithCount[i].object.amount += 1;
+            if (objectToArray[i] === elements[j][k] && elements[j][k].length > 0) {
+              arrayWithCount[i].object.amount += 1
             }
           }
         }
       }
-      console.log(arrayWithCount, 'arrayWithCount')
+      //console.log(arrayWithCount, 'arrayWithCount')
       return arrayWithCount;
     },
   },
