@@ -6,8 +6,8 @@
           item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
         "
       >
-        <div class="section">
-          <div class="img-container" @click.stop="goto(item.URL)">
+        <div class="section" @click.stop="goto(item.URL)">
+          <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="140" />
           </div>
           <div
@@ -71,7 +71,6 @@ body {
   height: 190px;
   max-height: 190px;
   background-color: #faf9f9 !important;
-  border: solid 1px lightgrey;
   padding: 10px 0 0 0;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
