@@ -378,11 +378,13 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: "Montserrat", sans-serif;
+  font-weight: bold;
   margin-left: 10%;
   max-width: 230px;
+  min-width: 230px;
   padding: 21px 12px;
   text-align: left;
-  font-weight: bold;
+  
 
   .filter-category {
     cursor: pointer;
