@@ -327,21 +327,11 @@ export default {
       for (let i = 0; i < objectToArray.length; i++) {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
-            if (objectToArray[i] === elements[j][k] && elements[j][k].length > 0) {
-              //console.log('IF')
-              //console.log(elements[j][k].length, 'elements[j][k].length', elements[j][k], 'elements[j][k]')
-              // console.log(objectToArray[i], 'objectToArray[i]')
+            if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
                 object: { name: elements[j][k], amount: 0 }
               }
             } 
-            // DÅLIG ID MEN DEN FUNKAR, DÅ BLIR ALLA ARRAYER LIKA UTAN HÅL I
-            // if (objectToArray[i] === elements[j][k] && elements[j][k].length === 0) {
-            //   console.log('ELSE')
-            //   arrayWithCount[i] = {
-            //     object: { name: 'banan', amount: 0 }
-            //   }
-            // }
           }
         }
       }
@@ -354,8 +344,10 @@ export default {
           }
         }
       }
-      //console.log(arrayWithCount, 'arrayWithCount')
-      return arrayWithCount;
+      
+      return arrayWithCount.filter(index => {
+        return index.object.name.length > 0
+      })
     },
   },
 };
