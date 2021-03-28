@@ -56,13 +56,13 @@
           :key="KFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            {{ kFTargetArea.object.name.substring(2) }} ({{
+            {{ KFTargetArea.object.name.substring(2) }} ({{
               KFTargetArea.object.amount
             }})
           </p>
           <input
             type="checkbox"
-            :value="kFTargetArea.object.name"
+            :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
           />
