@@ -56,7 +56,9 @@
           :key="kFTargetArea"
         >
           <p class="filterbar-checkbox__heading">
-            {{ kFTargetArea.object.name.substring(2) }} ({{ KFTargetArea.object.amount }})
+            {{ kFTargetArea.object.name.substring(2) }} ({{
+              KFTargetArea.object.amount
+            }})
           </p>
           <input
             type="checkbox"
@@ -89,7 +91,9 @@
           v-for="documenttype in filterDocumenttype"
           :key="documenttype"
         >
-          <p class="filterbar-checkbox__heading">{{ documenttype.object.name }} ({{ documenttype.object.amount }})</p>
+          <p class="filterbar-checkbox__heading">
+            {{ documenttype.object.name }} ({{ documenttype.object.amount }})
+          </p>
           <input
             type="checkbox"
             :value="documenttype"
@@ -122,7 +126,9 @@
           v-for="department in filterDepartment"
           :key="department"
         >
-          <p class="filterbar-checkbox__heading">{{ department.object.name }} ({{ department.object.amount }})</p>
+          <p class="filterbar-checkbox__heading">
+            {{ department.object.name }} ({{ department.object.amount }})
+          </p>
 
           <input
             type="checkbox"
@@ -151,7 +157,9 @@
       >
       <div v-if="this.isActiveOffice">
         <div class="filter" v-for="office in filterOffice" :key="office">
-          <p class="filterbar-checkbox__heading">{{ office.object.name }} ({{ office.object.amount }})</p>
+          <p class="filterbar-checkbox__heading">
+            {{ office.object.name }} ({{ office.object.amount }})
+          </p>
           <input
             type="checkbox"
             :value="office"
@@ -227,10 +235,12 @@
       >
       <div v-if="this.isActiveValidity">
         <div class="filter" v-for="validity in filterValidity" :key="validity">
-          <p class="filterbar-checkbox__heading">{{ validity.object.name }} ({{ validity.object.amount }})</p>
+          <p class="filterbar-checkbox__heading">
+            {{ validity.object.name }} ({{ validity.object.amount }})
+          </p>
           <input
             type="checkbox"
-            :value="validity"
+            :value="validity.object.name"
             id="validity"
             @change="check($event)"
           />
@@ -297,10 +307,10 @@ export default {
       const arrayWithCount = [];
       const objectToArray = [];
       const elements = this.$store.state.Elements;
-      
-      elements.forEach((index) => {        
-        filterKey.add(index[key])
-      })
+
+      elements.forEach((index) => {
+        filterKey.add(index[key]);
+      });
 
       for (let index of filterKey) {
         objectToArray.push(index);
@@ -310,9 +320,11 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
+              // console.log(objectToArray[i], 'objectToArray[i]')
+              console.log(elements[j][k], 'elements[j][k]')
               arrayWithCount[i] = {
                 object: { name: elements[j][k], amount: 0 },
-              };
+              }
             }
           }
         }
@@ -326,6 +338,7 @@ export default {
           }
         }
       }
+      console.log(arrayWithCount, 'arrayWithCount')
       return arrayWithCount;
     },
   },
