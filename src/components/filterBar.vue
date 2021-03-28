@@ -328,7 +328,7 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k] && elements[j][k].length > 0) {
-              console.log('IF')
+              //console.log('IF')
               //console.log(elements[j][k].length, 'elements[j][k].length', elements[j][k], 'elements[j][k]')
               // console.log(objectToArray[i], 'objectToArray[i]')
               arrayWithCount[i] = {
@@ -336,12 +336,12 @@ export default {
               }
             } 
             // DÅLIG ID MEN DEN FUNKAR, DÅ BLIR ALLA ARRAYER LIKA UTAN HÅL I
-            if (objectToArray[i] === elements[j][k] && elements[j][k].length === 0) {
-              console.log('ELSE')
-              arrayWithCount[i] = {
-                object: { name: 'banan', amount: 0 }
-              }
-            }
+            // if (objectToArray[i] === elements[j][k] && elements[j][k].length === 0) {
+            //   console.log('ELSE')
+            //   arrayWithCount[i] = {
+            //     object: { name: 'banan', amount: 0 }
+            //   }
+            // }
           }
         }
       }
