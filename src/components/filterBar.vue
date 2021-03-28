@@ -309,7 +309,6 @@ export default {
       this.$emit("filter", this.checkedCategories);
     },
 
-    //Tänker att vi skulle kunna använda den här funktionen för att loopa ut allt i filterbaren
     filterOnKey: function (key) {
       const filterKey = new Set();
       const arrayWithCount = [];
