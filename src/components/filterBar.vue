@@ -52,8 +52,8 @@
       <div v-if="this.isActivekFTargetArea">
         <div
           class="filter"
-          v-for="kFTargetArea in filterKFTargetArea"
-          :key="kFTargetArea.object.name"
+          v-for="KFTargetArea in filterKFTargetArea"
+          :key="KFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
             {{ kFTargetArea.object.name.substring(2) }} ({{
