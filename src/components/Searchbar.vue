@@ -60,7 +60,6 @@ export default {
  .vue3-autocomplete-container {
   display: flex;
   flex-direction: column;
-  max-width: 920px;
   width: 100%;
   
   .vue3-input {

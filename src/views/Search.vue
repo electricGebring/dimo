@@ -1,11 +1,15 @@
 <template>
   <div class="container">
     <FilterBar :Elements="Elements" @filter="setFilter" />
-    <doclist :doclist="doclist" />
+        <div class="main">
+        <Searchbar />
+        <doclist :doclist="doclist" />
+      </div>
   </div>  
 </template>
 
 <script>
+import Searchbar from '../components/Searchbar.vue'
 import Doclist from "../components/Doclist.vue";
 import FilterBar from "../components/filterBar.vue";
 
@@ -17,6 +21,7 @@ export default {
     };
   },
   components: {
+    Searchbar,
     Doclist,
     FilterBar,
   },
@@ -63,6 +68,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+}
+
+.main {
+  width: 80%;
+  padding: 0 5% 0 5%;
+}
+
 body {
   margin: 0;
   padding: 0;
