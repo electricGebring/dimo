@@ -1,4 +1,10 @@
 <template>
+ <div  @filter="setilter"
+          class=""
+          v-for="g in checkedCategories"
+          :key="g"
+        >
+        {{ g }}</div>
   <div class="filterBar">
     <h3 class="filterbar-heading_h3">Filter</h3>
     <div class="filter-category">
@@ -253,6 +259,7 @@
 <script>
 export default {
   props: ["Elements"],
+  emits: ["filter"],
 
   data() {
     return {
