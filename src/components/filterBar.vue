@@ -19,12 +19,14 @@
         <div
           class="filter"
           v-for="globalGoal in filterGlobalGoal"
-          :key="globalGoal"
+          :key="globalGoal.object.name"
         >
-          <p class="filterbar-checkbox__heading">{{ globalGoal }}</p>
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ globalGoal.object.name }} ({{ globalGoal.object.amount }})</span> 
+          </p>
           <input
             type="checkbox"
-            :value="globalGoal"
+            :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
           />
@@ -50,13 +52,17 @@
       <div v-if="this.isActivekFTargetArea">
         <div
           class="filter"
-          v-for="kFTargetArea in filterKFTargetArea"
-          :key="kFTargetArea"
+          v-for="KFTargetArea in filterKFTargetArea"
+          :key="KFTargetArea.object.name"
         >
-          <p class="filterbar-checkbox__heading">{{ kFTargetArea }}</p>
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ KFTargetArea.object.name.substring(2) }} ({{
+              KFTargetArea.object.amount
+            }})</span> 
+          </p>
           <input
             type="checkbox"
-            :value="kFTargetArea"
+            :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
           />
@@ -83,12 +89,14 @@
         <div
           class="filter"
           v-for="documenttype in filterDocumenttype"
-          :key="documenttype"
+          :key="documenttype.object.name"
         >
-          <p class="filterbar-checkbox__heading">{{ documenttype }}</p>
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ documenttype.object.name }}  ({{ documenttype.object.amount }})</span>
+          </p>
           <input
             type="checkbox"
-            :value="documenttype"
+            :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
           />
@@ -116,12 +124,15 @@
         <div
           class="filter"
           v-for="department in filterDepartment"
-          :key="department"
+          :key="department.object.name"
         >
-          <p class="filterbar-checkbox__heading">{{ department }}</p>
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ department.object.name }} ({{ department.object.amount }})</span> 
+          </p>
+
           <input
             type="checkbox"
-            :value="department"
+            :value="department.object.name"
             id="department"
             @change="check($event)"
           />
@@ -145,11 +156,13 @@
         >+</span
       >
       <div v-if="this.isActiveOffice">
-        <div class="filter" v-for="office in filterOffice" :key="office">
-          <p class="filterbar-checkbox__heading">{{ office }}</p>
+        <div class="filter" v-for="office in filterOffice" :key="office.object.name">
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ office.object.name }} ({{ office.object.amount }})</span> 
+          </p>
           <input
             type="checkbox"
-            :value="office"
+            :value="office.object.name"
             id="office"
             @change="check($event)"
           />
@@ -174,22 +187,29 @@
       >
 
       <div v-if="isActiveThematic">
-        <div v-for="thematic in filterThematic" :key="thematic">
-          <div class="filter" v-if="this.$route.params.Thematic == thematic">
-            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
+        <div v-for="thematic in filterThematic" :key="thematic.object.name">
+          <div
+            class="filter"
+            v-if="this.$route.params.Thematic == thematic.object.name"
+          >
+            <p class="filterbar-checkbox__heading">
+              <span class="ellipsis">{{ thematic.object.name }} ({{ thematic.object.amount }})</span> 
+            </p>
             <input
               type="checkbox"
-              :value="thematic"
+              :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
               checked="checked"
             />
           </div>
           <div class="filter" v-else>
-            <p class="filterbar-checkbox__heading">{{ thematic }}</p>
+            <p class="filterbar-checkbox__heading">
+              {{ thematic.object.name }} ({{ thematic.object.amount }})
+            </p>
             <input
               type="checkbox"
-              :value="thematic"
+              :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
             />
@@ -214,11 +234,13 @@
         >+</span
       >
       <div v-if="this.isActiveValidity">
-        <div class="filter" v-for="validity in filterValidity" :key="validity">
-          <p class="filterbar-checkbox__heading">{{ validity }}</p>
+        <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
+          <p class="filterbar-checkbox__heading">
+            <span class="ellipsis">{{ validity.object.name }} ({{ validity.object.amount }})</span> 
+          </p>
           <input
             type="checkbox"
-            :value="validity"
+            :value="validity.object.name"
             id="validity"
             @change="check($event)"
           />
@@ -242,15 +264,32 @@ export default {
       isActiveOffice: false,
       isActiveThematic: "",
       isActiveValidity: false,
+      filterBarArray: [
+        "GlobalGoal",
+        "KFTargetArea",
+        "Documentype",
+        "Department",
+        "Office",
+        "Thematic",
+        "Validity",
+      ],
+      filterGlobalGoal: this.filterOnKey("GlobalGoal"),
+      filterKFTargetArea: this.filterOnKey("KFTargetArea"),
+      filterDocumenttype: this.filterOnKey("Documenttype"),
+      filterDepartment: this.filterOnKey("Department"),
+      filterOffice: this.filterOnKey("Office"),
+      filterThematic: this.filterOnKey("Thematic"),
+      filterValidity: this.filterOnKey("Validity"),
     };
   },
   mounted() {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
+    
   },
   methods: {
-    check: function(e) {
+    check: function (e) {
       this.checkedCategories.push(this.$route.params.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
@@ -262,57 +301,45 @@ export default {
       }
       this.$emit("filter", this.checkedCategories);
     },
-  },
 
-  computed: {
-    filterGlobalGoal() {
-      const filterGlobalGoal = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterGlobalGoal.add(item.Documenttype)
-      );
-      return Array.from(filterGlobalGoal);
-    },
-    filterKFTargetArea() {
-      const filterKFTargetArea = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterKFTargetArea.add(item.Documenttype)
-      );
-      return Array.from(filterKFTargetArea);
-    },
-    filterDocumenttype() {
-      const filterDocumenttype = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterDocumenttype.add(item.Documenttype)
-      );
-      return Array.from(filterDocumenttype);
-    },
-    filterDepartment() {
-      const filterDepartment = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterDepartment.add(item.Documenttype)
-      );
-      return Array.from(filterDepartment);
-    },
-    filterOffice() {
-      const filterOffice = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterOffice.add(item.Documenttype)
-      );
-      return Array.from(filterOffice);
-    },
-    filterThematic() {
-      const filterThematic = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterThematic.add(item.Thematic)
-      );
-      return Array.from(filterThematic);
-    },
-    filterValidity() {
-      const filterValidity = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        filterValidity.add(item.Thematic)
-      );
-      return Array.from(filterValidity);
+    filterOnKey: function (key) {
+      const filterKey = new Set();
+      const arrayWithCount = [];
+      const objectToArray = [];
+      const elements = this.$store.state.Elements;
+
+      elements.forEach((index) => {
+        filterKey.add(index[key]);
+      });
+
+      for (let index of filterKey) {
+        objectToArray.push(index);
+      }
+
+      for (let i = 0; i < objectToArray.length; i++) {
+        for (let j = 0; j < elements.length; j++) {
+          for (let k in elements[j]) {
+            if (objectToArray[i] === elements[j][k]) {
+              arrayWithCount[i] = {
+                object: { name: elements[j][k], amount: 0 }
+              }
+            } 
+          }
+        }
+      }
+      for (let i = 0; i < objectToArray.length; i++) {
+        for (let j = 0; j < elements.length; j++) {
+          for (let k in elements[j]) {
+            if (objectToArray[i] === elements[j][k]) {
+              arrayWithCount[i].object.amount += 1
+            }
+          }
+        }
+      }
+      
+      return arrayWithCount.filter(index => {
+        return index.object.name.length > 0
+      })
     },
   },
 };
@@ -323,32 +350,45 @@ export default {
 .filterbar-heading_h3 {
   font-size: 14px;
   font-weight: 200;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 .filterbar-heading_h4 {
   font-size: 11px;
   font-weight: 200;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
 .filterbar-checkbox__heading {
   font-size: 9px;
   font-weight: 200;
   margin-left: 3px;
-  color: black;
+  color: #000;
   font-weight: bold;
 }
+
+.ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  white-space: nowrap;
+}
+
 .filterBar {
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  height: fit-content;
   margin-left: 10%;
   margin-top: 80px;
   max-width: 230px;
+  min-width: 230px;
   padding: 21px 12px;
   text-align: left;
-  font-weight: bold;
+  
 
   .filter-category {
     cursor: pointer;
