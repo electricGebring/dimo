@@ -342,10 +342,13 @@ export default {
     },*/
 
     check: function(e, index) {
-      this.checkedCategories.push(this.$route.params.Thematic);
+      if (this.$route.params.Thematic) {
+        this.checkedCategories.push(this.$route.params.Thematic);
+      }
 
       if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value);
+        console.log(this.checkedCategories);
       } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
           return i !== e.target.value;
@@ -353,7 +356,7 @@ export default {
 
         this.checkedCategories.splice(index, 1);
       }
-      console.log(this.checkedCategories);
+      
       this.$emit("filter", this.checkedCategories);
     },
 
