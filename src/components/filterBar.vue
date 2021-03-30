@@ -482,16 +482,17 @@ export default {
   .filter-tag {
     float: left;
     margin: 8px;
-    width: 110px;
-    height: 23px;
+    width: fit-content;
+    height: 28px;
     background: #ffffff;
     border-radius: 15px;
     font-size: 10px;
     color: #2C365A;
     font-family: "Montserrat", sans-serif;
     text-align: center;
-    line-height: 2.4;
-
+    line-height: 2.7;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 </style>
