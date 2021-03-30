@@ -1,11 +1,10 @@
 <template>
- <div  @filter="setilter"
-          class=""
-          v-for="g in checkedCategories"
-          :key="g"
-        >
-        {{ g }}</div>
   <div class="filterBar">
+    <div v-for="(i, index) in checkedCategories"
+      :key="i"
+      @click="check($event,index)">
+      {{ i }} 
+    </div>
     <h3 class="filterbar-heading_h3">Filter</h3>
     <div class="filter-category">
       <h4 class="filterbar-heading_h4">Globala mål</h4>
@@ -28,7 +27,11 @@
           :key="globalGoal.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ globalGoal.object.name }} ({{ globalGoal.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ globalGoal.object.name }} ({{
+                globalGoal.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
@@ -62,9 +65,11 @@
           :key="KFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ KFTargetArea.object.name.substring(2) }} ({{
-              KFTargetArea.object.amount
-            }})</span> 
+            <span class="ellipsis"
+              >{{ KFTargetArea.object.name.substring(2) }} ({{
+                KFTargetArea.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
@@ -98,7 +103,11 @@
           :key="documenttype.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ documenttype.object.name }}  ({{ documenttype.object.amount }})</span>
+            <span class="ellipsis"
+              >{{ documenttype.object.name }} ({{
+                documenttype.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
@@ -133,7 +142,11 @@
           :key="department.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ department.object.name }} ({{ department.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ department.object.name }} ({{
+                department.object.amount
+              }})</span
+            >
           </p>
 
           <input
@@ -162,9 +175,15 @@
         >+</span
       >
       <div v-if="this.isActiveOffice">
-        <div class="filter" v-for="office in filterOffice" :key="office.object.name">
+        <div
+          class="filter"
+          v-for="office in filterOffice"
+          :key="office.object.name"
+        >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ office.object.name }} ({{ office.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ office.object.name }} ({{ office.object.amount }})</span
+            >
           </p>
           <input
             type="checkbox"
@@ -199,7 +218,9 @@
             v-if="this.$route.params.Thematic == thematic.object.name"
           >
             <p class="filterbar-checkbox__heading">
-              <span class="ellipsis">{{ thematic.object.name }} ({{ thematic.object.amount }})</span> 
+              <span class="ellipsis"
+                >{{ thematic.object.name }} ({{ thematic.object.amount }})</span
+              >
             </p>
             <input
               type="checkbox"
@@ -240,9 +261,15 @@
         >+</span
       >
       <div v-if="this.isActiveValidity">
-        <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
+        <div
+          class="filter"
+          v-for="validity in filterValidity"
+          :key="validity.object.name"
+        >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ validity.object.name }} ({{ validity.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ validity.object.name }} ({{ validity.object.amount }})</span
+            >
           </p>
           <input
             type="checkbox"
@@ -293,23 +320,33 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    
   },
   methods: {
-    check: function (e) {
+   /*hide: function(index) {
+      
+        this.checkedCategories.splice(index,1);
+      
+    },*/
+    check: function(e, index) {
+      
       this.checkedCategories.push(this.$route.params.Thematic);
 
-      if (!this.checkedCategories.includes(e.target.value)) {
+      if (!this.checkedCategories.includes(e.target.value) ) {
         this.checkedCategories.push(e.target.value);
-      } else {
+      } 
+      else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
+         
           return i !== e.target.value;
         });
+           this.checkedCategories.splice(index,1);
       }
+       console.log( this.checkedCategories)
       this.$emit("filter", this.checkedCategories);
+       
     },
 
-    filterOnKey: function (key) {
+    filterOnKey: function(key) {
       const filterKey = new Set();
       const arrayWithCount = [];
       const objectToArray = [];
@@ -328,9 +365,9 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 }
-              }
-            } 
+                object: { name: elements[j][k], amount: 0 },
+              };
+            }
           }
         }
       }
@@ -338,15 +375,15 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              arrayWithCount[i].object.amount += 1
+              arrayWithCount[i].object.amount += 1;
             }
           }
         }
       }
-      
-      return arrayWithCount.filter(index => {
-        return index.object.name.length > 0
-      })
+
+      return arrayWithCount.filter((index) => {
+        return index.object.name.length > 0;
+      });
     },
   },
 };
@@ -395,7 +432,6 @@ export default {
   min-width: 230px;
   padding: 21px 12px;
   text-align: left;
-  
 
   .filter-category {
     cursor: pointer;
