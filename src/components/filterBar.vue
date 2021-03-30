@@ -1,9 +1,11 @@
 <template>
   <div class="filterBar">
-    <div v-for="(i, index) in checkedCategories"
+    <div
+      v-for="(i, index) in checkedCategories"
       :key="i"
-      @click="check($event,index)">
-      {{ i }} 
+      @click="check($event, index)"
+    >
+      {{ i }}
     </div>
     <h3 class="filterbar-heading_h3">Filter</h3>
     <div class="filter-category">
@@ -38,6 +40,7 @@
             :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
+            :checked="checkedCategories.includes(globalGoal.object.name)" 
           />
         </div>
       </div>
@@ -76,6 +79,7 @@
             :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
+            :checked="checkedCategories.includes(KFTargetArea.object.name)" 
           />
         </div>
       </div>
@@ -114,6 +118,7 @@
             :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
+            :checked="checkedCategories.includes(documenttype.object.name)" 
           />
         </div>
       </div>
@@ -154,6 +159,7 @@
             :value="department.object.name"
             id="department"
             @change="check($event)"
+            :checked="checkedCategories.includes(department.object.name)" 
           />
         </div>
       </div>
@@ -190,6 +196,7 @@
             :value="office.object.name"
             id="office"
             @change="check($event)"
+            :checked="checkedCategories.includes(office.object.name)" 
           />
         </div>
       </div>
@@ -239,6 +246,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
+              :checked="checkedCategories.includes(thematic.object.name)" 
             />
           </div>
         </div>
@@ -271,12 +279,9 @@
               >{{ validity.object.name }} ({{ validity.object.amount }})</span
             >
           </p>
-          <input
-            type="checkbox"
-            :value="validity.object.name"
-            id="validity"
-            @change="check($event)"
-          />
+          <input type="checkbox" :value="validity.object.name" id="validity"
+          @change="check($event)"
+          :checked="checkedCategories.includes(validity.object.name)" />
         </div>
       </div>
     </div>
@@ -291,6 +296,7 @@ export default {
   data() {
     return {
       checkedCategories: [],
+      hej: true,
       isActiveGlobalBoal: false,
       isActivekFTargetArea: false,
       isActiveDocumenttype: false,
@@ -322,28 +328,26 @@ export default {
     }
   },
   methods: {
-   /*hide: function(index) {
+    /*hide: function(index) {
       
         this.checkedCategories.splice(index,1);
       
     },*/
+
     check: function(e, index) {
-      
       this.checkedCategories.push(this.$route.params.Thematic);
 
-      if (!this.checkedCategories.includes(e.target.value) ) {
+      if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value);
-      } 
-      else {
+      } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
-         
           return i !== e.target.value;
         });
-           this.checkedCategories.splice(index,1);
+
+        this.checkedCategories.splice(index, 1);
       }
-       console.log( this.checkedCategories)
+      console.log(this.checkedCategories);
       this.$emit("filter", this.checkedCategories);
-       
     },
 
     filterOnKey: function(key) {
