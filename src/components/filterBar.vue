@@ -333,6 +333,7 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
+    this.checkedCategories.push(this.$route.params.Thematic)
   },
   methods: {
     /*hide: function(index) {
@@ -342,21 +343,19 @@ export default {
     },*/
 
     check: function(e, index) {
-      if (this.$route.params.Thematic) {
-        this.checkedCategories.push(this.$route.params.Thematic);
-      }
 
       if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value);
-        console.log(this.checkedCategories);
+        //console.log(this.checkedCategories);
       } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
           return i !== e.target.value;
         });
 
         this.checkedCategories.splice(index, 1);
+        // console.log(this.checkedCategories.splice(index, 1), 'Categories.splice(index, 1)')
       }
-      
+      console.log(this.checkedCategories, 'this.checkedCategories')
       this.$emit("filter", this.checkedCategories);
     },
 
