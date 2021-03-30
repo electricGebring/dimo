@@ -286,11 +286,11 @@
   <div class="filter-tags">
     <div
       class="filter-tag"
-      v-for="(i, index) in checkedCategories"
-      :key="i"
-      @click="check($event, index)"
+      v-for="index in checkedCategories"
+      :key="index"
+      @click="hideTag(index)"
     >
-      {{ i }}
+      {{ index }}
     </div>
   </div>
 </template>
@@ -336,26 +336,19 @@ export default {
     this.checkedCategories.push(this.$route.params.Thematic)
   },
   methods: {
-    /*hide: function(index) {
-      
-        this.checkedCategories.splice(index,1);
-      
-    },*/
+    hideTag: function(e) {
+      this.checkedCategories = this.checkedCategories.filter(index => 
+      index !== e);
+    },
 
-    check: function(e, index) {
-
+    check: function(e) {
       if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value);
-        //console.log(this.checkedCategories);
       } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
           return i !== e.target.value;
         });
-
-        this.checkedCategories.splice(index, 1);
-        // console.log(this.checkedCategories.splice(index, 1), 'Categories.splice(index, 1)')
       }
-      console.log(this.checkedCategories, 'this.checkedCategories')
       this.$emit("filter", this.checkedCategories);
     },
 
