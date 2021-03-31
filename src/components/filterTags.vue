@@ -2,33 +2,38 @@
   <div class="filter-tags">
     <div
       class="filter-tag"
-      v-for="index in checkedCategories"
+      v-for="index in catTags"
       :key="index"
       @click="hideTag(index)"
     >
       {{ index }}
     </div>
+    
   </div>
 </template>
 
 <script>
+import { reactive} from '@vue/reactivity';
 //import { watch } from '@vue/runtime-core';
 export default {
   name: 'filterTags',
-  emits: ['hideTag'],
+  //emits: ['hideTag'],
   props: ['checkedCategories'],
   setup(props) {
+    const catTags = reactive(props.checkedCategories)
+    console.log(catTags, 'catTags filterTags')
 
-    const checkedCategories = props.checkedCategories
+    // // watch(checkedCategories, () =>{
+    // //   emit('hideTag', checkedCategories)
+    // // })
 
-    watch(checkedCategories, () =>{
-      emit('hideTag', checkedCategories)
-    })
+    // const hideTag = (e) => {
+    //   checkedCategories = checkedCategories.filter(index => 
+    //   index !== e);
+    //},
 
-    const hideTag = (e) => {
-      checkedCategories = checkedCategories.filter(index => 
-      index !== e);
-    },
+    
+    return {catTags}
   },
 };
 </script>
@@ -36,8 +41,8 @@ export default {
 <style lang="scss">
 .filter-tags {
   height: 30px;
-  margin-top: 150px;
-  margin-left: 500px;
+  top: 150px;
+  left: 500px;
   width: 100%;
   position: absolute;
 

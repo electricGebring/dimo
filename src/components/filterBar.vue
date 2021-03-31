@@ -287,7 +287,7 @@
 
 <script>
 export default {
-  props: ["Elements", "checkedCategories"],
+  props: ["Elements"],
   emits: ["filter"],
 
   data() {
@@ -313,22 +313,27 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    this.checkedCategories.push(this.$route.params.Thematic)
+    this.check()
   },
   methods: {
-    handleCheckedCategories() {
-      console.log(this.props.checkedCategories, 'this.props.checkedCategories')
-      this.checkedCategories = this.props.checkedCategories
-    },
+    // handleCheckedCategories() {
+    //   console.log(this.props.checkedCategories, 'this.props.checkedCategories')
+    //   this.checkedCategories = this.props.checkedCategories
+    // },
     
     check: function(e) {
-      if (!this.checkedCategories.includes(e.target.value)) {
+      if (e) {
+        if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value)
+        } else {
+          this.checkedCategories = this.checkedCategories.filter((i) => {
+            return i !== e.target.value
+          });
+        }
       } else {
-        this.checkedCategories = this.checkedCategories.filter((i) => {
-          return i !== e.target.value
-        });
+        this.checkedCategories.push(this.$route.params.Thematic)
       }
+      console.log(this.checkedCategories, 'this.checkedCategories filterBar')
       this.$emit("filter", this.checkedCategories)
     },
 

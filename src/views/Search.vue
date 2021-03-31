@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <FilterBar :Elements="Elements" @filter="setFilter" :checkedCategories="checkedCategories"/>
+    <FilterBar :Elements="Elements" @filter="setFilter" />
       <div class="main">
       <Searchbar />
-      <filter-tags @hideTag="handleHideTag" :checkedCategories="checkedCategories"/>
+      <filter-tags :checkedCategories="checkedCategories"/>
       <doclist :doclist="doclist" />
     </div>
   </div>  
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       doclist: [],
-      checkBoxCategories: [],
+      //checkBoxCategories: [],
+      checkedCategories: [],
     };
   },
   components: {
@@ -34,12 +35,12 @@ export default {
     }
   },
   mounted() {
-    this.setFilter();
+    //this.setFilter();
   },
   methods: {
-    handleHideTag(checkedCategories) {
-      this.checkBoxCategories = checkedCategories
-    },
+    // handleHideTag(checkedCategories) {
+    //   this.checkBoxCategories = checkedCategories
+    // },
     goto(url) {
       window.open(url, "_blank").focus();
     },
@@ -50,6 +51,8 @@ export default {
     },
 
     setFilter(checkedCategories) {
+      this.checkedCategories.push(checkedCategories)
+      console.log(this.checkedCategories, 'checkedcategories search')
       if (checkedCategories) {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {
@@ -63,10 +66,10 @@ export default {
         });
          
         this.doclist = arrayToDoclist
-        checkedCategories = []
+        //checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList(); 
+        this.filteredList() 
       }
     },   
   },
