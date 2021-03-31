@@ -52,7 +52,7 @@ export default {
 
     setFilter(checkedCategories) {
       this.checkedCategories.push(checkedCategories)
-      console.log(this.checkedCategories, 'checkedcategories search')
+      //console.log(this.checkedCategories, 'checkedcategories search')
       if (checkedCategories) {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {
@@ -66,7 +66,7 @@ export default {
         });
          
         this.doclist = arrayToDoclist
-        //checkedCategories = []
+        this.checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
         this.filteredList() 

@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import { reactive} from '@vue/reactivity';
+import { ref } from '@vue/reactivity';
 //import { watch } from '@vue/runtime-core';
 export default {
   name: 'filterTags',
   //emits: ['hideTag'],
   props: ['checkedCategories'],
   setup(props) {
-    const catTags = reactive(props.checkedCategories)
-    console.log(catTags, 'catTags filterTags')
+    const catTags = ref(props.checkedCategories)
+    console.log(catTags, 'catTags')
 
     // // watch(checkedCategories, () =>{
     // //   emit('hideTag', checkedCategories)

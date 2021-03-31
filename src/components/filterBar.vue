@@ -333,7 +333,7 @@ export default {
       } else {
         this.checkedCategories.push(this.$route.params.Thematic)
       }
-      console.log(this.checkedCategories, 'this.checkedCategories filterBar')
+      //console.log(this.checkedCategories, 'this.checkedCategories filterBar')
       this.$emit("filter", this.checkedCategories)
     },
 
