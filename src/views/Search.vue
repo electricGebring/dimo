@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <FilterBar :Elements="Elements" @filter="setFilter" :checkedCategories="checkedCategories/>
+    <FilterBar :Elements="Elements" @filter="setFilter" :checkedCategories="checkedCategories"/>
       <div class="main">
       <Searchbar />
-      <filter-tags @hideTag="handleHideTag"/>
+      <filter-tags @hideTag="handleHideTag" :checkedCategories="checkedCategories"/>
       <doclist :doclist="doclist" />
     </div>
   </div>  
