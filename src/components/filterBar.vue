@@ -227,7 +227,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              checked="checked"
+              :checked="checkedCategories.includes(thematic.object.name)"
             />
           </div>
           <div class="filter" v-else>
@@ -283,27 +283,16 @@
       </div>
     </div>
   </div>
-  <div class="filter-tags">
-    <div
-      class="filter-tag"
-      v-for="index in checkedCategories"
-      :key="index"
-      @click="hideTag(index)"
-    >
-      {{ index }}
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: ["Elements"],
+  props: ["Elements", "checkedCategories"],
   emits: ["filter"],
 
   data() {
     return {
       checkedCategories: [],
-      hej: true,
       isActiveGlobalBoal: false,
       isActivekFTargetArea: false,
       isActiveDocumenttype: false,
@@ -311,15 +300,6 @@ export default {
       isActiveOffice: false,
       isActiveThematic: "",
       isActiveValidity: false,
-      filterBarArray: [
-        "GlobalGoal",
-        "KFTargetArea",
-        "Documentype",
-        "Department",
-        "Office",
-        "Thematic",
-        "Validity",
-      ],
       filterGlobalGoal: this.filterOnKey("GlobalGoal"),
       filterKFTargetArea: this.filterOnKey("KFTargetArea"),
       filterDocumenttype: this.filterOnKey("Documenttype"),
@@ -336,34 +316,34 @@ export default {
     this.checkedCategories.push(this.$route.params.Thematic)
   },
   methods: {
-    hideTag: function(e) {
-      this.checkedCategories = this.checkedCategories.filter(index => 
-      index !== e);
+    handleCheckedCategories() {
+      console.log(this.props.checkedCategories, 'this.props.checkedCategories')
+      this.checkedCategories = this.props.checkedCategories
     },
-
+    
     check: function(e) {
       if (!this.checkedCategories.includes(e.target.value)) {
-        this.checkedCategories.push(e.target.value);
+        this.checkedCategories.push(e.target.value)
       } else {
         this.checkedCategories = this.checkedCategories.filter((i) => {
-          return i !== e.target.value;
+          return i !== e.target.value
         });
       }
-      this.$emit("filter", this.checkedCategories);
+      this.$emit("filter", this.checkedCategories)
     },
 
     filterOnKey: function(key) {
-      const filterKey = new Set();
-      const arrayWithCount = [];
-      const objectToArray = [];
-      const elements = this.$store.state.Elements;
+      const filterKey = new Set()
+      const arrayWithCount = []
+      const objectToArray = []
+      const elements = this.$store.state.Elements
 
       elements.forEach((index) => {
-        filterKey.add(index[key]);
+        filterKey.add(index[key])
       });
 
       for (let index of filterKey) {
-        objectToArray.push(index);
+        objectToArray.push(index)
       }
 
       for (let i = 0; i < objectToArray.length; i++) {
@@ -371,8 +351,8 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 },
-              };
+                object: { name: elements[j][k], amount: 0 }
+              }
             }
           }
         }
@@ -388,7 +368,7 @@ export default {
       }
 
       return arrayWithCount.filter((index) => {
-        return index.object.name.length > 0;
+        return index.object.name.length > 0
       });
     },
   },
@@ -466,28 +446,6 @@ export default {
     width: 200px;
     color: #d4d4d4;
     border-width: thin;
-  }
-}
-.filter-tags {
-  height: 30px;
-  margin-top: 150px;
-  margin-left: 500px;
-  width: 100%;
-  position: absolute;
-  .filter-tag {
-    float: left;
-    margin: 8px;
-    width: fit-content;
-    height: 28px;
-    background: #ffffff;
-    border-radius: 15px;
-    font-size: 10px;
-    color: #2C365A;
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
-    line-height: 2.7;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 }
 </style>

@@ -1,15 +1,17 @@
 <template>
   <div class="container">
-    <FilterBar :Elements="Elements" @filter="setFilter" />
-        <div class="main">
-        <Searchbar />
-        <doclist :doclist="doclist" />
-      </div>
+    <FilterBar :Elements="Elements" @filter="setFilter" :checkedCategories="checkedCategories/>
+      <div class="main">
+      <Searchbar />
+      <filter-tags @hideTag="handleHideTag"/>
+      <doclist :doclist="doclist" />
+    </div>
   </div>  
 </template>
 
 <script>
 import Searchbar from '../components/Searchbar.vue'
+import filterTags from '../components/filterTags.vue'
 import Doclist from "../components/Doclist.vue";
 import FilterBar from "../components/filterBar.vue";
 
@@ -24,6 +26,7 @@ export default {
     Searchbar,
     Doclist,
     FilterBar,
+    filterTags,
   },
   computed: {
     Elements() {
@@ -34,6 +37,9 @@ export default {
     this.setFilter();
   },
   methods: {
+    handleHideTag(checkedCategories) {
+      this.checkBoxCategories = checkedCategories
+    },
     goto(url) {
       window.open(url, "_blank").focus();
     },
