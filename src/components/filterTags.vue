@@ -2,11 +2,12 @@
   <div class="filter-tags">
     <div
       class="filter-tag"
-      v-for="index in catTags"
+      v-for="(tag, index) in catTags"
       :key="index"
       @click="hideTag(index)"
     >
-      {{ index }}
+    <!-- Kolla på indexet i browsern -->
+      <p>{{ tag }} {{index}}</p>
     </div>
     
   </div>
