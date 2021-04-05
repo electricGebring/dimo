@@ -314,6 +314,7 @@ export default {
       this.isActiveThematic = true;
     }
     this.check()
+    console.log(props, 'props.Elements')
   },
   methods: {
     // handleCheckedCategories() {

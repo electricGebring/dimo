@@ -2,39 +2,26 @@
   <div class="filter-tags">
     <div
       class="filter-tag"
-      v-for="(tag, index) in catTags"
+      v-for="(tag, index) in checkedCategories"
       :key="index"
-      @click="hideTag(index)"
+      @click="hideTag(tag)"
     >
-    <!-- Kolla på indexet i browsern -->
-      <p>{{ tag }} {{index}}</p>
+    
+      <p>{{ tag }}</p>
     </div>
     
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-//import { watch } from '@vue/runtime-core';
 export default {
-  name: 'filterTags',
-  //emits: ['hideTag'],
+  
+  
   props: ['checkedCategories'],
   setup(props) {
-    const catTags = ref(props.checkedCategories)
-    console.log(catTags, 'catTags')
-
-    // // watch(checkedCategories, () =>{
-    // //   emit('hideTag', checkedCategories)
-    // // })
-
-    // const hideTag = (e) => {
-    //   checkedCategories = checkedCategories.filter(index => 
-    //   index !== e);
-    //},
-
     
-    return {catTags}
+    //console.log(props.taggedCategories, 'props.taggedCategories')
+
   },
 };
 </script>
