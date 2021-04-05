@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <FilterBar :Elements="Elements" @filter="setFilter" />
+    <FilterBar @filter="setFilter" :hideTag="hideTag" />
       <div class="main">
       <Searchbar />
-      <filter-tags :checkedCategories="checkedCategories"/>
+      <filter-tags @clickedTag="hideTag" :checkedCategories="checkedCategories"/>
       <doclist :doclist="doclist" />
     </div>
   </div>  
@@ -38,9 +38,11 @@ export default {
     //this.setFilter();
   },
   methods: {
-    // handleHideTag(checkedCategories) {
-    //   this.checkBoxCategories = checkedCategories
-    // },
+    hideTag(tag) {
+      this.checkedCategories = this.checkedCategories.filter(index => {
+        return index !== tag
+      })
+    },
     goto(url) {
       window.open(url, "_blank").focus();
     },

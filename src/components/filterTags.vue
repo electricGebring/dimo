@@ -4,7 +4,7 @@
       class="filter-tag"
       v-for="(tag, index) in checkedCategories"
       :key="index"
-      @click="hideTag(tag)"
+      @click="handleClick(tag)"
     >
     
       <p>{{ tag }}</p>
@@ -15,13 +15,15 @@
 
 <script>
 export default {
-  
-  
   props: ['checkedCategories'],
-  setup(props) {
+  emits: ['clickedTag'],
+  setup(props, context) {
+    //console.log(props.checkedCategories, 'props.checkedCategories') // man kan inte logga propsen, väldigt konstigt
+    const handleClick = (tag) => {
+      context.emit('clickedTag', tag)
+    }
     
-    //console.log(props.taggedCategories, 'props.taggedCategories')
-
+    return { handleClick }
   },
 };
 </script>
