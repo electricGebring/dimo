@@ -42,6 +42,7 @@ export default {
       this.checkedCategories = this.checkedCategories.filter(index => {
         return index !== tag
       })
+      //this.setFilter(this.checkedCategories)
     },
     goto(url) {
       window.open(url, "_blank").focus();
