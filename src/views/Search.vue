@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FilterBar @filter="setFilter" :hideTag="hideTag" />
+    <FilterBar @filter="setFilter" :test="checkedCategories" />
       <div class="main">
       <Searchbar />
       <filter-tags @clickedTag="hideTag" :checkedCategories="checkedCategories"/>
@@ -42,8 +42,11 @@ export default {
       this.checkedCategories = this.checkedCategories.filter(index => {
         return index !== tag
       })
+      //console.log(this.checkedCategories, 'this.checkedCategories')
+      return this.checkedCategories
       //this.setFilter(this.checkedCategories)
     },
+    
     goto(url) {
       window.open(url, "_blank").focus();
     },
@@ -55,7 +58,7 @@ export default {
 
     setFilter(checkedCategories) {
       this.checkedCategories = checkedCategories
-      console.log(this.checkedCategories, 'checkedCategories')
+      //console.log(this.checkedCategories, 'checkedCategories')
       if (checkedCategories) {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {

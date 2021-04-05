@@ -287,7 +287,7 @@
 
 <script>
 export default {
-  props: ['hideTag'],
+  props: ['test'],
   emits: ["filter"],
 
   data() {
@@ -307,7 +307,7 @@ export default {
       filterOffice: this.filterOnKey("Office"),
       filterThematic: this.filterOnKey("Thematic"),
       filterValidity: this.filterOnKey("Validity"),
-      tag: this.$props.hideTag
+      //tag: this.$props.hideTag
     };
   },
   mounted() {
@@ -315,13 +315,14 @@ export default {
       this.isActiveThematic = true;
     }
     this.check()
+    //this.resetCheck()
+    
     //console.log(this.props, 'this.props')
     // this.watch('tag', () => {
     //     this.check(this.tag)
     //   }
     // )
   },
-  
   
   methods: {
     // handleCheckedCategories() {
@@ -332,11 +333,20 @@ export default {
     //   console.log(hideTag, 'hideTag')
     //   this.check(hideTag)
     // },
+
     
+
+    resetCheck: function(){
+      if (this.$props.test) {
+        console.log(this.$props.test, 'this.$props.hide')
+        this.checkedCategories = this.$props.test
+        this.$emit("filter", this.checkedCategories)
+      }
+    },
     check: function(e) {
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {
-        this.checkedCategories.push(e.target.value)
+          this.checkedCategories.push(e.target.value)
         } else {
           this.checkedCategories = this.checkedCategories.filter((i) => {
             return i !== e.target.value
