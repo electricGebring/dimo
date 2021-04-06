@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FilterBar @filter="setFilter" :resetCheck="checkedCategories" />
+    <FilterBar @filter="setFilter" :resetCheck="checkedCategories" ref="childComponent" />
       <div class="main">
       <Searchbar />
       <filter-tags @clickedTag="hideTag" :checkedCategories="checkedCategories"/>
@@ -41,6 +41,7 @@ export default {
         return index !== tag
       })
       this.setFilter(this.checkedCategories)
+       this.$refs.childComponent.hej(this.checkedCategories);
     },
     
     goto(url) {

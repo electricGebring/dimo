@@ -319,6 +319,11 @@ export default {
   },
   
   methods: {
+    hej(checkedCategories) {
+      console.log("hej")
+      this.checkedCategories = checkedCategories
+      this.$emit("filter", checkedCategories)
+       },
     
     check: function(e) {
       if (e) {
