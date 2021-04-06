@@ -287,7 +287,7 @@
 
 <script>
 export default {
-  props: ['resetCheck'],
+  props: ["resetCheck"],
   emits: ["filter"],
 
   data() {
@@ -314,45 +314,46 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    this.check()
-    console.log(this.checkedCategories, 'this.checkedCategories filterBar')
+    this.check();
+    console.log(this.checkedCategories, "this.checkedCategories filterBar");
   },
-  
+
+  watch: {
+    resetCheck() {
+      this.checkedCategories = this.resetCheck
+      console.log(this.checkedCategories, "haha")
+    },
+  },
+
   methods: {
-    hej(checkedCategories) {
-      console.log("hej")
-      this.checkedCategories = checkedCategories
-      this.$emit("filter", checkedCategories)
-       },
-    
     check: function(e) {
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {
-          this.checkedCategories.push(e.target.value)
+          this.checkedCategories.push(e.target.value);
         } else {
           this.checkedCategories = this.checkedCategories.filter((i) => {
-            return i !== e.target.value
+            return i !== e.target.value;
           });
         }
       } else {
-        this.checkedCategories.push(this.$route.params.Thematic)
+        this.checkedCategories.push(this.$route.params.Thematic);
       }
-      console.log(this.checkedCategories, 'hej')
-      this.$emit("filter", this.checkedCategories)
+      console.log(this.checkedCategories, "hej");
+      this.$emit("filter", this.checkedCategories);
     },
 
     filterOnKey: function(key) {
-      const filterKey = new Set()
-      const arrayWithCount = []
-      const objectToArray = []
-      const elements = this.$store.state.Elements
+      const filterKey = new Set();
+      const arrayWithCount = [];
+      const objectToArray = [];
+      const elements = this.$store.state.Elements;
 
       elements.forEach((index) => {
-        filterKey.add(index[key])
+        filterKey.add(index[key]);
       });
 
       for (let index of filterKey) {
-        objectToArray.push(index)
+        objectToArray.push(index);
       }
 
       for (let i = 0; i < objectToArray.length; i++) {
@@ -360,8 +361,8 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 }
-              }
+                object: { name: elements[j][k], amount: 0 },
+              };
             }
           }
         }
@@ -377,7 +378,7 @@ export default {
       }
 
       return arrayWithCount.filter((index) => {
-        return index.object.name.length > 0
+        return index.object.name.length > 0;
       });
     },
   },
