@@ -18,11 +18,9 @@ export default {
   props: ['checkedCategories'],
   emits: ['clickedTag'],
   setup(props, context) {
-    //console.log(props.checkedCategories, 'props.checkedCategories') // man kan inte logga propsen, väldigt konstigt
     const handleClick = (tag) => {
       context.emit('clickedTag', tag)
     }
-    
     return { handleClick }
   },
 };

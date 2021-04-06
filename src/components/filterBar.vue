@@ -307,43 +307,19 @@ export default {
       filterOffice: this.filterOnKey("Office"),
       filterThematic: this.filterOnKey("Thematic"),
       filterValidity: this.filterOnKey("Validity"),
-      //tag: this.$props.hideTag
     };
   },
+
   mounted() {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
     this.check()
     console.log(this.checkedCategories, 'this.checkedCategories filterBar')
-    //this.resetCheck()
-    
-    //console.log(this.props, 'this.props')
-    // this.watch('tag', () => {
-    //     this.check(this.tag)
-    //   }
-    // )
   },
   
   methods: {
-    // handleCheckedCategories() {
-    //   console.log(this.props.checkedCategories, 'this.props.checkedCategories')
-    //   this.checkedCategories = this.props.checkedCategories
-    // },
-    // handleHideTag: function(hideTag) {
-    //   console.log(hideTag, 'hideTag')
-    //   this.check(hideTag)
-    // },
-
     
-
-    /*resetCheck: function(){
-      if (this.$props.test) {
-        console.log(this.$props.test, 'this.$props.hide')
-        this.checkedCategories = this.$props.test
-        this.$emit("filter", this.checkedCategories)
-      }
-    },*/
     check: function(e) {
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {

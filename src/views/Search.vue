@@ -19,7 +19,6 @@ export default {
   data() {
     return {
       doclist: [],
-      //checkBoxCategories: [],
       checkedCategories: [],
     };
   },
@@ -35,16 +34,13 @@ export default {
     }
   },
   mounted() {
-    //this.setFilter();
   },
   methods: {
     hideTag(tag) {
       this.checkedCategories = this.checkedCategories.filter(index => {
         return index !== tag
       })
-      //console.log(this.checkedCategories, 'this.checkedCategories')
-      return this.checkedCategories
-      //this.setFilter(this.checkedCategories)
+      this.setFilter(this.checkedCategories)
     },
     
     goto(url) {
@@ -58,7 +54,6 @@ export default {
 
     setFilter(checkedCategories) {
       this.checkedCategories = checkedCategories
-      //console.log(this.checkedCategories, 'checkedCategories')
       if (checkedCategories) {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {
@@ -72,7 +67,6 @@ export default {
         });
          
         this.doclist = arrayToDoclist
-        //this.checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
         this.filteredList() 
