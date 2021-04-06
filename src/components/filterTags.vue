@@ -1,13 +1,11 @@
 <template>
   <div class="filter-tags">
     <div
-      class="filter-tag"
       v-for="(tag, index) in checkedCategories"
       :key="index"
       @click="handleClick(tag)"
     >
-    
-      <p>{{ tag }}</p>
+      <p class="filter-tag">{{ tag }} X</p>
     </div>
     
   </div>
@@ -28,26 +26,35 @@ export default {
 
 <style lang="scss">
 .filter-tags {
-  height: 30px;
-  top: 150px;
-  left: 500px;
-  width: 100%;
-  position: absolute;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+  padding: 0 60px;
 
+  // .filter-tag {
+  //   //float: left;
+  //   //margin: 8px;
+  //   // width: fit-content;
+  //   // height: 28px;
+  //   // background: #ffffff;
+  //   // border-radius: 15px;
+  //   // font-size: 10px;
+  //   // color: #2c365a;
+  //   // font-family: "Montserrat", sans-serif;
+  //   // text-align: center;
+  //   // line-height: 2.7;
+  //   // padding: 10px;
+  // }
   .filter-tag {
-    float: left;
-    margin: 8px;
-    width: fit-content;
-    height: 28px;
     background: #ffffff;
     border-radius: 15px;
-    font-size: 10px;
     color: #2c365a;
     font-family: "Montserrat", sans-serif;
-    text-align: center;
-    line-height: 2.7;
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 10px;
+    margin: 0 10px 0 0;
+    padding: 10px;
   }
+
+  
 }
 </style>

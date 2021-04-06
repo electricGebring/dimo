@@ -41,7 +41,6 @@ export default {
         return index !== tag
       })
       this.setFilter(this.checkedCategories)
-      // this.$refs.childComponent.hej(this.checkedCategories);
     },
     
     goto(url) {
@@ -85,6 +84,7 @@ export default {
 .main {
   width: 80%;
   padding: 0 5% 0 5%;
+  padding-top: 90px;
 }
 
 body {
