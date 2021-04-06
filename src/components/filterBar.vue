@@ -33,7 +33,7 @@
             :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
-            :checked="checkedCategories.includes(globalGoal.object.name)"
+            :checked="resetCheck.includes(globalGoal.object.name)"
           />
         </div>
       </div>
@@ -72,7 +72,7 @@
             :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
-            :checked="checkedCategories.includes(KFTargetArea.object.name)"
+            :checked="resetCheck.includes(KFTargetArea.object.name)"
           />
         </div>
       </div>
@@ -111,7 +111,7 @@
             :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
-            :checked="checkedCategories.includes(documenttype.object.name)"
+            :checked="resetCheck.includes(documenttype.object.name)"
           />
         </div>
       </div>
@@ -152,7 +152,7 @@
             :value="department.object.name"
             id="department"
             @change="check($event)"
-            :checked="checkedCategories.includes(department.object.name)"
+            :checked="resetCheck.includes(department.object.name)"
           />
         </div>
       </div>
@@ -189,7 +189,7 @@
             :value="office.object.name"
             id="office"
             @change="check($event)"
-            :checked="checkedCategories.includes(office.object.name)"
+            :checked="resetCheck.includes(office.object.name)"
           />
         </div>
       </div>
@@ -227,7 +227,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="checkedCategories.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
           <div class="filter" v-else>
@@ -239,7 +239,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="checkedCategories.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
         </div>
@@ -277,7 +277,7 @@
             :value="validity.object.name"
             id="validity"
             @change="check($event)"
-            :checked="checkedCategories.includes(validity.object.name)"
+            :checked="resetCheck.includes(validity.object.name)"
           />
         </div>
       </div>
@@ -287,7 +287,7 @@
 
 <script>
 export default {
-  props: ['test'],
+  props: ['resetCheck'],
   emits: ["filter"],
 
   data() {
@@ -315,6 +315,7 @@ export default {
       this.isActiveThematic = true;
     }
     this.check()
+    console.log(this.checkedCategories, 'this.checkedCategories filterBar')
     //this.resetCheck()
     
     //console.log(this.props, 'this.props')
@@ -336,13 +337,13 @@ export default {
 
     
 
-    resetCheck: function(){
+    /*resetCheck: function(){
       if (this.$props.test) {
         console.log(this.$props.test, 'this.$props.hide')
         this.checkedCategories = this.$props.test
         this.$emit("filter", this.checkedCategories)
       }
-    },
+    },*/
     check: function(e) {
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {
@@ -355,7 +356,7 @@ export default {
       } else {
         this.checkedCategories.push(this.$route.params.Thematic)
       }
-      //console.log(this.checkedCategories, 'this.checkedCategories filterBar')
+      console.log(this.checkedCategories, 'hej')
       this.$emit("filter", this.checkedCategories)
     },
 

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FilterBar @filter="setFilter" :test="checkedCategories" />
+    <FilterBar @filter="setFilter" :resetCheck="checkedCategories" />
       <div class="main">
       <Searchbar />
       <filter-tags @clickedTag="hideTag" :checkedCategories="checkedCategories"/>
