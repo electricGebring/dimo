@@ -55,12 +55,12 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
  .searchbar {
-  margin-top: 90px;
+  //margin-top: 90px;
+  margin-bottom: 25px;
  
  .vue3-autocomplete-container {
   display: flex;
   flex-direction: column;
-  max-width: 920px;
   width: 100%;
   
   .vue3-input {

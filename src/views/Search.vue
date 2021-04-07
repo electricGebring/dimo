@@ -1,11 +1,17 @@
 <template>
   <div class="container">
-    <FilterBar :Elements="Elements" @filter="setFilter" />
-    <doclist :doclist="doclist" />
+    <FilterBar @filter="check" :resetCheck="checkedCategories" />
+      <div class="main">
+      <Searchbar />
+      <filter-tags @clickedTag="hideTag" @resetFilter="resetFilter" :checkedCategories="checkedCategories" :show="show"/>
+      <doclist :doclist="doclist" />
+    </div>
   </div>  
 </template>
 
 <script>
+import Searchbar from '../components/Searchbar.vue'
+import filterTags from '../components/filterTags.vue'
 import Doclist from "../components/Doclist.vue";
 import FilterBar from "../components/filterBar.vue";
 
@@ -13,12 +19,15 @@ export default {
   data() {
     return {
       doclist: [],
-      checkBoxCategories: [],
+      checkedCategories: [],
+      show: false
     };
   },
   components: {
+    Searchbar,
     Doclist,
     FilterBar,
+    filterTags,
   },
   computed: {
     Elements() {
@@ -26,9 +35,39 @@ export default {
     }
   },
   mounted() {
-    this.setFilter();
   },
   methods: {
+    hideTag(tag) {
+      this.checkedCategories = this.checkedCategories.filter(index => {
+        return index !== tag
+      })
+      this.setFilter(this.checkedCategories)
+    },
+
+     resetFilter(showResetButton) {
+      this.checkedCategories = []
+      this.setFilter(this.checkedCategories)
+      showResetButton.value = this.show;
+       this.show = false;
+    },
+
+    check(e) {
+       this.show = true
+      if (e) {
+        if (!this.checkedCategories.includes(e.target.value)) {
+         
+          this.checkedCategories.push(e.target.value);
+        } else {
+          this.checkedCategories = this.checkedCategories.filter((i) => {
+            return i !== e.target.value;
+          });
+        }
+      } else {
+        this.checkedCategories.push(this.$route.params.Thematic);
+      }
+      this.setFilter(this.checkedCategories)
+    },
+    
     goto(url) {
       window.open(url, "_blank").focus();
     },
@@ -45,17 +84,16 @@ export default {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i); //kan man sätta en include här istället????
+                arrayToDoclist.push(i);
               }
             }
           });
         });
          
         this.doclist = arrayToDoclist
-        checkedCategories = []
         this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList(); 
+        this.filteredList() 
       }
     },   
   },
@@ -63,6 +101,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  padding: 5% 5% 0 5%;
+}
+
+.main {
+  width: 80%;
+  
+}
+
 body {
   margin: 0;
   padding: 0;
