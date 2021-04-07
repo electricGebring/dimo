@@ -22,13 +22,18 @@
           :key="globalGoal.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ globalGoal.object.name }} ({{ globalGoal.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ globalGoal.object.name }} ({{
+                globalGoal.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
             :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
+            :checked="resetCheck.includes(globalGoal.object.name)"
           />
         </div>
       </div>
@@ -56,15 +61,18 @@
           :key="KFTargetArea.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ KFTargetArea.object.name.substring(2) }} ({{
-              KFTargetArea.object.amount
-            }})</span> 
+            <span class="ellipsis"
+              >{{ KFTargetArea.object.name.substring(2) }} ({{
+                KFTargetArea.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
             :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
+            :checked="resetCheck.includes(KFTargetArea.object.name)"
           />
         </div>
       </div>
@@ -92,13 +100,18 @@
           :key="documenttype.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ documenttype.object.name }}  ({{ documenttype.object.amount }})</span>
+            <span class="ellipsis"
+              >{{ documenttype.object.name }} ({{
+                documenttype.object.amount
+              }})</span
+            >
           </p>
           <input
             type="checkbox"
             :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
+            :checked="resetCheck.includes(documenttype.object.name)"
           />
         </div>
       </div>
@@ -127,7 +140,11 @@
           :key="department.object.name"
         >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ department.object.name }} ({{ department.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ department.object.name }} ({{
+                department.object.amount
+              }})</span
+            >
           </p>
 
           <input
@@ -135,6 +152,7 @@
             :value="department.object.name"
             id="department"
             @change="check($event)"
+            :checked="resetCheck.includes(department.object.name)"
           />
         </div>
       </div>
@@ -156,15 +174,22 @@
         >+</span
       >
       <div v-if="this.isActiveOffice">
-        <div class="filter" v-for="office in filterOffice" :key="office.object.name">
+        <div
+          class="filter"
+          v-for="office in filterOffice"
+          :key="office.object.name"
+        >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ office.object.name }} ({{ office.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ office.object.name }} ({{ office.object.amount }})</span
+            >
           </p>
           <input
             type="checkbox"
             :value="office.object.name"
             id="office"
             @change="check($event)"
+            :checked="resetCheck.includes(office.object.name)"
           />
         </div>
       </div>
@@ -193,14 +218,16 @@
             v-if="this.$route.query.Thematic == thematic.object.name"
           >
             <p class="filterbar-checkbox__heading">
-              <span class="ellipsis">{{ thematic.object.name }} ({{ thematic.object.amount }})</span> 
+              <span class="ellipsis"
+                >{{ thematic.object.name }} ({{ thematic.object.amount }})</span
+              >
             </p>
             <input
               type="checkbox"
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              checked="checked"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
           <div class="filter" v-else>
@@ -212,6 +239,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
         </div>
@@ -234,15 +262,22 @@
         >+</span
       >
       <div v-if="this.isActiveValidity">
-        <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
+        <div
+          class="filter"
+          v-for="validity in filterValidity"
+          :key="validity.object.name"
+        >
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis">{{ validity.object.name }} ({{ validity.object.amount }})</span> 
+            <span class="ellipsis"
+              >{{ validity.object.name }} ({{ validity.object.amount }})</span
+            >
           </p>
           <input
             type="checkbox"
             :value="validity.object.name"
             id="validity"
             @change="check($event)"
+            :checked="resetCheck.includes(validity.object.name)"
           />
         </div>
       </div>
@@ -252,11 +287,11 @@
 
 <script>
 export default {
-  props: ["Elements"],
+  props: ["resetCheck"],
+  emits: ["filter"],
 
   data() {
     return {
-      checkedCategories: [],
       isActiveGlobalBoal: false,
       isActivekFTargetArea: false,
       isActiveDocumenttype: false,
@@ -264,15 +299,6 @@ export default {
       isActiveOffice: false,
       isActiveThematic: "",
       isActiveValidity: false,
-      filterBarArray: [
-        "GlobalGoal",
-        "KFTargetArea",
-        "Documentype",
-        "Department",
-        "Office",
-        "Thematic",
-        "Validity",
-      ],
       filterGlobalGoal: this.filterOnKey("GlobalGoal"),
       filterKFTargetArea: this.filterOnKey("KFTargetArea"),
       filterDocumenttype: this.filterOnKey("Documenttype"),
@@ -282,28 +308,21 @@ export default {
       filterValidity: this.filterOnKey("Validity"),
     };
   },
+
   mounted() {
     if (this.$route.query.Thematic) {
       console.log(this.$route.query.Thematic, 'this.$route.query.Thematic')
       this.isActiveThematic = true;
     }
-    
+    this.check();
   },
+  
   methods: {
-    check: function (e) {
-      this.checkedCategories.push(this.$route.query.Thematic);
-
-      if (!this.checkedCategories.includes(e.target.value)) {
-        this.checkedCategories.push(e.target.value);
-      } else {
-        this.checkedCategories = this.checkedCategories.filter((i) => {
-          return i !== e.target.value;
-        });
-      }
-      this.$emit("filter", this.checkedCategories);
+    check: function(e) {
+      this.$emit("filter", e);
     },
 
-    filterOnKey: function (key) {
+    filterOnKey: function(key) {
       const filterKey = new Set();
       const arrayWithCount = [];
       const objectToArray = [];
@@ -322,9 +341,9 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 1 }
-              }
-            } 
+                object: { name: elements[j][k], amount: 0 },
+              };
+            }
           }
         }
       }
@@ -332,15 +351,15 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              arrayWithCount[i].object.amount += 1
+              arrayWithCount[i].object.amount += 1;
             }
           }
         }
       }
-      
-      return arrayWithCount.filter(index => {
-        return index.object.name.length > 0
-      })
+
+      return arrayWithCount.filter((index) => {
+        return index.object.name.length > 0;
+      });
     },
   },
 };
@@ -384,12 +403,11 @@ export default {
   font-weight: bold;
   height: fit-content;
   margin-left: 10%;
-  margin-top: 80px;
+  margin-top: 75px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;
   text-align: left;
-  
 
   .filter-category {
     cursor: pointer;
