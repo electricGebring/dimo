@@ -292,7 +292,6 @@ export default {
 
   data() {
     return {
-      checkedCategories: [],
       isActiveGlobalBoal: false,
       isActivekFTargetArea: false,
       isActiveDocumenttype: false,
@@ -316,7 +315,7 @@ export default {
     }
     this.check();
   },
-  
+
   methods: {
     check: function(e) {
       this.$emit("filter", e);
