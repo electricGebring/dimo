@@ -315,30 +315,11 @@ export default {
       this.isActiveThematic = true;
     }
     this.check();
-    console.log(this.checkedCategories, "this.checkedCategories filterBar");
   },
-
-  watch: {
-    resetCheck() {
-      this.checkedCategories = this.resetCheck
-    },
-  },
-
+  
   methods: {
     check: function(e) {
-      if (e) {
-        if (!this.checkedCategories.includes(e.target.value)) {
-          this.checkedCategories.push(e.target.value);
-        } else {
-          this.checkedCategories = this.checkedCategories.filter((i) => {
-            return i !== e.target.value;
-          });
-        }
-      } else {
-        this.checkedCategories.push(this.$route.params.Thematic);
-      }
-      console.log(this.checkedCategories, "hej");
-      this.$emit("filter", this.checkedCategories);
+      this.$emit("filter", e);
     },
 
     filterOnKey: function(key) {

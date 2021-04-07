@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FilterBar @filter="setFilter" :resetCheck="checkedCategories" />
+    <FilterBar @filter="check" :resetCheck="checkedCategories" />
       <div class="main">
       <Searchbar />
       <filter-tags @clickedTag="hideTag" :checkedCategories="checkedCategories"/>
@@ -42,6 +42,21 @@ export default {
       })
       this.setFilter(this.checkedCategories)
     },
+
+    check(e) {
+      if (e) {
+        if (!this.checkedCategories.includes(e.target.value)) {
+          this.checkedCategories.push(e.target.value);
+        } else {
+          this.checkedCategories = this.checkedCategories.filter((i) => {
+            return i !== e.target.value;
+          });
+        }
+      } else {
+        this.checkedCategories.push(this.$route.params.Thematic);
+      }
+      this.setFilter(this.checkedCategories)
+    },
     
     goto(url) {
       window.open(url, "_blank").focus();
@@ -53,14 +68,13 @@ export default {
     },
 
     setFilter(checkedCategories) {
-      this.checkedCategories = checkedCategories
       if (checkedCategories) {
         let arrayToDoclist = [];        
         checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i); //kan man sätta en include här istället????
+                arrayToDoclist.push(i);
               }
             }
           });
