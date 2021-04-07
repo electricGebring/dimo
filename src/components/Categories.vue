@@ -8,7 +8,7 @@
     </div>
     <div class="wrapper">
       <span class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
-        <router-link class="link" :to="{name: 'Search', params: {Thematic: Thematic}}">
+        <router-link class="link" :to="{name: 'Search', query: {Thematic: Thematic }}">
           <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
@@ -37,6 +37,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
 .section {
   width: 100%;
   margin-top: 80px;

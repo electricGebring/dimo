@@ -190,7 +190,7 @@
         <div v-for="thematic in filterThematic" :key="thematic.object.name">
           <div
             class="filter"
-            v-if="this.$route.params.Thematic == thematic.object.name"
+            v-if="this.$route.query.Thematic == thematic.object.name"
           >
             <p class="filterbar-checkbox__heading">
               <span class="ellipsis">{{ thematic.object.name }} ({{ thematic.object.amount }})</span> 
@@ -283,14 +283,15 @@ export default {
     };
   },
   mounted() {
-    if (this.$route.params.Thematic) {
+    if (this.$route.query.Thematic) {
+      console.log(this.$route.query.Thematic, 'this.$route.query.Thematic')
       this.isActiveThematic = true;
     }
     
   },
   methods: {
     check: function (e) {
-      this.checkedCategories.push(this.$route.params.Thematic);
+      this.checkedCategories.push(this.$route.query.Thematic);
 
       if (!this.checkedCategories.includes(e.target.value)) {
         this.checkedCategories.push(e.target.value);
@@ -321,7 +322,7 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 }
+                object: { name: elements[j][k], amount: 1 }
               }
             } 
           }

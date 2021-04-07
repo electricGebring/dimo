@@ -58,7 +58,7 @@ export default {
          
         this.doclist = arrayToDoclist
         checkedCategories = []
-        this.$route.params = {Elements: this.Elements}
+        this.$route.query = {Elements: this.Elements}
       } else {
         this.filteredList(); 
       }

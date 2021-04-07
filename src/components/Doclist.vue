@@ -3,7 +3,7 @@
     <div v-for="item in doclist" :key="item.Label" :item="item">
       <div
         v-if="
-          item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
+          item.Thematic === $route.query.Thematic ? $route.query.Thematic : $route.query.Elements
         "
       >
         <div class="section" @click.stop="goto(item.URL)">
