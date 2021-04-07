@@ -7,19 +7,25 @@
     >
       <p class="filter-tag">{{ tag }} X</p>
     </div>
-    
   </div>
+  <button class="reset-filter" @click="resetFilter()" v-if= "show">Rensa</button>
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
-  props: ['checkedCategories'],
-  emits: ['clickedTag'],
+  props: ["checkedCategories"],
+  emits: ["clickedTag"],
+ 
   setup(props, context) {
+     const show = ref(true);
     const handleClick = (tag) => {
-      context.emit('clickedTag', tag)
-    }
-    return { handleClick }
+      context.emit("clickedTag", tag);
+    };
+   const resetFilter = () => {
+      context.emit("resetFilter", show);
+    };    
+    return { handleClick, resetFilter, show };
   },
 };
 </script>
@@ -54,7 +60,5 @@ export default {
     margin: 0 10px 0 0;
     padding: 10px;
   }
-
-  
 }
 </style>
