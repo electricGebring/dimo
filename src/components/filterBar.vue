@@ -402,7 +402,7 @@ export default {
   font-weight: bold;
   height: fit-content;
   margin-left: 10%;
-  //margin-top: 80px; aldrig margin top
+  margin-top: 75px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;

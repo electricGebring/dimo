@@ -36,30 +36,17 @@ export default {
 .filter-tags {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 25px;
   padding: 0 60px;
 
-  // .filter-tag {
-  //   //float: left;
-  //   //margin: 8px;
-  //   // width: fit-content;
-  //   // height: 28px;
-  //   // background: #ffffff;
-  //   // border-radius: 15px;
-  //   // font-size: 10px;
-  //   // color: #2c365a;
-  //   // font-family: "Montserrat", sans-serif;
-  //   // text-align: center;
-  //   // line-height: 2.7;
-  //   // padding: 10px;
-  // }
   .filter-tag {
     background: #ffffff;
     border-radius: 15px;
     color: #2c365a;
     font-family: "Montserrat", sans-serif;
     font-size: 10px;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
     padding: 10px;
   }
   .reset-filter {
