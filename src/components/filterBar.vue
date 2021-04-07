@@ -311,7 +311,6 @@ export default {
 
   mounted() {
     if (this.$route.query.Thematic) {
-      console.log(this.$route.query.Thematic, 'this.$route.query.Thematic')
       this.isActiveThematic = true;
     }
     this.check();
