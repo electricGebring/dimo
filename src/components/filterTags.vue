@@ -17,7 +17,7 @@
 import { ref } from "vue";
 export default {
   props: ["checkedCategories", "show"],
-  emits: ["clickedTag"],
+  emits: ["clickedTag", "resetFilter"],
 
   setup(props, context) {
     const showResetButton = ref(true);
