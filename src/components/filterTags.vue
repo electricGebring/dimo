@@ -7,24 +7,26 @@
     >
       <p class="filter-tag">{{ tag }} X</p>
     </div>
+    <button class="reset-filter" @click="resetFilter()" v-if="show">
+      Rensa filter
+    </button>
   </div>
-  <button class="reset-filter" @click="resetFilter()" v-if= "show">Rensa</button>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 export default {
   props: ["checkedCategories", "show"],
   emits: ["clickedTag"],
- 
+
   setup(props, context) {
-     const showResetButton = ref(true);
+    const showResetButton = ref(true);
     const handleClick = (tag) => {
       context.emit("clickedTag", tag);
     };
-   const resetFilter = () => {
+    const resetFilter = () => {
       context.emit("resetFilter", showResetButton);
-    };    
+    };
     return { handleClick, resetFilter, showResetButton };
   },
 };
@@ -59,6 +61,22 @@ export default {
     font-size: 10px;
     margin: 0 10px 0 0;
     padding: 10px;
+  }
+  .reset-filter {
+    width: 72px;
+    height: 30px;
+    background: #c0c7d9;
+    color: #2c365a;
+    border: 1px solid #2c365a;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 12px;
+
+    &:hover {
+      background: #2c365a;
+      color: #fff;
+    }
   }
 }
 </style>
