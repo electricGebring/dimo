@@ -14,18 +14,18 @@
 <script>
 import { ref } from 'vue'
 export default {
-  props: ["checkedCategories"],
+  props: ["checkedCategories", "show"],
   emits: ["clickedTag"],
  
   setup(props, context) {
-     const show = ref(true);
+     const showResetButton = ref(true);
     const handleClick = (tag) => {
       context.emit("clickedTag", tag);
     };
    const resetFilter = () => {
-      context.emit("resetFilter", show);
+      context.emit("resetFilter", showResetButton);
     };    
-    return { handleClick, resetFilter, show };
+    return { handleClick, resetFilter, showResetButton };
   },
 };
 </script>

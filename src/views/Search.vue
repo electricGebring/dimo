@@ -3,7 +3,7 @@
     <FilterBar @filter="check" :resetCheck="checkedCategories" />
       <div class="main">
       <Searchbar />
-      <filter-tags @clickedTag="hideTag" @resetFilter="resetFilter" :checkedCategories="checkedCategories"/>
+      <filter-tags @clickedTag="hideTag" @resetFilter="resetFilter" :checkedCategories="checkedCategories" :show="show"/>
       <doclist :doclist="doclist" />
     </div>
   </div>  
@@ -20,6 +20,7 @@ export default {
     return {
       doclist: [],
       checkedCategories: [],
+      show: false
     };
   },
   components: {
@@ -43,13 +44,15 @@ export default {
       this.setFilter(this.checkedCategories)
     },
 
-     resetFilter(show) {
+     resetFilter(showResetButton) {
       this.checkedCategories = []
       this.setFilter(this.checkedCategories)
-       show.value = false;
+      showResetButton.value = this.show;
+       this.show = false;
     },
 
     check(e) {
+       this.show = true
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {
          
@@ -63,7 +66,6 @@ export default {
         this.checkedCategories.push(this.$route.params.Thematic);
       }
       this.setFilter(this.checkedCategories)
-       
     },
     
     goto(url) {
