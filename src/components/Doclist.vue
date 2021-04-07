@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ['doclist', 'filterlist'],
+  props: ['doclist'],
   components: {},
   computed: {},
   methods: {
