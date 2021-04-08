@@ -26,10 +26,10 @@ export default {
 <style lang="scss">
 .container {
   display: flex;
+  padding: 5% 5% 0 5%;
 }
 
 .main {
   width: 80%;
-  padding: 0 5% 0 5%;
 }
 </style>

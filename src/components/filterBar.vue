@@ -24,6 +24,7 @@
             :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
+            :checked="resetCheck.includes(globalGoal.object.name)"
           />
         </div>
       </div>
@@ -60,6 +61,7 @@
             :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
+            :checked="resetCheck.includes(KFTargetArea.object.name)"
           />
         </div>
       </div>
@@ -96,6 +98,7 @@
             :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
+            :checked="resetCheck.includes(documenttype.object.name)"
           />
         </div>
       </div>
@@ -127,6 +130,7 @@
             :value="department.object.name"
             id="department"
             @change="check($event)"
+            :checked="resetCheck.includes(department.object.name)"
           />
         </div>
       </div>
@@ -147,7 +151,13 @@
           <p class="filterbar-checkbox__heading">
             <span class="ellipsis">{{ office.object.name }} ({{ office.object.amount }})</span>
           </p>
-          <input type="checkbox" :value="office.object.name" id="office" @change="check($event)" />
+          <input
+            type="checkbox"
+            :value="office.object.name"
+            id="office"
+            @change="check($event)"
+            :checked="resetCheck.includes(office.object.name)"
+          />
         </div>
       </div>
     </div>
@@ -173,7 +183,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              checked="checked"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
           <div class="filter" v-else>
@@ -185,6 +195,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
+              :checked="resetCheck.includes(thematic.object.name)"
             />
           </div>
         </div>
@@ -213,6 +224,7 @@
             :value="validity.object.name"
             id="validity"
             @change="check($event)"
+            :checked="resetCheck.includes(validity.object.name)"
           />
         </div>
       </div>
@@ -222,11 +234,11 @@
 
 <script>
 export default {
-  props: ['Elements'],
+  props: ['resetCheck'],
+  emits: ['filter'],
 
   data() {
     return {
-      checkedCategories: [],
       isActiveGlobalBoal: false,
       isActivekFTargetArea: false,
       isActiveDocumenttype: false,
@@ -234,15 +246,6 @@ export default {
       isActiveOffice: false,
       isActiveThematic: '',
       isActiveValidity: false,
-      filterBarArray: [
-        'GlobalGoal',
-        'KFTargetArea',
-        'Documentype',
-        'Department',
-        'Office',
-        'Thematic',
-        'Validity',
-      ],
       filterGlobalGoal: this.filterOnKey('GlobalGoal'),
       filterKFTargetArea: this.filterOnKey('KFTargetArea'),
       filterDocumenttype: this.filterOnKey('Documenttype'),
@@ -252,23 +255,17 @@ export default {
       filterValidity: this.filterOnKey('Validity'),
     }
   },
+
   mounted() {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true
     }
+    this.check()
   },
+
   methods: {
     check: function(e) {
-      this.checkedCategories.push(this.$route.params.Thematic)
-
-      if (!this.checkedCategories.includes(e.target.value)) {
-        this.checkedCategories.push(e.target.value)
-      } else {
-        this.checkedCategories = this.checkedCategories.filter((i) => {
-          return i !== e.target.value
-        })
-      }
-      this.$emit('filter', this.checkedCategories)
+      this.$emit('filter', e)
     },
 
     filterOnKey: function(key) {
@@ -351,8 +348,7 @@ export default {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   height: fit-content;
-  margin-left: 90px;
-  margin-top: 220px;
+  margin-top: 200px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;
