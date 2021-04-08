@@ -14,11 +14,13 @@
             class="title"
             :style="[
               item.Status == 'Gällande'
-                ? {background: '#87BDC9'}
-                : item.Status == 'Remiss'
-                ? {background: '#E9A15F'}
+                ? {background: '#385B94'}
+                : item.Status == 'Under revidering'
+                ? {background: '#A95F90'}
                 : item.Status == 'Under framtagande'
-                ? {background: '#5F8C9A'}
+                ? {background: '#002065'}
+                : item.Status == 'Utgått'
+                ? {background: '#FD7F94'}
                 : {background: '#C45941'},
             ]"
           >
@@ -40,6 +42,7 @@ export default {
   props: ['doclist', 'filterlist'],
   components: {},
   computed: {},
+  mounted() {},
   methods: {
     goto(url) {
       window.open(url, '_blank').focus()
@@ -61,6 +64,9 @@ body {
   justify-content: flex-start;
   margin-left: 40px;
   margin-top: 80px;
+  // max-height: 540px; //// scroll in content
+  // overflow: hidden;
+  // overflow-y: scroll;
 }
 .section {
   position: relative;
