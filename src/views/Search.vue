@@ -1,103 +1,109 @@
 <template>
   <div class="container">
-    <FilterBar @filter="check" :resetCheck="checkedCategories" />
-      <div class="main">
-      <Searchbar />
-      <filter-tags @clickedTag="hideTag" @resetFilter="resetFilter" :checkedCategories="checkedCategories" :show="show"/>
-      <doclist :doclist="doclist" />
-    </div>
-  </div>  
+    <goBack />
+  <FilterBar @filter="check" :resetCheck="checkedCategories" />
+  <div class="main">
+    <Searchbar />
+    <filter-tags
+      @clickedTag="hideTag"
+      @resetFilter="resetFilter"
+      :checkedCategories="checkedCategories"
+      :show="show"
+    />
+    <doclist :doclist="doclist" />
+  </div>
+  </div>
 </template>
 
 <script>
 import Searchbar from '../components/Searchbar.vue'
+import Doclist from '../components/Doclist.vue'
+import FilterBar from '../components/filterBar.vue'
+import goBack from '../components/goBack.vue'
 import filterTags from '../components/filterTags.vue'
-import Doclist from "../components/Doclist.vue";
-import FilterBar from "../components/filterBar.vue";
 
 export default {
   data() {
     return {
       doclist: [],
       checkedCategories: [],
-      show: false
-    };
+      show: false,
+    }
   },
   components: {
     Searchbar,
     Doclist,
     FilterBar,
+    goBack,
     filterTags,
   },
   computed: {
     Elements() {
-      return this.$store.state.Elements;
-    }
+      return this.$store.state.Elements
+    },
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     hideTag(tag) {
-      this.checkedCategories = this.checkedCategories.filter(index => {
+      this.checkedCategories = this.checkedCategories.filter((index) => {
         return index !== tag
       })
       this.setFilter(this.checkedCategories)
     },
 
-     resetFilter(showResetButton) {
+    resetFilter(showResetButton) {
       this.checkedCategories = []
       this.setFilter(this.checkedCategories)
-      showResetButton.value = this.show;
-       this.show = false;
+      showResetButton.value = this.show
+      this.show = false
     },
 
     check(e) {
-       this.show = true
+      this.show = true
       if (e) {
         if (!this.checkedCategories.includes(e.target.value)) {
-         
-          this.checkedCategories.push(e.target.value);
+          this.checkedCategories.push(e.target.value)
         } else {
           this.checkedCategories = this.checkedCategories.filter((i) => {
-            return i !== e.target.value;
-          });
+            return i !== e.target.value
+          })
         }
       } else {
         this.checkedCategories.push(this.$route.query.Thematic);
       }
       this.setFilter(this.checkedCategories)
     },
-    
+
     goto(url) {
-      window.open(url, "_blank").focus();
+      window.open(url, '_blank').focus()
     },
     filteredList() {
       this.doclist = this.Elements.filter((i) => {
-        return i.Thematic === i.Thematic;
-      });
+        return i.Thematic === i.Thematic
+      })
     },
 
     setFilter(checkedCategories) {
       if (checkedCategories) {
-        let arrayToDoclist = [];        
+        let arrayToDoclist = []
         checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
             for (let k in i) {
               if (j === i[k]) {
-                arrayToDoclist.push(i);
+                arrayToDoclist.push(i)
               }
             }
-          });
-        });
-         
+          })
+        })
+
         this.doclist = arrayToDoclist
         this.$route.query = {Elements: this.Elements}
       } else {
-        this.filteredList() 
+        this.filteredList()
       }
-    },   
+    },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -108,12 +114,10 @@ export default {
 
 .main {
   width: 80%;
-  
 }
 
 body {
   margin: 0;
   padding: 0;
 }
-
 </style>
