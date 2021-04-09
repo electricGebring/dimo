@@ -63,7 +63,7 @@ export default {
           });
         }
       } else {
-        this.checkedCategories.push(this.$route.query.Thematic);
+        this.checkedCategories.push(this.$route.params.Thematic);
       }
       this.setFilter(this.checkedCategories)
     },
@@ -91,7 +91,7 @@ export default {
         });
          
         this.doclist = arrayToDoclist
-        this.$route.query = {Elements: this.Elements}
+        this.$route.params = {Elements: this.Elements}
       } else {
         this.filteredList() 
       }
