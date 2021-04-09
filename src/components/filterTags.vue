@@ -7,7 +7,8 @@
     >
       <p class="filter-tag">
         {{ tag }}
-        <img class="delete-icon" src="/img/deleteicon.svg" alt="" />
+        <span>
+        <img class="delete-icon" src="/img/deleteicon.svg" alt="" /></span>
       </p>
     </div>
     <button class="reset-filter" @click="resetFilter()" v-if="show">
@@ -51,12 +52,13 @@ export default {
     font-size: 10px;
     margin: 0 10px 10px 0;
     padding: 10px;
-  }
+    font-weight: bolder;
 
-  .delete-icon {
-    width: 10px;
-    height: 10px;
-    margin-left: 10px;
+    .delete-icon {
+      width: 8px;
+      height: 8px;
+      margin-left: 5px;
+    }
   }
 
   .reset-filter {
