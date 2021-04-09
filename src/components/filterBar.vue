@@ -172,7 +172,10 @@
 
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic.object.name">
-          <div class="filter" v-if="this.$route.params.Thematic == thematic.object.name">
+          <div
+            class="filter"
+            v-if="this.$route.query.Thematic == thematic.object.name"
+          >
             <p class="filterbar-checkbox__heading">
               <span class="ellipsis"
                 >{{ thematic.object.name }} ({{ thematic.object.amount }})</span
@@ -257,12 +260,12 @@ export default {
   },
 
   mounted() {
-    if (this.$route.params.Thematic) {
-      this.isActiveThematic = true
+    if (this.$route.query.Thematic) {
+      this.isActiveThematic = true;
     }
     this.check()
   },
-
+  
   methods: {
     check: function(e) {
       this.$emit('filter', e)
