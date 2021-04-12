@@ -66,12 +66,14 @@ body {
 //// VIEW CHANGE CSS ////
 .mystyle {
   #section {
+    display: flex;
+    justify-content: flex-start;
     background-color: black;
-    width: 873px;
-    max-width: 873px;
-    height: 56px;
-    max-height: 56px;
     padding: 0;
+    width: 1000px;
+    max-width: 1000px;
+    height: 85px;
+    max-height: 85px;
     border-radius: 10px;
   }
   .doclist-container {
@@ -83,7 +85,6 @@ body {
     margin-left: 20px;
   }
   .img-container {
-    float: left;
   }
   .type {
     display: flex;
@@ -91,22 +92,26 @@ body {
     height: 30px;
     border-radius: 10px;
     background-color: #8996b1;
-    margin: 30px;
-    margin-left: 50%;
+    margin-top: 30px;
+    margin-left: 60%;
     align-items: center;
-    align-self: center;
   }
   .title {
     font-size: 16px;
     height: 0px;
-    margin: 10px;
     padding: 0;
     margin-left: 100px;
     color: black;
     text-align: left;
   }
   .labelTitle {
+    max-width: 200px;
+    width: 200px;
     word-break: break-word;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 //// VIEW CHANGE CSS END ////
