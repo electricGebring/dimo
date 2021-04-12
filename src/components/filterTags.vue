@@ -5,7 +5,11 @@
       :key="index"
       @click="handleClick(tag)"
     >
-      <p class="filter-tag">{{ tag }} X</p>
+      <p class="filter-tag">
+        {{ tag }}
+        <span>
+        <img class="delete-icon" src="/img/deleteicon.svg" alt="" /></span>
+      </p>
     </div>
     <button class="reset-filter" @click="resetFilter()" v-if="show">
       Rensa filter
@@ -48,7 +52,15 @@ export default {
     font-size: 10px;
     margin: 0 10px 10px 0;
     padding: 10px;
+    font-weight: bolder;
+
+    .delete-icon {
+      width: 8px;
+      height: 8px;
+      margin-left: 5px;
+    }
   }
+
   .reset-filter {
     width: 72px;
     height: 30px;
