@@ -9,23 +9,14 @@
         v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
         >-</span
       >
-      <span
-        v-else
-        class="toggle"
-        v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
+      <span v-else class="toggle" v-on:click="this.isActiveGlobalBoal = !this.isActiveGlobalBoal"
         >+</span
       >
       <div v-if="this.isActiveGlobalBoal">
-        <div
-          class="filter"
-          v-for="globalGoal in filterGlobalGoal"
-          :key="globalGoal.object.name"
-        >
+        <div class="filter" v-for="globalGoal in filterGlobalGoal" :key="globalGoal.object.name">
           <p class="filterbar-checkbox__heading">
             <span class="ellipsis"
-              >{{ globalGoal.object.name }} ({{
-                globalGoal.object.amount
-              }})</span
+              >{{ globalGoal.object.name }} ({{ globalGoal.object.amount }})</span
             >
           </p>
           <input
@@ -62,9 +53,7 @@
         >
           <p class="filterbar-checkbox__heading">
             <span class="ellipsis"
-              >{{ KFTargetArea.object.name.substring(2) }} ({{
-                KFTargetArea.object.amount
-              }})</span
+              >{{ KFTargetArea.object.name.substring(2) }} ({{ KFTargetArea.object.amount }})</span
             >
           </p>
           <input
@@ -101,9 +90,7 @@
         >
           <p class="filterbar-checkbox__heading">
             <span class="ellipsis"
-              >{{ documenttype.object.name }} ({{
-                documenttype.object.amount
-              }})</span
+              >{{ documenttype.object.name }} ({{ documenttype.object.amount }})</span
             >
           </p>
           <input
@@ -126,24 +113,15 @@
         v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
         >-</span
       >
-      <span
-        v-else
-        class="toggle"
-        v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
+      <span v-else class="toggle" v-on:click="this.isActiveDepartment = !this.isActiveDepartment"
         >+</span
       >
 
       <div v-if="this.isActiveDepartment">
-        <div
-          class="filter"
-          v-for="department in filterDepartment"
-          :key="department.object.name"
-        >
+        <div class="filter" v-for="department in filterDepartment" :key="department.object.name">
           <p class="filterbar-checkbox__heading">
             <span class="ellipsis"
-              >{{ department.object.name }} ({{
-                department.object.amount
-              }})</span
+              >{{ department.object.name }} ({{ department.object.amount }})</span
             >
           </p>
 
@@ -167,22 +145,11 @@
         v-on:click="this.isActiveOffice = !this.isActiveOffice"
         >-</span
       >
-      <span
-        v-else
-        class="toggle"
-        v-on:click="this.isActiveOffice = !this.isActiveOffice"
-        >+</span
-      >
+      <span v-else class="toggle" v-on:click="this.isActiveOffice = !this.isActiveOffice">+</span>
       <div v-if="this.isActiveOffice">
-        <div
-          class="filter"
-          v-for="office in filterOffice"
-          :key="office.object.name"
-        >
+        <div class="filter" v-for="office in filterOffice" :key="office.object.name">
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis"
-              >{{ office.object.name }} ({{ office.object.amount }})</span
-            >
+            <span class="ellipsis">{{ office.object.name }} ({{ office.object.amount }})</span>
           </p>
           <input
             type="checkbox"
@@ -198,18 +165,10 @@
 
     <div class="filter-category">
       <h4 class="filterbar-heading_h4">Tematiskt område</h4>
-      <span
-        v-if="isActiveThematic"
-        class="toggle"
-        v-on:click="isActiveThematic = !isActiveThematic"
+      <span v-if="isActiveThematic" class="toggle" v-on:click="isActiveThematic = !isActiveThematic"
         >-</span
       >
-      <span
-        v-else
-        class="toggle"
-        v-on:click="isActiveThematic = !isActiveThematic"
-        >+</span
-      >
+      <span v-else class="toggle" v-on:click="isActiveThematic = !isActiveThematic">+</span>
 
       <div v-if="isActiveThematic">
         <div v-for="thematic in filterThematic" :key="thematic.object.name">
@@ -255,22 +214,13 @@
         v-on:click="this.isActiveValidity = !this.isActiveValidity"
         >-</span
       >
-      <span
-        v-else
-        class="toggle"
-        v-on:click="this.isActiveValidity = !this.isActiveValidity"
+      <span v-else class="toggle" v-on:click="this.isActiveValidity = !this.isActiveValidity"
         >+</span
       >
       <div v-if="this.isActiveValidity">
-        <div
-          class="filter"
-          v-for="validity in filterValidity"
-          :key="validity.object.name"
-        >
+        <div class="filter" v-for="validity in filterValidity" :key="validity.object.name">
           <p class="filterbar-checkbox__heading">
-            <span class="ellipsis"
-              >{{ validity.object.name }} ({{ validity.object.amount }})</span
-            >
+            <span class="ellipsis">{{ validity.object.name }} ({{ validity.object.amount }})</span>
           </p>
           <input
             type="checkbox"
@@ -287,8 +237,8 @@
 
 <script>
 export default {
-  props: ["resetCheck"],
-  emits: ["filter"],
+  props: ['resetCheck'],
+  emits: ['filter'],
 
   data() {
     return {
@@ -297,42 +247,42 @@ export default {
       isActiveDocumenttype: false,
       isActiveDepartment: false,
       isActiveOffice: false,
-      isActiveThematic: "",
+      isActiveThematic: '',
       isActiveValidity: false,
-      filterGlobalGoal: this.filterOnKey("GlobalGoal"),
-      filterKFTargetArea: this.filterOnKey("KFTargetArea"),
-      filterDocumenttype: this.filterOnKey("Documenttype"),
-      filterDepartment: this.filterOnKey("Department"),
-      filterOffice: this.filterOnKey("Office"),
-      filterThematic: this.filterOnKey("Thematic"),
-      filterValidity: this.filterOnKey("Validity"),
-    };
+      filterGlobalGoal: this.filterOnKey('GlobalGoal'),
+      filterKFTargetArea: this.filterOnKey('KFTargetArea'),
+      filterDocumenttype: this.filterOnKey('Documenttype'),
+      filterDepartment: this.filterOnKey('Department'),
+      filterOffice: this.filterOnKey('Office'),
+      filterThematic: this.filterOnKey('Thematic'),
+      filterValidity: this.filterOnKey('Validity'),
+    }
   },
 
   mounted() {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    this.check();
+    this.check()
   },
 
   methods: {
     check: function(e) {
-      this.$emit("filter", e);
+      this.$emit('filter', e)
     },
 
     filterOnKey: function(key) {
-      const filterKey = new Set();
-      const arrayWithCount = [];
-      const objectToArray = [];
-      const elements = this.$store.state.Elements;
+      const filterKey = new Set()
+      const arrayWithCount = []
+      const objectToArray = []
+      const elements = this.$store.state.Elements
 
       elements.forEach((index) => {
-        filterKey.add(index[key]);
-      });
+        filterKey.add(index[key])
+      })
 
       for (let index of filterKey) {
-        objectToArray.push(index);
+        objectToArray.push(index)
       }
 
       for (let i = 0; i < objectToArray.length; i++) {
@@ -340,8 +290,8 @@ export default {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
               arrayWithCount[i] = {
-                object: { name: elements[j][k], amount: 0 },
-              };
+                object: {name: elements[j][k], amount: 0},
+              }
             }
           }
         }
@@ -350,22 +300,22 @@ export default {
         for (let j = 0; j < elements.length; j++) {
           for (let k in elements[j]) {
             if (objectToArray[i] === elements[j][k]) {
-              arrayWithCount[i].object.amount += 1;
+              arrayWithCount[i].object.amount += 1
             }
           }
         }
       }
 
       return arrayWithCount.filter((index) => {
-        return index.object.name.length > 0;
-      });
+        return index.object.name.length > 0
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 .filterbar-heading_h3 {
   font-size: 14px;
   font-weight: 200;
@@ -398,11 +348,10 @@ export default {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   height: fit-content;
-  margin-left: 10%;
-  margin-top: 75px;
+  margin-top: 200px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;
