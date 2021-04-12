@@ -358,7 +358,6 @@ export default {
   text-align: left;
 
   .filter-category {
-    cursor: pointer;
     margin-bottom: 20px;
     padding: 0 3px;
     position: relative;
@@ -378,6 +377,9 @@ export default {
     flex-wrap: wrap;
     padding-left: 24px;
     justify-content: space-between;
+  }
+  input {
+    cursor: pointer;
   }
 
   hr {
