@@ -14,7 +14,7 @@
             class="title"
             :style="[
               item.Status == 'Gällande'
-                ? {background: '#385B94'}
+                ? {background: '#4066A6'}
                 : item.Status == 'Under revidering'
                 ? {background: '#A95F90'}
                 : item.Status == 'Under framtagande'
@@ -109,7 +109,7 @@ body {
   margin: 5px auto;
 }
 .title {
-  height: 50px;
+  height: 51px;
   color: #fff;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -132,7 +132,6 @@ img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 .labelTitle {
-  padding: 10px;
   word-break: break-word;
 }
 </style>
