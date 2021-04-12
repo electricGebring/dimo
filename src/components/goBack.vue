@@ -20,6 +20,5 @@ export default {
   width: 11.78px;
   height: 20px;
   position: absolute;
-  margin-left: 90px;
 }
 </style>
