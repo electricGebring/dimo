@@ -1,12 +1,14 @@
 <template>
-  <div class="doclist-container">
-    <div v-for="item in doclist" :key="item.Label" :item="item">
+  <span class="" @click="changeView()"><img src="/img/view-line.svg" alt=""/></span>
+
+  <div id="all" class="doclist-container">
+    <div class="titlesection" v-for="item in doclist" :key="item.Label" :item="item">
       <div
         v-if="
           item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
         "
       >
-        <div class="section" @click.stop="goto(item.URL)">
+        <div id="section" class="" @click.stop="goto(item.URL)">
           <div class="img-container">
             <img v-bind:src="item.CoverImg" width="100" height="140" />
           </div>
@@ -47,6 +49,11 @@ export default {
     goto(url) {
       window.open(url, '_blank').focus()
     },
+    changeView() {
+      let view = document.getElementById('all')
+      view.classList.toggle('mystyle')
+      console.log(this.changeView)
+    },
   },
 }
 </script>
@@ -56,6 +63,54 @@ body {
   margin: 0;
   padding: 0;
 }
+//// VIEW CHANGE CSS ////
+.mystyle {
+  #section {
+    background-color: black;
+    width: 873px;
+    max-width: 873px;
+    height: 56px;
+    max-height: 56px;
+    padding: 0;
+    border-radius: 10px;
+  }
+  .doclist-container {
+    display: inline-block;
+  }
+  img {
+    height: 36px;
+    width: 25px;
+    margin-left: 20px;
+  }
+  .img-container {
+    text-align: left;
+  }
+  .type {
+    display: flex;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #8996b1;
+    margin: 30px;
+    margin-left: 50%;
+    align-items: center;
+    align-self: center;
+  }
+  .title {
+    font-size: 16px;
+    height: 0px;
+    margin: 10px;
+    padding: 0;
+    margin-left: 100px;
+    color: black;
+    text-align: left;
+  }
+  .labelTitle {
+    word-break: break-word;
+  }
+}
+//// VIEW CHANGE CSS END ////
+
 .doclist-container {
   align-content: flex-start;
   display: flex;
@@ -68,7 +123,7 @@ body {
   // overflow: hidden;
   // overflow-y: scroll;
 }
-.section {
+#section {
   position: relative;
   display: table;
   margin: 0 20px 20px 20px;
