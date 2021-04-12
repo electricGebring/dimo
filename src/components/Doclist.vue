@@ -83,7 +83,7 @@ body {
     margin-left: 20px;
   }
   .img-container {
-    text-align: left;
+    float: left;
   }
   .type {
     display: flex;
