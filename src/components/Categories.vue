@@ -2,13 +2,20 @@
   <div class="section">
     <div class="headbar">
       <h2 class="category-heading">Sök efter kategori</h2>
-      <router-link :to="{name: 'Search', params: {Elements: Elements}}">
+      <router-link :to="{ name: 'Search', params: { Elements: Elements } }">
         <span class="show-all">Visa Alla</span>
       </router-link>
     </div>
     <div class="wrapper">
-      <span class="categories" v-for="(Thematic, index) in ThematicList" :key="index">
-        <router-link class="link" :to="{name: 'Search', params: {Thematic: Thematic}}">
+      <span
+        class="categories"
+        v-for="(Thematic, index) in ThematicList"
+        :key="index"
+      >
+        <router-link
+          class="link"
+          :to="{ name: 'Search', params: { Thematic: Thematic } }"
+        >
           <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
@@ -18,35 +25,51 @@
 
 <script>
 export default {
+  methods: {
+    circleSizing() {
+      var div = 360 / 14;
+      var radius = 250;
+      var position = 300;
+      let circles = document.getElementsByClassName("categories");
+      for (let i = 0; i <= circles.length - 1; i++) {
+        var y = Math.sin(div * i * (Math.PI / 180)) * radius;
+        var x = Math.cos(div * i * (Math.PI / 180)) * radius;
+        circles[i].style.top = (y + position).toString() + "px";
+        circles[i].style.left = (x + position).toString() + "px";
+      }
+    },
+  },
   computed: {
     Elements() {
-      return this.$store.state.Elements
+      return this.$store.state.Elements;
     },
 
     ThematicList() {
-      const ThematicList = new Set()
-      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
-      return Array.from(ThematicList)
+      const ThematicList = new Set();
+      this.$store.state.Elements.forEach((item) =>
+        ThematicList.add(item.Thematic)
+      );
+      return Array.from(ThematicList);
     },
   },
   mounted() {
-    this.$store.dispatch('getDocuments')
+    this.$store.dispatch("getDocuments");
+    this.circleSizing();
   },
-}
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .section {
   width: 100%;
   margin-top: 80px;
 }
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   margin: 20px 0 0 20px;
+  position: relative;
 }
 .categories {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
@@ -54,8 +77,9 @@ export default {
   height: 117px;
   text-align: center;
   background-color: #ffffff;
-  border-radius: 10%;
+  border-radius: 50%;
   margin: 20px;
+  position: absolute;
 }
 .categories:hover {
   box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
@@ -79,7 +103,7 @@ export default {
 }
 .headbar {
   display: block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-left: 40px;
   width: 90%;
 }
