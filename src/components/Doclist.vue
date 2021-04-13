@@ -1,9 +1,12 @@
 <template>
+  <div class="result-title">{{ doclist.length }} Sökresultat</div>
   <div class="doclist-container">
     <div v-for="item in doclist" :key="item.Label" :item="item">
       <div
         v-if="
-          item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
+          item.Thematic === $route.params.Thematic
+            ? $route.params.Thematic
+            : $route.params.Elements
         "
       >
         <div class="section" @click.stop="goto(item.URL)">
@@ -14,14 +17,14 @@
             class="title"
             :style="[
               item.Status == 'Gällande'
-                ? {background: '#4066A6'}
+                ? { background: '#4066A6' }
                 : item.Status == 'Under revidering'
-                ? {background: '#A95F90'}
+                ? { background: '#A95F90' }
                 : item.Status == 'Under framtagande'
-                ? {background: '#002065'}
+                ? { background: '#002065' }
                 : item.Status == 'Utgått'
-                ? {background: '#FD7F94'}
-                : {background: '#C45941'},
+                ? { background: '#FD7F94' }
+                : { background: '#C45941' },
             ]"
           >
             <span class="labelTitle">
@@ -39,16 +42,16 @@
 
 <script>
 export default {
-  props: ['doclist'],
+  props: ["doclist"],
   components: {},
   computed: {},
   mounted() {},
   methods: {
     goto(url) {
-      window.open(url, '_blank').focus()
+      window.open(url, "_blank").focus();
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -63,10 +66,20 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
-  margin-top: 80px;
+  margin-top: 40px;
   // max-height: 540px; //// scroll in content
   // overflow: hidden;
   // overflow-y: scroll;
+}
+
+.result-title {
+  display: inline-block;
+  font-family: Montserrat;
+  font-weight: bolder;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c365a;
+  margin-left: 60px;
 }
 .section {
   position: relative;
@@ -92,7 +105,7 @@ body {
   height: 25px;
   background: #bebdb9;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
@@ -103,7 +116,7 @@ body {
 .type span {
   display: inline-block;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 10px;
   font-weight: bold;
   margin: 5px auto;
@@ -112,7 +125,7 @@ body {
   height: 51px;
   color: #fff;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   font-weight: bold;
   align-self: center;
