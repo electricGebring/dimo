@@ -10,7 +10,7 @@
       >
         <div id="section" class="" @click.stop="goto(item.URL)">
           <div class="img-container">
-            <img v-bind:src="item.CoverImg" width="100" height="140" />
+            <img class="imgcard" v-bind:src="item.CoverImg" width="100" height="140" />
           </div>
           <div
             class="title"
@@ -31,6 +31,10 @@
             </span>
             <div class="type">
               <span>{{ item.Documenttype }} </span>
+            </div>
+            <div class="icons">
+              <span class=""><img src="/img/view-eye.svg" alt=""/></span>
+              <span class=""><img src="/img/star-save.svg" alt=""/></span>
             </div>
           </div>
         </div>
@@ -70,6 +74,7 @@ body {
     justify-content: flex-start;
     background-color: black;
     padding: 0;
+    margin: 0;
     width: 1000px;
     max-width: 1000px;
     height: 85px;
@@ -79,12 +84,17 @@ body {
   .doclist-container {
     display: inline-block;
   }
-  img {
+  .imgcard {
     height: 36px;
     width: 25px;
     margin-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-style: none;
   }
   .img-container {
+    height: 36px;
+    width: 25px;
+    margin-left: 20px;
   }
   .type {
     display: flex;
@@ -97,21 +107,27 @@ body {
     align-items: center;
   }
   .title {
-    font-size: 16px;
-    height: 0px;
+    align-self: flex-end;
+    font-size: 14px;
     padding: 0;
     margin-left: 100px;
     color: black;
     text-align: left;
+    background: none !important;
+    box-shadow: none;
+    border-style: none;
   }
   .labelTitle {
-    max-width: 200px;
-    width: 200px;
     word-break: break-word;
     padding: 0;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .titlesection {
+    margin: 8px;
+  }
+  .icons {
+    margin-top: 30px;
   }
 }
 //// VIEW CHANGE CSS END ////
@@ -184,7 +200,7 @@ body {
   text-align: center;
   margin: 5px 0px 30px 0px;
 }
-img {
+.imgcard {
   display: inline-block;
   border: solid 1px lightgrey;
   margin-top: 20px;
@@ -194,5 +210,16 @@ img {
 .labelTitle {
   padding: 10px;
   word-break: break-word;
+}
+.icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  margin-left: 10px;
+  span {
+    margin: 5px;
+    padding: 1px;
+  }
 }
 </style>
