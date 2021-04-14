@@ -2,11 +2,31 @@
   <div class="section">
     <div class="headbar">
       <h2 class="category-heading">Sök efter kategori</h2>
-      <router-link :to="{ name: 'Search', params: { Elements: Elements } }">
-        <span class="show-all">Visa Alla</span>
-      </router-link>
+    </div>
+    <div class="wrapper-list">
+      <ul class="bubble-list">
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+        <li class="bubble"></li>
+      </ul>
+      <div
+        class=""
+        v-for="KFTargetArea in KFTargetAreaList"
+        :key="KFTargetArea"
+      >
+        <p class="targetarea-title">{{ KFTargetArea }}</p>
+      </div>
     </div>
     <div class="wrapper">
+      <div class="middle-circle">
+        <router-link :to="{ name: 'Search', params: { Elements: Elements } }">
+          <span class="show-all">Visa Alla</span>
+        </router-link>
+      </div>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -28,7 +48,7 @@ export default {
   methods: {
     circleSizing() {
       var div = 360 / 14;
-      var radius = 250;
+      var radius = 220;
       var position = 300;
       let circles = document.getElementsByClassName("categories");
       for (let i = 0; i <= circles.length - 1; i++) {
@@ -51,6 +71,14 @@ export default {
       );
       return Array.from(ThematicList);
     },
+
+    KFTargetAreaList() {
+      const KFTargetAreaList = new Set();
+      this.$store.state.Elements.forEach((item) =>
+        KFTargetAreaList.add(item.KFTargetArea)
+      );
+      return Array.from(KFTargetAreaList);
+    },
   },
   mounted() {
     this.$store.dispatch("getDocuments");
@@ -59,37 +87,90 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .section {
-  width: 100%;
   margin-top: 80px;
-}
-.wrapper {
-  font-family: "Montserrat", sans-serif;
-  width: 100%;
-  margin: 20px 0 0 20px;
+  width: 1170px;
+  height: 519px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 275px;
   position: relative;
 }
-.categories {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-  width: 117px;
-  height: 117px;
-  text-align: center;
-  background-color: #ffffff;
+
+.wrapper-list {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+}
+
+.bubble-list {
+  float: left;
+  list-style: none;
+  margin-top: 16px;
+  margin-left: -70px;
+}
+.bubble {
+  width: 25px;
+  height: 25px;
+  left: 372px;
+  top: 435px;
   border-radius: 50%;
+  margin-bottom: 19px;
+
+  &:nth-child(1) {
+    background-color: #d3d3df;
+  }
+  &:nth-child(2) {
+    background-color: #d0d8e2;
+  }
+  &:nth-child(3) {
+    background-color: #d3e0e4;
+  }
+  &:nth-child(4) {
+    background-color: #cee3e3;
+  }
+  &:nth-child(5) {
+    background-color: #d6ece5;
+  }
+  &:nth-child(6) {
+    background-color: #d4ebdc;
+  }
+  &:nth-child(7) {
+    background-color: #daf1d7;
+  }
+}
+
+.targetarea-title {
+  width: 257px;
+  height: 32px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  line-height: 2.6;
+  padding-left: 10px;
+  font-size: 12px;
+  font-family: "Montserrat";
+}
+
+.wrapper {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  left: 40%;
+  top: -15%;
+}
+.categories {
+  text-align: center;
   margin: 20px;
   position: absolute;
 }
 .categories:hover {
-  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
-  transition: 0.6s;
 }
 .category-title {
-  font-size: 10px;
-  text-decoration: none;
-  color: black;
+  font-size: 13px;
   font-weight: bold;
+  color: #ADADAD;
 }
 .link {
   text-decoration: none;
@@ -107,13 +188,37 @@ export default {
   margin-left: 40px;
   width: 90%;
 }
-.show-all {
-  float: right;
+.middle-circle {
+  position: absolute;
+  top: 235px;
+  left: 280px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background: #ecf0fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+a {
   text-decoration: none;
-  color: black;
+}
+
+.show-all {
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
+  width: 146.15px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #b5b8f3;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 }
+
 .category-heading {
   text-decoration: none;
   color: black;
