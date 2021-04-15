@@ -1,9 +1,7 @@
 <template>
   <div class="section">
-    <div class="headbar">
-      <h2 class="category-heading">Sök efter kategori</h2>
-    </div>
     <div class="wrapper-list">
+      <h2>Kommunfullmäktiges mål</h2>
       <ul class="bubble-list">
         <li class="bubble"></li>
         <li class="bubble"></li>
@@ -27,6 +25,13 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
+      <span
+        class="categories"
+        v-for="item in Images"
+        :key="item"
+      >
+        <img v-bind:src="item" width="100" height="140"
+      /></span>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -67,9 +72,17 @@ export default {
     ThematicList() {
       const ThematicList = new Set();
       this.$store.state.Elements.forEach((item) =>
-        ThematicList.add(item.Thematic)
+        ThematicList.add(item.Thematic.toLowerCase())
       );
       return Array.from(ThematicList);
+    },
+
+     Images() {
+      const Images = new Set();
+      this.$store.state.Elements.forEach((item) =>
+        Images.add(item.Image)
+      );
+      return Array.from(Images);
     },
 
     KFTargetAreaList() {
@@ -101,8 +114,8 @@ export default {
 
 .wrapper-list {
   position: absolute;
-  left: 10%;
-  top: 20%;
+  left: 15%;
+  top: 15%;
 }
 
 .bubble-list {
@@ -170,7 +183,11 @@ export default {
 .category-title {
   font-size: 13px;
   font-weight: bold;
-  color: #ADADAD;
+  color: #adadad;
+
+  &:hover {
+    color: #645f5f;
+  }
 }
 .link {
   text-decoration: none;
@@ -217,13 +234,15 @@ a {
   text-align: center;
   vertical-align: middle;
   display: table-cell;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.category-heading {
-  text-decoration: none;
-  color: black;
-  font-size: 22px;
-  font-weight: bolder;
-  margin: 0;
+h2 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #4f4f4f;
 }
 </style>
