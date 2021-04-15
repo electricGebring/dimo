@@ -26,8 +26,9 @@
         </router-link>
       </div>
       <span class="categories" v-for="item in Images" :key="item">
+        <div class="test">
         <img v-bind:src="item" width="40" height="40"
-      /></span>
+      /> </div></span>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -40,8 +41,8 @@
           <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -49,7 +50,7 @@ export default {
   methods: {
     circleSizing() {
       var div = 360 / 14;
-      var radius = 210;
+      var radius = 220;
       var position = 300;
       let circles = document.getElementsByClassName("categories");
       for (let i = 0; i <= circles.length - 1; i++) {
@@ -66,9 +67,11 @@ export default {
     },
 
     ThematicList() {
-       const ThematicList = new Set()
-      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
-      return Array.from(ThematicList)
+      const ThematicList = new Set();
+      this.$store.state.Elements.forEach((item) =>
+        ThematicList.add(item.Thematic)
+      );
+      return Array.from(ThematicList);
     },
 
     Images() {
@@ -89,6 +92,9 @@ export default {
     this.$store.dispatch("getDocuments");
     this.circleSizing();
   },
+    updated() {
+    this.circleSizing();
+  },
 };
 </script>
 
@@ -96,7 +102,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .section {
   margin-top: 80px;
-  width: 1170px;
+  width: 135%;
   height: 519px;
   background-color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -113,7 +119,7 @@ export default {
 .bubble-list {
   float: left;
   list-style: none;
-  margin-top: 16px;
+  margin-top: 4px;
   margin-left: -70px;
 }
 .bubble {
@@ -122,7 +128,7 @@ export default {
   left: 372px;
   top: 435px;
   border-radius: 50%;
-  margin-bottom: 19px;
+  margin-bottom: 18px;
 
   &:nth-child(1) {
     background-color: #d3d3df;
@@ -162,18 +168,21 @@ export default {
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 45%;
-    top: -17%;
+  left: 41%;
+  top: -17%;
 }
 .categories {
   text-align: center;
   margin: 20px;
   position: absolute;
+  
+  &.test {
+  border: solid 1px grey;
 }
-.categories:hover {
 }
+
 .category-title {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: bold;
   color: #adadad;
   margin-top: 45px;
@@ -201,8 +210,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: 245px;
-  left: 250px;
+  top: 243px;
+  left: 241px;
   border-radius: 50%;
   width: 200px;
   height: 200px;
