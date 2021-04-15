@@ -1,5 +1,5 @@
 <template>
-  <span class="" @click="changeView()"><img src="/img/view-line.svg" alt=""/></span>
+  <button class="listicon" @click="changeView()"><img src="/img/view-line.svg" alt="" /></button>
 
   <div id="all" class="doclist-container">
     <div class="titlesection" v-for="item in doclist" :key="item.Label" :item="item">
@@ -67,6 +67,17 @@ body {
   margin: 0;
   padding: 0;
 }
+.listicon {
+  display: flex;
+  justify-content: flex-end;
+  background: none;
+  color: inherit;
+  outline: none;
+  border: none;
+  margin-left: auto;
+  cursor: pointer;
+}
+
 //// VIEW CHANGE CSS ////
 .mystyle {
   #section {
@@ -82,7 +93,6 @@ body {
     border-radius: 10px;
   }
   .doclist-container {
-    display: inline-block;
   }
   .imgcard {
     height: 36px;
@@ -103,14 +113,14 @@ body {
     border-radius: 10px;
     background-color: #8996b1;
     margin-top: 30px;
-    margin-left: 60%;
+    margin-left: 59%;
     align-items: center;
   }
   .title {
     align-self: flex-end;
     font-size: 14px;
     padding: 0;
-    margin-left: 100px;
+    margin-left: 70px;
     color: black;
     text-align: left;
     background: none !important;
@@ -128,6 +138,7 @@ body {
   }
   .icons {
     margin-top: 30px;
+    margin-right: 40px;
   }
 }
 //// VIEW CHANGE CSS END ////
