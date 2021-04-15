@@ -92,6 +92,9 @@ body {
     max-height: 85px;
     border-radius: 10px;
   }
+  #section:hover {
+    transform: scale(1.0048);
+  }
   .doclist-container {
   }
   .imgcard {
@@ -141,6 +144,7 @@ body {
     margin-right: 40px;
   }
 }
+
 //// VIEW CHANGE CSS END ////
 
 .doclist-container {
