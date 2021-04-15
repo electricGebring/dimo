@@ -49,7 +49,7 @@ export default {
   methods: {
     circleSizing() {
       var div = 360 / 14;
-      var radius = 220;
+      var radius = 210;
       var position = 300;
       let circles = document.getElementsByClassName("categories");
       for (let i = 0; i <= circles.length - 1; i++) {
@@ -66,11 +66,9 @@ export default {
     },
 
     ThematicList() {
-      const ThematicList = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        ThematicList.add(item.Thematic.toLowerCase())
-      );
-      return Array.from(ThematicList);
+       const ThematicList = new Set()
+      this.$store.state.Elements.forEach((item) => ThematicList.add(item.Thematic))
+      return Array.from(ThematicList)
     },
 
     Images() {
@@ -157,15 +155,15 @@ export default {
   border-radius: 5px;
   line-height: 2.6;
   padding-left: 10px;
-  font-size: 12px;
+  font-size: 11px;
   font-family: "Montserrat";
 }
 
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 40%;
-  top: -15%;
+  left: 45%;
+    top: -17%;
 }
 .categories {
   text-align: center;
