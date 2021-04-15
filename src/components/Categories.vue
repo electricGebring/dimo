@@ -25,12 +25,8 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-      <span
-        class="categories"
-        v-for="item in Images"
-        :key="item"
-      >
-        <img v-bind:src="item" width="100" height="140"
+      <span class="categories" v-for="item in Images" :key="item">
+        <img v-bind:src="item" width="40" height="40"
       /></span>
       <span
         class="categories"
@@ -77,11 +73,9 @@ export default {
       return Array.from(ThematicList);
     },
 
-     Images() {
+    Images() {
       const Images = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        Images.add(item.Image)
-      );
+      this.$store.state.Elements.forEach((item) => Images.add(item.Image));
       return Array.from(Images);
     },
 
@@ -184,6 +178,8 @@ export default {
   font-size: 13px;
   font-weight: bold;
   color: #adadad;
+  margin-top: 45px;
+  margin-left: -70px;
 
   &:hover {
     color: #645f5f;
@@ -207,8 +203,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: 235px;
-  left: 280px;
+  top: 245px;
+  left: 250px;
   border-radius: 50%;
   width: 200px;
   height: 200px;
