@@ -27,8 +27,8 @@
       </div>
       <span class="categories" v-for="item in Images" :key="item">
         <div class="test">
-        <img v-bind:src="item" width="40" height="40"
-      /> </div></span>
+          <img v-bind:src="item" width="40" height="40" /></div
+      ></span>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -41,8 +41,8 @@
           <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -50,17 +50,20 @@ export default {
   methods: {
     circleSizing() {
       var div = 360 / 14;
-      var radius = 220;
-      var position = 300;
+      var radius = 15;
+      var position = 25;
       let circles = document.getElementsByClassName("categories");
       for (let i = 0; i <= circles.length - 1; i++) {
         var y = Math.sin(div * i * (Math.PI / 180)) * radius;
         var x = Math.cos(div * i * (Math.PI / 180)) * radius;
-        circles[i].style.top = (y + position).toString() + "px";
-        circles[i].style.left = (x + position).toString() + "px";
+        circles[i].style.top = (y + position).toString() + "vw";
+        circles[i].style.left = (x + position).toString() + "vw";
+        //circles[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
+        //circles[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
       }
     },
   },
+
   computed: {
     Elements() {
       return this.$store.state.Elements;
@@ -92,7 +95,7 @@ export default {
     this.$store.dispatch("getDocuments");
     this.circleSizing();
   },
-    updated() {
+  updated() {
     this.circleSizing();
   },
 };
@@ -168,17 +171,15 @@ export default {
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 41%;
-  top: -17%;
+
 }
 .categories {
   text-align: center;
-  margin: 20px;
   position: absolute;
-  
+
   &.test {
-  border: solid 1px grey;
-}
+    border: solid 1px grey;
+  }
 }
 
 .category-title {
@@ -210,11 +211,11 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: 243px;
-  left: 241px;
+  top: 18vw;
+  left: 17vw;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 20vw;
+  height: 20vw;
   background: #ecf0fd;
   display: flex;
   justify-content: center;
