@@ -105,7 +105,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .section {
   margin-top: 80px;
-  width: 135%;
+  width: 132%;
   height: 519px;
   background-color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -171,7 +171,8 @@ export default {
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-
+  left: 27vw;
+  top: -9vw;
 }
 .categories {
   text-align: center;
@@ -212,10 +213,10 @@ export default {
 .middle-circle {
   position: absolute;
   top: 18vw;
-  left: 17vw;
+  left: 18vw;
   border-radius: 50%;
-  width: 20vw;
-  height: 20vw;
+  width: 18vw;
+  height: 18vw;
   background: #ecf0fd;
   display: flex;
   justify-content: center;
