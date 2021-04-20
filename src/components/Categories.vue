@@ -12,7 +12,7 @@
         <li class="bubble"></li>
       </ul>
       <div
-        class=""
+        :class="{}"
         v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
@@ -48,6 +48,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      targetAreaSet: new Set(),
+      targetAreaActive: false
+    }
+  },
   mounted() {
     this.$store.dispatch("getDocuments");
     this.circleSizing();
@@ -99,10 +105,20 @@ export default {
       }
     },
     setTarget(KFTargetArea) {
-      console.log(KFTargetArea, 'KFTargetArea')
-      
-
-
+      //console.log(KFTargetArea, 'KFTargetArea')
+      //const targetAreaSet = new Set()
+      this.Elements.forEach(i => {
+        for (let j in i) {
+          if (i[j].includes(KFTargetArea)) {
+            //console.log(i[j], 'i[j]')
+            this.targetAreaSet.add(i[j])
+            //return targetAreaSet
+          }
+          // if (condition) {
+            
+          // }
+        }
+      })
     },
   },
 };
