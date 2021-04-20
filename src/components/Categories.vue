@@ -13,7 +13,7 @@
       </ul>
       <div
         class=""
-        v-for="KFTargetArea in KFTargetAreaList"
+        v-for="KFTargetArea in KFTargetAreaL"
         :key="KFTargetArea"
       >
         <p class="targetarea-title">{{ KFTargetArea }}</p>
@@ -47,7 +47,21 @@
 
 <script>
 export default {
-  
+  data() {
+    return {
+      KFTargetAreaList: []
+     
+    }
+  },
+      mounted() {
+      this.$store.dispatch("getDocuments");
+      this.circleSizing();
+      this.setFilterr();
+      console.log(this.KFTargetAreaList)
+    },
+    updated() {
+      this.circleSizing();
+    },
   computed: {
     Elements() {
       return this.$store.state.Elements;
@@ -67,25 +81,16 @@ export default {
       return Array.from(Images);
     },
 
-    KFTargetAreaList() {
-      const KFTargetAreaList = new Set();
+    KFTargetAreaL() {
+   
       this.$store.state.Elements.forEach((item) =>
-    
-        KFTargetAreaList.add(item)
+        this.KFTargetAreaList.add(item.KFTargetArea)
       );
-        console.log(KFTargetAreaList.KFTargetArea, "hehej")
-      return Array.from(KFTargetAreaList);
-    },
-  },
-  mounted() {
-    this.$store.dispatch("getDocuments");
-    this.circleSizing();
-    this.setFilterr();
-  },
-  updated() {
-    this.circleSizing();
-  },
-  methods: {
+      console.log(this.KFTargetAreaList, "hehej");
+      return Array.from(this.KFTargetAreaList);
+    }
+     },
+       methods: {
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -96,27 +101,24 @@ export default {
         var x = Math.cos(div * i * (Math.PI / 180)) * radius;
         circles[i].style.top = y.toString() + "vw";
         circles[i].style.left = x.toString() + "vw";
-        //circles[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
-        //circles[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
       }
     },
-  },
-
     setFilterr() {
-
-        let list = []
-        this.KFTargetAreaList.forEach((j) => {
-          this.Elements.forEach((i) => {
-            for (let k in i) {
-              if (j === i[k]) {
-                list.push(i)
-              }
+      console.log(this.KFTargetAreaList, "ee")
+      let list = [];
+      this.KFTargetAreaList.forEach((j) => {
+        this.$store.state.Elements.forEach((i) => {
+          for (let k in i) {
+            if (j === i[k]) {
+              list.push(i);
             }
-          })
-        })
-        console.log(list, "hoho")
-         },
-
+          }
+        });
+      });
+      console.log(list, "hoho");
+      return Array.from(list);
+    },
+  },
 };
 </script>
 
