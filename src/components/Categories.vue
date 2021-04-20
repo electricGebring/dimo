@@ -15,6 +15,7 @@
         class=""
         v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
+        v-on:click="setTarget(KFTargetArea)"
       >
         <p class="targetarea-title">{{ KFTargetArea }}</p>
       </div>
@@ -79,8 +80,8 @@ export default {
       this.$store.state.Elements.forEach((item) => {
         KFTargetAreaList.add(item.KFTargetArea);
       });
-      console.log(KFTargetAreaList, "hehej");
-      this.setFilterr(KFTargetAreaList);
+      
+      //this.setFilterr(KFTargetAreaList);
       return Array.from(KFTargetAreaList);
     },
   },
@@ -97,18 +98,11 @@ export default {
         circles[i].style.left = x.toString() + "vw";
       }
     },
-    setFilterr(KFTargetAreaList) {
-      let list = new Set();
-      console.log(KFTargetAreaList, "hejj");
-      KFTargetAreaList.forEach((j) => {
-        this.$store.state.Elements.filter((i) => {
-          if (j === i.KFTargetArea) {
-            list.add(i);
-          }
-        });
-      });
-      console.log(list, "hoho");
-      return Array.from(list);
+    setTarget(KFTargetArea) {
+      console.log(KFTargetArea, 'KFTargetArea')
+      
+
+
     },
   },
 };
