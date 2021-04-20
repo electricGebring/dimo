@@ -1,5 +1,6 @@
 <template>
   <div class="section">
+
     <div class="wrapper-list">
       <h2>Kommunfullmäktiges mål</h2>
       <ul class="bubble-list">
@@ -19,8 +20,8 @@
         <p class="targetarea-title">{{ KFTargetArea }}</p>
       </div>
     </div>
+
     <div class="wrapper">
-      
       <div class="middle-circle">
         <router-link :to="{ name: 'Search', params: { Elements: Elements } }">
           <span class="show-all">Visa Alla</span>
@@ -37,6 +38,7 @@
         class="categories"
         v-for="(Thematic, index) in ThematicList"
         :key="index"
+        :class="{'targetActive' : targetAreaSet.includes(Thematic)}"
       >
         <router-link
           class="link"
@@ -46,6 +48,7 @@
         </router-link>
       </span>
     </div>
+
   </div>
 </template>
 
@@ -53,7 +56,7 @@
 export default {
   data() {
     return {
-      targetAreaSet: new Set(),
+      targetAreaSet: [],
     };
   },
   mounted() {
@@ -105,12 +108,12 @@ export default {
     },
     setTarget(KFTargetArea) {
       console.log(KFTargetArea, 'KFTargetArea')
-      this.targetAreaSet = new Set()
+      this.targetAreaSet = []
       this.Elements.forEach((i) => {
         for (let j in i) {
           if (i[j].includes(KFTargetArea)) {
             //console.log(i[j], 'i[j]')
-            this.targetAreaSet.add(i.Thematic);
+            this.targetAreaSet.push(i.Thematic);
             //return targetAreaSet
           }
           // if (condition) {
@@ -272,5 +275,9 @@ h2 {
   font-size: 20px;
   line-height: 24px;
   color: #4f4f4f;
+}
+
+.targetActive {
+  background-color: red;
 }
 </style>
