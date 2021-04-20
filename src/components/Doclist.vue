@@ -115,10 +115,15 @@ body {
     width: 150px;
     height: 30px;
     border-radius: 10px;
-    background-color: #8996b1;
     margin-top: 30px;
     margin-left: 59%;
     align-items: center;
+    background: none;
+  }
+  .type span {
+    color: #8996b1;
+    font-size: 12px;
+    font-weight: bolder;
   }
   .title {
     align-self: flex-end;
@@ -130,6 +135,7 @@ body {
     background: none !important;
     box-shadow: none;
     border-style: none;
+    color: #8996b1;
   }
   .labelTitle {
     word-break: break-word;
