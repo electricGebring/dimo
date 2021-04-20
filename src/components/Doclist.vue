@@ -1,6 +1,8 @@
 <template>
   <button class="listicon" @click="changeView()"><img src="/img/view-line.svg" alt="" /></button>
 
+  <div class="result-title">{{ doclist.length }} Sökresultat</div>
+
   <div id="all" class="doclist-container">
     <div class="titlesection" v-for="item in doclist" :key="item.Label" :item="item">
       <div
@@ -16,7 +18,7 @@
             class="title"
             :style="[
               item.Status == 'Gällande'
-                ? {background: '#385B94'}
+                ? {background: '#4066A6'}
                 : item.Status == 'Under revidering'
                 ? {background: '#A95F90'}
                 : item.Status == 'Under framtagande'
@@ -95,8 +97,7 @@ body {
   #section:hover {
     transform: scale(1.0048);
   }
-  .doclist-container {
-  }
+
   .imgcard {
     height: 36px;
     width: 25px;
@@ -154,7 +155,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
-  margin-top: 80px;
+  margin-top: 40px;
   // max-height: 540px; //// scroll in content
   // overflow: hidden;
   // overflow-y: scroll;
@@ -200,7 +201,7 @@ body {
   margin: 5px auto;
 }
 .title {
-  height: 50px;
+  height: 51px;
   color: #fff;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -223,7 +224,6 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 .labelTitle {
-  padding: 10px;
   word-break: break-word;
 }
 .icons {
@@ -236,5 +236,14 @@ body {
     margin: 5px;
     padding: 1px;
   }
+}
+.result-title {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c365a;
+  margin-left: 60px;
 }
 </style>
