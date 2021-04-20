@@ -47,14 +47,14 @@
 
 <script>
 export default {
-      mounted() {
-      this.$store.dispatch("getDocuments");
-      this.circleSizing();
-      this.setFilterr();
-    },
-    updated() {
-      this.circleSizing();
-    },
+  mounted() {
+    this.$store.dispatch("getDocuments");
+    this.circleSizing();
+    // this.setFilterr();
+  },
+  updated() {
+    this.circleSizing();
+  },
   computed: {
     Elements() {
       return this.$store.state.Elements;
@@ -76,16 +76,15 @@ export default {
 
     KFTargetAreaList() {
       const KFTargetAreaList = new Set();
-      this.$store.state.Elements.forEach((item) =>
-        KFTargetAreaList.add(item.KFTargetArea)
-      );
+      this.$store.state.Elements.forEach((item) => {
+        KFTargetAreaList.add(item.KFTargetArea);
+      });
       console.log(KFTargetAreaList, "hehej");
-     
-      return KFTargetAreaList;
-       
-    }
-     },
-       methods: {
+      this.setFilterr(KFTargetAreaList);
+      return Array.from(KFTargetAreaList);
+    },
+  },
+  methods: {
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -99,14 +98,12 @@ export default {
       }
     },
     setFilterr(KFTargetAreaList) {
-      console.log(KFTargetAreaList, "hej");
-      let list = [];
-      this.KFTargetAreaList.forEach((j) => {
-        this.$store.state.Elements.forEach((i) => {
-          for (let k in i) {
-            if (j === i[k]) {
-              list.push(i);
-            }
+      let list = new Set();
+      console.log(KFTargetAreaList, "hejj");
+      KFTargetAreaList.forEach((j) => {
+        this.$store.state.Elements.filter((i) => {
+          if (j === i.KFTargetArea) {
+            list.add(i);
           }
         });
       });
