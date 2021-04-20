@@ -51,13 +51,13 @@ export default {
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
-      var position = 25;
+      //var position = 45;
       let circles = document.getElementsByClassName("categories");
       for (let i = 0; i <= circles.length - 1; i++) {
         var y = Math.sin(div * i * (Math.PI / 180)) * radius;
         var x = Math.cos(div * i * (Math.PI / 180)) * radius;
-        circles[i].style.top = (y + position).toString() + "vw";
-        circles[i].style.left = (x + position).toString() + "vw";
+        circles[i].style.top = y.toString() + "vw";
+        circles[i].style.left = x.toString() + "vw";
         //circles[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
         //circles[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
       }
@@ -105,8 +105,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .section {
   margin-top: 80px;
-  width: 132%;
-  height: 519px;
+  width: 80vw;
+  height: 40vw;
   background-color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 275px;
@@ -171,8 +171,8 @@ export default {
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 27vw;
-  top: -9vw;
+  left: 57vw;
+  top: 18vw;
 }
 .categories {
   text-align: center;
@@ -212,8 +212,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: 18vw;
-  left: 18vw;
+  top: -7vw;
+  left: -7vw;
   border-radius: 50%;
   width: 18vw;
   height: 18vw;
