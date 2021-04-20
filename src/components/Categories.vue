@@ -13,7 +13,7 @@
       </ul>
       <div
         class=""
-        v-for="KFTargetArea in KFTargetAreaL"
+        v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
       >
         <p class="targetarea-title">{{ KFTargetArea }}</p>
@@ -47,17 +47,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      KFTargetAreaList: []
-     
-    }
-  },
       mounted() {
       this.$store.dispatch("getDocuments");
       this.circleSizing();
       this.setFilterr();
-      console.log(this.KFTargetAreaList)
     },
     updated() {
       this.circleSizing();
@@ -81,13 +74,15 @@ export default {
       return Array.from(Images);
     },
 
-    KFTargetAreaL() {
-   
+    KFTargetAreaList() {
+      const KFTargetAreaList = new Set();
       this.$store.state.Elements.forEach((item) =>
-        this.KFTargetAreaList.add(item.KFTargetArea)
+        KFTargetAreaList.add(item.KFTargetArea)
       );
-      console.log(this.KFTargetAreaList, "hehej");
-      return Array.from(this.KFTargetAreaList);
+      console.log(KFTargetAreaList, "hehej");
+     
+      return KFTargetAreaList;
+       
     }
      },
        methods: {
@@ -103,8 +98,8 @@ export default {
         circles[i].style.left = x.toString() + "vw";
       }
     },
-    setFilterr() {
-      console.log(this.KFTargetAreaList, "ee")
+    setFilterr(KFTargetAreaList) {
+      console.log(KFTargetAreaList, "hej");
       let list = [];
       this.KFTargetAreaList.forEach((j) => {
         this.$store.state.Elements.forEach((i) => {
