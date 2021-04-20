@@ -47,23 +47,7 @@
 
 <script>
 export default {
-  methods: {
-    circleSizing() {
-      var div = 360 / 14;
-      var radius = 15;
-      //var position = 45;
-      let circles = document.getElementsByClassName("categories");
-      for (let i = 0; i <= circles.length - 1; i++) {
-        var y = Math.sin(div * i * (Math.PI / 180)) * radius;
-        var x = Math.cos(div * i * (Math.PI / 180)) * radius;
-        circles[i].style.top = y.toString() + "vw";
-        circles[i].style.left = x.toString() + "vw";
-        //circles[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
-        //circles[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
-      }
-    },
-  },
-
+  
   computed: {
     Elements() {
       return this.$store.state.Elements;
@@ -86,18 +70,53 @@ export default {
     KFTargetAreaList() {
       const KFTargetAreaList = new Set();
       this.$store.state.Elements.forEach((item) =>
-        KFTargetAreaList.add(item.KFTargetArea)
+    
+        KFTargetAreaList.add(item)
       );
+        console.log(KFTargetAreaList.KFTargetArea, "hehej")
       return Array.from(KFTargetAreaList);
     },
   },
   mounted() {
     this.$store.dispatch("getDocuments");
     this.circleSizing();
+    this.setFilterr();
   },
   updated() {
     this.circleSizing();
   },
+  methods: {
+    circleSizing() {
+      var div = 360 / 14;
+      var radius = 15;
+      //var position = 45;
+      let circles = document.getElementsByClassName("categories");
+      for (let i = 0; i <= circles.length - 1; i++) {
+        var y = Math.sin(div * i * (Math.PI / 180)) * radius;
+        var x = Math.cos(div * i * (Math.PI / 180)) * radius;
+        circles[i].style.top = y.toString() + "vw";
+        circles[i].style.left = x.toString() + "vw";
+        //circles[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
+        //circles[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/circles.length)*i*Math.PI)).toString() + "px";
+      }
+    },
+  },
+
+    setFilterr() {
+
+        let list = []
+        this.KFTargetAreaList.forEach((j) => {
+          this.Elements.forEach((i) => {
+            for (let k in i) {
+              if (j === i[k]) {
+                list.push(i)
+              }
+            }
+          })
+        })
+        console.log(list, "hoho")
+         },
+
 };
 </script>
 
