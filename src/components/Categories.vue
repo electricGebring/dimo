@@ -203,6 +203,7 @@ export default {
 .categories {
   text-align: center;
   position: absolute;
+  z-index: 2;
 
   &.test {
     border: solid 1px grey;
@@ -278,6 +279,16 @@ h2 {
 }
 
 .targetActive {
-  background-color: red;
+  &::after {
+    left: -20px;
+    top: -26px;
+    background-color: #ecf0fd;
+    border-radius: 100%;
+    content: " ";
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+  }
 }
 </style>
