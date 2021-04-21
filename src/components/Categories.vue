@@ -1,6 +1,5 @@
 <template>
   <div class="section">
-
     <div class="wrapper-list">
       <h2>Kommunfullmäktiges mål</h2>
       <ul class="bubble-list">
@@ -29,16 +28,16 @@
       </div>
 
       <span class="categories" v-for="item in Images" :key="item">
-        <div class="test">
+        <div class="icon">
           <img v-bind:src="item" width="40" height="40" />
-          </div>
+        </div>
       </span>
 
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
         :key="index"
-        :class="{'targetActive' : targetAreaSet.includes(Thematic)}"
+        :class="{ targetActive: targetAreaSet.includes(Thematic) }"
       >
         <router-link
           class="link"
@@ -48,7 +47,6 @@
         </router-link>
       </span>
     </div>
-
   </div>
 </template>
 
@@ -107,8 +105,8 @@ export default {
       }
     },
     setTarget(KFTargetArea) {
-      console.log(KFTargetArea, 'KFTargetArea')
-      this.targetAreaSet = []
+      console.log(KFTargetArea, "KFTargetArea");
+      this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
           if (i[j].includes(KFTargetArea)) {
@@ -116,7 +114,7 @@ export default {
           }
         }
       });
-      console.log(this.targetAreaSet, 'targetAreaSet')
+      console.log(this.targetAreaSet, "targetAreaSet");
     },
   },
 };
@@ -200,16 +198,16 @@ export default {
   position: absolute;
   z-index: 2;
 
-  &.test {
+  &.icon {
     border: solid 1px grey;
   }
 }
 
 .category-title {
-  font-size: 11px;
+  font-size: 9px;
   font-weight: bold;
-  color: #adadad;
-  margin-top: 45px;
+  color: #000;
+  margin-top: 48px;
   margin-left: -70px;
 
   &:hover {
@@ -274,16 +272,18 @@ h2 {
 }
 
 .targetActive {
+  z-index: 1;
+
   &::after {
-    left: -20px;
-    top: -26px;
-    background-color: #ecf0fd;
-    border-radius: 100%;
+    left: -9px;
+    top: -9px;
+    background-color: #b5b8f3;
+    border-radius: 50%;
     content: " ";
-    width: 100px;
-    height: 100px;
+    width: 58px;
+    height: 58px;
     position: absolute;
-    z-index: 1;
+    z-index: -1;
   }
 }
 </style>
