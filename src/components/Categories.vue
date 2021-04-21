@@ -137,7 +137,8 @@ export default {
 .wrapper-list {
   position: absolute;
   left: 15%;
-  top: 15%;
+  top: 50%;
+  margin-top: -189px;
 }
 
 .bubble-list {
