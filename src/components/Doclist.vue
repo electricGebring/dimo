@@ -1,8 +1,6 @@
 <template>
-  <button class="listicon" @click="changeView()"><img src="/img/view-line.svg" alt="" /></button>
-
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-
+  <button class="listicon" @click="changeView()"><img src="/img/view-line.svg" alt="" /></button>
   <div id="all" class="doclist-container">
     <div class="titlesection" v-for="item in doclist" :key="item.Label" :item="item">
       <div
@@ -58,7 +56,6 @@ export default {
     changeView() {
       let view = document.getElementById('all')
       view.classList.toggle('mystyle')
-      console.log(this.changeView)
     },
   },
 }
@@ -76,7 +73,7 @@ body {
   color: inherit;
   outline: none;
   border: none;
-  margin-left: auto;
+  margin-left: 95%;
   cursor: pointer;
 }
 
@@ -161,7 +158,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   // max-height: 540px; //// scroll in content
   // overflow: hidden;
   // overflow-y: scroll;

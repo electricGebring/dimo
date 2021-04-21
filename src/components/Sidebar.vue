@@ -1,83 +1,66 @@
 <template>
-    <div class="navbarside" :class="{colapsed: colapsed.value }">
+  <div class="navbarside" :class="{colapsed: colapsed.value}">
+    <img
+      alt=""
+      class="navicon"
+      src="https://static.overlay-tech.com/assets/7fce7eb4-a06f-4afc-8541-c4f29a2d2f50.png"
+    />
+    <img
+      alt=""
+      class="profilepicture"
+      src="https://static.overlay-tech.com/assets/d2c2a69c-a110-4807-9526-69e2f595d152.png"
+    />
+    <h5 class="nametitle">
+      {{ jordanValentinLane }}
+    </h5>
+    <ul class="menu">
+      <li class="menu-item active">
+        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <p class="menu-item-link">{{ menuLeftTwo }}</p>
+      </li>
+      <li class="menu-item">
+        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <p class="menu-item-link">{{ menuLeftThree }}</p>
+      </li>
+      <li class="menu-item">
+        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <p class="menu-item-link">{{ menuLeftFour }}</p>
+      </li>
+      <li class="menu-item">
+        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <p class="menu-item-link">{{ menuLeftFive }}</p>
+      </li>
+      <li class="menu-item logout">
         <img
           alt=""
-          class="navicon"
-          src="https://static.overlay-tech.com/assets/7fce7eb4-a06f-4afc-8541-c4f29a2d2f50.png"
+          class="menu-item-navicon"
+          src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
         />
-        <img
-          alt=""
-          class="profilepicture"
-          src="https://static.overlay-tech.com/assets/d2c2a69c-a110-4807-9526-69e2f595d152.png"
-        />
-      <h5 class="nametitle">
-        {{ jordanValentinLane }}
-      </h5>
-      <ul class="menu">
-        <li class="menu-item active">
-          <img
-            alt=""
-            class="menu-item-navicon"
-            src="../assets/svg/dummy-crash.svg"
-          />
-          <p class="menu-item-link">{{ menuLeftTwo }}</p>
-        </li>
-        <li class="menu-item">
-          <img
-            alt=""
-            class="menu-item-navicon"
-            src="../assets/svg/dummy-crash.svg"
-          />
-          <p class="menu-item-link">{{ menuLeftThree }}</p>
-        </li>
-        <li class="menu-item">
-          <img
-            alt=""
-            class="menu-item-navicon"
-            src="../assets/svg/dummy-crash.svg"
-          />
-          <p class="menu-item-link">{{ menuLeftFour }}</p>
-        </li>
-        <li class="menu-item">
-          <img
-            alt=""
-            class="menu-item-navicon"
-            src="../assets/svg/dummy-crash.svg"
-          />
-          <p class="menu-item-link">{{ menuLeftFive }}</p>
-        </li>
-        <li class="menu-item logout">
-          <img
-            alt=""
-            class="menu-item-navicon"
-            src="https://static.overlay-tech.com/assets/be754bca-79cf-40f6-ac1b-acd5f5c70b97.svg"
-          />
-          <p class="menu-item-link">{{ menuLeftSix }}</p >
-        </li>
-      </ul>
-    </div>
- 
+        <p class="menu-item-link">{{ menuLeftSix }}</p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
-import { watch } from 'vue';
-import { useRoute } from 'vue-router';
+import {reactive} from '@vue/reactivity'
+import {watch} from 'vue'
+import {useRoute} from 'vue-router'
 export default {
-  name: "Group226",
+  name: 'Group226',
   props: {
     jordanValentinLane: {
       type: String,
-      default: "Jordan Valentin Lane",
+      default: 'Jordan Valentin Lane',
     },
-    menuLeftTwo: { type: String, default: "Översikt" },
-    menuLeftThree: { type: String, default: "Min sida" },
-    menuLeftFour: { type: String, default: "Mallar" },
+    menuLeftTwo: {type: String, default: 'Översikt'},
+    menuLeftThree: {type: String, default: 'Min sida'},
+    menuLeftFour: {type: String, default: 'Mallar'},
     menuLeftFive: {
       type: String,
-      default: "Inställningar",
+      default: 'Inställningar',
     },
-    menuLeftSix: { type: String, default: "Logga ut" },
+    menuLeftSix: {type: String, default: 'Logga ut'},
   },
 
   setup() {
@@ -95,13 +78,13 @@ export default {
       }, 10)
     })
 
-    return { colapsed }
-  }
+    return {colapsed}
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
 .navbarside {
   align-items: center;
@@ -109,10 +92,15 @@ export default {
   display: flex;
   flex-direction: column;
   float: left;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   height: 100%;
-  transition: width, .3s;
+  transition: width, 0.3s;
   z-index: 9999;
+  &.colapsed {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
 
   .menu-item-navicon {
     margin-right: 30px;
@@ -143,25 +131,28 @@ export default {
       transition: 0.6s;
     }
   }
-  
+
   &.colapsed {
     .menu-item {
       margin-left: 15px;
       padding: 30px 0px;
     }
 
-    .navicon, .profilepicture, .nametitle, .menu-item-link {
+    .navicon,
+    .profilepicture,
+    .nametitle,
+    .menu-item-link {
       display: none;
-    } 
-    
+    }
+
     .menu {
-      margin-top: 380px;
+      margin-top: 300px;
 
       .menu-item-navicon {
         margin-left: 20px;
       }
     }
-  }  
+  }
 }
 .navicon {
   margin-bottom: 72px;
@@ -181,6 +172,4 @@ export default {
   padding: 0;
   margin: 0;
 }
-
-
 </style>
