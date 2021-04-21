@@ -112,13 +112,8 @@ export default {
       this.Elements.forEach((i) => {
         for (let j in i) {
           if (i[j].includes(KFTargetArea)) {
-            //console.log(i[j], 'i[j]')
             this.targetAreaSet.push(i.Thematic);
-            //return targetAreaSet
           }
-          // if (condition) {
-
-          // }
         }
       });
       console.log(this.targetAreaSet, 'targetAreaSet')
