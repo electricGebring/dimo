@@ -105,7 +105,6 @@ export default {
       }
     },
     setTarget(KFTargetArea) {
-      console.log(KFTargetArea, "KFTargetArea");
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
@@ -114,7 +113,6 @@ export default {
           }
         }
       });
-      console.log(this.targetAreaSet, "targetAreaSet");
     },
   },
 };
@@ -199,8 +197,10 @@ export default {
   position: absolute;
   z-index: 2;
 
-  &.icon {
-    border: solid 1px grey;
+  .icon {
+    margin-top: 8px;
+    margin-left: 9px;
+    z-index: 2;
   }
 }
 
@@ -208,7 +208,7 @@ export default {
   font-size: 9px;
   font-weight: bold;
   color: #000;
-  margin-top: 48px;
+  margin-top: 57px;
   margin-left: -70px;
 
   &:hover {
@@ -273,18 +273,17 @@ h2 {
 }
 
 .targetActive {
-  z-index: 1;
-
-  &::after {
-    left: -9px;
-    top: -9px;
-    background-color: #b5b8f3;
-    border-radius: 50%;
-    content: " ";
-    width: 58px;
-    height: 58px;
-    position: absolute;
-    z-index: -1;
-  }
+  background-color: #b5b8f3;
+  border-radius: 50%;
+  content: " ";
+  width: 58px;
+  height: 58px;
+  position: absolute;
+  z-index: 0;
+  -webkit-transition: background-color 1.5s;
+  -moz-transition: background-color 1.5s;
+  -o-transition: background-color 1.5s;
+  transition: background-color 1.5s ;
+  transition-timing-function: linear;
 }
 </style>
