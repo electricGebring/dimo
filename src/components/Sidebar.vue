@@ -13,23 +13,30 @@
     <h5 class="nametitle">
       {{ jordanValentinLane }}
     </h5>
+
     <ul class="menu">
-      <li class="menu-item active">
-        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
-        <p class="menu-item-link">{{ menuLeftTwo }}</p>
-      </li>
+      <router-link :to="{name: 'Home'}">
+        <li class="menu-item active">
+          <img alt="" class="menu-item-navicon" src="/img/home-icon.svg" />
+          <p class="menu-item-link">{{ menuLeftTwo }}</p>
+        </li>
+      </router-link>
+      <router-link :to="{name: 'profile'}">
+        <li class="menu-item">
+          <img alt="" class="menu-item-navicon" src="/img/profile-icon.svg" />
+          <p class="menu-item-link">{{ menuLeftThree }}</p>
+        </li>
+      </router-link>
       <li class="menu-item">
-        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
-        <p class="menu-item-link">{{ menuLeftThree }}</p>
-      </li>
-      <li class="menu-item">
-        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <img alt="" class="menu-item-navicon" src="/img/mallar-icon.svg" />
         <p class="menu-item-link">{{ menuLeftFour }}</p>
       </li>
+      <hr />
       <li class="menu-item">
-        <img alt="" class="menu-item-navicon" src="../assets/svg/dummy-crash.svg" />
+        <img alt="" class="menu-item-navicon" src="/img/settings-icon.svg" />
         <p class="menu-item-link">{{ menuLeftFive }}</p>
       </li>
+
       <li class="menu-item logout">
         <img
           alt=""
@@ -93,7 +100,7 @@ export default {
   flex-direction: column;
   float: left;
   font-family: 'Montserrat', sans-serif;
-  height: 100%;
+  height: 100vh;
   transition: width, 0.3s;
   z-index: 9999;
   &.colapsed {
@@ -116,7 +123,7 @@ export default {
     margin-left: 46px;
 
     &:nth-child(3) {
-      margin-bottom: 100px;
+      margin-bottom: auto;
     }
 
     &:hover {
@@ -126,7 +133,6 @@ export default {
     }
 
     &.active {
-      background-color: white;
       color: #00c0c0;
       transition: 0.6s;
     }
@@ -171,5 +177,20 @@ export default {
 .menu {
   padding: 0;
   margin: 0;
+
+  .menu-item .logout {
+    bottom: 0;
+  }
+}
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 3px solid #dfe6f1;
+  width: 80%;
+}
+
+.menu-item-link p {
+  text-decoration: none;
 }
 </style>

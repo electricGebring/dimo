@@ -73,7 +73,7 @@ body {
   color: inherit;
   outline: none;
   border: none;
-  margin-left: 95%;
+  margin-left: 85%;
   cursor: pointer;
 }
 
