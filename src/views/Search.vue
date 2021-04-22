@@ -1,17 +1,17 @@
 <template>
   <div class="container">
     <goBack />
-  <FilterBar @filter="check" :resetCheck="checkedCategories" />
-  <div class="main">
-    <Searchbar />
-    <filter-tags
-      @clickedTag="hideTag"
-      @resetFilter="resetFilter"
-      :checkedCategories="checkedCategories"
-      :show="show"
-    />
-    <doclist :doclist="doclist" />
-  </div>
+    <FilterBar @filter="check" :resetCheck="checkedCategories" />
+    <div class="main">
+      <Searchbar />
+      <filter-tags
+        @clickedTag="hideTag"
+        @resetFilter="resetFilter"
+        :checkedCategories="checkedCategories"
+        :show="show"
+      />
+      <doclist :doclist="doclist" />
+    </div>
   </div>
 </template>
 
@@ -49,6 +49,9 @@ export default {
         return index !== tag
       })
       this.setFilter(this.checkedCategories)
+      if (!this.checkedCategories.length) {
+        this.show = false
+      }
     },
 
     resetFilter(showResetButton) {
@@ -69,7 +72,7 @@ export default {
           })
         }
       } else {
-        this.checkedCategories.push(this.$route.params.Thematic);
+        this.checkedCategories.push(this.$route.params.Thematic)
       }
       this.setFilter(this.checkedCategories)
     },
