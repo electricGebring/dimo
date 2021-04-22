@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-
     <div class="container">
       <div class="main">
         <Searchbar />
@@ -12,15 +11,15 @@
 
 <script>
 import Searchbar from '../components/Searchbar.vue'
-import Categories from "../components/Categories.vue";
+import Categories from '../components/Categories.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     Categories,
     Searchbar,
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -30,6 +29,6 @@ export default {
 }
 
 .main {
-  width: 80%;
+  width: 100%;
 }
 </style>
