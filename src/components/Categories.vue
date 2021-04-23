@@ -224,6 +224,20 @@ export default {
   width: 117px;
   display: block;
   cursor: pointer;
+
+  &::before {
+    background-color: red;
+    border-radius: 50%;
+    content: " ";
+    cursor: pointer;
+    height: 70px;
+    margin: -58px 0 0 -66px;
+    opacity: 0;
+    position: absolute;
+    width: 70px;
+    z-index: 5;
+
+  }
 }
 .headbar {
   display: block;
