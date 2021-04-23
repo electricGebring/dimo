@@ -71,12 +71,10 @@ export default {
             return i !== e.target.value
           })
         }
-        this.setFilter(this.checkedCategories)
       } else {
         this.checkedCategories.push(this.$route.params.Thematic)
-        this.setFilter(this.checkedCategories)
       }
-      this.setFilter()
+      this.setFilter(this.checkedCategories)
     },
 
     goto(url) {
@@ -84,6 +82,7 @@ export default {
     },
   
     setFilter(checkedCategories) {
+      console.log(checkedCategories, 'checkedCategories')
       if (checkedCategories) {
         let arrayToDoclist = []
         checkedCategories.forEach((j) => {
