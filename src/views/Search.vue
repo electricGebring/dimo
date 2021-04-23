@@ -77,7 +77,7 @@ export default {
         this.checkedCategories.push(this.$route.params.Thematic)
       }
       if (this.checkedCategories.length === 0) {
-        this.show = false
+        this.hideTag()
       }
       this.setFilter(this.checkedCategories)
     },
