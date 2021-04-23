@@ -4,16 +4,11 @@ import axios from 'axios'
 export default createStore({
   state: {
     Elements: [],
-    allCheckboxesSelected: false,
   },
   mutations: {
     GET_INFO(state, Elements) {
       state.Elements = Elements;
-    },
-    changeCheck(state, allCheckboxesSelected) {
-      state.allCheckboxesSelected = !allCheckboxesSelected;
-      console.log(state.allCheckboxesSelected, 'state.allCheckboxesSelected')
-    },
+    }
   },
   actions: {
     getDocuments({commit}) {
@@ -21,9 +16,6 @@ export default createStore({
         commit('GET_INFO', response.data.Elements)
       })
     },
-    changeCheckboxes({context}) {
-      context.commit('changeCheck')
-    }
   },
   modules: {
   }
