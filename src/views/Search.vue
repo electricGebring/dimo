@@ -76,6 +76,9 @@ export default {
       } else {
         this.checkedCategories.push(this.$route.params.Thematic)
       }
+      if (this.checkedCategories.length === 0) {
+        this.show = false
+      }
       this.setFilter(this.checkedCategories)
     },
 
@@ -95,14 +98,12 @@ export default {
             }
           })
         })
-
+        
         this.doclist = arrayToDoclist
       } else {
+        
         this.checkedCategories = []
-        this.doclist = this.Elements.filter((i) => {
-          return i === i
-        })
-        console.log(this.doclist, 'this.doclist')
+        this.doclist = this.Elements
       }
     },
   },
