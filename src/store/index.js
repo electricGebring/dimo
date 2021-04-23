@@ -10,8 +10,8 @@ export default createStore({
     GET_INFO(state, Elements) {
       state.Elements = Elements;
     },
-    changeCheck(state) {
-      state.allCheckboxesSelected = !state.allCheckboxesSelected;
+    changeCheck(state, allCheckboxesSelected) {
+      state.allCheckboxesSelected = !allCheckboxesSelected;
       console.log(state.allCheckboxesSelected, 'state.allCheckboxesSelected')
     },
   },

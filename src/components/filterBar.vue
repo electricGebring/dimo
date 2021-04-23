@@ -267,7 +267,9 @@ export default {
   },
 
   methods: {
+    
     check: function(e) {
+      console.log('check'),
       this.$emit('filter', e)
     },
 

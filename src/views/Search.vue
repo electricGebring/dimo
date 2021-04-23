@@ -80,13 +80,10 @@ export default {
     goto(url) {
       window.open(url, '_blank').focus()
     },
-    filteredList() {
-      this.doclist = this.Elements.filter((i) => {
-        return i.Thematic === i.Thematic
-      })
-    },
-
+  
     setFilter(checkedCategories) {
+      console.log(checkedCategories.length, 'checkedCategories')
+      console.log(checkedCategories, 'checkedCategories')
       if (checkedCategories) {
         let arrayToDoclist = []
         checkedCategories.forEach((j) => {
@@ -100,9 +97,12 @@ export default {
         })
 
         this.doclist = arrayToDoclist
-        this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList()
+        console.log('banan')
+        this.checkedCategories = []
+        this.doclist = this.Elements.filter((i) => {
+          return i.Thematic === i.Thematic
+        })
       }
     },
   },

@@ -1,41 +1,47 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-  <button class="listicon" @click="changeView()"><img src="/img/view-line.svg" alt="" /></button>
+  <button class="listicon" @click="changeView()">
+    <img src="/img/view-line.svg" alt="" />
+  </button>
   <div id="all" class="doclist-container">
-    <div class="titlesection" v-for="item in doclist" :key="item.Label" :item="item">
-      <div
-        v-if="
-          item.Thematic === $route.params.Thematic ? $route.params.Thematic : $route.params.Elements
-        "
-      >
-        <div id="section" class="" @click.stop="goto(item.URL)">
-          <div class="img-container">
-            <img class="imgcard" v-bind:src="item.CoverImg" width="100" height="140" />
+    <div
+      class="titlesection"
+      v-for="item in doclist"
+      :key="item.Label"
+      :item="item"
+    >
+      <div id="section" class="" @click.stop="goto(item.URL)">
+        <div class="img-container">
+          <img
+            class="imgcard"
+            v-bind:src="item.CoverImg"
+            width="100"
+            height="140"
+          />
+        </div>
+        <div
+          class="title"
+          :style="[
+            item.Status == 'Gällande'
+              ? { background: '#4066A6' }
+              : item.Status == 'Under revidering'
+              ? { background: '#A95F90' }
+              : item.Status == 'Under framtagande'
+              ? { background: '#002065' }
+              : item.Status == 'Utgått'
+              ? { background: '#FD7F94' }
+              : { background: '#C45941' },
+          ]"
+        >
+          <span class="labelTitle">
+            {{ item.Label }}
+          </span>
+          <div class="type">
+            <span>{{ item.Documenttype }} </span>
           </div>
-          <div
-            class="title"
-            :style="[
-              item.Status == 'Gällande'
-                ? {background: '#4066A6'}
-                : item.Status == 'Under revidering'
-                ? {background: '#A95F90'}
-                : item.Status == 'Under framtagande'
-                ? {background: '#002065'}
-                : item.Status == 'Utgått'
-                ? {background: '#FD7F94'}
-                : {background: '#C45941'},
-            ]"
-          >
-            <span class="labelTitle">
-              {{ item.Label }}
-            </span>
-            <div class="type">
-              <span>{{ item.Documenttype }} </span>
-            </div>
-            <div class="icons">
-              <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-              <span class=""><img src="/img/star-save.svg" alt=""/></span>
-            </div>
+          <div class="icons">
+            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
+            <span class=""><img src="/img/star-save.svg" alt="" /></span>
           </div>
         </div>
       </div>
@@ -45,20 +51,20 @@
 
 <script>
 export default {
-  props: ['doclist'],
+  props: ["doclist"],
   components: {},
   computed: {},
   mounted() {},
   methods: {
     goto(url) {
-      window.open(url, '_blank').focus()
+      window.open(url, "_blank").focus();
     },
     changeView() {
-      let view = document.getElementById('all')
-      view.classList.toggle('mystyle')
+      let view = document.getElementById("all");
+      view.classList.toggle("mystyle");
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -187,7 +193,7 @@ body {
   height: 25px;
   background: #bebdb9;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
@@ -198,7 +204,7 @@ body {
 .type span {
   display: inline-block;
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 10px;
   font-weight: bold;
   margin: 5px auto;
@@ -207,7 +213,7 @@ body {
   height: 51px;
   color: #fff;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 12px;
   font-weight: bold;
   align-self: center;
@@ -242,7 +248,7 @@ body {
 }
 .result-title {
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 14px;
   line-height: 17px;
