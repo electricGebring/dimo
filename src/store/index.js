@@ -12,6 +12,7 @@ export default createStore({
     },
     changeCheck(state) {
       state.allCheckboxesSelected = !state.allCheckboxesSelected;
+      console.log(state.allCheckboxesSelected, 'state.allCheckboxesSelected')
     },
   },
   actions: {

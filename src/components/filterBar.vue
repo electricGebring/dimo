@@ -186,7 +186,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="resetCheck.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name) || this.$store.state.allCheckboxesSelected"
             />
           </div>
           <div class="filter" v-else>
@@ -198,7 +198,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="resetCheck.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name) || this.$store.state.allCheckboxesSelected"
             />
           </div>
         </div>
