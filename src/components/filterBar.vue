@@ -263,13 +263,13 @@ export default {
     if (this.$route.params.Thematic) {
       this.isActiveThematic = true;
     }
-    this.check()
+    //this.check()
   },
 
   methods: {
     
     check: function(e) {
-      console.log('check'),
+      this.$route.params = {Thematic: e.target.value}
       this.$emit('filter', e)
     },
 

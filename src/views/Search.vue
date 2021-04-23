@@ -42,7 +42,9 @@ export default {
       return this.$store.state.Elements
     },
   },
-  mounted() {},
+  mounted() {
+    this.check()
+  },
   methods: {
     hideTag(tag) {
       this.checkedCategories = this.checkedCategories.filter((index) => {
@@ -82,8 +84,7 @@ export default {
     },
   
     setFilter(checkedCategories) {
-      console.log(checkedCategories, 'checkedCategories')
-      if (checkedCategories) {
+      if (this.$route.params.Thematic) {
         let arrayToDoclist = []
         checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
@@ -97,11 +98,11 @@ export default {
 
         this.doclist = arrayToDoclist
       } else {
-        console.log('banan')
         this.checkedCategories = []
         this.doclist = this.Elements.filter((i) => {
-          return i.Thematic === i.Thematic
+          return i === i
         })
+        console.log(this.doclist, 'this.doclist')
       }
     },
   },
