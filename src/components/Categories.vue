@@ -22,7 +22,7 @@
 
     <div class="wrapper">
       <div class="middle-circle">
-        <router-link :to="{ name: 'Search', params: { Elements: Elements } }" v-on:click="this.$store.dispatch('changeCheckboxes')">
+        <router-link :to="{ name: 'Search', params: { Elements: Elements } }">
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
@@ -58,7 +58,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getDocuments");
+    //this.$store.dispatch("getDocuments");
     this.circleSizing();
   },
   updated() {
