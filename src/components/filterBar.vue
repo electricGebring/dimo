@@ -24,7 +24,7 @@
             :value="globalGoal.object.name"
             id="globalGoal"
             @change="check($event)"
-            :checked="resetCheck.includes(globalGoal.object.name)"
+            :checked="resetCheck.includes(globalGoal.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -61,7 +61,7 @@
             :value="KFTargetArea.object.name"
             id="kFTargetArea"
             @change="check($event)"
-            :checked="resetCheck.includes(KFTargetArea.object.name)"
+            :checked="resetCheck.includes(KFTargetArea.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -98,7 +98,7 @@
             :value="documenttype.object.name"
             id="documenttype"
             @change="check($event)"
-            :checked="resetCheck.includes(documenttype.object.name)"
+            :checked="resetCheck.includes(documenttype.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -130,7 +130,7 @@
             :value="department.object.name"
             id="department"
             @change="check($event)"
-            :checked="resetCheck.includes(department.object.name)"
+            :checked="resetCheck.includes(department.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -156,7 +156,7 @@
             :value="office.object.name"
             id="office"
             @change="check($event)"
-            :checked="resetCheck.includes(office.object.name)"
+            :checked="resetCheck.includes(office.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -186,7 +186,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="resetCheck.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name) || this.$route.params.Elements"
             />
           </div>
           <div class="filter" v-else>
@@ -198,7 +198,7 @@
               :value="thematic.object.name"
               id="thematic"
               @change="check($event)"
-              :checked="resetCheck.includes(thematic.object.name)"
+              :checked="resetCheck.includes(thematic.object.name) || this.$route.params.Elements"
             />
           </div>
         </div>
@@ -227,7 +227,7 @@
             :value="validity.object.name"
             id="validity"
             @change="check($event)"
-            :checked="resetCheck.includes(validity.object.name)"
+            :checked="resetCheck.includes(validity.object.name) || this.$route.params.Elements"
           />
         </div>
       </div>
@@ -260,14 +260,16 @@ export default {
   },
 
   mounted() {
-    if (this.$route.params.Thematic) {
-      this.isActiveThematic = true;
-    }
-    this.check()
+    this.isActiveThematic = true;
   },
 
   methods: {
+    
     check: function(e) {
+      if (this.$route.params.Elements) {
+        this.$route.params = {Thematic: e.target.value}
+      }
+      this.$route.params = {Thematic: e.target.value}
       this.$emit('filter', e)
     },
 

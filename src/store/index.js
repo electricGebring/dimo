@@ -15,7 +15,7 @@ export default createStore({
       axios.get('data.json').then((response) => {
         commit('GET_INFO', response.data.Elements)
       })
-    }
+    },
   },
   modules: {
   }
