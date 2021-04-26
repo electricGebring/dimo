@@ -58,7 +58,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getDocuments");
+    //this.$store.dispatch("getDocuments");
     this.circleSizing();
   },
   updated() {

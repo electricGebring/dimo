@@ -42,7 +42,9 @@ export default {
       return this.$store.state.Elements
     },
   },
-  mounted() {},
+  mounted() {
+    this.check()
+  },
   methods: {
     hideTag(tag) {
       this.checkedCategories = this.checkedCategories.filter((index) => {
@@ -74,20 +76,18 @@ export default {
       } else {
         this.checkedCategories.push(this.$route.params.Thematic)
       }
+      if (this.checkedCategories.length === 0) {
+        this.hideTag()
+      }
       this.setFilter(this.checkedCategories)
     },
 
     goto(url) {
       window.open(url, '_blank').focus()
     },
-    filteredList() {
-      this.doclist = this.Elements.filter((i) => {
-        return i.Thematic === i.Thematic
-      })
-    },
-
+  
     setFilter(checkedCategories) {
-      if (checkedCategories) {
+      if (this.$route.params.Thematic) {
         let arrayToDoclist = []
         checkedCategories.forEach((j) => {
           this.Elements.forEach((i) => {
@@ -98,11 +98,12 @@ export default {
             }
           })
         })
-
+        
         this.doclist = arrayToDoclist
-        this.$route.params = {Elements: this.Elements}
       } else {
-        this.filteredList()
+        
+        this.checkedCategories = []
+        this.doclist = this.Elements
       }
     },
   },
