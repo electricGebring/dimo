@@ -27,7 +27,7 @@
         </router-link>
       </div>
       <span class="categories" v-for="(item, index) in Images" :key="index">
-        <img v-bind:src="item" width="40" height="40" />
+        <img class="icon" v-bind:src="item" />
       </span>
       <span
         class="categories"
@@ -193,14 +193,12 @@ export default {
   text-align: center;
   position: absolute;
   z-index: 2;
-
-  .icon {
-    margin-top: 8px;
-    margin-left: 9px;
-    z-index: 2;
-  }
 }
-
+.icon {
+  z-index: 2;
+  width: 30px;
+  height: auto;
+}
 .category-title {
   font-size: 9px;
   font-weight: bold;
@@ -276,13 +274,13 @@ h2 {
   background-color: #b5b8f3;
   border-radius: 50%;
   content: " ";
-  width: 58px;
-  height: 58px;
+  width: 65px;
+  height: 65px;
   position: absolute;
   z-index: 0;
   cursor: pointer;
-  margin-top: -8px;
-  margin-left: -9px;
+  margin-top: -9px;
+  margin-left: -16px;
   opacity: 0.5;
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
