@@ -193,23 +193,28 @@ export default {
   text-align: center;
   position: absolute;
   z-index: 2;
+  border-radius: 50%;
+  content: " ";
+  position: absolute;
+  z-index: 0;
+  cursor: pointer;
+  margin-top: -16px;
+  width: 78px;
+  height: 78px;
+  margin-left: -19px;
+
+  &:hover {
+    background-color: #ecf0fd;
+    opacity: 0.5;
+  }
 }
 .icon {
   z-index: 2;
-  width: 30px;
+  width: 40px;
   height: auto;
+  margin-top: 7px;
 }
-.category-title {
-  font-size: 9px;
-  font-weight: bold;
-  color: #000;
-  margin-top: 57px;
-  margin-left: -70px;
 
-  &:hover {
-    color: #645f5f;
-  }
-}
 .link {
   text-decoration: none;
   text-align: center;
@@ -273,15 +278,10 @@ h2 {
 .targetActive {
   background-color: #b5b8f3;
   border-radius: 50%;
-  content: " ";
-  width: 65px;
-  height: 65px;
-  position: absolute;
-  z-index: 0;
   cursor: pointer;
-  margin-top: -9px;
-  margin-left: -16px;
   opacity: 0.5;
+  width: 78px;
+  height: 78px;
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
