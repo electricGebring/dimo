@@ -79,6 +79,7 @@ export default {
       if (this.checkedCategories.length === 0) {
         this.hideTag()
       }
+       console.log(this.checkedCategories)
       this.setFilter(this.checkedCategories)
     },
 
@@ -87,6 +88,7 @@ export default {
     },
   
     setFilter(checkedCategories) {
+     
       if (this.$route.params.Thematic) {
         let arrayToDoclist = []
         checkedCategories.forEach((j) => {

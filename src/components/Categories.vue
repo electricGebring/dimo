@@ -26,13 +26,9 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-
-      <span class="categories" v-for="item in Images" :key="item">
-        <div class="icon">
-          <img v-bind:src="item" width="40" height="40" />
-        </div>
+     <span class="categories" v-for="(item, index) in Images" :key="index">
+            <img v-bind:src="item" width="40" height="40" />
       </span>
-
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -43,7 +39,6 @@
           class="link"
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
         >
-          <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
     </div>
@@ -63,6 +58,7 @@ export default {
   },
   updated() {
     this.circleSizing();
+    // this.imageSizing();
   },
   computed: {
     Elements() {
@@ -103,13 +99,16 @@ export default {
         circles[i].style.top = y.toString() + "vw";
         circles[i].style.left = x.toString() + "vw";
       }
+
     },
-    setTarget(KFTargetArea) {
+
+
+        setTarget(KFTargetArea) {
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
           if (i[j].includes(KFTargetArea)) {
-            this.targetAreaSet.push(i.Thematic);
+            this.targetAreaSet.push(i.index);
           }
         }
       });
@@ -220,8 +219,11 @@ export default {
   text-align: center;
   word-wrap: break-word;
   text-transform: capitalize;
-  height: 117px;
-  width: 117px;
+  height: 50px;
+  width: 50px;
+  display: block;
+  cursor: pointer;
+  margin-left: 10px;
   display: block;
   cursor: pointer;
 }
@@ -283,7 +285,7 @@ h2 {
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
-  transition: background-color 1.5s ;
+  transition: background-color 1.5s;
   transition-timing-function: linear;
 }
 </style>
