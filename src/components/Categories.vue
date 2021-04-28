@@ -181,6 +181,10 @@ export default {
   padding-left: 10px;
   font-size: 11px;
   font-family: "Montserrat";
+
+   &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .wrapper {
@@ -264,6 +268,10 @@ a {
   vertical-align: middle;
   display: table-cell;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+   &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 h2 {
