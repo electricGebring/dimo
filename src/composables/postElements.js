@@ -1,5 +1,5 @@
 const postElements = async (skitSomSkaMed) => {
-    console.log(skitSomSkaMed)
+    console.log(skitSomSkaMed, 'skitSomSkaMed i postElements')
     
     // await fetch('http://localhost:3000/posts', {
     //     method: 'POST',
@@ -7,3 +7,5 @@ const postElements = async (skitSomSkaMed) => {
     //     body: JSON.stringify(skitSomSkaMed)
     // })
 }
+
+export default postElements
