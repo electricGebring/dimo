@@ -182,7 +182,7 @@ export default {
   font-size: 11px;
   font-family: "Montserrat";
 
-   &:hover {
+  &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
@@ -202,21 +202,21 @@ export default {
   position: absolute;
   z-index: 0;
   cursor: pointer;
-  margin-top: -16px;
   width: 78px;
   height: 78px;
-  margin-left: -19px;
 
   &:hover {
-    background-color: #ecf0fd;
-    opacity: 0.5;
+    border: solid 3px #b5b8f3;
+    border-style: dotted;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
 .icon {
   z-index: 2;
   width: 40px;
   height: auto;
-  margin-top: 7px;
+  margin-top: 11px;
+  margin-left: 2px;
 }
 
 .link {
@@ -269,7 +269,7 @@ a {
   display: table-cell;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-   &:hover {
+  &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
@@ -284,16 +284,23 @@ h2 {
 }
 
 .targetActive {
-  background-color: #b5b8f3;
+  border: solid 3px #b5b8f3;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 0.5;
   width: 78px;
   height: 78px;
+  margin-left: -2px;
+   margin-top: -2px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
   transition: background-color 1.5s;
   transition-timing-function: linear;
+&:hover {
+    border: none;
+      box-shadow: none;
+  }
+
 }
 </style>
