@@ -2,6 +2,7 @@
   <div class="savedlist-container">
     <h3>Mina sparade dokument</h3>
     <div class="savedlist-object">
+     <img class="pdf-icon" src="/img/pdficon.svg" alt=""/>
       <h4>Styrdokument nummer # 34</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
