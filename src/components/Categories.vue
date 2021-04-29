@@ -16,7 +16,7 @@
         :key="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
       >
-        <p class="targetarea-title">{{ KFTargetArea }}</p>
+        <p class="targetarea-title">{{ KFTargetArea }}<img v-if="showCheckIcon" class="check-icon" src="/img/checkicon.svg" alt=""/></p>
       </div>
     </div>
 
@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       targetAreaSet: [],
+      showCheckIcon: false
     };
   },
   mounted() {
@@ -102,6 +103,7 @@ export default {
     },
 
     setTarget(KFTargetArea) {
+      this.showCheckIcon = true
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
