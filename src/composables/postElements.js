@@ -1,10 +1,12 @@
+const endpoint = 'http://localhost:3001/'
+
 const postElements = async (skitSomSkaMed) => {
     console.log(skitSomSkaMed, 'skitSomSkaMed i postElements')
     
-    await fetch('http://localhost:3001/', {
+    await fetch(`${endpoint}`, {
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(skitSomSkaMed)
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(skitSomSkaMed)
     })
 }
 
