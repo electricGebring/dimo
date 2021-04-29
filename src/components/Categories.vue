@@ -17,17 +17,19 @@
         :KFTargetArea="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
       >
- 
-        <p @click="toggle(KFTargetArea)" class="targetarea-title" :class="{ activeclass: KFTargetArea===isActive }"> 
+        <p
+          @click="toggle(KFTargetArea)"
+          class="targetarea-title"
+          :class="{ activeclass: KFTargetArea === isActive }"
+        >
           {{ KFTargetArea
           }}<img
-            v-show="KFTargetArea===isActive"
+            v-show="KFTargetArea === isActive"
             class="check-icon"
             src="/img/checkicon.svg"
             alt=""
           />
         </p>
-      
       </div>
     </div>
 
@@ -101,8 +103,8 @@ export default {
   },
   methods: {
     toggle: function(KFTargetArea) {
-        this.isActive = KFTargetArea;
-      },
+      this.isActive = KFTargetArea;
+    },
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -201,9 +203,13 @@ export default {
   &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
-
-  .activeclass {
+}
+.activeclass {
   background: #b5b8f3;
+  .check-icon {
+    float: right;
+    margin-top: 9px;
+    margin-right: 7px;
   }
 }
 
