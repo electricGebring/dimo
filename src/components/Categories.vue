@@ -14,9 +14,20 @@
       <div
         v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
+        :KFTargetArea="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
       >
-        <p class="targetarea-title">{{ KFTargetArea }}<img v-if="showCheckIcon" class="check-icon" src="/img/checkicon.svg" alt=""/></p>
+ 
+        <p @click="toggle(KFTargetArea)" class="targetarea-title" :class="{ activeclass: KFTargetArea===isActive }"> 
+          {{ KFTargetArea
+          }}<img
+            v-show="KFTargetArea===isActive"
+            class="check-icon"
+            src="/img/checkicon.svg"
+            alt=""
+          />
+        </p>
+      
       </div>
     </div>
 
@@ -50,7 +61,7 @@ export default {
   data() {
     return {
       targetAreaSet: [],
-      showCheckIcon: false
+      isActive: false,
     };
   },
   mounted() {
@@ -89,6 +100,9 @@ export default {
     },
   },
   methods: {
+    toggle: function(KFTargetArea) {
+        this.isActive = KFTargetArea;
+      },
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -103,7 +117,7 @@ export default {
     },
 
     setTarget(KFTargetArea) {
-      this.showCheckIcon = true
+      // this.showCheckIcon = true
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
@@ -187,6 +201,10 @@ export default {
   &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
+
+  .activeclass {
+  background: #b5b8f3;
+  }
 }
 
 .wrapper {
@@ -215,8 +233,7 @@ export default {
 }
 .icon {
   z-index: 2;
-  width: 40px;
-  height: auto;
+  width: 50px;
   margin-top: 11px;
   margin-left: 2px;
 }
@@ -292,17 +309,16 @@ h2 {
   width: 78px;
   height: 78px;
   margin-left: -2px;
-   margin-top: -2px;
+  margin-top: -2px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
   transition: background-color 1.5s;
   transition-timing-function: linear;
-&:hover {
+  &:hover {
     border: none;
-      box-shadow: none;
+    box-shadow: none;
   }
-
 }
 </style>
