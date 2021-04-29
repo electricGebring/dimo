@@ -208,8 +208,8 @@ export default {
   background: #b5b8f3;
   .check-icon {
     float: right;
-    margin-top: 9px;
-    margin-right: 7px;
+    margin-top: 10px;
+    margin-right: 8px;
   }
 }
 
