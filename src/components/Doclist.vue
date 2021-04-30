@@ -1,8 +1,9 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-  <button class="listicon" @click="changeView()">
-    <img src="/img/view-line.svg" alt="" />
-  </button>
+  <div class="listicon">
+    <img class="view-box" src="/img/view-box.svg" alt="" @click="changeViewBox()"/>
+    <img class="view-line" src="/img/view-line.svg" alt="" @click="changeViewLine()" />
+  </div>
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
@@ -40,8 +41,8 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class=""><img src="/img/star-save.svg" alt="" /></span>
+            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
+            <span class=""><img src="/img/star-save.svg" alt=""/></span>
           </div>
         </div>
       </div>
@@ -59,9 +60,13 @@ export default {
     goto(url) {
       window.open(url, "_blank").focus();
     },
-    changeView() {
+    changeViewLine() {
       let view = document.getElementById("all");
-      view.classList.toggle("mystyle");
+      view.classList.add("mystyle");
+    },
+      changeViewBox() {
+      let view = document.getElementById("all");
+      view.classList.remove("mystyle");
     },
   },
 };
@@ -255,4 +260,8 @@ body {
   color: #2c365a;
   margin-left: 60px;
 }
+
+  .view-box {
+    margin-right: 10px;
+  }
 </style>
