@@ -141,16 +141,15 @@ export default {
   border: solid 3px #b5b8f3;
   border-radius: 50%;
   cursor: pointer;
-  width: 78px;
-  height: 78px;
-  margin-left: -2px;
-  margin-top: -2px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
   transition: background-color 1.5s;
   transition-timing-function: linear;
+  width: 95px;
+  height: 95px;
+
   &:hover {
     border: none;
     box-shadow: none;
@@ -250,41 +249,39 @@ export default {
   position: absolute;
   z-index: 0;
   cursor: pointer;
-  width: 78px;
-  height: 78px;
+  width: 95px;
+  height: 95px;
 
   &:hover {
     border: solid 3px #b5b8f3;
     border-style: dotted;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-left: -5px;
+    margin-top: -15px;
+   
   }
 }
 .icon {
   z-index: 2;
   width: 50px;
-  margin-top: 11px;
-  margin-left: 2px;
 }
 
 .link {
   text-decoration: none;
   text-align: center;
-  word-wrap: break-word;
   text-transform: capitalize;
-  height: 60px;
-  width: 60px;
-  display: block;
+  display: inline-block;
   cursor: pointer;
-  display: block;
-  cursor: pointer;
-  z-index: 2;
+  margin-left: -30px;
+  border-radius: 50%;
 }
 
 .category-title {
   font-size: 9px;
   font-weight: bold;
   color: #000;
-  margin-top: 60px;
+  margin-top: 50px;
+  margin-left: 20px;
   width: 98px;
   word-wrap: break-word;
 
@@ -342,6 +339,4 @@ h2 {
   line-height: 24px;
   color: #4f4f4f;
 }
-
-
 </style>
