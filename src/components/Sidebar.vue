@@ -100,7 +100,6 @@ export default {
   flex-direction: column;
   float: left;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
   transition: width, 0.3s;
   z-index: 9999;
   &.colapsed {
