@@ -52,6 +52,7 @@
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
           :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
+         <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
     </div>
