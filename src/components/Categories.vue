@@ -52,7 +52,7 @@
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
           :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
-         <p class="category-title">{{ Thematic }}</p>
+          <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
     </div>
@@ -136,6 +136,27 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+.targetActive {
+  border: solid 3px #b5b8f3;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 78px;
+  height: 78px;
+  margin-left: -2px;
+  margin-top: -2px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: background-color 1.5s;
+  -moz-transition: background-color 1.5s;
+  -o-transition: background-color 1.5s;
+  transition: background-color 1.5s;
+  transition-timing-function: linear;
+  &:hover {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 .section {
   margin-top: 80px;
   width: 80vw;
@@ -258,6 +279,19 @@ export default {
   cursor: pointer;
   z-index: 2;
 }
+
+.category-title {
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  margin-top: 60px;
+  width: 98px;
+  word-wrap: break-word;
+
+  &:hover {
+    color: #645f5f;
+  }
+}
 .headbar {
   display: block;
   font-family: "Montserrat", sans-serif;
@@ -309,23 +343,5 @@ h2 {
   color: #4f4f4f;
 }
 
-.targetActive {
-  border: solid 3px #b5b8f3;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 78px;
-  height: 78px;
-  margin-left: -2px;
-  margin-top: -2px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  -webkit-transition: background-color 1.5s;
-  -moz-transition: background-color 1.5s;
-  -o-transition: background-color 1.5s;
-  transition: background-color 1.5s;
-  transition-timing-function: linear;
-  &:hover {
-    border: none;
-    box-shadow: none;
-  }
-}
+
 </style>
