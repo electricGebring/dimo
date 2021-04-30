@@ -223,10 +223,12 @@ export default {
 
   &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    background: #ecf0fd;
   }
 }
 .activeclass {
-  background: #b5b8f3;
+  background: #ecf0fd;
+
   .check-icon {
     float: right;
     margin-top: 10px;
@@ -258,7 +260,6 @@ export default {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     margin-left: -5px;
     margin-top: -15px;
-   
   }
 }
 .icon {
