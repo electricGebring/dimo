@@ -353,7 +353,7 @@ export default {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   height: fit-content;
-  margin-top: 200px;
+  margin-top: 170px;
   max-width: 230px;
   min-width: 230px;
   padding: 21px 12px;
