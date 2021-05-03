@@ -39,9 +39,6 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-      <span class="categories" v-for="(item, index) in Images" :key="index">
-        <img class="icon" v-bind:src="item" />
-      </span>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -52,7 +49,10 @@
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
           :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
-          <p class="category-title">{{ Thematic }}</p>
+          <div class="category-group">
+            <span class="icon"><img v-bind:src="Images[index]"/></span>
+            <span class="category-title">{{ Thematic }}</span>
+          </div>
         </router-link>
       </span>
     </div>
@@ -239,17 +239,25 @@ export default {
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 57vw;
-  top: 18vw;
+ left: 56vw;
+    top: 17vw;
 }
 .categories {
-  text-align: center;
   position: absolute;
   z-index: 2;
-  border-radius: 50%;
-  content: " ";
-  position: absolute;
   z-index: 0;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  border-radius: 50%;
   cursor: pointer;
   width: 95px;
   height: 95px;
@@ -257,38 +265,29 @@ export default {
   &:hover {
     border: solid 3px #b5b8f3;
     border-style: dotted;
+    border-radius: 50%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    margin-left: -5px;
-    margin-top: -15px;
   }
 }
-.icon {
-  z-index: 2;
-  width: 50px;
-}
 
-.link {
-  text-decoration: none;
-  text-align: center;
-  text-transform: capitalize;
-  display: inline-block;
-  cursor: pointer;
-  margin-left: -30px;
-  border-radius: 50%;
+.category-group {
+  margin-top: 12px;
+  width: 93px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.icon {
+  display: block;
+  z-index: 2;
+
+  img {
+    width: 50px;
+  }
 }
 
 .category-title {
-  font-size: 9px;
-  font-weight: bold;
-  color: #000;
-  margin-top: 50px;
-  margin-left: 20px;
-  width: 98px;
-  word-wrap: break-word;
+  z-index: 2;
 
-  &:hover {
-    color: #645f5f;
-  }
 }
 .headbar {
   display: block;
@@ -298,8 +297,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: -7vw;
-  left: -7vw;
+  top: -6.5vw;
+    left: -5.5vw;
   border-radius: 50%;
   width: 18vw;
   height: 18vw;
