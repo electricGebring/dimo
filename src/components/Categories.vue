@@ -14,9 +14,22 @@
       <div
         v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
+        :KFTargetArea="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
       >
-        <p class="targetarea-title">{{ KFTargetArea }}</p>
+        <p
+          @click="toggle(KFTargetArea)"
+          class="targetarea-title"
+          :class="{ activeclass: KFTargetArea === isActive }"
+        >
+          {{ KFTargetArea
+          }}<img
+            v-show="KFTargetArea === isActive"
+            class="check-icon"
+            src="/img/checkicon.svg"
+            alt=""
+          />
+        </p>
       </div>
     </div>
 
@@ -26,9 +39,6 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-      <span class="categories" v-for="(item, index) in Images" :key="index">
-        <img class="icon" v-bind:src="item" />
-      </span>
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
@@ -39,6 +49,10 @@
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
           :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
+          <div class="category-group">
+            <span class="icon"><img v-bind:src="Images[index]"/></span>
+            <span class="category-title">{{ Thematic }}</span>
+          </div>
         </router-link>
       </span>
     </div>
@@ -50,6 +64,7 @@ export default {
   data() {
     return {
       targetAreaSet: [],
+      isActive: false,
     };
   },
   mounted() {
@@ -88,6 +103,9 @@ export default {
     },
   },
   methods: {
+    toggle: function(KFTargetArea) {
+      this.isActive = KFTargetArea;
+    },
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -102,6 +120,7 @@ export default {
     },
 
     setTarget(KFTargetArea) {
+      // this.showCheckIcon = true
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
@@ -117,6 +136,26 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+.targetActive {
+  border: solid 3px #b5b8f3;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: background-color 1.5s;
+  -moz-transition: background-color 1.5s;
+  -o-transition: background-color 1.5s;
+  transition: background-color 1.5s;
+  transition-timing-function: linear;
+  width: 95px;
+  height: 95px;
+
+  &:hover {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 .section {
   margin-top: 80px;
   width: 80vw;
@@ -182,55 +221,73 @@ export default {
   font-size: 11px;
   font-family: "Montserrat";
 
-   &:hover {
+  &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    background: #ecf0fd;
+  }
+}
+.activeclass {
+  background: #ecf0fd;
+
+  .check-icon {
+    float: right;
+    margin-top: 10px;
+    margin-right: 8px;
   }
 }
 
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 57vw;
-  top: 18vw;
+ left: 56vw;
+    top: 17vw;
 }
 .categories {
-  text-align: center;
   position: absolute;
   z-index: 2;
-  border-radius: 50%;
-  content: " ";
-  position: absolute;
   z-index: 0;
   cursor: pointer;
-  margin-top: -16px;
-  width: 78px;
-  height: 78px;
-  margin-left: -19px;
-
-  &:hover {
-    background-color: #ecf0fd;
-    opacity: 0.5;
-  }
-}
-.icon {
-  z-index: 2;
-  width: 40px;
-  height: auto;
-  margin-top: 7px;
 }
 
 .link {
   text-decoration: none;
   text-align: center;
-  word-wrap: break-word;
-  text-transform: capitalize;
-  height: 60px;
-  width: 60px;
-  display: block;
+  display: inline-block;
   cursor: pointer;
-  display: block;
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  border-radius: 50%;
   cursor: pointer;
+  width: 95px;
+  height: 95px;
+
+  &:hover {
+    border: solid 3px #b5b8f3;
+    border-style: dotted;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.category-group {
+  margin-top: 12px;
+  width: 93px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.icon {
+  display: block;
   z-index: 2;
+
+  img {
+    width: 50px;
+  }
+}
+
+.category-title {
+  z-index: 2;
+
 }
 .headbar {
   display: block;
@@ -240,8 +297,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: -7vw;
-  left: -7vw;
+  top: -6.5vw;
+    left: -5.5vw;
   border-radius: 50%;
   width: 18vw;
   height: 18vw;
@@ -269,7 +326,7 @@ a {
   display: table-cell;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-   &:hover {
+  &:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
@@ -281,19 +338,5 @@ h2 {
   font-size: 20px;
   line-height: 24px;
   color: #4f4f4f;
-}
-
-.targetActive {
-  background-color: #b5b8f3;
-  border-radius: 50%;
-  cursor: pointer;
-  opacity: 0.5;
-  width: 78px;
-  height: 78px;
-  -webkit-transition: background-color 1.5s;
-  -moz-transition: background-color 1.5s;
-  -o-transition: background-color 1.5s;
-  transition: background-color 1.5s;
-  transition-timing-function: linear;
 }
 </style>
