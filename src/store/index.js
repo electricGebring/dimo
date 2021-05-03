@@ -6,15 +6,19 @@ export default createStore({
     Elements: [],
   },
   mutations: {
-    GET_INFO(state, Elements) {
-      state.Elements = Elements;
+    GET_INFO(state, data) {
+      state.Elements = data;
     }
   },
   actions: {
     getDocuments({commit}) {
-      axios.get('data.json').then((response) => {
-        commit('GET_INFO', response.data.Elements)
-      })
+      axios
+        .get('http://localhost:3001/')
+        .then((response) => {
+        console.log(response, 'response')
+        commit('GET_INFO', response.data)
+        }
+      )
     },
   },
   modules: {
