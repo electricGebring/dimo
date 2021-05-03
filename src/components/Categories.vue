@@ -26,24 +26,19 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-
-      <span class="categories" v-for="item in Images" :key="item">
-        <div class="icon">
-          <img v-bind:src="item" width="40" height="40" />
-        </div>
+      <span class="categories" v-for="(item, index) in Images" :key="index">
+        <img class="icon" v-bind:src="item" />
       </span>
-
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
         :key="index"
-        :class="{ targetActive: targetAreaSet.includes(Thematic) }"
       >
         <router-link
           class="link"
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
+          :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
-          <p class="category-title">{{ Thematic }}</p>
         </router-link>
       </span>
     </div>
@@ -63,6 +58,7 @@ export default {
   },
   updated() {
     this.circleSizing();
+    // this.imageSizing();
   },
   computed: {
     Elements() {
@@ -104,6 +100,7 @@ export default {
         circles[i].style.left = x.toString() + "vw";
       }
     },
+
     setTarget(KFTargetArea) {
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
@@ -184,6 +181,10 @@ export default {
   padding-left: 10px;
   font-size: 11px;
   font-family: "Montserrat";
+
+   &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .wrapper {
@@ -196,34 +197,40 @@ export default {
   text-align: center;
   position: absolute;
   z-index: 2;
-
-  .icon {
-    margin-top: 8px;
-    margin-left: 9px;
-    z-index: 2;
-  }
-}
-
-.category-title {
-  font-size: 9px;
-  font-weight: bold;
-  color: #000;
-  margin-top: 57px;
-  margin-left: -70px;
+  border-radius: 50%;
+  content: " ";
+  position: absolute;
+  z-index: 0;
+  cursor: pointer;
+  margin-top: -16px;
+  width: 78px;
+  height: 78px;
+  margin-left: -19px;
 
   &:hover {
-    color: #645f5f;
+    background-color: #ecf0fd;
+    opacity: 0.5;
   }
 }
+.icon {
+  z-index: 2;
+  width: 40px;
+  height: auto;
+  margin-top: 7px;
+}
+
 .link {
   text-decoration: none;
   text-align: center;
   word-wrap: break-word;
   text-transform: capitalize;
-  height: 117px;
-  width: 117px;
+  height: 60px;
+  width: 60px;
   display: block;
   cursor: pointer;
+  display: block;
+  cursor: pointer;
+  z-index: 2;
 }
 .headbar {
   display: block;
@@ -261,6 +268,10 @@ a {
   vertical-align: middle;
   display: table-cell;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+   &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 h2 {
@@ -275,15 +286,14 @@ h2 {
 .targetActive {
   background-color: #b5b8f3;
   border-radius: 50%;
-  content: " ";
-  width: 58px;
-  height: 58px;
-  position: absolute;
-  z-index: 0;
+  cursor: pointer;
+  opacity: 0.5;
+  width: 78px;
+  height: 78px;
   -webkit-transition: background-color 1.5s;
   -moz-transition: background-color 1.5s;
   -o-transition: background-color 1.5s;
-  transition: background-color 1.5s ;
+  transition: background-color 1.5s;
   transition-timing-function: linear;
 }
 </style>
