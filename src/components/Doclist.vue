@@ -53,7 +53,7 @@
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt=""/></span>
             <span class="" v-on:click.stop="handleSave(item)" >
-              <img class="save" :class="{ saveActive: savedDocuments.includes(item) }"/>
+              <img class="save" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
             </span>
           </div>
         </div>
@@ -301,15 +301,15 @@ body {
 }
 
 .save {
-    background-image: url(/img/star.svg);
-  width: 10px;
-  height: 10px;
+    background-image: url('/img/star.svg');
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
 }
 .saveActive {
   background-image: url(/img/star-save.svg);
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
 }
 </style>
