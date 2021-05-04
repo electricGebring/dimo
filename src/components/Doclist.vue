@@ -1,19 +1,19 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-      <div class="listicon">
-      <img
-        class="view-box"
-        src="/img/view-box.svg"
-        alt=""
-        @click="changeViewBox()"
-      />
-      <img
-        class="view-line"
-        src="/img/view-line.svg"
-        alt=""
-        @click="changeViewLine()"
-      />
-    </div>
+  <div class="listicon">
+    <img
+      class="view-box"
+      src="/img/view-box.svg"
+      alt=""
+      @click="changeViewBox()"
+    />
+    <img
+      class="view-line"
+      src="/img/view-line.svg"
+      alt=""
+      @click="changeViewLine()"
+    />
+  </div>
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
@@ -51,8 +51,11 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="save" v-on:click.stop="handleSave(item._id, $event)"><img src="/img/star-save.svg" alt="" /></span>
+            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
+            <span class="save" v-on:click.stop="handleSave(item._id, $event)"
+              ><img @click="toggle()" class="save" src="/img/star-save.svg"
+              alt="" :class="{ saveActive: saveActive === saveActive } /></span
+            >
           </div>
         </div>
       </div>
@@ -63,6 +66,12 @@
 <script>
 export default {
   props: ["doclist"],
+
+  data() {
+    return {
+      saveActive: false,
+    };
+  },
   components: {},
   computed: {},
   mounted() {},
@@ -79,7 +88,10 @@ export default {
       view.classList.remove("mystyle");
     },
     handleSave(id) {
-      this.$store.dispatch('postSavedDocuments', id)
+      this.$store.dispatch("postSavedDocuments", id);
+    },
+    toggle() {
+      this.saveActive = !this.saveActive;
     },
   },
 };
@@ -276,5 +288,10 @@ body {
 
 .view-box {
   margin-right: 10px;
+}
+
+.saveActive {
+  filter: invert(80%) sepia(88%) saturate(526%) hue-rotate(357deg)
+    brightness(104%) contrast(106%);
 }
 </style>

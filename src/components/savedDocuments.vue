@@ -1,50 +1,25 @@
 <template>
   <div class="savedlist-container">
     <h3>Mina sparade dokument</h3>
-    <div class="savedlist-object">
+    <div class="savedlist-object" v-for="item in savedDocuments" :key="item">
       <img
         class="pdf-icon"
         src="https://i.ibb.co/5M6fZr1/Test-23.png"
         alt="Test-23"
         border="0"
       />
-      <h4>Styrdokument nummer # 34</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        risus odio tincidunt nulla suspendisse tempus
-      </p>
-    </div>
-    <div class="savedlist-object">
-      <img
-        class="pdf-icon"
-        src="https://i.ibb.co/5M6fZr1/Test-23.png"
-        alt="Test-23"
-        border="0"
-      />
-      <h4>Styrdokument nummer # 34</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        risus odio tincidunt nulla suspendisse tempus
-      </p>
-    </div>
-    <div class="savedlist-object">
-      <img
-        class="pdf-icon"
-        src="https://i.ibb.co/5M6fZr1/Test-23.png"
-        alt="Test-23"
-        border="0"
-      />
-      <h4>Styrdokument nummer # 34</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        risus odio tincidunt nulla suspendisse tempus
-      </p>
+      <h4>{{item.Label}}</h4>
     </div>
   </div>
 </template>
 <script>
 export default {
-  methods: {},
+  methods: { },
+   computed: {
+    savedDocuments() {
+      return this.$store.state.savedDocuments
+    },
+  },
 };
 </script>
 
@@ -54,8 +29,8 @@ export default {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  width: 20vw;
-  padding: 16px 40px 16px 40px;
+  width: 25vw;
+  padding: 16px 40px 40px 40px;
   margin-top: 30px;
   font-family: Montserrat;
 
@@ -68,7 +43,7 @@ export default {
   }
 
   .savedlist-object {
-    margin-top: 20px;
+    margin-top: 30px;
 
     .pdf-icon {
       width: 40px;
