@@ -87,20 +87,20 @@ export default createStore({
   }],
   },
   mutations: {
-    GET_INFO(state, data) {
-      state.Elements = data;
-    },
-    POST_SAVED_DOCUMENTS(state, data) {
-      state.savedDocuments = data;
+      GET_INFO(state, Elements) {
+        state.Elements = Elements;
+      },
+    POST_SAVED_DOCUMENTS(state) {
+      state.savedDocuments = this.Elements;
     }
   },
   actions: {
     getDocuments({commit}) {
       axios
-        .get('http://localhost:3001/')
+        .get('data.json')
         .then((response) => {
         console.log(response, 'response')
-        commit('GET_INFO', response.data)
+        commit('GET_INFO', response.data.Elements)
         })
     },
     postSavedDocuments({commit}, id) {
@@ -116,3 +116,5 @@ export default createStore({
   modules: {
   }
 })
+
+

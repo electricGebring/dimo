@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  methods: { },
+  methods: {},
    computed: {
     savedDocuments() {
       return this.$store.state.savedDocuments

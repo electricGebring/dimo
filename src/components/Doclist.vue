@@ -17,8 +17,8 @@
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
-      v-for="item in doclist"
-      :key="item.Label"
+      v-for="(item, index) in doclist"
+      :key="index"
       :item="item"
     >
       <div id="section" class="" @click.stop="goto(item.URL)">
@@ -52,30 +52,35 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-            <span class="save" v-on:click.stop="handleSave(item._id, $event)"
-              ><img @click="toggle()" class="save" src="/img/star-save.svg"
-              alt="" :class="{ saveActive: saveActive === saveActive } /></span
-            >
+            <span class="" v-on:click.stop="handleSave(item)" >
+              <img class="save" :class="{ saveActive: savedDocuments.includes(item) }"/>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props: ["doclist"],
-
   data() {
     return {
-      saveActive: false,
+      //saveActive: false,
+      targetArea: [],
     };
   },
   components: {},
-  computed: {},
-  mounted() {},
+  computed: {
+     savedDocuments() {
+      return this.$store.state.savedDocuments
+    },
+  },
+  mounted() {
+
+  },
   methods: {
+ 
     goto(url) {
       window.open(url, "_blank").focus();
     },
@@ -87,11 +92,16 @@ export default {
       let view = document.getElementById("all");
       view.classList.remove("mystyle");
     },
-    handleSave(id) {
-      this.$store.dispatch("postSavedDocuments", id);
-    },
-    toggle() {
-      this.saveActive = !this.saveActive;
+    handleSave(item) {
+      //this.saveActive = item;
+      //this.$store.dispatch("postSavedDocuments", id);
+     if (!this.savedDocuments.includes(item)) {
+       this.savedDocuments.push(item);
+        }
+        else {
+       this.savedDocuments.pop(item);
+        }
+        console.log(this.savedDocuments, "eee")
     },
   },
 };
@@ -290,8 +300,16 @@ body {
   margin-right: 10px;
 }
 
+.save {
+    background-image: url(/img/star.svg);
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+}
 .saveActive {
-  filter: invert(80%) sepia(88%) saturate(526%) hue-rotate(357deg)
-    brightness(104%) contrast(106%);
+  background-image: url(/img/star-save.svg);
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
 }
 </style>
