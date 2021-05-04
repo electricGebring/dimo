@@ -14,9 +14,22 @@
       <div
         v-for="KFTargetArea in KFTargetAreaList"
         :key="KFTargetArea"
+        :KFTargetArea="KFTargetArea"
         v-on:click="setTarget(KFTargetArea)"
       >
-        <p class="targetarea-title">{{ KFTargetArea }}</p>
+        <p
+          @click="toggle(KFTargetArea)"
+          class="targetarea-title"
+          :class="{ activeclass: KFTargetArea === isActive }"
+        >
+          {{ KFTargetArea
+          }}<img
+            v-show="KFTargetArea === isActive"
+            class="check-icon"
+            src="/img/checkicon.svg"
+            alt=""
+          />
+        </p>
       </div>
     </div>
 
@@ -26,24 +39,20 @@
           <span class="show-all">Visa Alla</span>
         </router-link>
       </div>
-
-      <span class="categories" v-for="item in Images" :key="item">
-        <div class="icon">
-          <img v-bind:src="item" width="40" height="40" />
-        </div>
-      </span>
-
       <span
         class="categories"
         v-for="(Thematic, index) in ThematicList"
         :key="index"
-        :class="{ targetActive: targetAreaSet.includes(Thematic) }"
       >
         <router-link
           class="link"
           :to="{ name: 'Search', params: { Thematic: Thematic } }"
+          :class="{ targetActive: targetAreaSet.includes(Thematic) }"
         >
-          <p class="category-title">{{ Thematic }}</p>
+          <div class="category-group">
+            <span class="icon"><img v-bind:src="Images[index]"/></span>
+            <span class="category-title">{{ Thematic }}</span>
+          </div>
         </router-link>
       </span>
     </div>
@@ -55,6 +64,7 @@ export default {
   data() {
     return {
       targetAreaSet: [],
+      isActive: false,
     };
   },
   mounted() {
@@ -63,6 +73,7 @@ export default {
   },
   updated() {
     this.circleSizing();
+    // this.imageSizing();
   },
   computed: {
     Elements() {
@@ -92,6 +103,9 @@ export default {
     },
   },
   methods: {
+    toggle: function(KFTargetArea) {
+      this.isActive = KFTargetArea;
+    },
     circleSizing() {
       var div = 360 / 14;
       var radius = 15;
@@ -104,7 +118,9 @@ export default {
         circles[i].style.left = x.toString() + "vw";
       }
     },
+
     setTarget(KFTargetArea) {
+      // this.showCheckIcon = true
       this.targetAreaSet = [];
       this.Elements.forEach((i) => {
         for (let j in i) {
@@ -120,6 +136,26 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+.targetActive {
+  border: solid 3px #b5b8f3;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: background-color 1.5s;
+  -moz-transition: background-color 1.5s;
+  -o-transition: background-color 1.5s;
+  transition: background-color 1.5s;
+  transition-timing-function: linear;
+  width: 95px;
+  height: 95px;
+
+  &:hover {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 .section {
   margin-top: 80px;
   width: 80vw;
@@ -184,46 +220,74 @@ export default {
   padding-left: 10px;
   font-size: 11px;
   font-family: "Montserrat";
+
+  &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    background: #ecf0fd;
+  }
+}
+.activeclass {
+  background: #ecf0fd;
+
+  .check-icon {
+    float: right;
+    margin-top: 10px;
+    margin-right: 8px;
+  }
 }
 
 .wrapper {
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  left: 57vw;
-  top: 18vw;
+ left: 56vw;
+    top: 17vw;
 }
 .categories {
-  text-align: center;
   position: absolute;
   z-index: 2;
+  z-index: 0;
+  cursor: pointer;
+}
 
-  .icon {
-    margin-top: 8px;
-    margin-left: 9px;
-    z-index: 2;
+.link {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 95px;
+  height: 95px;
+
+  &:hover {
+    border: solid 3px #b5b8f3;
+    border-style: dotted;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.category-group {
+  margin-top: 12px;
+  width: 93px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.icon {
+  display: block;
+  z-index: 2;
+
+  img {
+    width: 50px;
   }
 }
 
 .category-title {
-  font-size: 9px;
-  font-weight: bold;
-  color: #000;
-  margin-top: 57px;
-  margin-left: -70px;
+  z-index: 2;
 
-  &:hover {
-    color: #645f5f;
-  }
-}
-.link {
-  text-decoration: none;
-  text-align: center;
-  word-wrap: break-word;
-  text-transform: capitalize;
-  height: 117px;
-  width: 117px;
-  display: block;
-  cursor: pointer;
 }
 .headbar {
   display: block;
@@ -233,8 +297,8 @@ export default {
 }
 .middle-circle {
   position: absolute;
-  top: -7vw;
-  left: -7vw;
+  top: -6.5vw;
+    left: -5.5vw;
   border-radius: 50%;
   width: 18vw;
   height: 18vw;
@@ -261,6 +325,10 @@ a {
   vertical-align: middle;
   display: table-cell;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
 }
 
 h2 {
@@ -270,20 +338,5 @@ h2 {
   font-size: 20px;
   line-height: 24px;
   color: #4f4f4f;
-}
-
-.targetActive {
-  background-color: #b5b8f3;
-  border-radius: 50%;
-  content: " ";
-  width: 58px;
-  height: 58px;
-  position: absolute;
-  z-index: 0;
-  -webkit-transition: background-color 1.5s;
-  -moz-transition: background-color 1.5s;
-  -o-transition: background-color 1.5s;
-  transition: background-color 1.5s ;
-  transition-timing-function: linear;
 }
 </style>

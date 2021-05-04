@@ -1,8 +1,19 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-  <button class="listicon" @click="changeView()">
-    <img src="/img/view-line.svg" alt="" />
-  </button>
+      <div class="listicon">
+      <img
+        class="view-box"
+        src="/img/view-box.svg"
+        alt=""
+        @click="changeViewBox()"
+      />
+      <img
+        class="view-line"
+        src="/img/view-line.svg"
+        alt=""
+        @click="changeViewLine()"
+      />
+    </div>
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
@@ -59,11 +70,15 @@ export default {
     goto(url) {
       window.open(url, "_blank").focus();
     },
-    changeView() {
+    changeViewLine() {
       let view = document.getElementById("all");
-      view.classList.toggle("mystyle");
+      view.classList.add("mystyle");
     },
-    handleSave(id, e) {
+    changeViewBox() {
+      let view = document.getElementById("all");
+      view.classList.remove("mystyle");
+    },
+    handleSave(id) {
       this.$store.dispatch('postSavedDocuments', id)
     },
   },
@@ -76,14 +91,13 @@ body {
   padding: 0;
 }
 .listicon {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
   background: none;
   color: inherit;
   outline: none;
   border: none;
-  margin-left: 85%;
   cursor: pointer;
+  float: right;
 }
 
 //// VIEW CHANGE CSS ////
@@ -93,9 +107,9 @@ body {
     justify-content: flex-start;
     background-color: black;
     padding: 0;
-    margin: 0;
-    width: 1000px;
-    max-width: 1000px;
+    margin-left: 10px;
+    width: 100%;
+    max-width: 980px;
     height: 85px;
     max-height: 85px;
     border-radius: 10px;
@@ -151,6 +165,7 @@ body {
   }
   .titlesection {
     margin: 8px;
+    width: 100%;
   }
   .icons {
     margin-top: 30px;
@@ -167,7 +182,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   // max-height: 540px; //// scroll in content
   // overflow: hidden;
   // overflow-y: scroll;
@@ -175,13 +190,13 @@ body {
 #section {
   position: relative;
   display: table;
-  margin: 0 20px 20px 20px;
   width: 210px;
   max-width: 210px;
   height: 190px;
   max-height: 190px;
   background-color: #faf9f9 !important;
   padding: 10px 0 0 0;
+  margin-left: 20px;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   &:hover {
@@ -257,5 +272,9 @@ body {
   line-height: 17px;
   color: #2c365a;
   margin-left: 60px;
+}
+
+.view-box {
+  margin-right: 10px;
 }
 </style>
