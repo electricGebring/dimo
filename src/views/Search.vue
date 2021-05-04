@@ -103,7 +103,7 @@ export default {
         })
         
         this.doclist = arrayToDoclist
-        postElements(this.doclist)
+        //postElements(this.doclist)
       } else {
         
         this.checkedCategories = []

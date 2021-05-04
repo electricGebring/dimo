@@ -41,7 +41,7 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class=""><img src="/img/star-save.svg" alt="" /></span>
+            <span class="save" v-on:click.stop="handleSave(item._id, $event)"><img src="/img/star-save.svg" alt="" /></span>
           </div>
         </div>
       </div>
@@ -62,6 +62,9 @@ export default {
     changeView() {
       let view = document.getElementById("all");
       view.classList.toggle("mystyle");
+    },
+    handleSave(id, e) {
+      this.$store.dispatch('postSavedDocuments', id)
     },
   },
 };

@@ -23,13 +23,15 @@ export default createStore({
         commit('GET_INFO', response.data)
         })
     },
-    // postSavedDocuments({commit}) {
-    //   axios
-    //     .post('http://localhost:3001/savedDocuments', här ska vi ha med något jävla id, { 'Content-type': 'application/json' })
-    //     .then((response) => {
-    //       commit('POST_SAVED_DOCUMENTS')
-    //     })
-    // }
+    postSavedDocuments({commit}, id) {
+      console.log(id, 'id')
+      //console.log(commit, 'commit')
+      axios
+        .post('http://localhost:3001/savedDocuments', { '_id': id })
+        .then((response) => {
+          commit('POST_SAVED_DOCUMENTS', response.data)
+        })
+    }
   },
   modules: {
   }
