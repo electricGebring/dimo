@@ -76,9 +76,6 @@ export default {
       return this.$store.state.savedDocuments
     },
   },
-  mounted() {
-
-  },
   methods: {
  
     goto(url) {
@@ -121,6 +118,7 @@ body {
   cursor: pointer;
   float: right;
 }
+img{border:0;}
 
 //// VIEW CHANGE CSS ////
 .mystyle {
@@ -301,13 +299,13 @@ body {
 }
 
 .save {
-    background-image: url('/img/star.svg');
+  background-image: url('/img/star.svg');
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
 }
 .saveActive {
-  background-image: url(/img/star-save.svg);
+  background-image: url('https://i.ibb.co/4Z5npdf/star.png');
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;

@@ -1,23 +1,29 @@
 <template>
   <div class="savedlist-container">
     <h3>Mina sparade dokument</h3>
-    <div class="savedlist-object" v-for="item in savedDocuments" :key="item">
-      <img
-        class="pdf-icon"
-        src="https://i.ibb.co/5M6fZr1/Test-23.png"
-        alt="Test-23"
-        border="0"
-      />
-      <h4>{{item.Label}}</h4>
+    <div v-for="item in savedDocuments" :key="item">
+      <div class="savedlist-object" @click.stop="goto(item.URL)">
+        <img
+          class="pdf-icon"
+          src="https://i.ibb.co/5M6fZr1/Test-23.png"
+          alt="Test-23"
+          border="0"
+        />
+        <h4>{{ item.Label }}</h4>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  methods: {},
-   computed: {
+  methods: {
+    goto(url) {
+      window.open(url, "_blank").focus();
+    },
+  },
+  computed: {
     savedDocuments() {
-      return this.$store.state.savedDocuments
+      return this.$store.state.savedDocuments;
     },
   },
 };
@@ -56,6 +62,11 @@ export default {
       line-height: 16px;
       color: #2c365a;
       margin: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #C0C7D9;
+      }
     }
     p {
       font-style: normal;
