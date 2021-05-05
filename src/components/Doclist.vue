@@ -53,7 +53,7 @@
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt=""/></span>
             <span class="" v-on:click.stop="handleSave(item)" >
-              <img class="save" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
+            <img class="save" src="/img/star.svg" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
             </span>
           </div>
         </div>
@@ -306,13 +306,14 @@ img{border:0;}
 }
 
 .save {
-  background-image: url('/img/star.svg');
+  //background-image: url('/img/star.svg');
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
 }
 .saveActive {
-  background-image: url('https://i.ibb.co/4Z5npdf/star.png');
+filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(
+65deg) brightness(321%) contrast(101%);
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
