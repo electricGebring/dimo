@@ -54,8 +54,8 @@ export default {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  width: 20vw;
-  padding: 16px 40px 16px 40px;
+  width: 25vw;
+  padding: 16px 40px 40px 40px;
   margin-top: 30px;
   font-family: Montserrat;
 
@@ -68,7 +68,7 @@ export default {
   }
 
   .savedlist-object {
-    margin-top: 20px;
+    margin-top: 30px;
 
     .pdf-icon {
       width: 40px;
@@ -81,6 +81,11 @@ export default {
       line-height: 16px;
       color: #2c365a;
       margin: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #C0C7D9;
+      }
     }
     p {
       font-style: normal;
