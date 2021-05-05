@@ -63,7 +63,7 @@ export default {
       let view = document.getElementById("all");
       view.classList.toggle("mystyle");
     },
-    handleSave(id, e) {
+    handleSave(id) {
       this.$store.dispatch('postSavedDocuments', id)
     },
   },
