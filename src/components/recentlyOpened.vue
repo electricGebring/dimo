@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <h3>Mina sparade dokument</h3>
-    <div v-for="item in savedDocuments" :key="item">
-      <div class="object" @click.stop="goto(item.URL)">
+    <h3>Senast visade</h3>
+      <div class="object" @click.stop="goto(item.URL)" v-for="item in recentlyViewed" :key="item">
         <img
           class="pdf-icon"
           src="https://i.ibb.co/5M6fZr1/Test-23.png"
@@ -12,7 +11,6 @@
         <h4>{{ item.Label }}</h4>
       </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
@@ -22,8 +20,8 @@ export default {
     },
   },
   computed: {
-    savedDocuments() {
-      return this.$store.state.savedDocuments;
+     recentlyViewed() {
+      return this.$store.state.recentlyViewed
     },
   },
 };

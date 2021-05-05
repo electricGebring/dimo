@@ -21,7 +21,7 @@
       :key="index"
       :item="item"
     >
-      <div id="section" class="" @click.stop="goto(item.URL)">
+      <div id="section" class="" @click.stop="goto(item.URL, item)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -74,12 +74,19 @@ export default {
   computed: {
      savedDocuments() {
       return this.$store.state.savedDocuments
+    }, 
+     recentlyViewed() {
+      return this.$store.state.recentlyViewed
     },
   },
   methods: {
  
-    goto(url) {
+    goto(url, item) {
       window.open(url, "_blank").focus();
+      if (!this.recentlyViewed.includes(item)) {
+       this.recentlyViewed.push(item);
+        }
+           console.log(this.recentlyViewed, "iii")
     },
     changeViewLine() {
       let view = document.getElementById("all");
