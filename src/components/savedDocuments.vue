@@ -81,6 +81,10 @@ export default {
       line-height: 16px;
       color: #2c365a;
       margin: 0;
+      
+      &:hover {
+        color: #C0C7D9;
+      }
     }
     p {
       font-style: normal;
