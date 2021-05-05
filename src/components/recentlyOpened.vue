@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h3>Senast visade</h3>
-      <div class="object" @click.stop="goto(item.URL)" v-for="item in recentlyViewed" :key="item">
+    <div class="list" v-for="item in recentlyViewed" :key="item">
+      <div class="object" @click.stop="goto(item.URL)" >
         <img
           class="pdf-icon"
           src="https://i.ibb.co/5M6fZr1/Test-23.png"
@@ -11,6 +12,7 @@
         <h4>{{ item.Label }}</h4>
       </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
@@ -33,6 +35,7 @@ export default {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  display: table;
   width: 25vw;
   padding: 16px 40px 40px 40px;
   margin-right: 20px;
@@ -46,6 +49,10 @@ export default {
     font-size: 16px;
     line-height: 20px;
     color: #002065;
+  }
+
+  .list {
+    margin-top: 10px;
   }
 
   .object {
