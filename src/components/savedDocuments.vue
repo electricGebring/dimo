@@ -11,14 +11,22 @@
 </template>
 <script>
 export default {
+  mounted() {
+    this.getSaved()
+  },
+  data() {
+    return {
+      savedDocuments: []
+    }
+  },
   methods: {
     goto(url) {
       window.open(url, '_blank').focus()
     },
-  },
-  computed: {
-    savedDocuments() {
-      return this.$store.state.savedDocuments
+    async getSaved() {
+      await this.$store.dispatch("getSaved");
+      this.savedDocuments = this.$store.state.savedDocuments
+      console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
     },
   },
 }
