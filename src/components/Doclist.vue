@@ -1,27 +1,27 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-      <div class="listicon">
-      <img
-        class="view-box"
-        src="/img/view-box.svg"
-        alt=""
-        @click="changeViewBox()"
-      />
-      <img
-        class="view-line"
-        src="/img/view-line.svg"
-        alt=""
-        @click="changeViewLine()"
-      />
-    </div>
+  <div class="listicon">
+    <img
+      class="view-box"
+      src="/img/view-box.svg"
+      alt=""
+      @click="changeViewBox()"
+    />
+    <img
+      class="view-line"
+      src="/img/view-line.svg"
+      alt=""
+      @click="changeViewLine()"
+    />
+  </div>
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
-      v-for="item in doclist"
-      :key="item.Label"
+      v-for="(item, index) in doclist"
+      :key="index"
       :item="item"
     >
-      <div id="section" class="" @click.stop="goto(item.URL)">
+      <div id="section" class="" @click.stop="goto(item.URL, item)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -52,23 +52,41 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-            <span class=""><img src="/img/star-save.svg" alt=""/></span>
+            <span class="" v-on:click.stop="handleSave(item)" >
+            <img class="save" src="/img/star.svg" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props: ["doclist"],
+  data() {
+    return {
+      //saveActive: false,
+      targetArea: [],
+    };
+  },
   components: {},
-  computed: {},
-  mounted() {},
+  computed: {
+     savedDocuments() {
+      return this.$store.state.savedDocuments
+    }, 
+     recentlyViewed() {
+      return this.$store.state.recentlyViewed
+    },
+  },
   methods: {
-    goto(url) {
+ 
+    goto(url, item) {
       window.open(url, "_blank").focus();
+      if (!this.recentlyViewed.includes(item)) {
+       this.recentlyViewed.push(item);
+        }
+           console.log(this.recentlyViewed, "iii")
     },
     changeViewLine() {
       let view = document.getElementById("all");
@@ -77,6 +95,17 @@ export default {
     changeViewBox() {
       let view = document.getElementById("all");
       view.classList.remove("mystyle");
+    },
+    handleSave(item) {
+      //this.saveActive = item;
+      //this.$store.dispatch("postSavedDocuments", id);
+     if (!this.savedDocuments.includes(item)) {
+       this.savedDocuments.push(item);
+        }
+        else {
+       this.savedDocuments.pop(item);
+        }
+        console.log(this.savedDocuments, "eee")
     },
   },
 };
@@ -96,6 +125,7 @@ body {
   cursor: pointer;
   float: right;
 }
+img{border:0;}
 
 //// VIEW CHANGE CSS ////
 .mystyle {
@@ -273,5 +303,19 @@ body {
 
 .view-box {
   margin-right: 10px;
+}
+
+.save {
+  //background-image: url('/img/star.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+.saveActive {
+filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(
+65deg) brightness(321%) contrast(101%);
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
 }
 </style>

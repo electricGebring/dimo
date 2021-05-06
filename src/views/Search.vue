@@ -21,6 +21,8 @@ import Doclist from '../components/Doclist.vue'
 import FilterBar from '../components/filterBar.vue'
 import goBack from '../components/goBack.vue'
 import filterTags from '../components/filterTags.vue'
+/// Litet test att importera funktion som ska posta doclist vidare till backend
+
 
 export default {
   data() {
@@ -102,6 +104,7 @@ export default {
         })
         
         this.doclist = arrayToDoclist
+        //postElements(this.doclist)
       } else {
         
         this.checkedCategories = []
