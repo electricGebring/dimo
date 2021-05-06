@@ -41,6 +41,7 @@ export default {
   margin-top: 30px;
   font-family: Montserrat;
   float: left;
+  display: table;
 
   h3 {
     font-style: normal;
@@ -49,26 +50,25 @@ export default {
     line-height: 20px;
     color: #002065;
   }
-
   .object {
     margin-top: 30px;
+  }
 
-    .pdf-icon {
-      width: 40px;
-      float: left;
-      margin-right: 10px;
-    }
-    h4 {
-      font-style: normal;
-      font-size: 12px;
-      line-height: 16px;
-      color: #2c365a;
-      margin: 0;
-      cursor: pointer;
+  .pdf-icon {
+    width: 40px;
+    float: left;
+    margin-right: 10px;
+  }
+  h4 {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #2c365a;
+    margin: 0;
+    cursor: pointer;
 
-      &:hover {
-        color: #c0c7d9;
-      }
+    &:hover {
+      color: #c0c7d9;
     }
     p {
       font-style: normal;
