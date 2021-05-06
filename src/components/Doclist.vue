@@ -51,9 +51,15 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-            <span class="" v-on:click.stop="handleSave(item)" >
-            <img class="save" src="/img/star.svg" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
+            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
+            <span class="" v-on:click.stop="handleSave(item._id)">
+              <img
+                class="save"
+                src="/img/star.svg"
+                :class="{ saveActive: savedDocuments.includes(item) }"
+                width="300"
+                height="150"
+              />
             </span>
           </div>
         </div>
@@ -72,36 +78,31 @@ export default {
   },
   components: {},
   computed: {
-     savedDocuments() {
-      return this.$store.state.savedDocuments
-    }, 
-     recentlyViewed() {
-      return this.$store.state.recentlyViewed
+    savedDocuments() {
+      return this.$store.state.savedDocuments;
+    },
+    recentlyViewed() {
+      return this.$store.state.recentlyViewed;
     },
   },
   methods: {
- 
     goto(url, item) {
       window.open(url, "_blank").focus();
       if (!this.recentlyViewed.includes(item)) {
-       this.recentlyViewed.push(item);
-        }
-           console.log(this.recentlyViewed, "iii")
+        this.recentlyViewed.push(item);
+      }
     },
     changeViewLine() {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
-    handleSave(item) {
-      //this.saveActive = item;
-      //this.$store.dispatch("postSavedDocuments", id);
-     if (!this.savedDocuments.includes(item)) {
-       this.savedDocuments.push(item);
-        }
-        else {
-       this.savedDocuments.pop(item);
-        }
-        console.log(this.savedDocuments, "eee")
+    handleSave(id) {
+      console.log(this.savedDocuments, 'this.savedDocuments')
+      if (!this.savedDocuments.includes(id)) {
+        this.$store.dispatch("postSavedDocuments", id);
+      } else {
+        // ska vi dispatcha till en delete metod
+      }
     },
   },
 };
@@ -121,7 +122,9 @@ body {
   cursor: pointer;
   float: right;
 }
-img{border:0;}
+img {
+  border: 0;
+}
 
 //// VIEW CHANGE CSS ////
 .mystyle {
@@ -308,8 +311,8 @@ img{border:0;}
   background-repeat: no-repeat;
 }
 .saveActive {
-filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(
-65deg) brightness(321%) contrast(101%);
+  filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(65deg)
+    brightness(321%) contrast(101%);
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
