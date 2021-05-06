@@ -8,8 +8,8 @@ export default createStore({
     recentlyViewed: [],
   },
   mutations: {
-    GET_INFO(state, Elements) {
-      state.Elements = Elements
+    GET_INFO(state, data) {
+      state.Elements = data
     },
     POST_SAVED_DOCUMENTS(state) {
       state.savedDocuments = this.Elements
@@ -23,15 +23,16 @@ export default createStore({
   },
   actions: {
     getDocuments({commit}) {
-      axios.get('data.json').then((response) => {
+      axios.get('http://localhost:3001').then((response) => {
         console.log(response, 'response')
-        commit('GET_INFO', response.data.Elements)
+        commit('GET_INFO', response.data)
       })
     },
     getSaved({commit}) {
+      console.log('hej')
       axios.get('http://localhost:3001/saved').then((response) => {
         console.log(response, 'Saved response')
-        commit('GET_SAVED', response.data.SavedDocs)
+        commit('GET_SAVED', response.data)
       })
     },
     postSavedDocuments({commit}, id) {

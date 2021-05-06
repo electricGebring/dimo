@@ -70,6 +70,8 @@ export default {
   mounted() {
     //this.$store.dispatch("getDocuments");
     this.circleSizing();
+    // this.$store.dispatch("getSaved");
+    // console.log('hej')
   },
   updated() {
     this.circleSizing();
