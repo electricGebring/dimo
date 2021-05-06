@@ -1,16 +1,27 @@
 <template>
   <div class="result-title">{{ doclist.length }} Sökresultat</div>
-  <button class="listicon" @click="changeView()">
-    <img src="/img/view-line.svg" alt="" />
-  </button>
+  <div class="listicon">
+    <img
+      class="view-box"
+      src="/img/view-box.svg"
+      alt=""
+      @click="changeViewBox()"
+    />
+    <img
+      class="view-line"
+      src="/img/view-line.svg"
+      alt=""
+      @click="changeViewLine()"
+    />
+  </div>
   <div id="all" class="doclist-container">
     <div
       class="titlesection"
-      v-for="item in doclist"
-      :key="item.Label"
+      v-for="(item, index) in doclist"
+      :key="index"
       :item="item"
     >
-      <div id="section" class="" @click.stop="goto(item.URL)">
+      <div id="section" class="" @click.stop="goto(item.URL, item)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -40,31 +51,57 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="save" v-on:click.stop="handleSave(item._id, $event)"><img src="/img/star-save.svg" alt="" /></span>
+            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
+            <span class="" v-on:click.stop="handleSave(item)" >
+            <img class="save" src="/img/star.svg" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props: ["doclist"],
+  data() {
+    return {
+      //saveActive: false,
+      targetArea: [],
+    };
+  },
   components: {},
-  computed: {},
-  mounted() {},
+  computed: {
+     savedDocuments() {
+      return this.$store.state.savedDocuments
+    }, 
+     recentlyViewed() {
+      return this.$store.state.recentlyViewed
+    },
+  },
   methods: {
-    goto(url) {
+ 
+    goto(url, item) {
       window.open(url, "_blank").focus();
+      if (!this.recentlyViewed.includes(item)) {
+       this.recentlyViewed.push(item);
+        }
+           console.log(this.recentlyViewed, "iii")
     },
-    changeView() {
+    changeViewLine() {
       let view = document.getElementById("all");
-      view.classList.toggle("mystyle");
+      view.classList.add("mystyle");
     },
-    handleSave(id) {
-      this.$store.dispatch('postSavedDocuments', id)
+    handleSave(item) {
+      //this.saveActive = item;
+      //this.$store.dispatch("postSavedDocuments", id);
+     if (!this.savedDocuments.includes(item)) {
+       this.savedDocuments.push(item);
+        }
+        else {
+       this.savedDocuments.pop(item);
+        }
+        console.log(this.savedDocuments, "eee")
     },
   },
 };
@@ -76,15 +113,15 @@ body {
   padding: 0;
 }
 .listicon {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
   background: none;
   color: inherit;
   outline: none;
   border: none;
-  margin-left: 85%;
   cursor: pointer;
+  float: right;
 }
+img{border:0;}
 
 //// VIEW CHANGE CSS ////
 .mystyle {
@@ -93,9 +130,9 @@ body {
     justify-content: flex-start;
     background-color: black;
     padding: 0;
-    margin: 0;
-    width: 1000px;
-    max-width: 1000px;
+    margin-left: 10px;
+    width: 100%;
+    max-width: 980px;
     height: 85px;
     max-height: 85px;
     border-radius: 10px;
@@ -151,6 +188,7 @@ body {
   }
   .titlesection {
     margin: 8px;
+    width: 100%;
   }
   .icons {
     margin-top: 30px;
@@ -167,7 +205,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   // max-height: 540px; //// scroll in content
   // overflow: hidden;
   // overflow-y: scroll;
@@ -175,13 +213,13 @@ body {
 #section {
   position: relative;
   display: table;
-  margin: 0 20px 20px 20px;
   width: 210px;
   max-width: 210px;
   height: 190px;
   max-height: 190px;
   background-color: #faf9f9 !important;
   padding: 10px 0 0 0;
+  margin-left: 20px;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   &:hover {
@@ -257,5 +295,23 @@ body {
   line-height: 17px;
   color: #2c365a;
   margin-left: 60px;
+}
+
+.view-box {
+  margin-right: 10px;
+}
+
+.save {
+  //background-image: url('/img/star.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+.saveActive {
+filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(
+65deg) brightness(321%) contrast(101%);
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
 }
 </style>

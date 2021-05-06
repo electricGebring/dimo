@@ -5,22 +5,26 @@ export default createStore({
   state: {
     Elements: [],
     savedDocuments: [],
+    recentlyViewed: [],
   },
   mutations: {
-    GET_INFO(state, data) {
-      state.Elements = data;
+      GET_INFO(state, Elements) {
+        state.Elements = Elements;
+      },
+    POST_SAVED_DOCUMENTS(state) {
+      state.savedDocuments = this.Elements;
     },
-    POST_SAVED_DOCUMENTS(state, data) {
-      state.savedDocuments = data;
+    POST_RECENTLY_VIEWED(state) {
+      state.recentlyViewed = this.Elements;
     }
   },
   actions: {
     getDocuments({commit}) {
       axios
-        .get('http://localhost:3001/')
+        .get('data.json')
         .then((response) => {
         console.log(response, 'response')
-        commit('GET_INFO', response.data)
+        commit('GET_INFO', response.data.Elements)
         })
     },
     postSavedDocuments({commit}, id) {
@@ -31,8 +35,19 @@ export default createStore({
         .then((response) => {
           commit('POST_SAVED_DOCUMENTS', response.data)
         })
+    },
+    postRecentlyViewed({commit}, id) {
+      console.log(id, 'id')
+      //console.log(commit, 'commit')
+      axios
+        .post('http://localhost:3001/savedDocuments', { '_id': id })
+        .then((response) => {
+          commit('POST_RECENTLY_VIEWED', response.data)
+        })
     }
   },
   modules: {
   }
 })
+
+
