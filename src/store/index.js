@@ -34,9 +34,9 @@ export default createStore({
         commit('GET_SAVED', response.data)
       })
     },
-    postSavedDocuments({ commit }, id) {
-      console.log(id, 'id')
-      axios.post('http://localhost:3001/savedDocuments', { '_id': id }).then((response) => {
+    postSavedDocuments({ commit }) {
+      console.log(this.state.savedDocuments, 'this.state.savedDocuments')
+      axios.post('http://localhost:3001/savedDocuments', { '_id': this.state.savedDocuments }).then((response) => {
         console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })

@@ -56,7 +56,7 @@
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ saveActive: savedDocuments.includes(item) }"
+                :class="{ saveActive: savedDocuments.includes(item._id) }"
                 width="300"
                 height="150"
               />
@@ -79,6 +79,7 @@ export default {
   components: {},
   computed: {
     savedDocuments() {
+      console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
       return this.$store.state.savedDocuments;
     },
     recentlyViewed() {
@@ -91,18 +92,19 @@ export default {
       if (!this.recentlyViewed.includes(item)) {
         this.recentlyViewed.push(item);
       }
+      console.log(this.recentlyViewed, "iii");
     },
     changeViewLine() {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
     handleSave(id) {
-      console.log(this.savedDocuments, 'this.savedDocuments')
       if (!this.savedDocuments.includes(id)) {
-        this.$store.dispatch("postSavedDocuments", id);
+        this.savedDocuments.push(id);
       } else {
-        // ska vi dispatcha till en delete metod
+        this.savedDocuments.pop(id);
       }
+      this.$store.dispatch("postSavedDocuments")
     },
   },
 };
