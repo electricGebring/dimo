@@ -371,6 +371,10 @@ export default {
     right: 5px;
     font-size: 18px;
     color: #686b6f;
+    cursor: pointer;
+    height: 40px;
+    width: 140px;
+    text-align: right;
   }
 
   .filter {
