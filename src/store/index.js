@@ -6,17 +6,19 @@ export default createStore({
     Elements: [],
     savedDocuments: [],
     recentlyViewed: [],
+    user: 'userX',
   },
   mutations: {
     GET_INFO(state, data) {
       state.Elements = data
     },
-    POST_SAVED_DOCUMENTS(state) {
-      state.savedDocuments = this.Elements
+    POST_SAVED_DOCUMENTS(state, data) {
+      state.savedDocuments = data
+      //console.log(state.savedDocuments, 'state.savedDocuments')
     },
-    POST_RECENTLY_VIEWED(state) {
-      state.recentlyViewed = this.Elements
-    },
+    // POST_RECENTLY_VIEWED(state) {
+    //   state.recentlyViewed = this.Elements
+    // },
     GET_SAVED(state, data) {
       state.savedDocuments = data
     },
@@ -34,18 +36,18 @@ export default createStore({
         commit('GET_SAVED', response.data)
       })
     },
-    postSavedDocuments({ commit }) {
-      console.log(this.state.savedDocuments, 'this.state.savedDocuments')
-      axios.post('http://localhost:3001/savedDocuments', { '_id': this.state.savedDocuments }).then((response) => {
+    postSavedDocuments({ commit }, id) {
+      console.log(id, 'id')
+      axios.post('http://localhost:3001/savedDocuments', { 'docId': id, 'user': this.state.user }).then((response) => {
         console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
     },
-    postRecentlyViewed({ commit }, id) {
-      axios.post('http://localhost:3001/savedDocuments', { _id: id }).then((response) => {
-        commit('POST_RECENTLY_VIEWED', response.data)
-      })
-    },
+    // postRecentlyViewed({ commit }, id) {
+    //   axios.post('http://localhost:3001/savedDocuments', { _id: id }).then((response) => {
+    //     commit('POST_RECENTLY_VIEWED', response.data)
+    //   })
+    // },
   },
   modules: {},
 })

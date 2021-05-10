@@ -56,7 +56,7 @@
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ saveActive: savedDocuments.includes(item._id) }"
+                :class="{ saveActive: savedDocumentsCheck(item._id) }"
                 width="300"
                 height="150"
               />
@@ -72,18 +72,18 @@ export default {
   props: ["doclist"],
   data() {
     return {
-      //saveActive: false,
+      saveActive: false,
       targetArea: [],
-    };
+      //doclist: this.$props.doclist
+    }
   },
   components: {},
   computed: {
     savedDocuments() {
-      console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
       return this.$store.state.savedDocuments;
     },
     recentlyViewed() {
-      return this.$store.state.recentlyViewed;
+      return this.$store.state.recentlyViewed
     },
   },
   methods: {
@@ -100,11 +100,14 @@ export default {
     },
     handleSave(id) {
       if (!this.savedDocuments.includes(id)) {
-        this.savedDocuments.push(id);
-      } else {
-        this.savedDocuments.pop(id);
-      }
-      this.$store.dispatch("postSavedDocuments")
+        this.$store.dispatch("postSavedDocuments", id)
+      } 
+    },
+    savedDocumentsCheck(item) {
+      this.savedDocuments.forEach(i => {
+        console.log(i._id === item, 'i._id === item')
+        return i._id === item
+      });
     },
   },
 };
