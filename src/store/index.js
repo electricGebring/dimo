@@ -22,6 +22,9 @@ export default createStore({
     GET_SAVED(state, data) {
       state.savedDocuments = data
     },
+    DELETE_SAVED_DOCUMENTS(state, data) {
+      state.savedDocuments = data
+    }
   },
   actions: {
     getDocuments({ commit }) {
@@ -37,12 +40,17 @@ export default createStore({
       })
     },
     postSavedDocuments({ commit }, id) {
-      console.log(id, 'id')
       axios.post('http://localhost:3001/savedDocuments', { 'docId': id, 'user': this.state.user }).then((response) => {
         //console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
     },
+    deleteSavedDocuments({ commit}, id) {
+      axios.delete('http://localhost:3001/deleteSavedDocuments', {'docId': id, 'user': this.state.user}).then((response) => {
+        commit('DELETE_SAVED_DOCUMENTS', response.data)
+      })
+    }
+
     // postRecentlyViewed({ commit }, id) {
     //   axios.post('http://localhost:3001/savedDocuments', { _id: id }).then((response) => {
     //     commit('POST_RECENTLY_VIEWED', response.data)
