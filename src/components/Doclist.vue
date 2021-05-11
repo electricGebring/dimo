@@ -74,7 +74,6 @@ export default {
     return {
       saveActive: false,
       targetArea: [],
-      //doclist: this.$props.doclist
     }
   },
   components: {},
@@ -92,21 +91,31 @@ export default {
       if (!this.recentlyViewed.includes(item)) {
         this.recentlyViewed.push(item);
       }
-      console.log(this.recentlyViewed, "iii");
     },
     changeViewLine() {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
     handleSave(id) {
-      if (!this.savedDocuments.includes(id)) {
+      console.log(id, 'id')
+      console.log(this.savedDocumentsCheck(id), 'this.savedDocumentsCheck(id)')
+      if (!this.savedDocumentsCheck(id)) {
         this.$store.dispatch("postSavedDocuments", id)
       } 
     },
     savedDocumentsCheck(item) {
+      console.log(this.savedDocuments, 'this.savedDocuments')
+      console.log(item, 'item')
+      
       this.savedDocuments.forEach(i => {
         console.log(i._id === item, 'i._id === item')
-        return i._id === item
+        if (i._id === item) {
+          return true
+        } else {
+          return false
+        }
+        
+        //return i._id === item
       });
     },
   },

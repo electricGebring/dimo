@@ -29,9 +29,7 @@ export default {
     }
     return {handleClick, resetFilter, showResetButton}
   },
-  mounted() {
-    console.log(this.checkedCategories)
-     },
+  mounted() {},
 }
 </script>
 

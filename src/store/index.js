@@ -26,20 +26,20 @@ export default createStore({
   actions: {
     getDocuments({ commit }) {
       axios.get('http://localhost:3001').then((response) => {
-        console.log(response, 'getDocuments response')
+        //console.log(response, 'getDocuments response')
         commit('GET_INFO', response.data)
       })
     },
     getSaved({ commit }) {
       axios.get('http://localhost:3001/saved').then((response) => {
-        console.log(response, 'getSaved response')
+        //console.log(response, 'getSaved response')
         commit('GET_SAVED', response.data)
       })
     },
     postSavedDocuments({ commit }, id) {
       console.log(id, 'id')
       axios.post('http://localhost:3001/savedDocuments', { 'docId': id, 'user': this.state.user }).then((response) => {
-        console.log(response, 'postSavedDocuments response')
+        //console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
     },
