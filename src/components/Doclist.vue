@@ -52,11 +52,11 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="" v-on:click.stop="handleSave(item._id)">
+            <span class="" v-on:click.stop="handleSave(item)">
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ saveActive: savedDocumentsCheck(item._id) }"
+                :class="{ saveActive: savedDocumentsCheck(item) }"
                 width="300"
                 height="150"
               />
@@ -97,27 +97,20 @@ export default {
       view.classList.add("mystyle");
     },
     handleSave(id) {
-      console.log(id, 'id')
-      console.log(this.savedDocumentsCheck(id), 'this.savedDocumentsCheck(id)')
       if (!this.savedDocumentsCheck(id)) {
         this.$store.dispatch("postSavedDocuments", id)
-      } 
+      } else {
+        this.$store.dispatch("deleteSavedDocuments", id)
+      }
     },
-    savedDocumentsCheck(item) {
-      console.log(this.savedDocuments, 'this.savedDocuments')
-      console.log(item, 'item')
-      
-      this.savedDocuments.forEach(i => {
-        console.log(i._id === item, 'i._id === item')
-        if (i._id === item) {
-          return true
-        } else {
-          return false
+      savedDocumentsCheck(item) {
+        const savedDocuments = this.savedDocuments
+        for (let i = 0; i < savedDocuments.length; i++) {
+          for (let j in savedDocuments[i]) {
+            return savedDocuments[i][j] == item._id 
+          }
         }
-        
-        //return i._id === item
-      });
-    },
+      },
   },
 };
 </script>
