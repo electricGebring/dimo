@@ -99,7 +99,8 @@ export default {
     },
     handleSave(id) {
       if (this.savedDocumentsCheck(id)) {
-        this.$store.dispatch("deleteSavedDocuments", id)
+        console.log('delete')
+        //this.$store.dispatch("deleteSavedDocuments", id)
       } else {
         this.$store.dispatch("postSavedDocuments", id)
       }
@@ -110,7 +111,7 @@ export default {
         for (let i = 0; i < savedDocuments.length; i++) {
           for (let j in savedDocuments[i]) {
             console.log(savedDocuments[i][j] === id, 'check')
-            return savedDocuments[i][j].includes(id) 
+            return savedDocuments[i][j] === id 
             // if (savedDocuments[i][j] == (item._id)) {
             // return true
             // } else {
