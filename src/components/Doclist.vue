@@ -46,17 +46,18 @@
         >
           <span class="labelTitle">
             {{ item.Label }}
+            <h3>{{item._id}}</h3>
           </span>
           <div class="type">
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="" v-on:click.stop="handleSave(item)">
+            <span class="" v-on:click.stop="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ saveActive: savedDocumentsCheck(item) }"
+                :class="{ saveActive: savedDocumentsCheck(item._id) }"
                 width="300"
                 height="150"
               />
@@ -97,17 +98,24 @@ export default {
       view.classList.add("mystyle");
     },
     handleSave(id) {
-      if (!this.savedDocumentsCheck(id)) {
-        this.$store.dispatch("postSavedDocuments", id)
-      } else {
+      if (this.savedDocumentsCheck(id)) {
         this.$store.dispatch("deleteSavedDocuments", id)
+      } else {
+        this.$store.dispatch("postSavedDocuments", id)
       }
     },
-      savedDocumentsCheck(item) {
+      savedDocumentsCheck(id) {
+        console.log(id, 'savedDocumentsCheck')
         const savedDocuments = this.savedDocuments
         for (let i = 0; i < savedDocuments.length; i++) {
           for (let j in savedDocuments[i]) {
-            return savedDocuments[i][j] == item._id 
+            console.log(savedDocuments[i][j] === id, 'check')
+            return savedDocuments[i][j].includes(id) 
+            // if (savedDocuments[i][j] == (item._id)) {
+            // return true
+            // } else {
+            // return false
+            // }
           }
         }
       },
