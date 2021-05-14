@@ -14,7 +14,7 @@ export default createStore({
     },
     POST_SAVED_DOCUMENTS(state, data) {
       state.savedDocuments = data
-      //console.log(state.savedDocuments, 'state.savedDocuments')
+      console.log(state.savedDocuments, 'state.savedDocuments')
     },
     // POST_RECENTLY_VIEWED(state) {
     //   state.recentlyViewed = this.Elements
@@ -35,7 +35,7 @@ export default createStore({
     },
     getSaved({ commit }) {
       axios.get('http://localhost:3001/saved').then((response) => {
-        //console.log(response, 'getSaved response')
+        console.log(response, 'getSaved response')
         commit('GET_SAVED', response.data)
       })
     },

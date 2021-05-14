@@ -46,7 +46,7 @@
         >
           <span class="labelTitle">
             {{ item.Label }}
-            <h3>{{item._id}}</h3>
+            <h3>_id {{item._id}}</h3>
           </span>
           <div class="type">
             <span>{{ item.Documenttype }} </span>
@@ -71,6 +71,8 @@
 <script>
 export default {
   props: ["doclist"],
+  updated() {
+  },
   data() {
     return {
       saveActive: false,
@@ -99,24 +101,27 @@ export default {
     },
     handleSave(id) {
       if (this.savedDocumentsCheck(id)) {
-        console.log('delete')
-        //this.$store.dispatch("deleteSavedDocuments", id)
+        //console.log('delete')
+        this.$store.dispatch("deleteSavedDocuments", id)
       } else {
+        //console.log('post')
         this.$store.dispatch("postSavedDocuments", id)
       }
     },
       savedDocumentsCheck(id) {
-        console.log(id, 'savedDocumentsCheck')
+        console.log(this.savedDocuments, 'this.savedDocuments')
+        console.log(id, 'id savedDocumentsCheck')
         const savedDocuments = this.savedDocuments
         for (let i = 0; i < savedDocuments.length; i++) {
           for (let j in savedDocuments[i]) {
-            console.log(savedDocuments[i][j] === id, 'check')
-            return savedDocuments[i][j] === id 
-            // if (savedDocuments[i][j] == (item._id)) {
-            // return true
-            // } else {
-            // return false
-            // }
+            //console.log(savedDocuments[i][j] === id, 'check')
+            //return savedDocuments[i][j] === id 
+            console.log(savedDocuments[i][j], 'savedDocuments[i][j]')
+            if (savedDocuments[i]._id === (id)) {
+            return true
+            } else {
+            return false
+            }
           }
         }
       },

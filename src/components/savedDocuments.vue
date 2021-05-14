@@ -1,10 +1,12 @@
 <template>
   <div class="container">
     <h3>Mina sparade dokument</h3>
-    <div v-for="item in savedDocuments" :key="item">
+    <div v-for="(item) in savedDocuments" :key="item.docId">
       <div class="object" @click.stop="goto(item.URL)">
         <img class="pdf-icon" src="https://i.ibb.co/5M6fZr1/Test-23.png" alt="Test-23" border="0" />
         <h4>{{ item.Label }}</h4>
+        <br>
+        <h4>docId {{ item.docId }}</h4>
       </div>
     </div>
   </div>
