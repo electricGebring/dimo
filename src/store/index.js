@@ -51,6 +51,7 @@ export default createStore({
       axios.delete(`http://localhost:3001/deleteSavedDocuments/${id}`).then((response) => {
         console.log(response, 'deleteSavedDocuments response')
         commit('DELETE_SAVED_DOCUMENTS', response.data)
+        console.log(response.data, 'response.data')
       })
     }
 

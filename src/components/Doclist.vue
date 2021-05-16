@@ -53,11 +53,11 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="" v-on:click.stop="handleSave(item._id)">
+            <span class="" v-on:click.stop="handleSave(item._id, $event)">
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ saveActive: savedDocumentsCheck(item._id) }"
+                :class="{ index: savedDocumentsCheck(item._id, index) }"
                 width="300"
                 height="150"
               />
@@ -72,11 +72,14 @@
 export default {
   props: ["doclist"],
   updated() {
+    //console.log('rannnnnnnnnnnnnnnnnn')
+    //return this.$store.state.savedDocuments;
   },
   data() {
     return {
-      saveActive: false,
+      //saveActive: false,
       targetArea: [],
+      indexArr: [],
     }
   },
   components: {},
@@ -99,7 +102,8 @@ export default {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
-    handleSave(id) {
+    handleSave(id, event) {
+      console.log(event)
       if (this.savedDocumentsCheck(id)) {
         //console.log('delete')
         this.$store.dispatch("deleteSavedDocuments", id)
@@ -108,23 +112,14 @@ export default {
         this.$store.dispatch("postSavedDocuments", id)
       }
     },
-      savedDocumentsCheck(id) {
-        console.log(this.savedDocuments, 'this.savedDocuments')
-        console.log(id, 'id savedDocumentsCheck')
-        const savedDocuments = this.savedDocuments
-        for (let i = 0; i < savedDocuments.length; i++) {
-          for (let j in savedDocuments[i]) {
-            //console.log(savedDocuments[i][j] === id, 'check')
-            //return savedDocuments[i][j] === id 
-            console.log(savedDocuments[i][j], 'savedDocuments[i][j]')
-            if (savedDocuments[i]._id === (id)) {
-            return true
-            } else {
-            return false
-            }
-          }
-        }
-      },
+    savedDocumentsCheck(id, index) {
+      console.log(index, 'index')
+      console.log(this.savedDocuments, 'this.savedDocuments')
+      //console.log(id, 'id savedDocumentsCheck')
+      for (let i = 0; i < this.savedDocuments.length; i++) {
+        return this.savedDocuments[i]._id === id 
+      }
+    },
   },
 };
 </script>
@@ -331,7 +326,7 @@ img {
   height: 20px;
   background-repeat: no-repeat;
 }
-.saveActive {
+.index {
   filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(65deg)
     brightness(321%) contrast(101%);
   width: 20px;
