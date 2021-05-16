@@ -21,7 +21,7 @@
       :key="index"
       :item="item"
     >
-      <div id="section" class="" @click.stop="goto(item.URL, item)">
+      <div id="section" @click.stop="goto(item.URL, item)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -57,7 +57,7 @@
               <img
                 class="save"
                 src="/img/star.svg"
-                :class="{ index: savedDocumentsCheck(item._id, index) }"
+                v-bind:class="{ 'saveActive': savedDocumentsCheck(item._id) }"
                 width="300"
                 height="150"
               />
@@ -77,21 +77,28 @@ export default {
   },
   data() {
     return {
-      //saveActive: false,
+      saveActive: false,
       targetArea: [],
-      indexArr: [],
+      //elements: []
     }
   },
   components: {},
   computed: {
     savedDocuments() {
-      return this.$store.state.savedDocuments;
+      console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
+      return this.$store.state.savedDocuments
     },
     recentlyViewed() {
       return this.$store.state.recentlyViewed
     },
   },
   methods: {
+    // test(){
+    //   this.savedDocuments.forEach(element => {
+    //     this.elements.push(element._id)
+    //   })
+    // },
+
     goto(url, item) {
       window.open(url, "_blank").focus();
       if (!this.recentlyViewed.includes(item)) {
@@ -103,8 +110,8 @@ export default {
       view.classList.add("mystyle");
     },
     handleSave(id, event) {
-      console.log(event)
-      if (this.savedDocumentsCheck(id)) {
+      console.log(event, 'event handleSave')
+      if (this.savedDocumentsCheck(id) === true) {
         //console.log('delete')
         this.$store.dispatch("deleteSavedDocuments", id)
       } else {
@@ -114,9 +121,12 @@ export default {
     },
     savedDocumentsCheck(id, index) {
       console.log(index, 'index')
-      console.log(this.savedDocuments, 'this.savedDocuments')
+      
+      //console.log(this.savedDocuments, 'this.savedDocuments')
       //console.log(id, 'id savedDocumentsCheck')
+      
       for (let i = 0; i < this.savedDocuments.length; i++) {
+        //console.log(this.savedDocuments[i]._id === id, 'this.savedDocuments[i]._id === id')
         return this.savedDocuments[i]._id === id 
       }
     },
@@ -326,7 +336,7 @@ img {
   height: 20px;
   background-repeat: no-repeat;
 }
-.index {
+.saveActive {
   filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(65deg)
     brightness(321%) contrast(101%);
   width: 20px;

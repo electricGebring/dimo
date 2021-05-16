@@ -6,7 +6,7 @@
         <img class="pdf-icon" src="https://i.ibb.co/5M6fZr1/Test-23.png" alt="Test-23" border="0" />
         <h4>{{ item.Label }}</h4>
         <br>
-        <h4>docId {{ item._id }}</h4>
+        <h4>item._id {{ item._id }}</h4>
         <br>
       </div>
     </div>
