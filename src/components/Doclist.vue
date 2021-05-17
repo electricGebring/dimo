@@ -85,6 +85,7 @@ export default {
   components: {},
   computed: {
     savedDocuments() {
+      console.log(this.$props.doclist, 'this.$props.doclist')
       console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
       return this.$store.state.savedDocuments
     },
@@ -111,6 +112,7 @@ export default {
     },
     handleSave(id, event) {
       console.log(event, 'event handleSave')
+      console.log(this.savedDocumentsCheck(id), 'savedDocumentsCheck(id)')
       if (this.savedDocumentsCheck(id) === true) {
         //console.log('delete')
         this.$store.dispatch("deleteSavedDocuments", id)
@@ -127,8 +129,11 @@ export default {
       
       for (let i = 0; i < this.savedDocuments.length; i++) {
         //console.log(this.savedDocuments[i]._id === id, 'this.savedDocuments[i]._id === id')
-        return this.savedDocuments[i]._id === id 
+        if (this.savedDocuments[i]._id === id) {
+          return true
+        }   
       }
+      return false
     },
   },
 };
