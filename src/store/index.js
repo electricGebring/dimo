@@ -24,7 +24,17 @@ export default createStore({
     },
     DELETE_SAVED_DOCUMENTS(state, data) {
       state.savedDocuments = data
-    }
+    },
+    DELETE_FIRST_DOCUMENTS(state, data) {
+      state.recentlyViewed = data
+    },
+    GET_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
+    },
+    POST_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
+      console.log(state.recentlyViewed, 'state.recentlyViewed')
+    },
   },
   actions: {
     getDocuments({ commit }) {
@@ -39,6 +49,11 @@ export default createStore({
         commit('GET_SAVED', response.data)
       })
     },
+    getRecentlyViewed({ commit }) {
+      axios.get('http://localhost:3001/latestview').then((response) => {
+        commit('GET_RECENTLY_VIEWED', response.data)
+      })
+    },
     postSavedDocuments({ commit }, id) {
       axios.post('http://localhost:3001/savedDocuments', { 'docId': id, 'user': this.state.user }).then((response) => {
         console.log(response, 'postSavedDocuments response')
@@ -50,13 +65,19 @@ export default createStore({
         console.log(response, 'deleteSavedDocuments response')
         commit('DELETE_SAVED_DOCUMENTS', response.data)
       })
-    }
-
-    // postRecentlyViewed({ commit }, id) {
-    //   axios.post('http://localhost:3001/savedDocuments', { _id: id }).then((response) => {
-    //     commit('POST_RECENTLY_VIEWED', response.data)
-    //   })
-    // },
+    }, deletefirstElement({ commit}, id) {
+      axios.delete(`http://localhost:3001/deleteFirstDocuments/${id}`).then((response) => {
+        console.log(response, 'deleteFirstDocuments response')
+        commit('DELETE_FIRST_DOCUMENTS', response.data)
+      })
+    },
+    postRecentlyViewed({ commit }, id) {
+       axios.post('http://localhost:3001/recentlyViewed', { 'docId': id, 'user': this.state.user }).then((response) => {
+        console.log(response, 'recentlyViewed response')
+        commit('POST_RECENTLY_VIEWED', response.data)
+      })
+    
+     },
   },
   modules: {},
 })

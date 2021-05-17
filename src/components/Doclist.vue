@@ -21,7 +21,7 @@
       :key="index"
       :item="item"
     >
-      <div id="section" @click.stop="goto(item.URL, item)">
+      <div id="section" @click.stop="goto(item.URL, item._id)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -87,10 +87,13 @@ export default {
     },
   },
   methods: {
-    goto(url, item) {
+    goto(url, id) {
       window.open(url, "_blank").focus();
-      if (!this.recentlyViewed.includes(item)) {
-        this.recentlyViewed.push(item);
+    if (!this.recentlyViewed.includes(id)) {
+       this.$store.dispatch("postRecentlyViewed", id)
+     if (this.recentlyViewed.length > 1) {
+       this.$store.dispatch("deletefirstElement", id)
+       }
       }
     },
     changeViewLine() {
@@ -101,6 +104,9 @@ export default {
       if (this.savedDocumentsCheck(id)) {
         this.$store.dispatch("deleteSavedDocuments", id)
       } else {
+         if (this.savedDocuments.length > 3) {
+        // this.$store.dispatch("deleteSavedDocuments", id)
+       }
         this.$store.dispatch("postSavedDocuments", id)
       }
     },
