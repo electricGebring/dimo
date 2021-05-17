@@ -98,7 +98,7 @@ export default {
       view.classList.add("mystyle");
     },
     handleSave(id) {
-      if (this.savedDocumentsCheck(id) === true) {
+      if (this.savedDocumentsCheck(id)) {
         this.$store.dispatch("deleteSavedDocuments", id)
       } else {
         this.$store.dispatch("postSavedDocuments", id)
