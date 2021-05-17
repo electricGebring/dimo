@@ -46,7 +46,6 @@
         >
           <span class="labelTitle">
             {{ item.Label }}
-            <h3>_id {{item._id}}</h3>
           </span>
           <div class="type">
             <span>{{ item.Documenttype }} </span>
