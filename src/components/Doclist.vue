@@ -53,7 +53,7 @@
           </div>
           <div class="icons">
             <span class=""><img src="/img/view-eye.svg" alt="" /></span>
-            <span class="" v-on:click.stop="handleSave(item._id, $event)">
+            <span class="" v-on:click.stop="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
@@ -71,22 +71,15 @@
 <script>
 export default {
   props: ["doclist"],
-  updated() {
-    //console.log('rannnnnnnnnnnnnnnnnn')
-    //return this.$store.state.savedDocuments;
-  },
   data() {
     return {
       saveActive: false,
       targetArea: [],
-      //elements: []
     }
   },
   components: {},
   computed: {
     savedDocuments() {
-      console.log(this.$props.doclist, 'this.$props.doclist')
-      console.log(this.$store.state.savedDocuments, 'this.$store.state.savedDocuments')
       return this.$store.state.savedDocuments
     },
     recentlyViewed() {
@@ -94,12 +87,6 @@ export default {
     },
   },
   methods: {
-    // test(){
-    //   this.savedDocuments.forEach(element => {
-    //     this.elements.push(element._id)
-    //   })
-    // },
-
     goto(url, item) {
       window.open(url, "_blank").focus();
       if (!this.recentlyViewed.includes(item)) {
@@ -110,25 +97,15 @@ export default {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
-    handleSave(id, event) {
-      console.log(event, 'event handleSave')
-      console.log(this.savedDocumentsCheck(id), 'savedDocumentsCheck(id)')
+    handleSave(id) {
       if (this.savedDocumentsCheck(id) === true) {
-        //console.log('delete')
         this.$store.dispatch("deleteSavedDocuments", id)
       } else {
-        //console.log('post')
         this.$store.dispatch("postSavedDocuments", id)
       }
     },
-    savedDocumentsCheck(id, index) {
-      console.log(index, 'index')
-      
-      //console.log(this.savedDocuments, 'this.savedDocuments')
-      //console.log(id, 'id savedDocumentsCheck')
-      
+    savedDocumentsCheck(id) {
       for (let i = 0; i < this.savedDocuments.length; i++) {
-        //console.log(this.savedDocuments[i]._id === id, 'this.savedDocuments[i]._id === id')
         if (this.savedDocuments[i]._id === id) {
           return true
         }   
