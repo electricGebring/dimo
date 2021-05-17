@@ -91,7 +91,7 @@ export default {
       window.open(url, "_blank").focus();
     if (!this.recentlyViewed.includes(id)) {
        this.$store.dispatch("postRecentlyViewed", id)
-     if (this.recentlyViewed.length > 1) {
+     if (this.recentlyViewed.length > 2) {
        this.$store.dispatch("deletefirstElement", id)
        }
       }
