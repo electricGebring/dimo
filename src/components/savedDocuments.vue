@@ -2,7 +2,7 @@
   <div class="container">
     <h3>Mina sparade dokument</h3>
     <div v-for="(item, index) in savedDocuments" :key="item.docId">
-      <div v-if="index < limit_by">
+      <div v-if="index < limitBy">
         <div class="object" @click.stop="goto(item.URL)">
           <img
             class="pdf-icon"
@@ -23,8 +23,8 @@
 
     <span
       class="show-more"
-      @click="showMore(default_limit, savedDocuments.length)"
-      >{{ limit_by === 3 ? "Visa fler" : "Visa färre" }}</span
+      @click="showMore(defaultLimit, savedDocuments.length)"
+      >{{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span
     >
   </div>
 </template>
@@ -32,8 +32,8 @@
 export default {
   data() {
     return {
-      default_limit: 3,
-      limit_by: 3,
+      defaultLimit: 3,
+      limitBy: 3,
     };
   },
   mounted() {
@@ -46,9 +46,9 @@ export default {
     },
   },
   methods: {
-    showMore(default_limit, list_length) {
-      this.limit_by =
-        this.limit_by === default_limit ? list_length : default_limit;
+    showMore(defaultLimit, listLength) {
+      this.limitBy =
+        this.limitBy === defaultLimit ? listLength : defaultLimit;
     },
     deleteItem(id) {
       this.$store.dispatch("deleteSavedDocuments", id);
