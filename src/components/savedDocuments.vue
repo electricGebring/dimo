@@ -5,10 +5,8 @@
       <div class="object" @click.stop="goto(item.URL)">
         <img class="pdf-icon" src="https://i.ibb.co/5M6fZr1/Test-23.png" alt="Test-23" border="0" />
         <h4>{{ item.Label }}</h4>
-        <br>
-        <h4>item._id {{ item._id }}</h4>
-        <br>
       </div>
+      <span v-show="true" class="delete" v-on:click.stop="deleteItem(item._id)">X</span>
     </div>
   </div>
 </template>
@@ -16,17 +14,22 @@
 export default {
   mounted() {
     this.$store.dispatch("getSaved");
+    this.$store.dispatch("deleteSavedDocuments"); 
+     //console.log(this.$store.state.savedDocuments, "hhh")  
+  },
+    computed: {
+    savedDocuments() {
+      return this.$store.state.savedDocuments
+    }
   },
   methods: {
+      deleteItem(id) {
+      this.$store.dispatch("deleteSavedDocuments", id)
+    },
     goto(url) {
       window.open(url, '_blank').focus()
     },
   },
-  computed: {
-    savedDocuments() {
-      return this.$store.state.savedDocuments
-    }
-  }
 }
 </script>
 
