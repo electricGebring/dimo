@@ -2,39 +2,43 @@
   <div class="container">
     <h3>Mina sparade dokument</h3>
     <div v-for="(item, index) in savedDocuments" :key="item.docId">
-     <div v-if="index < limit_by">
-      <div class="object" @click.stop="goto(item.URL)">
-        <img
-          class="pdf-icon"
-          src="https://i.ibb.co/5M6fZr1/Test-23.png"
-          alt="Test-23"
-          border="0"
-        />
-        <h4>{{ item.Label }}</h4>
+      <div v-if="index < limit_by">
+        <div class="object" @click.stop="goto(item.URL)">
+          <img
+            class="pdf-icon"
+            src="https://i.ibb.co/5M6fZr1/Test-23.png"
+            alt="Test-23"
+            border="0"
+          />
+          <h4>{{ item.Label }}</h4>
+        </div>
+        <span
+          v-show="true"
+          class="delete"
+          v-on:click.stop="deleteItem(item._id)"
+          >X</span
+        >
       </div>
-      <span v-show="true" class="delete" v-on:click.stop="deleteItem(item._id)"
-        >X</span
-      >
     </div>
-     </div>
 
-      <span class="show-more" @click="simple_toggle(default_limit, savedDocuments.length)">{{ limit_by===3?'Visa fler': 'Visa färre'}}</span>
-
+    <span
+      class="show-more"
+      @click="showMore(default_limit, savedDocuments.length)"
+      >{{ limit_by === 3 ? "Visa fler" : "Visa färre" }}</span
+    >
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-        default_limit: 3,
-        limit_by: 3
+      default_limit: 3,
+      limit_by: 3,
     };
   },
   mounted() {
     this.$store.dispatch("getSaved");
     this.$store.dispatch("deleteSavedDocuments");
-    this.totalComments = this.savedDocuments.length;
-    console.log(this.savedDocuments.length);
   },
   computed: {
     savedDocuments() {
@@ -42,9 +46,10 @@ export default {
     },
   },
   methods: {
-     simple_toggle(default_limit, filters_length) {
-            this.limit_by = (this.limit_by === default_limit) ? filters_length : default_limit;
-        },
+    showMore(default_limit, list_length) {
+      this.limit_by =
+        this.limit_by === default_limit ? list_length : default_limit;
+    },
     deleteItem(id) {
       this.$store.dispatch("deleteSavedDocuments", id);
     },
