@@ -47,8 +47,7 @@ export default {
   },
   methods: {
     showMore(defaultLimit, listLength) {
-      this.limitBy =
-        this.limitBy === defaultLimit ? listLength : defaultLimit;
+      this.limitBy = this.limitBy === defaultLimit ? listLength : defaultLimit;
     },
     deleteItem(id) {
       this.$store.dispatch("deleteSavedDocuments", id);
@@ -67,7 +66,7 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   width: 25vw;
-  padding: 16px 40px 40px 40px;
+  padding: 16px 40px 16px 40px;
   margin-right: 20px;
   margin-top: 30px;
   font-family: Montserrat;
@@ -109,6 +108,12 @@ export default {
       color: #000000;
       margin: 0;
     }
+  }
+  .show-more {
+    cursor: pointer;
+    padding-left: 37%;
+    font-weight: bold;
+    line-height: 4;
   }
 }
 </style>
