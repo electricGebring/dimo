@@ -1,40 +1,62 @@
 <template>
   <div class="container">
     <h3>Mina sparade dokument</h3>
-    <div v-for="(item) in savedDocuments" :key="item.docId">
+    <div v-for="(item, index) in savedDocuments" :key="item.docId">
+     <div v-if="index < limit_by">
       <div class="object" @click.stop="goto(item.URL)">
-        <img class="pdf-icon" src="https://i.ibb.co/5M6fZr1/Test-23.png" alt="Test-23" border="0" />
+        <img
+          class="pdf-icon"
+          src="https://i.ibb.co/5M6fZr1/Test-23.png"
+          alt="Test-23"
+          border="0"
+        />
         <h4>{{ item.Label }}</h4>
       </div>
-      <span v-show="true" class="delete" v-on:click.stop="deleteItem(item._id)">X</span>
+      <span v-show="true" class="delete" v-on:click.stop="deleteItem(item._id)"
+        >X</span
+      >
     </div>
+     </div>
+
+      <span class="show-more" @click="simple_toggle(default_limit, savedDocuments.length)">{{ limit_by===3?'Visa fler': 'Visa färre'}}</span>
+
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+        default_limit: 3,
+        limit_by: 3
+    };
+  },
   mounted() {
     this.$store.dispatch("getSaved");
-    this.$store.dispatch("deleteSavedDocuments"); 
-     //console.log(this.$store.state.savedDocuments, "hhh")  
+    this.$store.dispatch("deleteSavedDocuments");
+    this.totalComments = this.savedDocuments.length;
+    console.log(this.savedDocuments.length);
   },
-    computed: {
+  computed: {
     savedDocuments() {
-      return this.$store.state.savedDocuments
-    }
+      return this.$store.state.savedDocuments;
+    },
   },
   methods: {
-      deleteItem(id) {
-      this.$store.dispatch("deleteSavedDocuments", id)
+     simple_toggle(default_limit, filters_length) {
+            this.limit_by = (this.limit_by === default_limit) ? filters_length : default_limit;
+        },
+    deleteItem(id) {
+      this.$store.dispatch("deleteSavedDocuments", id);
     },
     goto(url) {
-      window.open(url, '_blank').focus()
+      window.open(url, "_blank").focus();
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .container {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
