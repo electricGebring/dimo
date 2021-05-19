@@ -3,6 +3,12 @@
     <h3>Mina sparade dokument</h3>
     <div v-for="(item, index) in savedDocuments" :key="item.docId">
       <div v-if="index < limitBy">
+           <span
+          v-show="true"
+          class="delete"
+          v-on:click.stop="deleteItem(item._id)"
+          >X</span
+        >
         <div class="object" @click.stop="goto(item.URL)">
           <img
             class="pdf-icon"
@@ -12,12 +18,6 @@
           />
           <h4>{{ item.Label }}</h4>
         </div>
-        <span
-          v-show="true"
-          class="delete"
-          v-on:click.stop="deleteItem(item._id)"
-          >X</span
-        >
       </div>
     </div>
 
@@ -109,9 +109,15 @@ export default {
       margin: 0;
     }
   }
+  .delete {
+    cursor: pointer;
+    float: right;
+    font-family: arial;
+    font-size: 12px;
+  }
   .show-more {
     cursor: pointer;
-    padding-left: 37%;
+    padding-left: 72px;
     font-weight: bold;
     line-height: 4;
   }
