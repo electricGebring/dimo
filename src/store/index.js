@@ -16,9 +16,6 @@ export default createStore({
       state.savedDocuments = data
       console.log(state.savedDocuments, 'state.savedDocuments')
     },
-    // POST_RECENTLY_VIEWED(state) {
-    //   state.recentlyViewed = this.Elements
-    // },
     GET_SAVED(state, data) {
       state.savedDocuments = data
     },
