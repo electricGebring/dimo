@@ -3,7 +3,7 @@
     <h3>Mina sparade dokument</h3>
     <div v-for="(item, index) in savedDocuments" :key="item.docId">
       <div v-if="index < limitBy">
-           <span
+             <span
           v-show="true"
           class="delete"
           v-on:click.stop="deleteItem(item._id)"
@@ -22,10 +22,10 @@
     </div>
 
     <span
+      v-show="savedDocuments.length > 2"
       class="show-more"
-      @click="showMore(defaultLimit, savedDocuments.length)"
-      >{{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span
-    >
+      @click="showMore(defaultLimit, savedDocuments.length)">
+      {{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span>
   </div>
 </template>
 <script>
