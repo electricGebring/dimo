@@ -87,11 +87,12 @@ export default {
     },
   },
   methods: {
-    goto(url, id) {
+     goto(url, id) {
       window.open(url, "_blank").focus();
     if (!this.recentlyViewed.includes(id)) {
        this.$store.dispatch("postRecentlyViewed", id)
      if (this.recentlyViewed.length > 2) {
+       id = this.recentlyViewed[0]._id
        this.$store.dispatch("deletefirstElement", id)
        }
       }

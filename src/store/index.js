@@ -65,8 +65,9 @@ export default createStore({
         console.log(response, 'deleteSavedDocuments response')
         commit('DELETE_SAVED_DOCUMENTS', response.data)
       })
-    }, deletefirstElement({ commit}, id) {
-      axios.delete(`http://localhost:3001/deleteFirstDocuments/${id}`).then((response) => {
+    }, 
+    deletefirstElement({ commit}, id) {
+      axios.delete(`${baseURL}/deleteFirstDocuments/${id}/${this.state.user}`).then((response) => {
         console.log(response, 'deleteFirstDocuments response')
         commit('DELETE_FIRST_DOCUMENTS', response.data)
       })
