@@ -109,6 +109,12 @@ export default {
       margin: 0;
     }
   }
+  .delete {
+    cursor: pointer;
+    float: right;
+    font-family: arial;
+    font-size: 12px;
+  }
   .show-more {
     cursor: pointer;
     padding-left: 72px;
