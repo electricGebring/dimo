@@ -50,7 +50,7 @@ export default createStore({
       })
     },
     getRecentlyViewed({ commit }) {
-      axios.get('http://localhost:3001/latestview').then((response) => {
+      axios.get(`${baseURL}/latestview/${this.state.user}`).then((response) => {
         commit('GET_RECENTLY_VIEWED', response.data)
       })
     },
@@ -59,6 +59,12 @@ export default createStore({
         console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
+    },
+    postRecentlyViewed({ commit }, id) {
+      axios.post(`${baseURL}/recentlyViewed`, { 'docId': id, 'user': this.state.user }).then((response) => {
+       console.log(response, 'recentlyViewed response')
+       commit('POST_RECENTLY_VIEWED', response.data)
+     })
     },
     deleteSavedDocuments({ commit}, id) {
       axios.delete(`${baseURL}/deleteSavedDocuments/${id}/${this.state.user}`).then((response) => {
@@ -72,13 +78,6 @@ export default createStore({
         commit('DELETE_FIRST_DOCUMENTS', response.data)
       })
     },
-    postRecentlyViewed({ commit }, id) {
-       axios.post('http://localhost:3001/recentlyViewed', { 'docId': id, 'user': this.state.user }).then((response) => {
-        console.log(response, 'recentlyViewed response')
-        commit('POST_RECENTLY_VIEWED', response.data)
-      })
-    
-     },
   },
   modules: {},
 })
