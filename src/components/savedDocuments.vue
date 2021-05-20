@@ -38,7 +38,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getSaved");
-    this.$store.dispatch("deleteSavedDocuments");
   },
   computed: {
     savedDocuments() {

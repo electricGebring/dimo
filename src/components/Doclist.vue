@@ -89,11 +89,18 @@ export default {
   methods: {
     goto(url, id) {
       window.open(url, "_blank").focus();
+      if (!this.recentlyViewed.includes(id)) {
         this.$store.dispatch("postRecentlyViewed", id);
-      if (!this.recentlyViewed.includes(id) && this.recentlyViewed.length > 1) {
-        this.$store.dispatch("postRecentlyViewed", id);
-        this.$store.dispatch("deletefirstElement", this.recentlyViewed[0]._id);
-      } 
+        if (
+          !this.recentlyViewed.includes(id) &&
+          this.recentlyViewed.length > 2
+        ) {
+          this.$store.dispatch(
+            "deletefirstElement",
+            this.recentlyViewed[0]._id
+          );
+        }
+      }
     },
     changeViewLine() {
       let view = document.getElementById("all");
