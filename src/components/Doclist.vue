@@ -46,18 +46,18 @@
         >
           <span class="labelTitle">
             {{ item.Label }}
-            <h3>_id {{item._id}}</h3>
+            <h3>_id {{ item._id }}</h3>
           </span>
           <div class="type">
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt="" /></span>
+            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
             <span class="" v-on:click.stop="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
-                v-bind:class="{ 'saveActive': savedDocumentsCheck(item._id) }"
+                v-bind:class="{ saveActive: savedDocumentsCheck(item._id) }"
                 width="300"
                 height="150"
               />
@@ -75,27 +75,25 @@ export default {
     return {
       saveActive: false,
       targetArea: [],
-    }
+    };
   },
   components: {},
   computed: {
     savedDocuments() {
-      return this.$store.state.savedDocuments
+      return this.$store.state.savedDocuments;
     },
     recentlyViewed() {
-      return this.$store.state.recentlyViewed
+      return this.$store.state.recentlyViewed;
     },
   },
   methods: {
-     goto(url, id) {
+    goto(url, id) {
       window.open(url, "_blank").focus();
-    if (!this.recentlyViewed.includes(id)) {
-       this.$store.dispatch("postRecentlyViewed", id)
-     if (this.recentlyViewed.length > 2) {
-       id = this.recentlyViewed[0]._id
-       this.$store.dispatch("deletefirstElement", id)
-       }
-      }
+        this.$store.dispatch("postRecentlyViewed", id);
+      if (!this.recentlyViewed.includes(id) && this.recentlyViewed.length > 1) {
+        this.$store.dispatch("postRecentlyViewed", id);
+        this.$store.dispatch("deletefirstElement", this.recentlyViewed[0]._id);
+      } 
     },
     changeViewLine() {
       let view = document.getElementById("all");
@@ -103,21 +101,21 @@ export default {
     },
     handleSave(id) {
       if (this.savedDocumentsCheck(id)) {
-        this.$store.dispatch("deleteSavedDocuments", id)
+        this.$store.dispatch("deleteSavedDocuments", id);
       } else {
-         if (this.savedDocuments.length > 3) {
-        // this.$store.dispatch("deleteSavedDocuments", id)
-       }
-        this.$store.dispatch("postSavedDocuments", id)
+        if (this.savedDocuments.length > 3) {
+          // this.$store.dispatch("deleteSavedDocuments", id)
+        }
+        this.$store.dispatch("postSavedDocuments", id);
       }
     },
     savedDocumentsCheck(id) {
       for (let i = 0; i < this.savedDocuments.length; i++) {
         if (this.savedDocuments[i]._id === id) {
-          return true
-        }   
+          return true;
+        }
       }
-      return false
+      return false;
     },
   },
 };
