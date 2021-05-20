@@ -12,9 +12,8 @@ export default createStore({
     GET_INFO(state, data) {
       state.Elements = data
     },
-    POST_SAVED_DOCUMENTS(state, data) {
+    POST_SAVED_DOCUMENTS(state, data) { 
       state.savedDocuments = data
-      console.log(state.savedDocuments, 'state.savedDocuments')
     },
     GET_SAVED(state, data) {
       state.savedDocuments = data
@@ -30,13 +29,12 @@ export default createStore({
     },
     POST_RECENTLY_VIEWED(state, data) {
       state.recentlyViewed = data
-      console.log(state.recentlyViewed, 'state.recentlyViewed')
     },
   },
   actions: {
     getDocuments({ commit }) {
       axios.get(`${baseURL}`).then((response) => {
-        //console.log(response, 'getDocuments response')
+        console.log(response, 'getDocuments response')
         commit('GET_INFO', response.data)
       })
     },
