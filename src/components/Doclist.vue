@@ -103,9 +103,6 @@ export default {
       if (this.savedDocumentsCheck(id)) {
         this.$store.dispatch("deleteSavedDocuments", id);
       } else {
-        if (this.savedDocuments.length > 3) {
-          // this.$store.dispatch("deleteSavedDocuments", id)
-        }
         this.$store.dispatch("postSavedDocuments", id);
       }
     },
