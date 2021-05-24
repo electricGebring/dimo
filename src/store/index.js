@@ -12,24 +12,29 @@ export default createStore({
     GET_INFO(state, data) {
       state.Elements = data
     },
-    POST_SAVED_DOCUMENTS(state, data) {
+    POST_SAVED_DOCUMENTS(state, data) { 
       state.savedDocuments = data
-      console.log(state.savedDocuments, 'state.savedDocuments')
     },
-    // POST_RECENTLY_VIEWED(state) {
-    //   state.recentlyViewed = this.Elements
-    // },
     GET_SAVED(state, data) {
       state.savedDocuments = data
     },
     DELETE_SAVED_DOCUMENTS(state, data) {
       state.savedDocuments = data
-    }
+    },
+    DELETE_FIRST_DOCUMENTS(state, data) {
+      state.recentlyViewed = data
+    },
+    GET_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
+    },
+    POST_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
+    },
   },
   actions: {
     getDocuments({ commit }) {
       axios.get(`${baseURL}`).then((response) => {
-        //console.log(response, 'getDocuments response')
+        console.log(response, 'getDocuments response')
         commit('GET_INFO', response.data)
       })
     },
@@ -39,24 +44,35 @@ export default createStore({
         commit('GET_SAVED', response.data)
       })
     },
+    getRecentlyViewed({ commit }) {
+      axios.get(`${baseURL}/latestview/${this.state.user}`).then((response) => {
+        commit('GET_RECENTLY_VIEWED', response.data)
+      })
+    },
     postSavedDocuments({ commit }, id) {
       axios.post(`${baseURL}/savedDocuments`, { 'docId': id, 'user': this.state.user }).then((response) => {
         console.log(response, 'postSavedDocuments response')
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
     },
+    postRecentlyViewed({ commit }, id) {
+      axios.post(`${baseURL}/recentlyViewed`, { 'docId': id, 'user': this.state.user }).then((response) => {
+       console.log(response, 'recentlyViewed response')
+       commit('POST_RECENTLY_VIEWED', response.data)
+     })
+    },
     deleteSavedDocuments({ commit}, id) {
       axios.delete(`${baseURL}/deleteSavedDocuments/${id}/${this.state.user}`).then((response) => {
         console.log(response, 'deleteSavedDocuments response')
         commit('DELETE_SAVED_DOCUMENTS', response.data)
       })
-    }
-
-    // postRecentlyViewed({ commit }, id) {
-    //   axios.post('${baseURL}/savedDocuments', { _id: id }).then((response) => {
-    //     commit('POST_RECENTLY_VIEWED', response.data)
-    //   })
-    // },
+    }, 
+    deletefirstElement({ commit}, id) {
+      axios.delete(`${baseURL}/deleteFirstDocuments/${id}/${this.state.user}`).then((response) => {
+        console.log(response, 'deleteFirstDocuments response')
+        commit('DELETE_FIRST_DOCUMENTS', response.data)
+      })
+    },
   },
   modules: {},
 })

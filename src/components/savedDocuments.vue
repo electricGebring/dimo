@@ -1,40 +1,73 @@
 <template>
   <div class="container">
     <h3>Mina sparade dokument</h3>
-    <div v-for="(item) in savedDocuments" :key="item.docId">
-      <div class="object" @click.stop="goto(item.URL)">
-        <img class="pdf-icon" src="https://i.ibb.co/5M6fZr1/Test-23.png" alt="Test-23" border="0" />
-        <h4>{{ item.Label }}</h4>
+    <div v-for="(item, index) in savedDocuments" :key="item.docId">
+      <div v-if="index < limitBy">
+        <img
+          v-show="true"
+          class="delete"
+          v-on:click.stop="deleteItem(item._id)"
+          src="/img/deleteicon.svg"
+        />
+        <div class="object" @click.stop="goto(item.URL)">
+          <img
+            class="pdf-icon"
+            src="https://i.ibb.co/5M6fZr1/Test-23.png"
+            alt="Test-23"
+            border="0"
+          />
+          <h4>{{ item.Label }}</h4>
+        </div>
       </div>
     </div>
+
+    <span
+      v-show="savedDocuments.length > 2"
+      class="show-more"
+      @click="showMore(defaultLimit, savedDocuments.length)"
+    >
+      {{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span
+    >
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      defaultLimit: 3,
+      limitBy: 3,
+    };
+  },
   mounted() {
     this.$store.dispatch("getSaved");
   },
-  methods: {
-    goto(url) {
-      window.open(url, '_blank').focus()
-    },
-  },
   computed: {
     savedDocuments() {
-      return this.$store.state.savedDocuments
-    }
-  }
-}
+      return this.$store.state.savedDocuments;
+    },
+  },
+  methods: {
+    showMore(defaultLimit, listLength) {
+      this.limitBy = this.limitBy === defaultLimit ? listLength : defaultLimit;
+    },
+    deleteItem(id) {
+      this.$store.dispatch("deleteSavedDocuments", id);
+    },
+    goto(url) {
+      window.open(url, "_blank").focus();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .container {
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   width: 25vw;
-  padding: 16px 40px 40px 40px;
+  padding: 16px 40px 16px 40px;
   margin-right: 20px;
   margin-top: 30px;
   font-family: Montserrat;
@@ -76,6 +109,18 @@ export default {
       color: #000000;
       margin: 0;
     }
+  }
+  .delete {
+    cursor: pointer;
+    float: right;
+    width: 8px;
+    height: 8px;
+  }
+  .show-more {
+    cursor: pointer;
+    padding-left: 52px;
+    font-weight: bold;
+    line-height: 4;
   }
 }
 </style>

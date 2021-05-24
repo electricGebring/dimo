@@ -21,7 +21,7 @@
       :key="index"
       :item="item"
     >
-      <div id="section" @click.stop="goto(item.URL, item)">
+      <div id="section" @click.stop="goto(item.URL, item._id)">
         <div class="img-container">
           <img
             class="imgcard"
@@ -117,10 +117,19 @@ export default {
     },
   },
   methods: {
-    goto(url, item) {
+    goto(url, id) {
       window.open(url, "_blank").focus();
-      if (!this.recentlyViewed.includes(item)) {
-        this.recentlyViewed.push(item);
+      if (!this.recentlyViewed.includes(id)) {
+        this.$store.dispatch("postRecentlyViewed", id);
+        if (
+          !this.recentlyViewed.includes(id) &&
+          this.recentlyViewed.length > 2
+        ) {
+          this.$store.dispatch(
+            "deletefirstElement",
+            this.recentlyViewed[0]._id
+          );
+        }
       }
     },
     changeViewLine() {
