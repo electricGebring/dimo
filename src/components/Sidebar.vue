@@ -1,5 +1,10 @@
 <template>
-  <div class="navbarside" :class="{colapsed: colapsed.value}">
+  <div class="navbarside" :class="{ colapsed: colapsed.value }">
+    <div class="user">
+      <button class="x" v-on:click.stop="handleUser('userX')">X</button>
+      <button class="y" v-on:click.stop="handleUser('userY')">Y</button>
+      <button class="z" v-on:click.stop="handleUser('userZ')">Z</button>
+    </div>
     <img
       alt=""
       class="navicon"
@@ -15,13 +20,13 @@
     </h5>
 
     <ul class="menu">
-      <router-link :to="{name: 'Home'}">
+      <router-link :to="{ name: 'Home' }">
         <li class="menu-item active">
           <img alt="" class="menu-item-navicon" src="/img/home-icon.svg" />
           <p class="menu-item-link">{{ menuLeftTwo }}</p>
         </li>
       </router-link>
-      <router-link :to="{name: 'profile'}">
+      <router-link :to="{ name: 'profile' }">
         <li class="menu-item">
           <img alt="" class="menu-item-navicon" src="/img/profile-icon.svg" />
           <p class="menu-item-link">{{ menuLeftThree }}</p>
@@ -50,48 +55,55 @@
 </template>
 
 <script>
-import {reactive} from '@vue/reactivity'
-import {watch} from 'vue'
-import {useRoute} from 'vue-router'
+import { reactive } from "@vue/reactivity";
+import { watch } from "vue";
+import { useRoute } from "vue-router";
 export default {
-  name: 'Group226',
+  name: "Group226",
   props: {
     jordanValentinLane: {
       type: String,
-      default: 'Jordan Valentin Lane',
+      default: "Jordan Valentin Lane",
     },
-    menuLeftTwo: {type: String, default: 'Översikt'},
-    menuLeftThree: {type: String, default: 'Min sida'},
-    menuLeftFour: {type: String, default: 'Mallar'},
+    menuLeftTwo: { type: String, default: "Översikt" },
+    menuLeftThree: { type: String, default: "Min sida" },
+    menuLeftFour: { type: String, default: "Mallar" },
     menuLeftFive: {
       type: String,
-      default: 'Inställningar',
+      default: "Inställningar",
     },
-    menuLeftSix: {type: String, default: 'Logga ut'},
+    menuLeftSix: { type: String, default: "Logga ut" },
+  },
+
+  methods: {
+    handleUser(user) {
+        this.$store.dispatch("setUser", user);
+        this.$store.dispatch("getSaved");
+    },
   },
 
   setup() {
-    let colapsed = reactive({isColapsed: false})
+    let colapsed = reactive({ isColapsed: false });
 
-    const route = useRoute()
+    const route = useRoute();
 
     watch(route, () => {
       setTimeout(() => {
         if (route.params.Thematic) {
-          colapsed.value = true
+          colapsed.value = true;
         } else {
-          colapsed.value = false
+          colapsed.value = false;
         }
-      }, 10)
-    })
+      }, 10);
+    });
 
-    return {colapsed}
+    return { colapsed };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 
 .navbarside {
   align-items: center;
@@ -99,7 +111,7 @@ export default {
   display: flex;
   flex-direction: column;
   float: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   transition: width, 0.3s;
   z-index: 9999;
   &.colapsed {
