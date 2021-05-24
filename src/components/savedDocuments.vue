@@ -3,12 +3,12 @@
     <h3>Mina sparade dokument</h3>
     <div v-for="(item, index) in savedDocuments" :key="item.docId">
       <div v-if="index < limitBy">
-             <span
+        <img
           v-show="true"
           class="delete"
           v-on:click.stop="deleteItem(item._id)"
-          >X</span
-        >
+          src="/img/deleteicon.svg"
+        />
         <div class="object" @click.stop="goto(item.URL)">
           <img
             class="pdf-icon"
@@ -24,8 +24,10 @@
     <span
       v-show="savedDocuments.length > 2"
       class="show-more"
-      @click="showMore(defaultLimit, savedDocuments.length)">
-      {{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span>
+      @click="showMore(defaultLimit, savedDocuments.length)"
+    >
+      {{ limitBy === 3 ? "Visa fler" : "Visa färre" }}</span
+    >
   </div>
 </template>
 <script>
@@ -111,12 +113,12 @@ export default {
   .delete {
     cursor: pointer;
     float: right;
-    font-family: arial;
-    font-size: 12px;
+    width: 8px;
+    height: 8px;
   }
   .show-more {
     cursor: pointer;
-    padding-left: 72px;
+    padding-left: 52px;
     font-weight: bold;
     line-height: 4;
   }
