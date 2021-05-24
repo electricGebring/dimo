@@ -46,14 +46,15 @@
         >
           <span class="labelTitle">
             {{ item.Label }}
-            <h3>_id {{ item._id }}</h3>
           </span>
           <div class="type">
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-            <span class="" v-on:click.stop="handleSave(item._id)">
+            <span @click.stop="$refs.johansModal.openModal()">
+              <img src="/img/view-eye.svg" alt="" />
+            </span>
+            <span v-on:click.stop="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
@@ -67,8 +68,35 @@
       </div>
     </div>
   </div>
+  <modal ref="johansModal">
+    <template v-slot:header>
+      <h1>Liten beskrivande text om dokumentet</h1>
+    </template>
+
+    <template v-slot:body>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Nunc sed velit
+        dignissim sodales ut eu sem integer vitae. Id aliquet lectus proin nibh
+        nisl condimentum. Fringilla urna porttitor rhoncus dolor purus. Nam
+        aliquam sem et tortor. Nisl vel pretium lectus quam id. Cras pulvinar
+        mattis nunc sed. Quis ipsum suspendisse ultrices gravida dictum fusce ut
+        placerat orci. Tristique magna sit amet purus. Fermentum et sollicitudin
+        ac orci phasellus egestas tellus.
+      </p>
+      
+    </template>
+
+    <template v-slot:footer>
+      <div class="d-flex align-items-center justify-content-between">
+        <p>Kanske någon mer info, typ författare, publicerings år, diarie nummer osv.</p>
+      </div>
+    </template>
+  </modal>
 </template>
 <script>
+import Modal from "./Modal.vue";
+
 export default {
   props: ["doclist"],
   data() {
@@ -77,7 +105,9 @@ export default {
       targetArea: [],
     };
   },
-  components: {},
+  components: {
+    Modal
+  },
   computed: {
     savedDocuments() {
       return this.$store.state.savedDocuments;
