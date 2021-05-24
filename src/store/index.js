@@ -12,13 +12,9 @@ export default createStore({
     GET_INFO(state, data) {
       state.Elements = data
     },
-    POST_SAVED_DOCUMENTS(state, data) {
+    POST_SAVED_DOCUMENTS(state, data) { 
       state.savedDocuments = data
-      console.log(state.savedDocuments, 'state.savedDocuments')
     },
-    // POST_RECENTLY_VIEWED(state) {
-    //   state.recentlyViewed = this.Elements
-    // },
     GET_SAVED(state, data) {
       state.savedDocuments = data
     },
@@ -33,13 +29,12 @@ export default createStore({
     },
     POST_RECENTLY_VIEWED(state, data) {
       state.recentlyViewed = data
-      console.log(state.recentlyViewed, 'state.recentlyViewed')
     },
   },
   actions: {
     getDocuments({ commit }) {
       axios.get(`${baseURL}`).then((response) => {
-        //console.log(response, 'getDocuments response')
+        console.log(response, 'getDocuments response')
         commit('GET_INFO', response.data)
       })
     },
@@ -50,7 +45,7 @@ export default createStore({
       })
     },
     getRecentlyViewed({ commit }) {
-      axios.get('http://localhost:3001/latestview').then((response) => {
+      axios.get(`${baseURL}/latestview/${this.state.user}`).then((response) => {
         commit('GET_RECENTLY_VIEWED', response.data)
       })
     },
@@ -60,24 +55,24 @@ export default createStore({
         commit('POST_SAVED_DOCUMENTS', response.data)
       })
     },
+    postRecentlyViewed({ commit }, id) {
+      axios.post(`${baseURL}/recentlyViewed`, { 'docId': id, 'user': this.state.user }).then((response) => {
+       console.log(response, 'recentlyViewed response')
+       commit('POST_RECENTLY_VIEWED', response.data)
+     })
+    },
     deleteSavedDocuments({ commit}, id) {
       axios.delete(`${baseURL}/deleteSavedDocuments/${id}/${this.state.user}`).then((response) => {
         console.log(response, 'deleteSavedDocuments response')
         commit('DELETE_SAVED_DOCUMENTS', response.data)
       })
-    }, deletefirstElement({ commit}, id) {
-      axios.delete(`http://localhost:3001/deleteFirstDocuments/${id}`).then((response) => {
+    }, 
+    deletefirstElement({ commit}, id) {
+      axios.delete(`${baseURL}/deleteFirstDocuments/${id}/${this.state.user}`).then((response) => {
         console.log(response, 'deleteFirstDocuments response')
         commit('DELETE_FIRST_DOCUMENTS', response.data)
       })
     },
-    postRecentlyViewed({ commit }, id) {
-       axios.post('http://localhost:3001/recentlyViewed', { 'docId': id, 'user': this.state.user }).then((response) => {
-        console.log(response, 'recentlyViewed response')
-        commit('POST_RECENTLY_VIEWED', response.data)
-      })
-    
-     },
   },
   modules: {},
 })
