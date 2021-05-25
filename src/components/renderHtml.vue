@@ -1,27 +1,20 @@
 <template>
   <div>
     <div v-html="html"></div>
-    <!-- <iframe id="ifrCnt" class="iframe" :src="html"></iframe> -->
   </div>
-  <!-- <div>{{iframeCont}}</div> -->
 </template>
 
 <script>
-// import html from 
-//import html from '../assets/html/sbk-avfallsplan.html';
 import { ref } from '@vue/reactivity'
-// import { ref } from '@vue/reactivity'
+
 export default {
   setup() {
-     //const html = require('https://en.wikipedia.org/wiki/Main_Page')
     const html = require('../assets/html/sbk-avfallsplan.html');
-    // const html = 'http://gebring.se/sbk.html'
 
     const iframe = ref(iframe)
 
     window.onclick = function(event) {
       console.log(event.target, 'event.target')
-      //console.log(this.iframeCont(), 'iframeCont')
     }
 
     const iframeCont = ref(() => {
