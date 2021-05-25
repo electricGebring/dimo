@@ -5,27 +5,28 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+//import { ref } from '@vue/reactivity'
 
 export default {
   setup() {
     const html = require('../assets/html/sbk-avfallsplan.html');
 
-    const iframe = ref(iframe)
+   //const iframe = ref(iframe)
 
     window.onclick = function(event) {
+      event.target.style.background = "#AEFF14";
       console.log(event.target, 'event.target')
     }
 
-    const iframeCont = ref(() => {
+    /*const iframeCont = ref(() => {
       let iframe = document.getElementById('ifrCnt')
       // let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       // return iframeDocument
       return iframe
-    })
+    })*/
     
 
-    return { html, iframeCont}
+    return { html }
   }
 }
 </script>
