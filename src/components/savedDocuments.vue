@@ -38,9 +38,6 @@ export default {
       limitBy: 3,
     };
   },
-  beforeCreate () {
-    this.$store.dispatch('setUser')
-},
   mounted() {
     this.$store.dispatch("getSaved");
   },
