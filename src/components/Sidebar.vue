@@ -79,6 +79,7 @@ export default {
     handleUser(user) {
         this.$store.dispatch("setUser", user);
         this.$store.dispatch("getSaved");
+        this.$store.dispatch("getRecentlyViewed");
     },
   },
 
