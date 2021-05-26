@@ -10,27 +10,24 @@ export default {
   setup() {
     const html = require('../assets/html/sbk-avfallsplan.html');
     // here we gonna check with the stor instead
-    let markedArray = []
     const exampleIdForDocument = '60931cf40a9b83f4cc0e5266'
 
     window.onclick = function(event) {
       // See if clicked element is in array => push || filter
       const targetEvent = event.target
-      if (markedArray.includes(targetEvent.className)) {
-        markedArray = markedArray.filter(classes => {
-          return classes !== targetEvent.className
-        })
+      if (this.$store.state.documentComment.includes(targetEvent.className)) {
+        this.$store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className)
       } else {
-        markedArray.push(targetEvent.className)
+        this.$store.dispatch("postDocumentComment", exampleIdForDocument, targetEvent.className)
       }
       
       // Highligth DOM element
-      if (markedArray.includes(targetEvent.className)) {
-        targetEvent.style.background = "#AEFF14"
-      } else {
-        targetEvent.style.background = "transparent"
-      }
-      this.$store.dispatch("postDocumentComment", exampleIdForDocument, targetEvent.className);
+      // if (this.$store.state.documentComment.includes(targetEvent.className)) {
+      //   targetEvent.style.background = "#AEFF14"
+      // } else {
+      //   targetEvent.style.background = "transparent"
+      // }
+      
     }
     return { html }
   }
