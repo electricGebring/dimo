@@ -5,26 +5,29 @@
 </template>
 
 <script>
-//import { ref } from '@vue/reactivity'
 
 export default {
   setup() {
     const html = require('../assets/html/sbk-avfallsplan.html');
-
-   //const iframe = ref(iframe)
+    let markedArray = []
 
     window.onclick = function(event) {
-      event.target.style.background = "#AEFF14";
-      console.log(event.target, 'event.target')
-    }
+      
+      if (markedArray.includes(event.target.className)) {
+        markedArray = markedArray.filter(classes => {
+          console.log(classes, 'classes')
+          return classes !== event.target.className
+        })
+      } else {
+        markedArray.push(event.target.className)
+      }
 
-    /*const iframeCont = ref(() => {
-      let iframe = document.getElementById('ifrCnt')
-      // let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-      // return iframeDocument
-      return iframe
-    })*/
-    
+      if (markedArray.includes(event.target.className)) {
+        event.target.style.background = "#AEFF14"
+      } else {
+        event.target.style.background = "transparent"
+      }
+    }
 
     return { html }
   }
@@ -43,8 +46,8 @@ export default {
 
     
   }
-  .t.m0.x7.hb.y13.ff1.fs7.fc2.sc0.ls0.ws0 {
+  /* .t.m0.x7.hb.y13.ff1.fs7.fc2.sc0.ls0.ws0 {
     background-color: green!important;
-  }
+  } */
 
 </style>
