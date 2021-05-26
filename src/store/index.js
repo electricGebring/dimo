@@ -34,6 +34,9 @@ export default createStore({
     DELETE_FIRST_DOCUMENTS(state, data) {
       state.recentlyViewed = data
     },
+    DELETE_DOCUMENT_COMMENT(state, data) {
+      state.documentComment = data
+    },
   },
   actions: {
     getDocuments({ commit }) {
@@ -83,6 +86,12 @@ export default createStore({
         commit('DELETE_FIRST_DOCUMENTS', response.data)
       })
     },
+    deleteDocumentComment({ commit}, id, classes) {
+      axios.delete(`${baseURL}/deleteComment/${id}/${this.state.user}/${classes}`).then((response) => {
+        console.log(response, 'deleteSavedDocuments response')
+        commit('DELETE_DOCUMENT_COMMENT', response.data)
+      })
+    }, 
   },
   modules: {},
 })
