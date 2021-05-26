@@ -6,7 +6,7 @@ export default createStore({
     Elements: [],
     savedDocuments: [],
     recentlyViewed: [],
-    documentComment: [],
+    documentComment: ['qwodqwinoiwdq'],
     user: 'userX',
   },
   mutations: {
@@ -69,6 +69,7 @@ export default createStore({
      })
     },
     postDocumentComment({ commit }, id, classes) {
+      console.log('hej')
       axios.post(`${baseURL}/comment`, { 'docId': id, 'user': this.state.user, 'classes': classes }).then((response) => {
         console.log(response, 'postDocumentComment response')
         commit('POST_DOCUMENT_COMMENT', response.data)

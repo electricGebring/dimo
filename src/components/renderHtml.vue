@@ -5,21 +5,32 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core';
+import { useStore } from 'vuex'
+
 
 export default {
   setup() {
+    const store = useStore()
     const html = require('../assets/html/sbk-avfallsplan.html');
     // here we gonna check with the stor instead
     const exampleIdForDocument = '60931cf40a9b83f4cc0e5266'
 
+    const documentComment = computed(() => {
+     return store.state.documentComment
+    })
+
     window.onclick = function(event) {
+      
       // See if clicked element is in array => push || filter
       const targetEvent = event.target
-      if (this.$store.state.documentComment.includes(targetEvent.className)) {
-        this.$store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className)
-      } else {
-        this.$store.dispatch("postDocumentComment", exampleIdForDocument, targetEvent.className)
-      }
+        if (documentComment.includes(targetEvent.className)) {
+          this.$store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className)
+        } else {
+          store.dispatch("postDocumentComment", exampleIdForDocument, targetEvent.className)
+        }
+      
+      
       
       // Highligth DOM element
       // if (this.$store.state.documentComment.includes(targetEvent.className)) {
