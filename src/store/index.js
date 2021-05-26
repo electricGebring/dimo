@@ -6,28 +6,32 @@ export default createStore({
     Elements: [],
     savedDocuments: [],
     recentlyViewed: [],
+    documentComment: [],
     user: 'userX',
   },
   mutations: {
     GET_INFO(state, data) {
       state.Elements = data
     },
-    POST_SAVED_DOCUMENTS(state, data) { 
-      state.savedDocuments = data
+    GET_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
     },
     GET_SAVED(state, data) {
       state.savedDocuments = data
+    },
+    POST_SAVED_DOCUMENTS(state, data) { 
+      state.savedDocuments = data
+    },
+    POST_RECENTLY_VIEWED(state, data) {
+      state.recentlyViewed = data
+    },
+    POST_DOCUMENT_COMMENT(state, data) {
+      state.documentComment = data
     },
     DELETE_SAVED_DOCUMENTS(state, data) {
       state.savedDocuments = data
     },
     DELETE_FIRST_DOCUMENTS(state, data) {
-      state.recentlyViewed = data
-    },
-    GET_RECENTLY_VIEWED(state, data) {
-      state.recentlyViewed = data
-    },
-    POST_RECENTLY_VIEWED(state, data) {
       state.recentlyViewed = data
     },
   },
@@ -60,6 +64,12 @@ export default createStore({
        console.log(response, 'recentlyViewed response')
        commit('POST_RECENTLY_VIEWED', response.data)
      })
+    },
+    postDocumentComment({ commit }, id, classes) {
+      axios.post(`${baseURL}/comment`, { 'docId': id, 'user': this.state.user, 'classes': classes }).then((response) => {
+        console.log(response, 'postDocumentComment response')
+        commit('POST_DOCUMENT_COMMENT', response.data)
+      })
     },
     deleteSavedDocuments({ commit}, id) {
       axios.delete(`${baseURL}/deleteSavedDocuments/${id}/${this.state.user}`).then((response) => {
