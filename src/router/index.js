@@ -21,7 +21,7 @@ const routes = [
     component: () => import('../views/Profile.vue'),
   },
   {
-    path: '/page-three',
+    path: '/page-three:Id',
     name: 'PageThree',
     component: () => import(/* webpackChunkName: "about" */ '../views/PageThree.vue'),
   },

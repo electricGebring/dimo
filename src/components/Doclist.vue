@@ -20,8 +20,11 @@
       v-for="(item, index) in doclist"
       :key="index"
       :item="item"
-    >
-      <div id="section" @click.stop="goto(item.URL, item._id)">
+    > 
+      <router-link
+          id="section"
+          :to="{ name: 'PageThree', params: { Id: item._id } }"
+          @click.stop="goto(item._id)"> 
         <div class="img-container">
           <img
             class="imgcard"
@@ -65,7 +68,7 @@
             </span>
           </div>
         </div>
-      </div>
+        </router-link>
     </div>
   </div>
   <modal ref="johansModal">
@@ -117,8 +120,8 @@ export default {
     },
   },
   methods: {
-    goto(url, id) {
-      window.open(url, "_blank").focus();
+    goto(id) {
+      //window.open(url, "_blank").focus();
       if (!this.recentlyViewed.includes(id)) {
         this.$store.dispatch("postRecentlyViewed", id);
         if (
