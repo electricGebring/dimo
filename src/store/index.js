@@ -6,7 +6,7 @@ export default createStore({
     Elements: [],
     savedDocuments: [],
     recentlyViewed: [],
-    documentComment: ['qwodqwinoiwdq'],
+    documentComment: [],
     user: 'userX',
   },
   mutations: {
@@ -18,6 +18,9 @@ export default createStore({
     },
     GET_SAVED(state, data) {
       state.savedDocuments = data
+    },
+    GET_COMMENTS(state, data) {
+      state.documentComment = data
     },
     POST_SAVED_DOCUMENTS(state, data) { 
       state.savedDocuments = data
@@ -56,6 +59,11 @@ export default createStore({
         commit('GET_RECENTLY_VIEWED', response.data)
       })
     },
+    getComments({ commit }) {
+      axios.get(`${baseURL}/getComment/${this.state.user}`).then((response) => {
+        commit('GET_RECENTLY_VIEWED', response.data)
+      })
+    },
     postSavedDocuments({ commit }, id) {
       axios.post(`${baseURL}/savedDocuments`, { 'docId': id, 'user': this.state.user }).then((response) => {
         console.log(response, 'postSavedDocuments response')
@@ -69,7 +77,7 @@ export default createStore({
      })
     },
     postDocumentComment({ commit }, {id, classes, comment } ) {
-      axios.post(`${baseURL}/comment`, { 'docId': id, 'user': this.state.user, 'classes': classes, 'comment': comment }).then((response) => {
+      axios.post(`${baseURL}/postComment`, { 'docId': id, 'user': this.state.user, 'classes': classes, 'comment': comment }).then((response) => {
         console.log(response, 'postDocumentComment response')
         commit('POST_DOCUMENT_COMMENT', response.data)
       })
