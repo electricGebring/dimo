@@ -14,7 +14,7 @@ export default {
     const store = useStore()
     const html = require('../assets/html/sbk-avfallsplan.html');
     // here we gonna check with the stor instead
-    const exampleIdForDocument = '60931cf40a9b83f4cc0e5266'
+    const id = '60931cf40a9b83f4cc0e5266'
     const comment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
 
     // const documentComment = computed(() => {
@@ -25,7 +25,7 @@ export default {
     window.onclick = function(event) {
       
       // See if clicked element is in array => push || filter
-      const targetEvent = event.target.className
+      const classes = event.target.className
         // if (documentComment.includes(targetEvent.className)) {
         //   store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className, testComment)
         // } else {
@@ -33,7 +33,7 @@ export default {
 
           //console.log(exampleIdForDocument, 'exampleIdForDocument', targetEvent, 'targetEvent.className', testComment, 'testComment')
           //const editTodo = (todo, value) => store.dispatch('editTodo', { todo, value })
-          store.dispatch("postDocumentComment", {test:{ exampleIdForDocument, targetEvent, comment }} )
+          store.dispatch("postDocumentComment", { id, classes, comment } )
           
         //}
       
