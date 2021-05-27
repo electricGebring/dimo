@@ -16,6 +16,10 @@
 </template>
 <script>
 export default {
+  mounted() {
+    this.$store.dispatch("getRecentlyViewed");
+ 
+  },
   methods: {
     goto(url) {
       window.open(url, "_blank").focus();
@@ -23,8 +27,9 @@ export default {
   },
   computed: {
      recentlyViewed() {
-      return this.$store.state.recentlyViewed
+      return this.$store.state.recentlyViewed;
     },
+  
   },
 };
 </script>

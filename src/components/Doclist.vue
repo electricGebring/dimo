@@ -20,8 +20,11 @@
       v-for="(item, index) in doclist"
       :key="index"
       :item="item"
-    >
-      <div id="section" class="" @click.stop="goto(item.URL, item)">
+    > 
+      <router-link
+          id="section"
+          :to="{ name: 'PageThree', params: { Id: item._id } }"
+          @click.stop="goto(item._id)"> 
         <div class="img-container">
           <img
             class="imgcard"
@@ -51,61 +54,105 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span class=""><img src="/img/view-eye.svg" alt=""/></span>
-            <span class="" v-on:click.stop="handleSave(item)" >
-            <img class="save" src="/img/star.svg" :class="{ saveActive: savedDocuments.includes(item) }" width="300" height="150"/>
+            <span @click.stop="$refs.johansModal.openModal()">
+              <img src="/img/view-eye.svg" alt="" />
+            </span>
+            <span v-on:click.stop="handleSave(item._id)">
+              <img
+                class="save"
+                src="/img/star.svg"
+                v-bind:class="{ saveActive: savedDocumentsCheck(item._id) }"
+                width="300"
+                height="150"
+              />
             </span>
           </div>
         </div>
-      </div>
+        </router-link>
     </div>
   </div>
+  <modal ref="johansModal">
+    <template v-slot:header>
+      <h1>Liten beskrivande text om dokumentet</h1>
+    </template>
+
+    <template v-slot:body>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Nunc sed velit
+        dignissim sodales ut eu sem integer vitae. Id aliquet lectus proin nibh
+        nisl condimentum. Fringilla urna porttitor rhoncus dolor purus. Nam
+        aliquam sem et tortor. Nisl vel pretium lectus quam id. Cras pulvinar
+        mattis nunc sed. Quis ipsum suspendisse ultrices gravida dictum fusce ut
+        placerat orci. Tristique magna sit amet purus. Fermentum et sollicitudin
+        ac orci phasellus egestas tellus.
+      </p>
+      
+    </template>
+
+    <template v-slot:footer>
+      <div class="d-flex align-items-center justify-content-between">
+        <p>Kanske någon mer info, typ författare, publicerings år, diarie nummer osv.</p>
+      </div>
+    </template>
+  </modal>
 </template>
 <script>
+import Modal from "./Modal.vue";
+
 export default {
   props: ["doclist"],
   data() {
     return {
-      //saveActive: false,
+      saveActive: false,
       targetArea: [],
     };
   },
-  components: {},
+  components: {
+    Modal
+  },
   computed: {
-     savedDocuments() {
-      return this.$store.state.savedDocuments
-    }, 
-     recentlyViewed() {
-      return this.$store.state.recentlyViewed
+    savedDocuments() {
+      return this.$store.state.savedDocuments;
+    },
+    recentlyViewed() {
+      return this.$store.state.recentlyViewed;
     },
   },
   methods: {
- 
-    goto(url, item) {
-      window.open(url, "_blank").focus();
-      if (!this.recentlyViewed.includes(item)) {
-       this.recentlyViewed.push(item);
+    goto(id) {
+      //window.open(url, "_blank").focus();
+      if (!this.recentlyViewed.includes(id)) {
+        this.$store.dispatch("postRecentlyViewed", id);
+        if (
+          !this.recentlyViewed.includes(id) &&
+          this.recentlyViewed.length > 2
+        ) {
+          this.$store.dispatch(
+            "deletefirstElement",
+            this.recentlyViewed[0]._id
+          );
         }
-           console.log(this.recentlyViewed, "iii")
+      }
     },
     changeViewLine() {
       let view = document.getElementById("all");
       view.classList.add("mystyle");
     },
-    changeViewBox() {
-      let view = document.getElementById("all");
-      view.classList.remove("mystyle");
+    handleSave(id) {
+      if (this.savedDocumentsCheck(id)) {
+        this.$store.dispatch("deleteSavedDocuments", id);
+      } else {
+        this.$store.dispatch("postSavedDocuments", id);
+      }
     },
-    handleSave(item) {
-      //this.saveActive = item;
-      //this.$store.dispatch("postSavedDocuments", id);
-     if (!this.savedDocuments.includes(item)) {
-       this.savedDocuments.push(item);
+    savedDocumentsCheck(id) {
+      for (let i = 0; i < this.savedDocuments.length; i++) {
+        if (this.savedDocuments[i]._id === id) {
+          return true;
         }
-        else {
-       this.savedDocuments.pop(item);
-        }
-        console.log(this.savedDocuments, "eee")
+      }
+      return false;
     },
   },
 };
@@ -125,7 +172,9 @@ body {
   cursor: pointer;
   float: right;
 }
-img{border:0;}
+img {
+  border: 0;
+}
 
 //// VIEW CHANGE CSS ////
 .mystyle {
@@ -312,8 +361,8 @@ img{border:0;}
   background-repeat: no-repeat;
 }
 .saveActive {
-filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(
-65deg) brightness(321%) contrast(101%);
+  filter: invert(12%) sepia(38%) saturate(44433%) hue-rotate(65deg)
+    brightness(321%) contrast(101%);
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;

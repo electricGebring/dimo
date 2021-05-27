@@ -68,12 +68,10 @@ export default {
     };
   },
   mounted() {
-    //this.$store.dispatch("getDocuments");
     this.circleSizing();
   },
   updated() {
     this.circleSizing();
-    // this.imageSizing();
   },
   computed: {
     Elements() {

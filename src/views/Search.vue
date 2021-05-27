@@ -11,6 +11,7 @@
         :show="show"
       />
       <doclist :doclist="doclist" />
+      <Saveddocuments />
     </div>
   </div>
 </template>
@@ -21,7 +22,7 @@ import Doclist from '../components/Doclist.vue'
 import FilterBar from '../components/filterBar.vue'
 import goBack from '../components/goBack.vue'
 import filterTags from '../components/filterTags.vue'
-/// Litet test att importera funktion som ska posta doclist vidare till backend
+import Saveddocuments from '../components/savedDocuments.vue'
 
 
 export default {
@@ -38,6 +39,7 @@ export default {
     FilterBar,
     goBack,
     filterTags,
+    Saveddocuments,
   },
   computed: {
     Elements() {
@@ -81,13 +83,12 @@ export default {
       if (this.checkedCategories.length === 0) {
         this.hideTag()
       }
-       console.log(this.checkedCategories)
       this.setFilter(this.checkedCategories)
     },
 
-    goto(url) {
+    /*goto(url) {
       window.open(url, '_blank').focus()
-    },
+    },*/
   
     setFilter(checkedCategories) {
      

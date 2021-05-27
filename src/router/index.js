@@ -20,6 +20,11 @@ const routes = [
     name: 'profile',
     component: () => import('../views/Profile.vue'),
   },
+  {
+    path: '/page-three:Id',
+    name: 'PageThree',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PageThree.vue'),
+  },
 ]
 
 const router = createRouter({
