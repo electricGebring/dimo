@@ -68,9 +68,16 @@ export default createStore({
        commit('POST_RECENTLY_VIEWED', response.data)
      })
     },
-    postDocumentComment({ commit }, id, classes, testComment) {
-      console.log('hej')
-      axios.post(`${baseURL}/comment`, { 'docId': id, 'user': this.state.user, 'classes': classes, 'comment': testComment }).then((response) => {
+
+
+
+
+
+
+    postDocumentComment({ commit }, test ) {
+      //console.log(this.id, 'id', this.classes, 'classes', comment, 'testComment')
+      console.log(test.comment, 'test')
+      axios.post(`${baseURL}/comment`, { 'docId': id, 'user': this.state.user, 'classes': classes, 'comment': comment }).then((response) => {
         console.log(response, 'postDocumentComment response')
         commit('POST_DOCUMENT_COMMENT', response.data)
       })

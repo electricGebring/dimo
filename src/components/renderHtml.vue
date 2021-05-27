@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core';
+//import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex'
 
 
@@ -15,21 +15,27 @@ export default {
     const html = require('../assets/html/sbk-avfallsplan.html');
     // here we gonna check with the stor instead
     const exampleIdForDocument = '60931cf40a9b83f4cc0e5266'
-    const testComment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
+    const comment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
 
-    const documentComment = computed(() => {
-     return store.state.documentComment
-    })
+    // const documentComment = computed(() => {
+    //  return store.state.documentComment
+    // })
+   
 
     window.onclick = function(event) {
       
       // See if clicked element is in array => push || filter
-      const targetEvent = event.target
-        if (documentComment.includes(targetEvent.className)) {
-          this.$store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className, testComment)
-        } else {
-          store.dispatch("postDocumentComment", exampleIdForDocument, targetEvent.className)
-        }
+      const targetEvent = event.target.className
+        // if (documentComment.includes(targetEvent.className)) {
+        //   store.dispatch("deleteDocumentComment", exampleIdForDocument, targetEvent.className, testComment)
+        // } else {
+
+
+          //console.log(exampleIdForDocument, 'exampleIdForDocument', targetEvent, 'targetEvent.className', testComment, 'testComment')
+          //const editTodo = (todo, value) => store.dispatch('editTodo', { todo, value })
+          store.dispatch("postDocumentComment", {test:{ exampleIdForDocument, targetEvent, comment }} )
+          
+        //}
       
       
       
