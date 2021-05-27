@@ -90,7 +90,7 @@ export default {
 
     watch(route, () => {
       setTimeout(() => {
-        if (route.params.Thematic) {
+        if (route.params.Thematic || route.params.Id ) {
           colapsed.value = true;
         } else {
           colapsed.value = false;

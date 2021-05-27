@@ -1,6 +1,14 @@
 <template>
-  <commentBox :show="show" />
-  <renderHtml @showCommentBox="showCommentBox" />
+  <div class="container">
+    <div class="main">
+      <div class="main-header"></div>
+      <div class="content-right">
+        <commentBox :show="show" />
+      </div>
+      <renderHtml @showCommentBox="showCommentBox" />
+    </div>
+    <div class="sidebar-right"></div>
+  </div>
 </template>
 
 <script>
@@ -26,4 +34,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.main {
+  background: #fff;
+}
+.sidebar-right {
+  background: #f9f9f9;
+  width: 324px;
+}
+.main-header {
+  background: #fff;
+  height: 124px;
+}
+</style>
