@@ -6,7 +6,7 @@ export default createStore({
     Elements: [],
     savedDocuments: [],
     recentlyViewed: [],
-    user: 'userX',
+    user: [],
   },
   mutations: {
     GET_INFO(state, data) {
@@ -29,6 +29,9 @@ export default createStore({
     },
     POST_RECENTLY_VIEWED(state, data) {
       state.recentlyViewed = data
+    },
+    SET_USER(state, data) {
+      state.user = data
     },
   },
   actions: {
@@ -73,6 +76,10 @@ export default createStore({
         commit('DELETE_FIRST_DOCUMENTS', response.data)
       })
     },
+    setUser({ commit }, user) {
+
+       commit('SET_USER', user)
+     }
   },
   modules: {},
 })
