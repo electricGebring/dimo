@@ -56,12 +56,14 @@ export default createStore({
     },
     getRecentlyViewed({ commit }) {
       axios.get(`${baseURL}/latestview/${this.state.user}`).then((response) => {
+        console.log(response, 'latestview response')
         commit('GET_RECENTLY_VIEWED', response.data)
       })
     },
-    getComments({ commit }) {
-      axios.get(`${baseURL}/getComment/${this.state.user}`).then((response) => {
-        commit('GET_RECENTLY_VIEWED', response.data)
+    getComments({ commit }, id) {
+      axios.get(`${baseURL}/getComment/${id}`).then((response) => {
+        console.log(response, 'getComment response')
+        commit('GET_COMMENTS', response.data)
       })
     },
     postSavedDocuments({ commit }, id) {
