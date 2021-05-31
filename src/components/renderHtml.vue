@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { onMounted } from '@vue/runtime-core';
+import { onMounted, ref, watch } from '@vue/runtime-core';
 import { useStore } from 'vuex'
 
 
@@ -13,16 +13,15 @@ export default {
   setup() {
     
     const store = useStore()
-    //let commentData = store.state.documentComment
+    let commentData = ref([])
     const html = require('../assets/html/sbk-avfallsplan.html');
-    // here we gonna check with the stor instead
     
     // const comment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
 
     onMounted(async() => {
       const id = '60931cf40a9b83f4cc0e5266'
       await store.dispatch("getComments", id);
-      setTimeout(() => {
+      setTimeout(() => { /// det här är skit, ändra sen, inga jävla timeouts  
         highlight()
       }, 10)
     })
@@ -31,10 +30,12 @@ export default {
     //  return store.state.documentComment
     // })
 
-    // watch(commentData, () => {
-    //   console.log('watch')
-    //   highlight()
-    // })
+    watch(commentData.value , (currentValue, oldValue) => {
+      console.log(currentValue);
+      console.log(oldValue);
+      console.log('watch')
+      highlight()
+    })
 
     
    
@@ -53,7 +54,6 @@ export default {
     const highlight = () => {    
       store.state.documentComment.forEach((element) => {
           const elementToHighlight = document.getElementsByClassName(element.classes);
-          console.log(elementToHighlight, 'elementToHighlight')
           elementToHighlight[0].style.background = "#AEFF14"
          
         // else {
