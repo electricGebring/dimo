@@ -5,15 +5,16 @@
 </template>
 
 <script>
-import { onMounted, ref, watch } from '@vue/runtime-core';
+import { onMounted, reactive, watch } from '@vue/runtime-core';
 import { useStore } from 'vuex'
+// import { mapState } from 'vuex';
 
 
 export default {
   setup() {
     
     const store = useStore()
-    let commentData = ref([])
+    //let commentData = reactive(store.state.documentComment)
     const html = require('../assets/html/sbk-avfallsplan.html');
     
     // const comment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
@@ -26,9 +27,10 @@ export default {
       }, 10)
     })
    
-    // const commentData = computed(() => {
-    //  return store.state.documentComment
-    // })
+    const commentData = computed(() => {
+      const data = store.state.documentComment
+      return data
+    })
 
     watch(commentData.value , (currentValue, oldValue) => {
       console.log(currentValue);
@@ -52,7 +54,7 @@ export default {
 
     // Highligth DOM element
     const highlight = () => {    
-      store.state.documentComment.forEach((element) => {
+      commentData.forEach((element) => {
           const elementToHighlight = document.getElementsByClassName(element.classes);
           elementToHighlight[0].style.background = "#AEFF14"
          
