@@ -1,21 +1,22 @@
 <template>
   <div>
-    <div v-html="html"></div>
+    <div v-html="html" v-on:click="handleClick()"></div>
   </div>
 </template>
 
 <script>
-import { onMounted, watch, computed } from "@vue/runtime-core";
+import { onMounted, watch, computed, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
-// import { mapState } from 'vuex';
 
 export default {
-  setup() {
+  emits: ["showCommentBox"],
+  setup(props, context) {
     const store = useStore();
-    //let commentData = reactive(store.state.documentComment)
     const html = require("../assets/html/sbk-avfallsplan.html");
-
-    // const comment = 'Hej jag heter Johan och jag är snäll, nu så startar jag hotel! <br> Elefanter är grå och inte blå, var snäll och ändra det i texten'
+    const showComment = ref(false);
+    const handleClick = () => {
+      context.emit("showCommentBox", showComment);
+    };
 
     onMounted(async () => {
       const id = "60931cf40a9b83f4cc0e5266";
@@ -41,9 +42,9 @@ export default {
         elementToHighlight[0].style.background = "#AEFF14";
       }); 
     };
-    return { html, commentData, highlight };
-  },
-};
+    return { html, commentData, highlight, showComment, handleClick }
+  }
+}
 </script>
 
 <style>

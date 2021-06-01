@@ -86,9 +86,9 @@ export default {
       this.setFilter(this.checkedCategories)
     },
 
-    goto(url) {
+    /*goto(url) {
       window.open(url, '_blank').focus()
-    },
+    },*/
   
     setFilter(checkedCategories) {
      

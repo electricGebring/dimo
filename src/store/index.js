@@ -7,7 +7,7 @@ export default createStore({
     savedDocuments: [],
     recentlyViewed: [],
     documentComment: [],
-    user: 'userX',
+    user: [],
   },
   mutations: {
     GET_INFO(state, data) {
@@ -39,6 +39,9 @@ export default createStore({
     },
     DELETE_DOCUMENT_COMMENT(state, data) {
       state.documentComment = data
+    },
+    SET_USER(state, data) {
+      state.user = data
     },
   },
   actions: {
@@ -102,6 +105,9 @@ export default createStore({
         commit('DELETE_DOCUMENT_COMMENT', response.data)
       })
     }, 
+    setUser({ commit }, user) {
+      commit('SET_USER', user)
+    }
   },
   modules: {},
 })
