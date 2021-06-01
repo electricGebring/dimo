@@ -55,10 +55,10 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span @click.stop="$refs.johansModal.openModal()">
+            <span @click.prevent.capture="$refs.johansModal.openModal()">
               <img src="/img/view-eye.svg" alt="" />
             </span>
-            <span v-on:click.stop="handleSave(item._id)">
+            <span v-on:click.prevent.capture="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
