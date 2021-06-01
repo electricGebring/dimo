@@ -7,7 +7,7 @@ export default createStore({
     savedDocuments: [],
     recentlyViewed: [],
     documentComment: [],
-    user: ['userX'],
+    user: 'userX',
   },
   mutations: {
     GET_INFO(state, data) {

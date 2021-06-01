@@ -19,35 +19,34 @@ export default {
       context.emit("showCommentBox", showComment);
     };
     const route = useRoute();
+    const id = route.params.Id;
 
-    onMounted(async () => {
-      // const id = "60931cf40a9b83f4cc0e5266";
-      console.log(route.params, 'route.params')
-      await store.dispatch("getComments", route.params.id);
+    onMounted(() => {
+      store.dispatch("getComments", id);
     });
 
-     const commentData = computed(() => store.state.documentComment);
-     watch(commentData, () => 
-     highlight(commentData._value)
-     )
+    const commentData = computed(() => store.state.documentComment);
 
-    window.onclick = function(event) {
+    watch(commentData, () => highlight(commentData._value));
+
+    window.onclick = function (event) {
       console.log(event.target.className);
       event.target.style.background = "#AEFF14";
     };
 
     // Highligth DOM element
     const highlight = (commentData) => {
+      
       commentData.forEach((element) => {
         const elementToHighlight = document.getElementsByClassName(
           element.classes
         );
         elementToHighlight[0].style.background = "#AEFF14";
-      }); 
+      });
     };
-    return { html, commentData, highlight, showComment, handleClick }
-  }
-}
+    return { html, commentData, highlight, showComment, handleClick };
+  },
+};
 </script>
 
 <style>
