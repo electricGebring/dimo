@@ -7,6 +7,7 @@
 <script>
 import { onMounted, watch, computed, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default {
   emits: ["showCommentBox"],
@@ -17,10 +18,12 @@ export default {
     const handleClick = () => {
       context.emit("showCommentBox", showComment);
     };
+    const route = useRoute();
 
     onMounted(async () => {
-      const id = "60931cf40a9b83f4cc0e5266";
-      await store.dispatch("getComments", id);
+      // const id = "60931cf40a9b83f4cc0e5266";
+      console.log(route.params, 'route.params')
+      await store.dispatch("getComments", route.params.id);
     });
 
      const commentData = computed(() => store.state.documentComment);
