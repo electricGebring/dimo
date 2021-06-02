@@ -3,9 +3,8 @@
     <div class="main">
       <div class="main-header"></div>
       <div class="content-right">
-        <commentBox :show="show" />
       </div>
-      <renderHtml @showCommentBox="showCommentBox" />
+      <renderHtml />
     </div>
     <div class="sidebar-right"></div>
   </div>
@@ -13,12 +12,11 @@
 
 <script>
 import renderHtml from "../components/renderHtml.vue";
-import commentBox from "../components/commentBox.vue";
+
 export default {
   name: "PageThree",
   components: {
-    renderHtml,
-    commentBox,
+    renderHtml
   },
   data() {
     return {
@@ -26,10 +24,7 @@ export default {
     };
   },
   methods: {
-    showCommentBox(showComment) {
-      showComment.value = this.show;
-      this.show = true;
-    },
+   
   },
 };
 </script>

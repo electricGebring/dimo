@@ -1,5 +1,6 @@
 <template>
   <div>
+    <commentBox :show="show" />
     <div v-html="html" v-on:click="handleClick()"></div>
   </div>
 </template>
@@ -8,15 +9,20 @@
 import { onMounted, watch, computed, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import commentBox from "../components/commentBox.vue";
 
 export default {
-  emits: ["showCommentBox"],
-  setup(props, context) {
+   components: {
+    commentBox,
+  },
+  //emits: ["showCommentBox"],
+  setup() {
+    const show = ref(false);
     const store = useStore();
     const html = require("../assets/html/sbk-avfallsplan.html");
     const showComment = ref(false);
     const handleClick = () => {
-      context.emit("showCommentBox", showComment);
+      show.value = ref(true);
     };
     const route = useRoute();
     const id = route.params.Id;
@@ -44,7 +50,7 @@ export default {
         elementToHighlight[0].style.background = "#AEFF14";
       });
     };
-    return { html, commentData, highlight, showComment, handleClick };
+    return { html, commentData, highlight, showComment, handleClick, show };
   },
 };
 </script>
