@@ -1,6 +1,6 @@
 <template>
   <div>
-    <commentBox :show="show" />
+    <commentBox :show="show" :id="id"  />
     <div v-html="html" v-on:click="handleClick()"></div>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
    components: {
     commentBox,
   },
-  //emits: ["showCommentBox"],
+  
   setup() {
     const show = ref(false);
     const store = useStore();
@@ -50,7 +50,7 @@ export default {
         elementToHighlight[0].style.background = "#AEFF14";
       });
     };
-    return { html, commentData, highlight, showComment, handleClick, show };
+    return { html, commentData, highlight, showComment, handleClick, show, id};
   },
 };
 </script>

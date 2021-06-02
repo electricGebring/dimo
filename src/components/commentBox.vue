@@ -1,17 +1,28 @@
 <template>
   <div>
-    <textarea
-      class="comment-box"
-      v-if="show"
-      v-model="comment"
-      placeholder="Lämna en kommentar.."
-    ></textarea>
+    <form class="comment-box" v-if="show">
+      <textarea v-model="comment" placeholder="Lämna en kommentar.."></textarea>
+      <button @click="submitComment()">send</button>
+    </form>
   </div>
 </template>
 <script>
 export default {
-  props: ["show"],
-  methods: {},
+  props: ["show", "id"],
+
+  data() {
+    return {
+      comment: "",
+    };
+  },
+  methods: {
+    submitComment() {
+      const id = this.id;
+      const comment = this.comment;
+      const classes = "hej";
+      this.$store.dispatch("postDocumentComment", id, classes, comment);
+    },
+  },
 };
 </script>
 
