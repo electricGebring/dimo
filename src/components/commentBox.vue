@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="comment-box" v-if="show">
+    <form class="comment-box" v-if="show" @submit.prevent>
       <textarea v-model="comment" placeholder="Lämna en kommentar.."></textarea>
       <button @click="submitComment()">send</button>
     </form>
@@ -20,7 +20,7 @@ export default {
       const id = this.id;
       const comment = this.comment;
       const classes = "hej";
-      this.$store.dispatch("postDocumentComment", id, classes, comment);
+      this.$store.dispatch("postDocumentComment", { id, classes, comment });
     },
   },
 };
