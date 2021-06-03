@@ -1,6 +1,6 @@
 <template>
   <div>
-    <commentBox :show="show" :id="id"  />
+    <commentBox :show="show" :id="id" :classes="classes" />
     <div v-html="html" v-on:click="handleClick()"></div>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .iframe {
   position: absolute;
   top: 0;

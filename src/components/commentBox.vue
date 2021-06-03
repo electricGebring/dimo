@@ -4,29 +4,39 @@
       <textarea v-model="comment" placeholder="Lämna en kommentar.."></textarea>
       <button @click="submitComment()">send</button>
     </form>
+    <!--<span class="comment" @click="deleteComment()" v-if="showComment"> {{ comment }} </span>-->
   </div>
 </template>
 <script>
 export default {
-  props: ["show", "id"],
+  props: ["show", "id", "classes"],
 
   data() {
     return {
       comment: "",
+      showComment: false,
     };
   },
   methods: {
     submitComment() {
       const id = this.id;
       const comment = this.comment;
-      const classes = "hej";
+      const classes = this.classes;
+      this.showComment = true
       this.$store.dispatch("postDocumentComment", { id, classes, comment });
     },
+     /* deleteComment() {
+      const id = this.id;
+      const comment = this.comment;
+      const classes = this.classes;
+      this.showComment == false
+      this.$store.dispatch("deleteDocumentComment", { id, classes, comment });
+    },*/
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .comment-box {
   border-radius: 10px;
