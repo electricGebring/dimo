@@ -35,8 +35,10 @@ export default {
 
     const handleClick = (event) => {
       show.value = ref(true);
+      console.log(classes.value === event.target.classList.value, 'classes.value == event.target.classList.value')
       if (classes.value === event.target.classList.value) {
-        deHighlight(event.targe)
+        deHighlight(event.target)
+        classes.value = ''
       } else {
         classes.value = event.target.classList.value
         highlight(event.target)
