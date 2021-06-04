@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { onMounted, watch, computed, ref} from "@vue/runtime-core";
+import { onMounted, watch, computed, ref, onUpdated, reactive} from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import commentBox from "../components/commentBox.vue";
@@ -23,7 +23,7 @@ export default {
     const showComment = ref(false);
     const route = useRoute();
     const id = route.params.Id;
-    let classes = []
+    let classes = reactive({})
 
     onMounted(() => {
       store.dispatch("getComments", id);
@@ -36,10 +36,9 @@ export default {
     const handleClick = (event) => {
       show.value = ref(true);
       //console.log(event.target, 'event.target')
-      classes.push(event.target.classList.value)
+      classes.value = event.target.classList.value
       console.log(classes, 'classes')
       event.target.style.background = "#AEFF14";
-      
     };
 
     // Highligth DOM element

@@ -14,25 +14,17 @@ import { onUpdated } from '@vue/runtime-core'
 export default {
   props: ['id', 'classes', 'show'],
   setup(props) {
-    onUpdated(() => {
-      console.log(props.classes[0], 'props.classes')
-      console.log(props.id, 'props.id')
-    })
     const store = useStore()
     const comment = ref("")
+    const id = props.id
+    const classes = props.classes.value
     
     //let showComment =  false
       
     const submitComment = () => {
-        const id = props.id
-        // const classes = props.classes
-        const classes = props.classes[0]
-         console.log(classes, 'classes commentBox')
         //showComment = true
         store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
-      
-      
-      
+         
       /* deleteComment() {
         const id = this.id;
         const comment = this.comment;
