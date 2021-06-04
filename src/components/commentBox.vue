@@ -10,20 +10,19 @@
 <script>
 import { ref } from '@vue/reactivity'
 import { useStore } from "vuex"
-import { onUpdated } from '@vue/runtime-core'
 export default {
   props: ['id', 'classes', 'show'],
   setup(props) {
     const store = useStore()
     const comment = ref("")
-    const id = props.id
-    const classes = props.classes.value
-    
     //let showComment =  false
       
     const submitComment = () => {
-        //showComment = true
-        store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
+      const id = props.id
+      const classes = props.classes.value
+      //showComment = true
+  
+      store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
          
       /* deleteComment() {
         const id = this.id;

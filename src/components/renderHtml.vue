@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { onMounted, watch, computed, ref, onUpdated, reactive} from "@vue/runtime-core";
+import { onMounted, watch, computed, ref, reactive} from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import commentBox from "../components/commentBox.vue";
