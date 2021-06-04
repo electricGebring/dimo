@@ -33,7 +33,7 @@ export default {
 
     watch(commentData, () => highlight(commentData._value));
 
-    const handleClick = function (event) {
+    const handleClick = (event) => {
       show.value = ref(true);
       //console.log(event.target, 'event.target')
       classes = event.target.className
