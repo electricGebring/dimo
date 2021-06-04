@@ -1,6 +1,6 @@
 <template>
   <div>
-    <commentBox :show="show" :id="id" />
+    <commentBox :show="show" :id="id" :classes="classes" />
     <div v-html="html" v-on:click="handleClick($event)"></div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     const showComment = ref(false);
     const route = useRoute();
     const id = route.params.Id;
-    let classes = ref('')
+    let classes = []
 
     onMounted(() => {
       store.dispatch("getComments", id);
@@ -36,9 +36,8 @@ export default {
     const handleClick = (event) => {
       show.value = ref(true);
       //console.log(event.target, 'event.target')
-      classes = event.target.className
-      // console.log(classes, 'classes')
-      this.$store.dispatch("setClasses", classes);
+      classes.push(event.target.classList.value)
+      console.log(classes, 'classes')
       event.target.style.background = "#AEFF14";
       
     };

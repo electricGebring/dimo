@@ -8,7 +8,7 @@ export default createStore({
     recentlyViewed: [],
     documentComment: [],
     user: 'userX',
-    classes: '',
+    //classes: '',
   },
   mutations: {
     GET_INFO(state, data) {
@@ -44,9 +44,9 @@ export default createStore({
     SET_USER(state, data) {
       state.user = data
     },
-    SET_CLASSES(state, data) {
-      state.classes = data
-    }
+    // SET_CLASSES(state, data) {
+    //   state.classes = data
+    // }
   },
   actions: {
     getDocuments({ commit }) {
@@ -112,9 +112,10 @@ export default createStore({
     setUser({ commit }, user) {
       commit('SET_USER', user)
     },
-    setClasses({ commit }, classes) {
-      commit('SET_CLASSES', classes)
-    },
+    // setClasses({ commit }, classes) {
+    //   commit('SET_CLASSES', classes)
+    //   console.log(state.setClasses, 'state.setClasses')
+    // },
   },
   modules: {},
 })
