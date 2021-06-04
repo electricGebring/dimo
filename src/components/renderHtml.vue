@@ -39,7 +39,7 @@ export default {
     window.onclick = function (event) {
       //classes.value = {classes: event.target.className}
       classes = event.target.className
-      console.log(classes, 'classes')
+      console.log(classes.toString(), 'classes')
       event.target.style.background = "#AEFF14";
       
     };

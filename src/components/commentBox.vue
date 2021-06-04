@@ -22,7 +22,7 @@ export default {
     const submitComment = () => {
         const id = props.id
         // const classes = props.classes
-         console.log(props.classes, 'props.classes')
+         console.log(this.props.classes, 'props.classes')
         //showComment = true
         store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
       /* deleteComment() {
