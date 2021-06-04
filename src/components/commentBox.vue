@@ -8,32 +8,34 @@
   </div>
 </template>
 <script>
+import { ref } from '@vue/reactivity'
+import { useStore } from "vuex"
 export default {
-  props: ["show", "id", "classes"],
-
-  data() {
-    return {
-      comment: "",
-      showComment: false,
-    };
+  props: ['id', 'show', 'classes'],
+  setup(props) {
+    
+    const store = useStore()
+    const comment = ref("")
+    const classes = ref(props.classes)
+    //let showComment =  false
+      
+    const submitComment = () => {
+        const id = props.id
+        // const classes = props.classes
+         console.log(props.classes, 'props.classes')
+        //showComment = true
+        store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
+      /* deleteComment() {
+        const id = this.id;
+        const comment = this.comment;
+        const classes = this.classes;
+        this.showComment == false
+        this.$store.dispatch("deleteDocumentComment", { id, classes, comment });
+      },*/
+    }
+    return {submitComment, comment}
   },
-  methods: {
-    submitComment() {
-      const id = this.id;
-      const comment = this.comment;
-      const classes = this.classes;
-      this.showComment = true
-      this.$store.dispatch("postDocumentComment", { id, classes, comment });
-    },
-     /* deleteComment() {
-      const id = this.id;
-      const comment = this.comment;
-      const classes = this.classes;
-      this.showComment == false
-      this.$store.dispatch("deleteDocumentComment", { id, classes, comment });
-    },*/
-  },
-};
+}
 </script>
 
 <style lang="scss" >

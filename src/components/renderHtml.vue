@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { onMounted, watch, computed, ref } from "@vue/runtime-core";
+import { onMounted, watch, computed, ref, reactive } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import commentBox from "../components/commentBox.vue";
@@ -26,6 +26,7 @@ export default {
     };
     const route = useRoute();
     const id = route.params.Id;
+    let classes = ref('')
 
     onMounted(() => {
       store.dispatch("getComments", id);
@@ -36,13 +37,15 @@ export default {
     watch(commentData, () => highlight(commentData._value));
 
     window.onclick = function (event) {
-      console.log(event.target.className);
+      //classes.value = {classes: event.target.className}
+      classes = event.target.className
+      console.log(classes, 'classes')
       event.target.style.background = "#AEFF14";
+      
     };
 
     // Highligth DOM element
     const highlight = (commentData) => {
-      
       commentData.forEach((element) => {
         const elementToHighlight = document.getElementsByClassName(
           element.classes
@@ -50,7 +53,7 @@ export default {
         elementToHighlight[0].style.background = "#AEFF14";
       });
     };
-    return { html, commentData, highlight, showComment, handleClick, show, id};
+    return { html, commentData, highlight, showComment, handleClick, show, id, classes};
   },
 };
 </script>
