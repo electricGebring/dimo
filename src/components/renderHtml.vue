@@ -1,6 +1,6 @@
 <template>
   <div>
-    <commentBox :show="show" :id="id" :classes="classes" />
+    <commentBox :show="show" :id="id" />
     <div v-html="html" v-on:click="handleClick($event)"></div>
   </div>
 </template>
@@ -37,7 +37,8 @@ export default {
       show.value = ref(true);
       //console.log(event.target, 'event.target')
       classes = event.target.className
-      console.log(classes, 'classes')
+      // console.log(classes, 'classes')
+      this.$store.dispatch("setClasses", classes);
       event.target.style.background = "#AEFF14";
       
     };

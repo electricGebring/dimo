@@ -12,15 +12,15 @@ import { ref } from '@vue/reactivity'
 import { useStore } from "vuex"
 import { onUpdated } from '@vue/runtime-core'
 export default {
-  props: ['id', 'show', 'classes'],
+  props: ['id', 'show'],
   setup(props) {
     onUpdated(() => {
-      console.log(props.classes, 'props.classes')
+      console.log(store.state.setClasses, 'store.state.setClasses')
       console.log(props.id, 'props.id')
     })
     const store = useStore()
     const comment = ref("")
-    const classes = ref(props.classes)
+    const classes = store.state.setClasses
     //let showComment =  false
       
     const submitComment = () => {
