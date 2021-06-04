@@ -17,40 +17,52 @@ export default {
   },
   
   setup() {
-    const show = ref(false);
-    const store = useStore();
-    const html = require("../assets/html/sbk-avfallsplan.html");
-    const showComment = ref(false);
-    const route = useRoute();
-    const id = route.params.Id;
+    const show = ref(false)
+    const store = useStore()
+    const html = require("../assets/html/sbk-avfallsplan.html")
+    const showComment = ref(false)
+    const route = useRoute()
+    const id = route.params.Id
     let classes = reactive({})
 
     onMounted(() => {
-      store.dispatch("getComments", id);
+      store.dispatch("getComments", id)
     });
 
-    const commentData = computed(() => store.state.documentComment);
+    const commentData = computed(() => store.state.documentComment)
 
-    watch(commentData, () => highlight(commentData._value));
+    watch(commentData, () => commentCheck(commentData._value))
 
     const handleClick = (event) => {
       show.value = ref(true);
-      //console.log(event.target, 'event.target')
-      classes.value = event.target.classList.value
-      console.log(classes, 'classes')
-      event.target.style.background = "#AEFF14";
+      if (classes.value === event.target.classList.value) {
+        deHighlight(event.targe)
+      } else {
+        classes.value = event.target.classList.value
+        highlight(event.target)
+      } 
     };
 
     // Highligth DOM element
-    const highlight = (commentData) => {
+    const commentCheck = (commentData) => {
       commentData.forEach((element) => {
         const elementToHighlight = document.getElementsByClassName(
           element.classes
         );
-        elementToHighlight[0].style.background = "#AEFF14";
+        highlight(elementToHighlight[0])
       });
     };
-    return { html, commentData, highlight, showComment, handleClick, show, id, classes};
+
+    const highlight = (classes) => {
+      classes.style.background = "#AEFF14"
+    
+    }
+    const deHighlight = (classes) => {
+      classes.style.background = "transparent"
+    }
+
+
+    return { html, commentData, commentCheck, showComment, handleClick, show, id, classes};
   },
 };
 </script>
