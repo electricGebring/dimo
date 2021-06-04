@@ -1,12 +1,12 @@
 <template>
   <div>
     <commentBox :show="show" :id="id" :classes="classes" />
-    <div v-html="html" v-on:click="handleClick()"></div>
+    <div v-html="html" v-on:click="handleClick($event)"></div>
   </div>
 </template>
 
 <script>
-import { onMounted, watch, computed, ref, reactive } from "@vue/runtime-core";
+import { onMounted, watch, computed, ref} from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import commentBox from "../components/commentBox.vue";
@@ -21,9 +21,6 @@ export default {
     const store = useStore();
     const html = require("../assets/html/sbk-avfallsplan.html");
     const showComment = ref(false);
-    const handleClick = () => {
-      show.value = ref(true);
-    };
     const route = useRoute();
     const id = route.params.Id;
     let classes = ref('')
@@ -36,10 +33,11 @@ export default {
 
     watch(commentData, () => highlight(commentData._value));
 
-    window.onclick = function (event) {
-      //classes.value = {classes: event.target.className}
+    const handleClick = function (event) {
+      show.value = ref(true);
+      //console.log(event.target, 'event.target')
       classes = event.target.className
-      console.log(classes.toString(), 'classes')
+      console.log(classes, 'classes')
       event.target.style.background = "#AEFF14";
       
     };
