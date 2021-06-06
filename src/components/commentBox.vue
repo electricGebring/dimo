@@ -1,43 +1,59 @@
 <template>
   <div>
-    <form class="comment-box" v-if="show" @submit.prevent>
+    <form class="comment-box" v-if="show"  @submit.prevent>
       <textarea v-model="comment" placeholder="Lämna en kommentar.."></textarea>
       <button @click="submitComment()">send</button>
     </form>
-    <!--<span class="comment" @click="deleteComment()" v-if="showComment"> {{ comment }} </span>-->
+    <div
+      class="comment"
+      v-for="item in hej"
+      :item="item"
+      :key = "item"
+      @click="deleteComment()"
+    >
+      <span>{{ item.comment }} </span>
+    </div>
   </div>
 </template>
 <script>
-import { ref } from '@vue/reactivity'
-import { useStore } from "vuex"
+import { ref, computed } from "@vue/reactivity";
+import { useStore } from "vuex";
 export default {
-  props: ['id', 'classes', 'show'],
+  props: ["id", "classes", "show"],
   setup(props) {
-    const store = useStore()
-    const comment = ref("")
-    //let showComment =  false
-      
+    const store = useStore();
+    const comment = ref("");
+    const showComment = ref(false);
+
+
     const submitComment = () => {
-      const id = props.id
-      const classes = props.classes.value
-      //showComment = true
-  
-      store.dispatch("postDocumentComment", { id, classes, comment: comment.value })
-         
-      /* deleteComment() {
-        const id = this.id;
-        const comment = this.comment;
-        const classes = this.classes;
-        this.showComment == false
-        this.$store.dispatch("deleteDocumentComment", { id, classes, comment });
-      },*/
-    }
-    return {submitComment, comment}
+      const id = props.id;
+      const classes = props.classes.value;
+      showComment.value = ref(true);
+
+      store.dispatch("postDocumentComment", {
+        id,
+        classes,
+        comment: comment.value,
+      })
+      store.dispatch("getComments", {
+        id,
+        classes,
+        comment: comment.value,
+      })
+    };
+    const deleteComment = () => {
+      const id = props.id;
+      const classes = props.classes.value;
+      showComment.value = ref(false);
+      store.dispatch("deleteDocumentComment", { id, classes });
+    };
+    return { submitComment, comment, deleteComment, showComment, hej:computed(() => store.state.documentComment) };
   },
-}
+};
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 .comment-box {
   border-radius: 10px;
