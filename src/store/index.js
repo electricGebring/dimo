@@ -105,7 +105,7 @@ export default createStore({
     },
     deleteDocumentComment({commit}, id, classes) {
       axios.delete(`${baseURL}/deleteComment/${id}/${this.state.user}/${classes}`).then((response) => {
-        console.log(response, 'deleteSavedDocuments response')
+        console.log(response, 'deleteDocumentsComment response')
         commit('DELETE_DOCUMENT_COMMENT', response.data)
       })
     }, 

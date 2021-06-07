@@ -11,7 +11,7 @@
       :key = "item"
       @click="deleteComment(item.docId, item.classes)"
     >
-      <span>{{ item.comment }} {{ commentList }} </span>
+      <span>{{ item.comment }} </span>
     </div>
   </div>
 </template>
@@ -43,9 +43,11 @@ export default {
       })
     }
     const deleteComment = (id, classes) => {
-      classes = classes.value;
+      console.log(id, "ID")
+      //classes = classes.value
+       console.log(classes, "classes")
       showComment.value = ref(false);
-      store.dispatch("deleteDocumentComment", { id, classes });
+      store.dispatch("deleteDocumentComment", { id, classes })
     }
     return { submitComment, comment, deleteComment, showComment, commentList:computed(() => store.state.documentComment) };
   },
