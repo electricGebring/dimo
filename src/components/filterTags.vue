@@ -29,7 +29,6 @@ export default {
     }
     return {handleClick, resetFilter, showResetButton}
   },
-  mounted() {},
 }
 </script>
 

@@ -20,11 +20,12 @@
       v-for="(item, index) in doclist"
       :key="index"
       :item="item"
-    > 
+    >
       <router-link
-          id="section"
-          :to="{ name: 'PageThree', params: { Id: item._id } }"
-          @click.stop="goto(item._id)"> 
+        id="section"
+        :to="{ name: 'PageThree', params: { Id: item._id } }"
+        @click.stop="goto(item._id)"
+      >
         <div class="img-container">
           <img
             class="imgcard"
@@ -54,10 +55,10 @@
             <span>{{ item.Documenttype }} </span>
           </div>
           <div class="icons">
-            <span @click.stop="$refs.johansModal.openModal()">
+            <span @click.prevent.capture="$refs.johansModal.openModal()">
               <img src="/img/view-eye.svg" alt="" />
             </span>
-            <span v-on:click.stop="handleSave(item._id)">
+            <span v-on:click.prevent.capture="handleSave(item._id)">
               <img
                 class="save"
                 src="/img/star.svg"
@@ -68,7 +69,7 @@
             </span>
           </div>
         </div>
-        </router-link>
+      </router-link>
     </div>
   </div>
   <modal ref="johansModal">
@@ -87,12 +88,14 @@
         placerat orci. Tristique magna sit amet purus. Fermentum et sollicitudin
         ac orci phasellus egestas tellus.
       </p>
-      
     </template>
 
     <template v-slot:footer>
       <div class="d-flex align-items-center justify-content-between">
-        <p>Kanske någon mer info, typ författare, publicerings år, diarie nummer osv.</p>
+        <p>
+          Kanske någon mer info, typ författare, publicerings år, diarie nummer
+          osv.
+        </p>
       </div>
     </template>
   </modal>
@@ -109,7 +112,7 @@ export default {
     };
   },
   components: {
-    Modal
+    Modal,
   },
   computed: {
     savedDocuments() {

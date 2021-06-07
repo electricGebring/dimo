@@ -1,16 +1,22 @@
 <template>
-  <commentBox :show="show" />
-  <renderHtml @showCommentBox="showCommentBox" />
+  <div class="container">
+    <div class="main">
+      <div class="main-header"></div>
+      <div class="content-right">
+      </div>
+      <renderHtml />
+    </div>
+    <div class="sidebar-right"></div>
+  </div>
 </template>
 
 <script>
 import renderHtml from "../components/renderHtml.vue";
-import commentBox from "../components/commentBox.vue";
+
 export default {
   name: "PageThree",
   components: {
-    renderHtml,
-    commentBox,
+    renderHtml
   },
   data() {
     return {
@@ -18,12 +24,21 @@ export default {
     };
   },
   methods: {
-    showCommentBox(showComment) {
-      showComment.value = this.show;
-      this.show = true;
-    },
+   
   },
 };
 </script>
 
-<style></style>
+<style>
+.main {
+  background: #fff;
+}
+.sidebar-right {
+  background: #f9f9f9;
+  width: 324px;
+}
+.main-header {
+  background: #fff;
+  height: 124px;
+}
+</style>
