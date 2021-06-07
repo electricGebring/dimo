@@ -44,9 +44,6 @@ export default createStore({
     SET_USER(state, data) {
       state.user = data
     },
-    // SET_CLASSES(state, data) {
-    //   state.classes = data
-    // }
   },
   actions: {
     getDocuments({ commit }) {
@@ -112,10 +109,6 @@ export default createStore({
     setUser({ commit }, user) {
       commit('SET_USER', user)
     },
-    // setClasses({ commit }, classes) {
-    //   commit('SET_CLASSES', classes)
-    //   console.log(state.setClasses, 'state.setClasses')
-    // },
   },
   modules: {},
 })
