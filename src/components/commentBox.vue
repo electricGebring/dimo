@@ -20,6 +20,13 @@ import { ref, computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 export default {
   props: ["id", "classes", "show"],
+   methods: {
+    deleteComment(id, classes) {
+      console.log(classes, "class")
+       console.log(id, "cl")
+      this.$store.dispatch("deleteDocumentComment", {id, classes});
+    },
+    },
   setup(props) {
     const store = useStore();
     const comment = ref("");
@@ -42,14 +49,14 @@ export default {
         comment: comment.value,
       })
     }
-    const deleteComment = (id, classes) => {
+  /* const deleteComment = (id, classes) => {
       console.log(id, "ID")
-      //classes = classes.value
+      //classes = "bi x0 y0 w1 h1"
        console.log(classes, "classes")
       showComment.value = ref(false);
       store.dispatch("deleteDocumentComment", { id, classes })
-    }
-    return { submitComment, comment, deleteComment, showComment, commentList:computed(() => store.state.documentComment) };
+    }*/
+    return { submitComment, comment, showComment, commentList:computed(() => store.state.documentComment) };
   },
 };
 </script>
