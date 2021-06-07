@@ -6,10 +6,10 @@
     </form>
     <div
       class="comment"
-      v-for="item in hej"
+      v-for="item in commentList"
       :item="item"
       :key = "item"
-      @click="deleteComment()"
+      @click="deleteComment(item._id, item.classes)"
     >
       <span>{{ item.comment }} </span>
     </div>
@@ -41,14 +41,14 @@ export default {
         classes,
         comment: comment.value,
       })
-    };
-    const deleteComment = () => {
-      const id = props.id;
-      const classes = props.classes.value;
+    }
+    const deleteComment = (id, classes) => {
+     // id = props.id;
+     // classes = props.classes.value;
       showComment.value = ref(false);
       store.dispatch("deleteDocumentComment", { id, classes });
-    };
-    return { submitComment, comment, deleteComment, showComment, hej:computed(() => store.state.documentComment) };
+    }
+    return { submitComment, comment, deleteComment, showComment, commentList:computed(() => store.state.documentComment) };
   },
 };
 </script>
