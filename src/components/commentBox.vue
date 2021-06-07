@@ -9,9 +9,9 @@
       v-for="item in commentList"
       :item="item"
       :key = "item"
-      @click="deleteComment(item._id, item.classes)"
+      @click="deleteComment(item.docId, item.classes)"
     >
-      <span>{{ item.comment }} </span>
+      <span>{{ item.comment }} {{ commentList }} </span>
     </div>
   </div>
 </template>
@@ -43,8 +43,7 @@ export default {
       })
     }
     const deleteComment = (id, classes) => {
-     // id = props.id;
-     // classes = props.classes.value;
+      classes = classes.value;
       showComment.value = ref(false);
       store.dispatch("deleteDocumentComment", { id, classes });
     }
